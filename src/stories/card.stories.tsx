@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import img from "./denver.png";
 
 import {
     Card,
@@ -21,7 +20,7 @@ export const Primary: Story = {
             <Card
                 className="w-[425px] h-[550px] bg-no-repeat bg-center bg-cover"
                 style={{
-                    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.75) 100%), url(${img.src}) lightgray 50% / cover no-repeat`,
+                    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.75) 100%), url(https://parkmobile.io/wp-content/uploads/2022/02/ball-arena-parking-the-ultimate-guide-scaled.jpg) lightgray 50% / cover no-repeat`,
                     boxShadow: `0px 4px 48px 0px rgba(0, 0, 0, 0.12)`,
                 }}
             >
