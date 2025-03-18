@@ -32,9 +32,9 @@ export type SocialCarouselProps =
 const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
     const {
         primary: {
-            socialcarousellink: link,
-            socialcarouseldescription: desc,
-            socialcarouseltitle: title,
+            socialCarouselLink: link,
+            socialCarouselDescription: desc,
+            socialCarouselTitle: title,
         },
     } = slice;
     return (

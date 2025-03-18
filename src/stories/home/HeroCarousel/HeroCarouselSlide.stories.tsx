@@ -10,10 +10,10 @@ type Story = StoryObj<typeof HeroCarouselSlide>;
 
 export const Primary: Story = {
     args: {
-        herocarouseldescription:
+        heroCarouselDescription:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        herocarouseltitle: "Slide Title (H2)",
-        herocarousellink: {
+        heroCarouselTitle: "Slide Title (H2)",
+        heroCarouselLink: {
             link_type: "Web",
             url: "https://google.com",
             text: "Slide Link",

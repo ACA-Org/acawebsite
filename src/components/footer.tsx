@@ -5,42 +5,27 @@ import { Facebook } from "@/icons/Facebook";
 import { Instagram } from "@/icons/Instagram";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { X } from "@/icons/X";
+import { Simplify } from "@/lib/utils";
+import { FooterDocumentData } from "../../prismicio-types";
+import { PrismicNextLink } from "@prismicio/next";
 
-const Footer = () => {
+export type FooterProps = Simplify<FooterDocumentData>;
+
+const Footer = (props: FooterProps) => {
+    const {
+        footerAddress,
+        footerContactInfo,
+        helpfulNavLinks,
+        memberNavLinks,
+        subFooterNavLinks,
+    } = props;
     // Organization information
     const organizationInfo = {
         name: "American Correctional Association",
         tagline: "Advance. Connect. Achieve.",
-        address: [
-            "206 N. Washington Street",
-            "Suite 200",
-            "Alexandria, VA 22314",
-        ],
-        contact: ["Phone: (703) 224-0000", "Fax: (703) 224-0010"],
+        address: footerAddress.map((i) => i.footerAddressLine),
+        contact: footerContactInfo.map((i) => i.footerContactLine),
     };
-
-    // Footer links data
-    const helpfulLinks = [
-        "About Us",
-        "Professional Development",
-        "Conferences",
-        "Correctional Health Care",
-        "Global Corrections Service",
-        "Membership",
-        "Publications",
-        "Resources",
-        "Standards & Accreditations",
-        "Job Bank",
-    ];
-
-    const memberLinks = ["Sign In", "Marketplace", "Newsletters"];
-
-    const bottomLinks = [
-        "Careers",
-        "Contact Us",
-        "Privacy Policy",
-        "Terms and Conditions",
-    ];
 
     return (
         <footer className="flex flex-col w-full items-start">
@@ -95,13 +80,14 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col items-start gap-2 self-stretch w-full">
-                        {helpfulLinks.map((link, index) => (
-                            <div
+                        {helpfulNavLinks?.map((link, index) => (
+                            <PrismicNextLink
                                 key={`helpful-${index}`}
                                 className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                field={link}
                             >
-                                {link}
-                            </div>
+                                {link.text}
+                            </PrismicNextLink>
                         ))}
                     </div>
                 </div>
@@ -112,13 +98,14 @@ const Footer = () => {
                     </div>
 
                     <div className="flex flex-col items-start gap-2 self-stretch w-full">
-                        {memberLinks.map((link, index) => (
-                            <div
+                        {memberNavLinks?.map((link, index) => (
+                            <PrismicNextLink
                                 key={`member-${index}`}
                                 className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                field={link}
                             >
-                                {link}
-                            </div>
+                                {link.text}
+                            </PrismicNextLink>
                         ))}
                     </div>
                 </div>
@@ -151,13 +138,14 @@ const Footer = () => {
 
             <div className="flex items-center justify-between px-[76px] py-8 self-stretch w-full bg-[#dddddd]">
                 <div className="inline-flex items-center gap-6">
-                    {bottomLinks.map((link, index) => (
-                        <div
-                            key={`bottom-${index}`}
+                    {subFooterNavLinks?.map((link, index) => (
+                        <PrismicNextLink
+                            key={`sub-footer-${index}`}
+                            field={link}
                             className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600"
                         >
-                            {link}
-                        </div>
+                            {link.text}
+                        </PrismicNextLink>
                     ))}
                 </div>
 

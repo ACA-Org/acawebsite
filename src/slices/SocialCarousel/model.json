@@ -12,21 +12,21 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "socialcarouseltitle": {
+        "socialCarouselTitle": {
           "type": "Text",
           "config": {
             "label": "SocialCarouselTitle",
             "placeholder": ""
           }
         },
-        "socialcarouseldescription": {
+        "socialCarouselDescription": {
           "type": "Text",
           "config": {
             "label": "SocialCarouselDescription",
             "placeholder": ""
           }
         },
-        "socialcarousellink": {
+        "socialCarouselLink": {
           "type": "Link",
           "config": {
             "label": "SocialCarouselLink",

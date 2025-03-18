@@ -6,13 +6,13 @@
   "status": true,
   "json": {
     "Main": {
-      "herocarouseldata": {
+      "heroCarouselData": {
         "type": "Group",
         "config": {
           "label": "HeroCarouselData",
           "repeat": true,
           "fields": {
-            "herocarouselbackground": {
+            "heroCarouselBackground": {
               "type": "Image",
               "config": {
                 "label": "HeroCarouselBackground",
@@ -20,21 +20,21 @@
                 "thumbnails": []
               }
             },
-            "herocarouseltitle": {
+            "heroCarouselTitle": {
               "type": "Text",
               "config": {
                 "label": "HeroCarouselTitle",
                 "placeholder": "Slide Title (H2)"
               }
             },
-            "herocarouseldescription": {
+            "heroCarouselDescription": {
               "type": "Text",
               "config": {
                 "label": "HeroCarouselDescription",
                 "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
               }
             },
-            "herocarousellink": {
+            "heroCarouselLink": {
               "type": "Link",
               "config": {
                 "label": "HeroCarouselLink",

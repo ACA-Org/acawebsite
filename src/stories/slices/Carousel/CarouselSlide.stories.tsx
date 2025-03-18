@@ -10,11 +10,11 @@ type Story = StoryObj<typeof CarouselSlide>;
 
 export const Primary: Story = {
     args: {
-        carouselslidedescription: "Lorem ipsum dolor sit amet...",
-        carouselslidetitle: "Conference Title Will Go Here",
-        carouselslidelocation: "CHICAGO, IL",
-        carouselslidedate: `2025-04-01T17:00:00+0000`,
-        carouselslidelink: {
+        carouselSlideDescription: "Lorem ipsum dolor sit amet...",
+        carouselSlideTitle: "Conference Title Will Go Here",
+        carouselSlideLocation: "CHICAGO, IL",
+        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+        carouselSlideLink: {
             link_type: "Web",
             url: "https://google.com",
             text: "Slide Link",

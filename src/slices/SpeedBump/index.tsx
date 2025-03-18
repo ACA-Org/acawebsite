@@ -15,10 +15,10 @@ export type SideBySideProps = SliceComponentProps<Content.SideBySideSlice>;
 const SpeedBump: FC<SideBySideProps> = ({ slice }) => {
     const {
         primary: {
-            speedbumpdescription: description,
-            speedbumpimage: hero,
-            speedbumptitle: title,
-            speedbumplink: link,
+            speedBumpDescription: description,
+            speedBumpImage: hero,
+            speedBumpTitle: title,
+            speedBumpLink: link,
         },
     } = slice;
 

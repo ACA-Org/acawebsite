@@ -5,6 +5,72 @@
   "repeatable": false,
   "status": true,
   "json": {
-    "Main": {}
+    "Main": {
+      "footerAddress": {
+        "type": "Group",
+        "config": {
+          "label": "FooterAddress",
+          "repeat": true,
+          "fields": {
+            "footerAddressLine": {
+              "type": "Text",
+              "config": {
+                "label": "FooterAddressLine",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "footerContactInfo": {
+        "type": "Group",
+        "config": {
+          "label": "FooterContact",
+          "repeat": true,
+          "fields": {
+            "footerContactLine": {
+              "type": "Text",
+              "config": {
+                "label": "FooterContactLine",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "helpfulNavLinks": {
+        "type": "Link",
+        "config": {
+          "label": "HelpfulNavLinks",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "subFooterNavLinks": {
+        "type": "Link",
+        "config": {
+          "label": "SubFooterNavLinks",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "memberNavLinks": {
+        "type": "Link",
+        "config": {
+          "label": "MemberNavLinks",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      }
+    }
   }
 }

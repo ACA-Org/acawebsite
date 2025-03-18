@@ -5,27 +5,6 @@
   "repeatable": false,
   "status": true,
   "json": {
-    "Main": {
-      "mainnavlink": {
-        "type": "Group",
-        "config": {
-          "label": "MainNavLink",
-          "repeat": true,
-          "fields": {
-            "subnavlink": {
-              "type": "Link",
-              "config": {
-                "label": "SubNavLink",
-                "placeholder": "",
-                "select": null,
-                "allowTargetBlank": true,
-                "allowText": true,
-                "repeat": true
-              }
-            }
-          }
-        }
-      }
-    }
+    "Main": {}
   }
 }

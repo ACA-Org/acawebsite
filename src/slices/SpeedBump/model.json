@@ -12,7 +12,7 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "speedbumpimage": {
+        "speedBumpImage": {
           "type": "Image",
           "config": {
             "label": "SpeedBumpImage",
@@ -20,21 +20,21 @@
             "thumbnails": []
           }
         },
-        "speedbumptitle": {
+        "speedBumpTitle": {
           "type": "Text",
           "config": {
             "label": "SpeedBumpTitle",
             "placeholder": "Content Title"
           }
         },
-        "speedbumpdescription": {
+        "speedBumpDescription": {
           "type": "Text",
           "config": {
             "label": "SpeedBumpDescription",
             "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
           }
         },
-        "speedbumplink": {
+        "speedBumpLink": {
           "type": "Link",
           "config": {
             "label": "SpeedBumpLink",

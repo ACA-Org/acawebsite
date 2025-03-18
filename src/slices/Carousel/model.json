@@ -12,13 +12,13 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "carouselslide": {
+        "carouselSlides": {
           "type": "Group",
           "config": {
-            "label": "CarouselSlide",
+            "label": "CarouselSlides",
             "repeat": true,
             "fields": {
-              "carouselslidebackground": {
+              "carouselSlideBackground": {
                 "type": "Image",
                 "config": {
                   "label": "CarouselSlideBackground",
@@ -26,21 +26,21 @@
                   "thumbnails": []
                 }
               },
-              "carouselslidetitle": {
+              "carouselSlideTitle": {
                 "type": "Text",
                 "config": {
                   "label": "CarouselSlideTitle",
                   "placeholder": "Slide Title"
                 }
               },
-              "carouselslidedescription": {
+              "carouselSlideDescription": {
                 "type": "Text",
                 "config": {
                   "label": "CarouselSlideDescription",
                   "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
                 }
               },
-              "carouselslidelink": {
+              "carouselSlideLink": {
                 "type": "Link",
                 "config": {
                   "label": "CarouselSlideLink",
@@ -51,14 +51,14 @@
                   "repeat": false
                 }
               },
-              "carouselslidelocation": {
+              "carouselSlideLocation": {
                 "type": "Text",
                 "config": {
                   "label": "CarouselSlideLocation",
                   "placeholder": "Location"
                 }
               },
-              "carouselslidedate": {
+              "carouselSlideDate": {
                 "type": "Timestamp",
                 "config": {
                   "label": "CarouselSlideDate",
@@ -68,21 +68,21 @@
             }
           }
         },
-        "carouseltitle": {
+        "carouselTitle": {
           "type": "Text",
           "config": {
             "label": "CarouselTitle",
             "placeholder": "Carousel Title"
           }
         },
-        "carouselsubtitle": {
+        "carouselSubTitle": {
           "type": "Text",
           "config": {
             "label": "CarouselSubtitle",
             "placeholder": "Carousel Subtitle"
           }
         },
-        "carousellink": {
+        "carouselLink": {
           "type": "Link",
           "config": {
             "label": "CarouselLink",

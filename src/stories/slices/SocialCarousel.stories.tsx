@@ -25,13 +25,13 @@ export const Primary: Story = {
             id: "123",
             slice_label: null,
             primary: {
-                socialcarouseltitle: "Join the Discussion",
-                socialcarousellink: {
+                socialCarouselTitle: "Join the Discussion",
+                socialCarouselLink: {
                     link_type: "Web",
                     url: "https://google.com",
                     text: "Learn More",
                 },
-                socialcarouseldescription:
+                socialCarouselDescription:
                     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae",
             },
         },

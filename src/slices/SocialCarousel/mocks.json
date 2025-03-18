@@ -3,23 +3,23 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"socialcarouseltitle": {
+			"socialCarouselTitle": {
 				"__TYPE__": "FieldContent",
-				"value": "policeman",
+				"value": "able",
 				"type": "Text"
 			},
-			"socialcarouseldescription": {
+			"socialCarouselDescription": {
 				"__TYPE__": "FieldContent",
-				"value": "put",
+				"value": "known",
 				"type": "Text"
 			},
-			"socialcarousellink": {
+			"socialCarouselLink": {
 				"__TYPE__": "LinkContent",
-				"key": "6de1f4f6-76d8-4031-abf0-1721da4405b1",
+				"key": "4eaf8112-90e7-40ee-bb6d-b7ffb3de9518",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "https://slicemachine.dev",
-					"text": "sense"
+					"text": "studied"
 				}
 			}
 		},

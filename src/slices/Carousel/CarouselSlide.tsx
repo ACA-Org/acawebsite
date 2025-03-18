@@ -1,21 +1,19 @@
 import { FC } from "react";
 
-import { CarouselSliceDefaultPrimaryCarouselslideItem } from "../../../prismicio-types";
-import { cn } from "@/lib/utils";
-
-type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
+import { CarouselSliceDefaultPrimaryCarouselSlidesItem } from "../../../prismicio-types";
+import { cn, Simplify } from "@/lib/utils";
 
 type CarouselSlideProps =
-    Simplify<CarouselSliceDefaultPrimaryCarouselslideItem> & {
+    Simplify<CarouselSliceDefaultPrimaryCarouselSlidesItem> & {
         className?: string;
     };
 
 const CarouselSlide: FC<CarouselSlideProps> = (props) => {
     const {
-        carouselslidedescription: desc,
-        carouselslidetitle: title,
-        carouselslidedate: date,
-        carouselslidelocation: location,
+        carouselSlideDescription: desc,
+        carouselSlideTitle: title,
+        carouselSlideDate: date,
+        carouselSlideLocation: location,
         className,
     } = props;
     return (

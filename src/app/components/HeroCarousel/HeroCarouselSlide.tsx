@@ -1,17 +1,16 @@
 import { FC } from "react";
 import { LinkButton } from "@/components/ui/button";
-import { HomepageDocumentDataHerocarouseldataItem } from "../../../../prismicio-types";
-
-type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
+import { HomepageDocumentDataHeroCarouselDataItem } from "../../../../prismicio-types";
+import { Simplify } from "@/lib/utils";
 
 export type HeroCarouselSlideProps =
-    Simplify<HomepageDocumentDataHerocarouseldataItem>;
+    Simplify<HomepageDocumentDataHeroCarouselDataItem>;
 
 const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
     const {
-        herocarouseldescription: desc,
-        herocarousellink: link,
-        herocarouseltitle: title,
+        heroCarouselDescription: desc,
+        heroCarouselLink: link,
+        heroCarouselTitle: title,
     } = props;
     return (
         <div className="flex p-12 flex-col items-center justify-end rounded-2xl bg-[#A2A2A2] h-full w-full">

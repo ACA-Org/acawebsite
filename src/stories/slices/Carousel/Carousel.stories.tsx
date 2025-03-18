@@ -25,83 +25,83 @@ export const Primary: Story = {
             id: "123",
             slice_label: null,
             primary: {
-                carouseltitle: "Connect, Learn, and Lead",
-                carousellink: {
+                carouselTitle: "Connect, Learn, and Lead",
+                carouselLink: {
                     link_type: "Web",
                     url: "https://google.com",
                     text: "Learn More",
                 },
-                carouselsubtitle:
+                carouselSubTitle:
                     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae",
-                carouselslide: [
+                carouselSlides: [
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },
                     },
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },
                     },
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },
                     },
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },
                     },
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },
                     },
                     {
-                        carouselslidedescription:
+                        carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselslidebackground: {},
-                        carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "CHICAGO, IL",
-                        carouselslidedate: `2025-04-01T17:00:00+0000`,
-                        carouselslidelink: {
+                        carouselSlideBackground: {},
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLocation: "CHICAGO, IL",
+                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
+                        carouselSlideLink: {
                             link_type: "Web",
                             url: "https://google.com",
                         },

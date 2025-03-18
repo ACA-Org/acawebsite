@@ -4,7 +4,105 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-interface FooterDocumentData {}
+/**
+ * Item in *Footer → FooterAddress*
+ */
+export interface FooterDocumentDataFooterAddressItem {
+  /**
+   * FooterAddressLine field in *Footer → FooterAddress*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerAddress[].footerAddressLine
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  footerAddressLine: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Footer → FooterContact*
+ */
+export interface FooterDocumentDataFooterContactInfoItem {
+  /**
+   * FooterContactLine field in *Footer → FooterContact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerContactInfo[].footerContactLine
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  footerContactLine: prismic.KeyTextField;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * FooterAddress field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerAddress[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  footerAddress: prismic.GroupField<
+    Simplify<FooterDocumentDataFooterAddressItem>
+  >;
+
+  /**
+   * FooterContact field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.footerContactInfo[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  footerContactInfo: prismic.GroupField<
+    Simplify<FooterDocumentDataFooterContactInfoItem>
+  >;
+
+  /**
+   * HelpfulNavLinks field in *Footer*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.helpfulNavLinks
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  helpfulNavLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * SubFooterNavLinks field in *Footer*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.subFooterNavLinks
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  subFooterNavLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * MemberNavLinks field in *Footer*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.memberNavLinks
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  memberNavLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
 
 /**
  * Footer document from Prismic
@@ -22,38 +120,7 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-/**
- * Item in *Header → MainNavLink*
- */
-export interface HeaderDocumentDataMainnavlinkItem {
-  /**
-   * SubNavLink field in *Header → MainNavLink*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header.mainnavlink[].subnavlink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  subnavlink: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-}
-
-/**
- * Content for Header documents
- */
-interface HeaderDocumentData {
-  /**
-   * MainNavLink field in *Header*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header.mainnavlink[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  mainnavlink: prismic.GroupField<Simplify<HeaderDocumentDataMainnavlinkItem>>;
-}
+interface HeaderDocumentData {}
 
 /**
  * Header document from Prismic
@@ -74,46 +141,46 @@ export type HeaderDocument<Lang extends string = string> =
 /**
  * Item in *HomePage → HeroCarouselData*
  */
-export interface HomepageDocumentDataHerocarouseldataItem {
+export interface HomepageDocumentDataHeroCarouselDataItem {
   /**
    * HeroCarouselBackground field in *HomePage → HeroCarouselData*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.herocarouseldata[].herocarouselbackground
+   * - **API ID Path**: homepage.heroCarouselData[].heroCarouselBackground
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  herocarouselbackground: prismic.ImageField<never>;
+  heroCarouselBackground: prismic.ImageField<never>;
 
   /**
    * HeroCarouselTitle field in *HomePage → HeroCarouselData*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Slide Title (H2)
-   * - **API ID Path**: homepage.herocarouseldata[].herocarouseltitle
+   * - **API ID Path**: homepage.heroCarouselData[].heroCarouselTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  herocarouseltitle: prismic.KeyTextField;
+  heroCarouselTitle: prismic.KeyTextField;
 
   /**
    * HeroCarouselDescription field in *HomePage → HeroCarouselData*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut...
-   * - **API ID Path**: homepage.herocarouseldata[].herocarouseldescription
+   * - **API ID Path**: homepage.heroCarouselData[].heroCarouselDescription
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  herocarouseldescription: prismic.KeyTextField;
+  heroCarouselDescription: prismic.KeyTextField;
 
   /**
    * HeroCarouselLink field in *HomePage → HeroCarouselData*
    *
    * - **Field Type**: Link
    * - **Placeholder**: Slide Link
-   * - **API ID Path**: homepage.herocarouseldata[].herocarousellink
+   * - **API ID Path**: homepage.heroCarouselData[].heroCarouselLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  herocarousellink: prismic.LinkField<
+  heroCarouselLink: prismic.LinkField<
     string,
     string,
     unknown,
@@ -133,12 +200,12 @@ interface HomepageDocumentData {
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.herocarouseldata[]
+   * - **API ID Path**: homepage.heroCarouselData[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  herocarouseldata: prismic.GroupField<
-    Simplify<HomepageDocumentDataHerocarouseldataItem>
+  heroCarouselData: prismic.GroupField<
+    Simplify<HomepageDocumentDataHeroCarouselDataItem>
   >;
 
   /**
@@ -206,48 +273,48 @@ export type AllDocumentTypes =
   | HomepageDocument;
 
 /**
- * Item in *Carousel → Conference → Primary → CarouselSlide*
+ * Item in *Carousel → Conference → Primary → CarouselSlides*
  */
-export interface CarouselSliceDefaultPrimaryCarouselslideItem {
+export interface CarouselSliceDefaultPrimaryCarouselSlidesItem {
   /**
-   * CarouselSlideBackground field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideBackground field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidebackground
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideBackground
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  carouselslidebackground: prismic.ImageField<never>;
+  carouselSlideBackground: prismic.ImageField<never>;
 
   /**
-   * CarouselSlideTitle field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideTitle field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Slide Title
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidetitle
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  carouselslidetitle: prismic.KeyTextField;
+  carouselSlideTitle: prismic.KeyTextField;
 
   /**
-   * CarouselSlideDescription field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideDescription field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut...
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidedescription
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideDescription
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  carouselslidedescription: prismic.KeyTextField;
+  carouselSlideDescription: prismic.KeyTextField;
 
   /**
-   * CarouselSlideLink field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideLink field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidelink
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  carouselslidelink: prismic.LinkField<
+  carouselSlideLink: prismic.LinkField<
     string,
     string,
     unknown,
@@ -256,24 +323,24 @@ export interface CarouselSliceDefaultPrimaryCarouselslideItem {
   >;
 
   /**
-   * CarouselSlideLocation field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideLocation field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Location
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidelocation
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideLocation
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  carouselslidelocation: prismic.KeyTextField;
+  carouselSlideLocation: prismic.KeyTextField;
 
   /**
-   * CarouselSlideDate field in *Carousel → Conference → Primary → CarouselSlide*
+   * CarouselSlideDate field in *Carousel → Conference → Primary → CarouselSlides*
    *
    * - **Field Type**: Timestamp
    * - **Placeholder**: Date
-   * - **API ID Path**: carousel.default.primary.carouselslide[].carouselslidedate
+   * - **API ID Path**: carousel.default.primary.carouselSlides[].carouselSlideDate
    * - **Documentation**: https://prismic.io/docs/field#timestamp
    */
-  carouselslidedate: prismic.TimestampField;
+  carouselSlideDate: prismic.TimestampField;
 }
 
 /**
@@ -281,15 +348,15 @@ export interface CarouselSliceDefaultPrimaryCarouselslideItem {
  */
 export interface CarouselSliceDefaultPrimary {
   /**
-   * CarouselSlide field in *Carousel → Conference → Primary*
+   * CarouselSlides field in *Carousel → Conference → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.default.primary.carouselslide[]
+   * - **API ID Path**: carousel.default.primary.carouselSlides[]
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  carouselslide: prismic.GroupField<
-    Simplify<CarouselSliceDefaultPrimaryCarouselslideItem>
+  carouselSlides: prismic.GroupField<
+    Simplify<CarouselSliceDefaultPrimaryCarouselSlidesItem>
   >;
 
   /**
@@ -297,30 +364,30 @@ export interface CarouselSliceDefaultPrimary {
    *
    * - **Field Type**: Text
    * - **Placeholder**: Carousel Title
-   * - **API ID Path**: carousel.default.primary.carouseltitle
+   * - **API ID Path**: carousel.default.primary.carouselTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  carouseltitle: prismic.KeyTextField;
+  carouselTitle: prismic.KeyTextField;
 
   /**
    * CarouselSubtitle field in *Carousel → Conference → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Carousel Subtitle
-   * - **API ID Path**: carousel.default.primary.carouselsubtitle
+   * - **API ID Path**: carousel.default.primary.carouselSubTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  carouselsubtitle: prismic.KeyTextField;
+  carouselSubTitle: prismic.KeyTextField;
 
   /**
    * CarouselLink field in *Carousel → Conference → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: carousel.default.primary.carousellink
+   * - **API ID Path**: carousel.default.primary.carouselLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  carousellink: prismic.LinkField<
+  carouselLink: prismic.LinkField<
     string,
     string,
     unknown,
@@ -368,40 +435,40 @@ export interface SideBySideSliceDefaultPrimary {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: side_by_side.default.primary.speedbumpimage
+   * - **API ID Path**: side_by_side.default.primary.speedBumpImage
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  speedbumpimage: prismic.ImageField<never>;
+  speedBumpImage: prismic.ImageField<never>;
 
   /**
    * SpeedBumpTitle field in *SpeedBump → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Content Title
-   * - **API ID Path**: side_by_side.default.primary.speedbumptitle
+   * - **API ID Path**: side_by_side.default.primary.speedBumpTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  speedbumptitle: prismic.KeyTextField;
+  speedBumpTitle: prismic.KeyTextField;
 
   /**
    * SpeedBumpDescription field in *SpeedBump → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut...
-   * - **API ID Path**: side_by_side.default.primary.speedbumpdescription
+   * - **API ID Path**: side_by_side.default.primary.speedBumpDescription
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  speedbumpdescription: prismic.KeyTextField;
+  speedBumpDescription: prismic.KeyTextField;
 
   /**
    * SpeedBumpLink field in *SpeedBump → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: side_by_side.default.primary.speedbumplink
+   * - **API ID Path**: side_by_side.default.primary.speedBumpLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  speedbumplink: prismic.LinkField<
+  speedBumpLink: prismic.LinkField<
     string,
     string,
     unknown,
@@ -449,30 +516,30 @@ export interface SocialCarouselSliceDefaultPrimary {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: social_carousel.default.primary.socialcarouseltitle
+   * - **API ID Path**: social_carousel.default.primary.socialCarouselTitle
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  socialcarouseltitle: prismic.KeyTextField;
+  socialCarouselTitle: prismic.KeyTextField;
 
   /**
    * SocialCarouselDescription field in *SocialCarousel → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: social_carousel.default.primary.socialcarouseldescription
+   * - **API ID Path**: social_carousel.default.primary.socialCarouselDescription
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  socialcarouseldescription: prismic.KeyTextField;
+  socialCarouselDescription: prismic.KeyTextField;
 
   /**
    * SocialCarouselLink field in *SocialCarousel → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: social_carousel.default.primary.socialcarousellink
+   * - **API ID Path**: social_carousel.default.primary.socialCarouselLink
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  socialcarousellink: prismic.LinkField<
+  socialCarouselLink: prismic.LinkField<
     string,
     string,
     unknown,
@@ -534,16 +601,17 @@ declare module "@prismicio/client" {
     export type {
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataFooterAddressItem,
+      FooterDocumentDataFooterContactInfoItem,
       HeaderDocument,
       HeaderDocumentData,
-      HeaderDocumentDataMainnavlinkItem,
       HomepageDocument,
       HomepageDocumentData,
-      HomepageDocumentDataHerocarouseldataItem,
+      HomepageDocumentDataHeroCarouselDataItem,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
       CarouselSlice,
-      CarouselSliceDefaultPrimaryCarouselslideItem,
+      CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,
       CarouselSliceVariation,
       CarouselSliceDefault,

@@ -18,8 +18,8 @@ export const Primary: Story = {
             id: "123",
             slice_label: null,
             primary: {
-                speedbumptitle: "Connect, Learn, and Lead",
-                speedbumpimage: {
+                speedBumpTitle: "Connect, Learn, and Lead",
+                speedBumpImage: {
                     alt: "Placeholder",
                     url: "https://placehold.co/600x400/EEE/31343C?font=poppins&text=Poppins",
                     id: "",
@@ -35,13 +35,13 @@ export const Primary: Story = {
                     },
                     copyright: "",
                 },
-                speedbumplink: {
+                speedBumpLink: {
                     link_type: "Web",
                     text: "Learn More",
                     url: "https://google.com",
                     target: "_blank",
                 },
-                speedbumpdescription:
+                speedBumpDescription:
                     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae",
             },
         },

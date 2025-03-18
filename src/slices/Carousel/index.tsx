@@ -28,10 +28,10 @@ export type CarouselProps = SliceComponentProps<Content.CarouselSlice>;
 const Carousel: FC<CarouselProps> = ({ slice }) => {
     const {
         primary: {
-            carousellink: link,
-            carouselslide: slides,
-            carouselsubtitle: subTitle,
-            carouseltitle: title,
+            carouselLink: link,
+            carouselSlides: slides,
+            carouselSubTitle: subTitle,
+            carouselTitle: title,
         },
     } = slice;
     return (
