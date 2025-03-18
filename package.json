@@ -9,18 +9,22 @@
     "lint": "next lint",
     "slicemachine": "start-slicemachine",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky"
   },
   "dependencies": {
     "@prismicio/client": "^7.16.1",
     "@prismicio/next": "^2.0.0",
     "@prismicio/react": "^3.1.0",
+    "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.477.0",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "swiper": "^11.2.5",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -42,6 +46,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "eslint-plugin-storybook": "^0.11.4",
+    "husky": "^9.1.7",
     "slice-machine-ui": "^2.13.1",
     "storybook": "^8.6.4",
     "tailwindcss": "^4",

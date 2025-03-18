@@ -1,0 +1,100 @@
+{
+  "id": "carousel",
+  "type": "SharedSlice",
+  "name": "Carousel",
+  "description": "Carousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Conference",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "carouselslide": {
+          "type": "Group",
+          "config": {
+            "label": "CarouselSlide",
+            "repeat": true,
+            "fields": {
+              "carouselslidebackground": {
+                "type": "Image",
+                "config": {
+                  "label": "CarouselSlideBackground",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "carouselslidetitle": {
+                "type": "Text",
+                "config": {
+                  "label": "CarouselSlideTitle",
+                  "placeholder": "Slide Title"
+                }
+              },
+              "carouselslidedescription": {
+                "type": "Text",
+                "config": {
+                  "label": "CarouselSlideDescription",
+                  "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
+                }
+              },
+              "carouselslidelink": {
+                "type": "Link",
+                "config": {
+                  "label": "CarouselSlideLink",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "carouselslidelocation": {
+                "type": "Text",
+                "config": {
+                  "label": "CarouselSlideLocation",
+                  "placeholder": "Location"
+                }
+              },
+              "carouselslidedate": {
+                "type": "Timestamp",
+                "config": {
+                  "label": "CarouselSlideDate",
+                  "placeholder": "Date"
+                }
+              }
+            }
+          }
+        },
+        "carouseltitle": {
+          "type": "Text",
+          "config": {
+            "label": "CarouselTitle",
+            "placeholder": "Carousel Title"
+          }
+        },
+        "carouselsubtitle": {
+          "type": "Text",
+          "config": {
+            "label": "CarouselSubtitle",
+            "placeholder": "Carousel Subtitle"
+          }
+        },
+        "carousellink": {
+          "type": "Link",
+          "config": {
+            "label": "CarouselLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

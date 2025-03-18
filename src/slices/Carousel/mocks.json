@@ -1,0 +1,108 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"carouselslide": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"carouselslidebackground",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+										"width": 4000,
+										"height": 4000
+									},
+									"url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04",
+									"width": 4000,
+									"height": 4000,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "send",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"carouselslidetitle",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "applied",
+									"type": "Text"
+								}
+							],
+							[
+								"carouselslidedescription",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "make",
+									"type": "Text"
+								}
+							],
+							[
+								"carouselslidelink",
+								{
+									"key": "0cc22b43-f79b-4d61-a4ae-510a6a54d553",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "immediately"
+									}
+								}
+							],
+							[
+								"carouselslidelocation",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "handsome",
+									"type": "Text"
+								}
+							],
+							[
+								"carouselslidedate",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Timestamp",
+									"value": "2021-05-24T18:34:02Z"
+								}
+							]
+						]
+					}
+				]
+			},
+			"carouseltitle": {
+				"__TYPE__": "FieldContent",
+				"value": "living",
+				"type": "Text"
+			},
+			"carouselsubtitle": {
+				"__TYPE__": "FieldContent",
+				"value": "flag",
+				"type": "Text"
+			},
+			"carousellink": {
+				"key": "f3e00831-bb58-42a8-bd1e-80b81e75db98",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "toward"
+				}
+			}
+		},
+		"items": []
+	}
+]
