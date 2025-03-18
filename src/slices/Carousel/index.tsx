@@ -7,7 +7,7 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import CarouselSlide from "./CarouselSlide";
 import { LinkButton } from "@/components/ui/button";
-import { SlideControls } from "./SlideControls";
+import { SlideControls } from "@/components/slide-controls";
 
 // To ensure left alignment, we'll use these styles
 const swiperStyle = {
@@ -71,7 +71,7 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
                         </div>
                     </SwiperSlide>
                 ))}
-                <SlideControls className="right-12 -bottom-28" />
+                <SlideControls className="right-0 -bottom-28" />
             </Swiper>
 
             {link && (

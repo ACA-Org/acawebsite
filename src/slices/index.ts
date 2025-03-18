@@ -5,4 +5,5 @@ import dynamic from "next/dynamic";
 export const components = {
   carousel: dynamic(() => import("./Carousel")),
   side_by_side: dynamic(() => import("./SpeedBump")),
+  social_carousel: dynamic(() => import("./SocialCarousel")),
 };

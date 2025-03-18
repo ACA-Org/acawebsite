@@ -1,0 +1,28 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"socialcarouseltitle": {
+				"__TYPE__": "FieldContent",
+				"value": "policeman",
+				"type": "Text"
+			},
+			"socialcarouseldescription": {
+				"__TYPE__": "FieldContent",
+				"value": "put",
+				"type": "Text"
+			},
+			"socialcarousellink": {
+				"__TYPE__": "LinkContent",
+				"key": "6de1f4f6-76d8-4031-abf0-1721da4405b1",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "sense"
+				}
+			}
+		},
+		"items": []
+	}
+]

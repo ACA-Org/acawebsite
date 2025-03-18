@@ -28,14 +28,16 @@ const SpeedBump: FC<SideBySideProps> = ({ slice }) => {
             data-slice-variation={slice.variation}
             className="flex rounded-3xl shadow-2xl p-8 pr-16 overflow-hidden"
         >
-            <div className="flex flex-row h-fit items-center gap-8 self-stretch">
+            <div className="flex h-full items-center gap-8 self-stretch">
                 {hero && (
-                    <PrismicNextImage
-                        className="h-full w-full object-center object-cover rounded-md"
-                        field={hero}
-                    />
+                    <figure className="relative h-full w-auto">
+                        <PrismicNextImage
+                            className="w-full h-full object-cover rounded-md"
+                            field={hero}
+                        />
+                    </figure>
                 )}
-                <div className="flex flex-col gap-6 items-start text-[#808080] h-fit">
+                <div className="flex flex-col flex-1 gap-6 items-start text-[#808080] h-fit">
                     <div className="flex flex-col gap-1">
                         {title && (
                             <h2 className="text-4xl font-bold leading-[60px]">

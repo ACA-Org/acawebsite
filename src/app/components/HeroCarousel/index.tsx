@@ -4,7 +4,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import HeroCarouselSlide, { HeroCarouselSlideProps } from "./HeroCarouselSlide";
-import { SlideControls } from "./SlideControls";
+import { SlideControls } from "@/components/slide-controls";
 
 interface HeroCarouselProps {
     slides: HeroCarouselSlideProps[];

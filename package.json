@@ -17,6 +17,7 @@
     "@prismicio/client": "^7.16.1",
     "@prismicio/next": "^2.0.0",
     "@prismicio/react": "^3.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -31,7 +32,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",
     "@eslint/eslintrc": "^3",
-    "@slicemachine/adapter-next": "^0.3.68",
+    "@slicemachine/adapter-next": "^0.3.70",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",
     "@storybook/addon-onboarding": "^8.6.4",
@@ -47,7 +48,7 @@
     "eslint-config-next": "15.2.1",
     "eslint-plugin-storybook": "^0.11.4",
     "husky": "^9.1.7",
-    "slice-machine-ui": "^2.13.1",
+    "slice-machine-ui": "^2.14.0",
     "storybook": "^8.6.4",
     "tailwindcss": "^4",
     "typescript": "^5"

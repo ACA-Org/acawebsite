@@ -61,7 +61,7 @@ const preview: Preview = {
     },
     decorators: [
         (Story) => (
-            <div className="flex h-full w-full items-center justify-center">
+            <div className="flex h-full w-full items-center justify-center overflow-clip">
                 <Story />
             </div>
         ),

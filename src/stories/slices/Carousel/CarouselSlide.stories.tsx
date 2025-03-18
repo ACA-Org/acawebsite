@@ -12,7 +12,7 @@ export const Primary: Story = {
     args: {
         carouselslidedescription: "Lorem ipsum dolor sit amet...",
         carouselslidetitle: "Conference Title Will Go Here",
-        carouselslidelocation: "Chicago",
+        carouselslidelocation: "CHICAGO, IL",
         carouselslidedate: `2025-04-01T17:00:00+0000`,
         carouselslidelink: {
             link_type: "Web",

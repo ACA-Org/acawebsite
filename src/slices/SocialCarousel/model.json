@@ -1,0 +1,44 @@
+{
+  "id": "social_carousel",
+  "type": "SharedSlice",
+  "name": "SocialCarousel",
+  "description": "SocialCarousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "socialcarouseltitle": {
+          "type": "Text",
+          "config": {
+            "label": "SocialCarouselTitle",
+            "placeholder": ""
+          }
+        },
+        "socialcarouseldescription": {
+          "type": "Text",
+          "config": {
+            "label": "SocialCarouselDescription",
+            "placeholder": ""
+          }
+        },
+        "socialcarousellink": {
+          "type": "Link",
+          "config": {
+            "label": "SocialCarouselLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

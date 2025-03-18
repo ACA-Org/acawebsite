@@ -4,6 +4,73 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+interface FooterDocumentData {}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+/**
+ * Item in *Header → MainNavLink*
+ */
+export interface HeaderDocumentDataMainnavlinkItem {
+  /**
+   * SubNavLink field in *Header → MainNavLink*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.mainnavlink[].subnavlink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  subnavlink: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Content for Header documents
+ */
+interface HeaderDocumentData {
+  /**
+   * MainNavLink field in *Header*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.mainnavlink[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  mainnavlink: prismic.GroupField<Simplify<HeaderDocumentDataMainnavlinkItem>>;
+}
+
+/**
+ * Header document from Prismic
+ *
+ * - **API ID**: `header`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HeaderDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HeaderDocumentData>,
+    "header",
+    Lang
+  >;
+
 /**
  * Item in *HomePage → HeroCarouselData*
  */
@@ -133,7 +200,10 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+export type AllDocumentTypes =
+  | FooterDocument
+  | HeaderDocument
+  | HomepageDocument;
 
 /**
  * Item in *Carousel → Conference → Primary → CarouselSlide*
@@ -370,6 +440,77 @@ export type SideBySideSlice = prismic.SharedSlice<
   SideBySideSliceVariation
 >;
 
+/**
+ * Primary content in *SocialCarousel → Default → Primary*
+ */
+export interface SocialCarouselSliceDefaultPrimary {
+  /**
+   * SocialCarouselTitle field in *SocialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_carousel.default.primary.socialcarouseltitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  socialcarouseltitle: prismic.KeyTextField;
+
+  /**
+   * SocialCarouselDescription field in *SocialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_carousel.default.primary.socialcarouseldescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  socialcarouseldescription: prismic.KeyTextField;
+
+  /**
+   * SocialCarouselLink field in *SocialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_carousel.default.primary.socialcarousellink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  socialcarousellink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for SocialCarousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialCarouselSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SocialCarouselSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SocialCarousel*
+ */
+type SocialCarouselSliceVariation = SocialCarouselSliceDefault;
+
+/**
+ * SocialCarousel Shared Slice
+ *
+ * - **API ID**: `social_carousel`
+ * - **Description**: SocialCarousel
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialCarouselSlice = prismic.SharedSlice<
+  "social_carousel",
+  SocialCarouselSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -391,6 +532,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      HeaderDocument,
+      HeaderDocumentData,
+      HeaderDocumentDataMainnavlinkItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataHerocarouseldataItem,
@@ -405,6 +551,10 @@ declare module "@prismicio/client" {
       SideBySideSliceDefaultPrimary,
       SideBySideSliceVariation,
       SideBySideSliceDefault,
+      SocialCarouselSlice,
+      SocialCarouselSliceDefaultPrimary,
+      SocialCarouselSliceVariation,
+      SocialCarouselSliceDefault,
     };
   }
 }

@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Carousel> = {
     component: Carousel,
+    render: (args) => {
+        return (
+            <div className="w-full max-w-[1320px] h-full max-h-[800px]">
+                <Carousel {...args} />
+            </div>
+        );
+    },
 };
 
 export default meta;
@@ -32,7 +39,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
@@ -44,7 +51,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
@@ -56,7 +63,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
@@ -68,7 +75,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
@@ -80,7 +87,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
@@ -92,7 +99,7 @@ export const Primary: Story = {
                             "Lorem ipsum dolor sit amet...",
                         carouselslidebackground: {},
                         carouselslidetitle: "Conference Title Will Go Here",
-                        carouselslidelocation: "Chicago",
+                        carouselslidelocation: "CHICAGO, IL",
                         carouselslidedate: `2025-04-01T17:00:00+0000`,
                         carouselslidelink: {
                             link_type: "Web",
