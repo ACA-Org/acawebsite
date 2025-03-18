@@ -48,11 +48,63 @@
           }
         }
       },
+      "introHeader": {
+        "type": "Text",
+        "config": {
+          "label": "IntroHeader",
+          "placeholder": "Our Mission: Excellence in Corrections"
+        }
+      },
+      "introDescription": {
+        "type": "Text",
+        "config": {
+          "label": "IntroDescription",
+          "placeholder": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium..."
+        }
+      },
+      "introAction": {
+        "type": "Link",
+        "config": {
+          "label": "IntroAction",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "introImages": {
+        "type": "Group",
+        "config": {
+          "label": "introImages",
+          "repeat": true,
+          "fields": {
+            "introImage": {
+              "type": "Image",
+              "config": {
+                "label": "IntroImage",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "side_by_side": {
+              "type": "SharedSlice"
+            },
+            "social_carousel": {
+              "type": "SharedSlice"
+            },
+            "carousel": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

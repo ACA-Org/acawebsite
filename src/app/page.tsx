@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import HeroCarouselSlide from "./components/HeroCarousel/HeroCarouselSlide";
 import { notFound } from "next/navigation";
+import { IntroContainer } from "./components/IntroContainer";
 
 export default async function Home() {
     const client = createClient();
@@ -13,6 +14,13 @@ export default async function Home() {
                 {data.heroCarouselData.map((item, index) => (
                     <HeroCarouselSlide key={index} {...item} />
                 ))}
+
+                <IntroContainer
+                    introImages={data.introImages}
+                    introAction={data.introAction}
+                    introHeader={data.introHeader}
+                    introDescription={data.introDescription}
+                />
             </main>
         </div>
     );

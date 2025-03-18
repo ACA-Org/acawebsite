@@ -189,7 +189,25 @@ export interface HomepageDocumentDataHeroCarouselDataItem {
   >;
 }
 
-type HomepageDocumentDataSlicesSlice = never;
+/**
+ * Item in *HomePage → introImages*
+ */
+export interface HomepageDocumentDataIntroImagesItem {
+  /**
+   * IntroImage field in *HomePage → introImages*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.introImages[].introImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  introImage: prismic.ImageField<never>;
+}
+
+type HomepageDocumentDataSlicesSlice =
+  | SideBySideSlice
+  | SocialCarouselSlice
+  | CarouselSlice;
 
 /**
  * Content for HomePage documents
@@ -206,6 +224,58 @@ interface HomepageDocumentData {
    */
   heroCarouselData: prismic.GroupField<
     Simplify<HomepageDocumentDataHeroCarouselDataItem>
+  >;
+
+  /**
+   * IntroHeader field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Mission: Excellence in Corrections
+   * - **API ID Path**: homepage.introHeader
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  introHeader: prismic.KeyTextField;
+
+  /**
+   * IntroDescription field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+   * - **API ID Path**: homepage.introDescription
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  introDescription: prismic.KeyTextField;
+
+  /**
+   * IntroAction field in *HomePage*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.introAction
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  introAction: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * introImages field in *HomePage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.introImages[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  introImages: prismic.GroupField<
+    Simplify<HomepageDocumentDataIntroImagesItem>
   >;
 
   /**
@@ -271,6 +341,94 @@ export type AllDocumentTypes =
   | FooterDocument
   | HeaderDocument
   | HomepageDocument;
+
+/**
+ * Item in *Accordion → Default → Primary → AccordionItems*
+ */
+export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
+  /**
+   * AccordionDescription field in *Accordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  accordionDescription: prismic.KeyTextField;
+
+  /**
+   * AccordionTitle field in *Accordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  accordionTitle: prismic.KeyTextField;
+
+  /**
+   * AccordionAction field in *Accordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionAction
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  accordionAction: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *Accordion → Default → Primary*
+ */
+export interface AccordionSliceDefaultPrimary {
+  /**
+   * AccordionItems field in *Accordion → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  accordionItems: prismic.GroupField<
+    Simplify<AccordionSliceDefaultPrimaryAccordionItemsItem>
+  >;
+}
+
+/**
+ * Default variation for Accordion Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AccordionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Accordion*
+ */
+type AccordionSliceVariation = AccordionSliceDefault;
+
+/**
+ * Accordion Shared Slice
+ *
+ * - **API ID**: `accordion`
+ * - **Description**: Accordion
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionSlice = prismic.SharedSlice<
+  "accordion",
+  AccordionSliceVariation
+>;
 
 /**
  * Item in *Carousel → Conference → Primary → CarouselSlides*
@@ -608,8 +766,14 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataHeroCarouselDataItem,
+      HomepageDocumentDataIntroImagesItem,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      AccordionSlice,
+      AccordionSliceDefaultPrimaryAccordionItemsItem,
+      AccordionSliceDefaultPrimary,
+      AccordionSliceVariation,
+      AccordionSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,
