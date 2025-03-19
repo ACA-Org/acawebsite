@@ -1,0 +1,30 @@
+{
+  "id": "right_menu_link",
+  "type": "SharedSlice",
+  "name": "RightMenuLinks",
+  "description": "RightMenuLink",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "rightMenuLinks": {
+          "type": "Link",
+          "config": {
+            "label": "RightMenuLinks",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

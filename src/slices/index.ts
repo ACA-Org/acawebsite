@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 export const components = {
   accordion: dynamic(() => import("./Accordion")),
   carousel: dynamic(() => import("./Carousel")),
+  right_menu: dynamic(() => import("./RightMenuAccordion")),
+  right_menu_link: dynamic(() => import("./RightMenuLinks")),
   side_by_side: dynamic(() => import("./SpeedBump")),
   social_carousel: dynamic(() => import("./SocialCarousel")),
 };

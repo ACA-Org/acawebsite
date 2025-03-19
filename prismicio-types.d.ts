@@ -397,10 +397,56 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type RightMenuDocumentDataSlicesSlice = RightMenuLinkSlice | RightMenuSlice;
+
+/**
+ * Content for RightMenu documents
+ */
+interface RightMenuDocumentData {
+  /**
+   * RIghtMenuHeader field in *RightMenu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rightMenu.rightMenuHeader
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  rightMenuHeader: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *RightMenu*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rightMenu.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<RightMenuDocumentDataSlicesSlice>;
+}
+
+/**
+ * RightMenu document from Prismic
+ *
+ * - **API ID**: `rightMenu`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type RightMenuDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<RightMenuDocumentData>,
+    "rightMenu",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | FooterDocument
   | HeaderDocument
-  | HomepageDocument;
+  | HomepageDocument
+  | RightMenuDocument;
 
 /**
  * Item in *Accordion → Default → Primary → AccordionItems*
@@ -645,6 +691,127 @@ export type CarouselSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *RightMenuAccordion → Default → Primary → AccordionItems*
+ */
+export interface RightMenuSliceDefaultPrimaryAccordionItemsItem {
+  /**
+   * AccordionLabel field in *RightMenuAccordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: right_menu.default.primary.accordionItems[].accordionLabel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  accordionLabel: prismic.KeyTextField;
+
+  /**
+   * AccordionLinks field in *RightMenuAccordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: right_menu.default.primary.accordionItems[].accordionLinks
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  accordionLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Primary content in *RightMenuAccordion → Default → Primary*
+ */
+export interface RightMenuSliceDefaultPrimary {
+  /**
+   * AccordionItems field in *RightMenuAccordion → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: right_menu.default.primary.accordionItems[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  accordionItems: prismic.GroupField<
+    Simplify<RightMenuSliceDefaultPrimaryAccordionItemsItem>
+  >;
+}
+
+/**
+ * Default variation for RightMenuAccordion Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RightMenuSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RightMenuSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *RightMenuAccordion*
+ */
+type RightMenuSliceVariation = RightMenuSliceDefault;
+
+/**
+ * RightMenuAccordion Shared Slice
+ *
+ * - **API ID**: `right_menu`
+ * - **Description**: RightMenu
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RightMenuSlice = prismic.SharedSlice<
+  "right_menu",
+  RightMenuSliceVariation
+>;
+
+/**
+ * Primary content in *RightMenuLinks → Default → Primary*
+ */
+export interface RightMenuLinkSliceDefaultPrimary {
+  /**
+   * RightMenuLinks field in *RightMenuLinks → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: right_menu_link.default.primary.rightMenuLinks
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  rightMenuLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Default variation for RightMenuLinks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RightMenuLinkSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RightMenuLinkSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *RightMenuLinks*
+ */
+type RightMenuLinkSliceVariation = RightMenuLinkSliceDefault;
+
+/**
+ * RightMenuLinks Shared Slice
+ *
+ * - **API ID**: `right_menu_link`
+ * - **Description**: RightMenuLink
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RightMenuLinkSlice = prismic.SharedSlice<
+  "right_menu_link",
+  RightMenuLinkSliceVariation
+>;
+
+/**
  * Primary content in *SpeedBump → Default → Primary*
  */
 export interface SideBySideSliceDefaultPrimary {
@@ -829,6 +996,9 @@ declare module "@prismicio/client" {
       HomepageDocumentDataHeroCarouselDataItem,
       HomepageDocumentDataIntroImagesItem,
       HomepageDocumentDataSlicesSlice,
+      RightMenuDocument,
+      RightMenuDocumentData,
+      RightMenuDocumentDataSlicesSlice,
       AllDocumentTypes,
       AccordionSlice,
       AccordionSliceDefaultPrimaryAccordionItemsItem,
@@ -840,6 +1010,15 @@ declare module "@prismicio/client" {
       CarouselSliceDefaultPrimary,
       CarouselSliceVariation,
       CarouselSliceDefault,
+      RightMenuSlice,
+      RightMenuSliceDefaultPrimaryAccordionItemsItem,
+      RightMenuSliceDefaultPrimary,
+      RightMenuSliceVariation,
+      RightMenuSliceDefault,
+      RightMenuLinkSlice,
+      RightMenuLinkSliceDefaultPrimary,
+      RightMenuLinkSliceVariation,
+      RightMenuLinkSliceDefault,
       SideBySideSlice,
       SideBySideSliceDefaultPrimary,
       SideBySideSliceVariation,

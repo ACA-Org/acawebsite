@@ -1,0 +1,46 @@
+{
+  "id": "right_menu",
+  "type": "SharedSlice",
+  "name": "RightMenuAccordion",
+  "description": "RightMenu",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "accordionItems": {
+          "type": "Group",
+          "config": {
+            "label": "AccordionItems",
+            "repeat": true,
+            "fields": {
+              "accordionLabel": {
+                "type": "Text",
+                "config": {
+                  "label": "AccordionLabel",
+                  "placeholder": ""
+                }
+              },
+              "accordionLinks": {
+                "type": "Link",
+                "config": {
+                  "label": "AccordionLinks",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
