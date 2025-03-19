@@ -41,11 +41,11 @@ const Footer = (props: FooterProps) => {
                         />
 
                         <div className="flex flex-col items-start gap-1 self-stretch w-full">
-                            <div className="self-stretch mt-[-1.00px] font-['Poppins',Helvetica] font-semibold text-[#7f7f7f] text-lg">
+                            <div className="self-stretch mt-[-1.00px] font-semibold text-[#7f7f7f] text-lg">
                                 {organizationInfo.name}
                             </div>
 
-                            <div className="self-stretch font-['Poppins',Helvetica] font-normal italic text-[#7f7f7f] text-sm">
+                            <div className="self-stretch font-normal italic text-[#7f7f7f] text-sm">
                                 {organizationInfo.tagline}
                             </div>
                         </div>
@@ -56,7 +56,7 @@ const Footer = (props: FooterProps) => {
                             {organizationInfo.address.map((line, index) => (
                                 <div
                                     key={`address-${index}`}
-                                    className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                    className={`self-stretch font-normal text-[#7f7f7f] text-base ${index === 0 ? "mt-[-1.00px]" : ""}`}
                                 >
                                     {line}
                                 </div>
@@ -67,7 +67,7 @@ const Footer = (props: FooterProps) => {
                             {organizationInfo.contact.map((line, index) => (
                                 <div
                                     key={`contact-${index}`}
-                                    className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                    className={`self-stretch font-normal text-[#7f7f7f] text-base ${index === 0 ? "mt-[-1.00px]" : ""}`}
                                 >
                                     {line}
                                 </div>
@@ -77,7 +77,7 @@ const Footer = (props: FooterProps) => {
                 </div>
 
                 <div className="flex flex-col w-[233px] items-start gap-4 pt-8">
-                    <div className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-semibold text-[#7f7f7f] text-lg">
+                    <div className="w-fit mt-[-1.00px] font-semibold text-[#7f7f7f] text-lg">
                         Helpful Links
                     </div>
 
@@ -85,7 +85,7 @@ const Footer = (props: FooterProps) => {
                         {helpfulNavLinks?.map((link, index) => (
                             <PrismicNextLink
                                 key={`helpful-${index}`}
-                                className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                className={`self-stretch font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
                                 field={link}
                             >
                                 {link.text}
@@ -95,7 +95,7 @@ const Footer = (props: FooterProps) => {
                 </div>
 
                 <div className="flex flex-col w-[233px] items-start gap-4 pt-8">
-                    <div className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-semibold text-[#7f7f7f] text-lg">
+                    <div className="w-fit mt-[-1.00px] font-semibold text-[#7f7f7f] text-lg">
                         Members
                     </div>
 
@@ -103,7 +103,7 @@ const Footer = (props: FooterProps) => {
                         {memberNavLinks?.map((link, index) => (
                             <PrismicNextLink
                                 key={`member-${index}`}
-                                className={`self-stretch font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                                className={`self-stretch font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600 ${index === 0 ? "mt-[-1.00px]" : ""}`}
                                 field={link}
                             >
                                 {link.text}
@@ -113,7 +113,7 @@ const Footer = (props: FooterProps) => {
                 </div>
 
                 <div className="flex flex-col w-[233px] items-start gap-4 pt-8">
-                    <div className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-semibold text-[#7f7f7f] text-lg">
+                    <div className="w-fit mt-[-1.00px] font-semibold text-[#7f7f7f] text-lg">
                         Connect with Us
                     </div>
 
@@ -144,14 +144,14 @@ const Footer = (props: FooterProps) => {
                         <PrismicNextLink
                             key={`sub-footer-${index}`}
                             field={link}
-                            className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600"
+                            className="w-fit mt-[-1.00px] font-normal text-[#7f7f7f] text-base cursor-pointer hover:text-gray-600"
                         >
                             {link.text}
                         </PrismicNextLink>
                     ))}
                 </div>
 
-                <div className="w-fit mt-[-1.00px] font-['Poppins',Helvetica] font-medium text-[#7f7f7f] text-base">
+                <div className="w-fit mt-[-1.00px] font-medium text-[#7f7f7f] text-base">
                     Copyright © American Correctional Association
                 </div>
             </div>

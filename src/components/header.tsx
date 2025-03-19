@@ -47,11 +47,11 @@ const Header = () => {
                     <UserIcon className="w-[15.13px] h-[15.13px] text-[#7f7f7f]" />
 
                     <Button
-                        variant="default"
+                        variant="primary"
                         className="flex items-center justify-center gap-2 px-3 py-1.5 bg-[#7f7f7f] rounded-3xl h-auto"
                     >
                         <UserIcon className="w-[10.43px] h-3 text-[#f9f9f9]" />
-                        <span className="[font-family:'Poppins',Helvetica] font-medium text-[#f9f9f9] text-sm">
+                        <span className="font-medium text-[#f9f9f9] text-sm">
                             Sign In
                         </span>
                     </Button>

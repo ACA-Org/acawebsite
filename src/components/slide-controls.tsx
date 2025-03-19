@@ -14,7 +14,6 @@ export const SlideControls = ({ className }: { className?: string }) => {
         >
             <Button
                 variant={"secondary"}
-                size={"icon"}
                 onClick={() => swiper.slidePrev()}
                 className="h-16 w-auto aspect-square bg-white shadow-xl"
             >
@@ -22,7 +21,6 @@ export const SlideControls = ({ className }: { className?: string }) => {
             </Button>
             <Button
                 variant={"secondary"}
-                size={"icon"}
                 onClick={() => swiper.slideNext()}
                 className="h-16 w-auto aspect-square bg-white shadow-xl"
             >

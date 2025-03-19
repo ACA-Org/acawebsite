@@ -35,7 +35,7 @@ function AccordionTrigger({
             <AccordionPrimitive.Trigger
                 data-slot="accordion-trigger"
                 className={cn(
-                    "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start gap-4 rounded-md py-4 text-left transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 text-[#808080] [font-feature-settings:'liga'_off,'clig'_off] text-lg font-medium leading-[140%] group",
+                    "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start gap-4 rounded-md py-4 text-left transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 text-gray-300 text-xl font-semibold group",
                     className
                 )}
                 {...props}
@@ -62,7 +62,7 @@ function AccordionContent({
     return (
         <AccordionPrimitive.Content
             data-slot="accordion-content"
-            className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-[#808080] [font-feature-settings:'liga'_off,'clig'_off] text-base font-normal leading-[160%] flex mb-4 gap-8"
+            className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-gray-300 text-base font-normal leading-[175%] flex mb-4 gap-8"
             {...props}
         >
             <div className="w-1 h-fill shrink-0 bg-[#EBEBEB]" />

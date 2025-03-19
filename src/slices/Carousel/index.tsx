@@ -70,7 +70,7 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
 
             {link && (
                 <LinkButton
-                    variant="default"
+                    variant="primary"
                     className="text-white text-lg font-medium pt-4"
                     field={link}
                 >

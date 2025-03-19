@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import { getFooterData } from "./actions/getLayoutData";
 import Header from "@/components/header";
 import { FooterDocument } from "../../prismicio-types";
 import Footer from "@/components/footer";
-
-const poppins = Poppins({
-    variable: "--font-poppins",
-    subsets: ["latin"],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+import { gillSans } from "./fonts/GillSans";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -37,7 +31,7 @@ export default async function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${poppins.variable} antialiased [font-family:Poppins]`}
+                className={`${gillSans.variable} antialiased [font-family:GillSans]`}
             >
                 <Header />
                 <div className="mt-17">{children}</div>

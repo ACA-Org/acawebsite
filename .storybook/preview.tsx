@@ -48,6 +48,7 @@ const customViewports = {
     },
 };
 const preview: Preview = {
+    tags: ["autodocs"],
     parameters: {
         controls: {
             matchers: {

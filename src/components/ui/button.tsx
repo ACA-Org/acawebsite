@@ -1,36 +1,34 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import { PrismicNextLink } from "@prismicio/next";
+import { LucideIcon } from "lucide-react";
 
 const buttonVariants = cva(
-    "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+    "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-lg leading-[18px] font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive px-8 py-3 has-[>svg]:px-3 border-none",
     {
         variants: {
             variant: {
-                default:
-                    "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-                destructive:
-                    "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-                outline:
-                    "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+                primary:
+                    "bg-blue-200 border-blue-200 text-white hover:bg-blue-200/70",
                 secondary:
-                    "bg-secondary text-[#808080] shadow-xs hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+                    "bg-blue-300 border-blue-200 text-white hover:bg-blue-300/70",
+                tertiary:
+                    "bg-gold-100 border-gold-100 hover:bg-gold-100/70 text-blue-300",
+                error: "bg-red-200 text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+                ghost: "hover:bg-gold-200 hover:text-grey-white dark:hover:bg-accent/50",
                 link: "text-primary underline-offset-4 hover:underline",
             },
-            size: {
-                default: "px-8 py-3 has-[>svg]:px-3 text-lg",
-                sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-                lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-                icon: "size-9",
+            buttonType: {
+                ghost: "border-2",
+                filled: "",
             },
         },
         defaultVariants: {
-            variant: "default",
-            size: "default",
+            variant: "primary",
+            buttonType: "filled",
         },
     }
 );
@@ -38,7 +36,7 @@ const buttonVariants = cva(
 function Button({
     className,
     variant,
-    size,
+    buttonType,
     asChild = false,
     ...props
 }: React.ComponentProps<"button"> &
@@ -50,7 +48,7 @@ function Button({
     return (
         <Comp
             data-slot="button"
-            className={cn(buttonVariants({ variant, size, className }))}
+            className={cn(buttonVariants({ variant, buttonType, className }))}
             {...props}
         />
     );
@@ -62,11 +60,13 @@ export type LinkButtonProps = React.ComponentProps<typeof PrismicNextLink> &
     };
 
 const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-    ({ className, variant, size, href, field, ...props }, ref) => {
+    ({ className, variant, href, buttonType, field, ...props }, ref) => {
         return (
             // @ts-expect-error PrismicNextLink field issue
             <PrismicNextLink
-                className={cn(buttonVariants({ variant, size, className }))}
+                className={cn(
+                    buttonVariants({ variant, buttonType, className })
+                )}
                 ref={ref}
                 href={href || ""}
                 field={field}
@@ -77,4 +77,85 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
 );
 LinkButton.displayName = "LinkButton";
 
-export { LinkButton, Button, buttonVariants };
+type ExpandingIconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+    VariantProps<typeof buttonVariants> & {
+        icon: LucideIcon;
+        label: string;
+    };
+
+function ExpandingIconButton({
+    icon: Icon,
+    label,
+    buttonType,
+    variant = "primary",
+    className,
+    ...props
+}: ExpandingIconButtonProps) {
+    const [isHovered, setIsHovered] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+    return (
+        <motion.div
+            className="w-fit"
+            initial={false}
+            animate={{
+                width: isHovered ? "auto" : "40px",
+            }}
+            transition={{
+                duration: 0.3,
+                ease: [0.4, 0, 0.2, 1],
+            }}
+        >
+            <Button
+                ref={buttonRef}
+                variant={variant}
+                buttonType={buttonType}
+                className={cn(
+                    "w-full transition-colors duration-300 ease-out bg-transparent group",
+                    className
+                )}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                {...props}
+            >
+                <motion.div
+                    className="flex items-center gap-2"
+                    initial={false}
+                    animate={{
+                        width: isHovered ? "auto" : "20px",
+                    }}
+                    transition={{
+                        duration: 0.3,
+                        ease: [0.4, 0, 0.2, 1],
+                    }}
+                >
+                    <Icon className="h-6 aspect-square stroke-blue-300 group-hover:stroke-white" />
+                    <AnimatePresence>
+                        {isHovered && (
+                            <motion.span
+                                initial={{ opacity: 0, width: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    width: "auto",
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    width: 0,
+                                }}
+                                transition={{
+                                    duration: 0.2,
+                                    ease: [0.4, 0, 0.2, 1],
+                                }}
+                                className="whitespace-nowrap overflow-hidden"
+                            >
+                                {label}
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </motion.div>
+            </Button>
+        </motion.div>
+    );
+}
+
+export { LinkButton, Button, buttonVariants, ExpandingIconButton };

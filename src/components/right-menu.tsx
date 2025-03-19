@@ -13,7 +13,9 @@ export const RightMenu = ({ data }: { data: RightMenuData }) => {
         <div className="w-[380px]">
             {rightMenuHeader && (
                 <div className="w-full h-[60px] border-b border-[#E5E5E5] pl-5 pb-5 pt-[18px]">
-                    <p className="font-semibold">{rightMenuHeader}</p>
+                    <p className="font-semibold text-xl text-black">
+                        {rightMenuHeader}
+                    </p>
                 </div>
             )}
             <div className="divide-y divide-[#E5E5E5]">
