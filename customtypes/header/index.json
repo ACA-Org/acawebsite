@@ -5,6 +5,38 @@
   "repeatable": false,
   "status": true,
   "json": {
-    "Main": {}
+    "Main": {
+      "headerNavCategories": {
+        "type": "Group",
+        "config": {
+          "label": "HeaderNavCategories",
+          "repeat": true,
+          "fields": {
+            "headerNavCategorySubLinks": {
+              "type": "Link",
+              "config": {
+                "label": "HeaderNavCategorySubLinks",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": true
+              }
+            },
+            "headerNavCategoryLink": {
+              "type": "Link",
+              "config": {
+                "label": "HeaderNavCategoryLink",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

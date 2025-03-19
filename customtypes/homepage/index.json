@@ -6,6 +6,15 @@
   "status": true,
   "json": {
     "Main": {
+      "footer": {
+        "type": "Link",
+        "config": {
+          "label": "Footer",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["footer"]
+        }
+      },
       "heroCarouselData": {
         "type": "Group",
         "config": {

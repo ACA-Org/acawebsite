@@ -2,11 +2,6 @@ import Header from "@/components/header";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-    args: {
-        scrollY: {
-            type: "number",
-        },
-    },
     component: Header,
     parameters: {
         layout: "fullscreen",
@@ -43,4 +38,36 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+    args: {
+        headerNavCategories: [
+            {
+                headerNavCategoryLink: {
+                    link_type: "Web",
+                    url: "",
+                    text: "About",
+                },
+                headerNavCategorySubLinks: [
+                    {
+                        key: "1",
+                        link_type: "Web",
+                        url: "",
+                        text: "Our History & Mission",
+                    },
+                    {
+                        key: "2",
+                        link_type: "Web",
+                        url: "",
+                        text: "Executive Office",
+                    },
+                    {
+                        key: "3",
+                        link_type: "Web",
+                        url: "",
+                        text: "ACA Leadership",
+                    },
+                ],
+            },
+        ],
+    },
+};

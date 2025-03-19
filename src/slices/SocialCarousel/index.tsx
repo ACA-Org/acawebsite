@@ -1,3 +1,5 @@
+"use client";
+
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { SlideControls } from "@/components/slide-controls";
@@ -11,14 +13,6 @@ import { X } from "@/icons/X";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { Instagram } from "@/icons/Instagram";
 import { Facebook } from "@/icons/Facebook";
-
-// To ensure left alignment, we'll use these styles
-const swiperStyle = {
-    ".swiper-wrapper": {
-        display: "flex",
-        justifyContent: "flex-start",
-    },
-};
 
 /**
  * Props for `SocialCarousel`.
@@ -73,7 +67,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
             )}
             <Swiper
                 modules={[Pagination, Autoplay]}
-                style={swiperStyle as React.CSSProperties}
+                wrapperClass="flex !justify-start"
                 spaceBetween={20}
                 slidesPerView="auto"
                 className="w-full h-full !overflow-visible flex flex-col"

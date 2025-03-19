@@ -120,7 +120,56 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-interface HeaderDocumentData {}
+/**
+ * Item in *Header → HeaderNavCategories*
+ */
+export interface HeaderDocumentDataHeaderNavCategoriesItem {
+  /**
+   * HeaderNavCategorySubLinks field in *Header → HeaderNavCategories*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.headerNavCategories[].headerNavCategorySubLinks
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  headerNavCategorySubLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * HeaderNavCategoryLink field in *Header → HeaderNavCategories*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.headerNavCategories[].headerNavCategoryLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  headerNavCategoryLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Content for Header documents
+ */
+interface HeaderDocumentData {
+  /**
+   * HeaderNavCategories field in *Header*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.headerNavCategories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  headerNavCategories: prismic.GroupField<
+    Simplify<HeaderDocumentDataHeaderNavCategoriesItem>
+  >;
+}
 
 /**
  * Header document from Prismic
@@ -213,6 +262,17 @@ type HomepageDocumentDataSlicesSlice =
  * Content for HomePage documents
  */
 interface HomepageDocumentData {
+  /**
+   * Footer field in *HomePage*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.footer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  footer: prismic.ContentRelationshipField<"footer">;
+
   /**
    * HeroCarouselData field in *HomePage*
    *
@@ -763,6 +823,7 @@ declare module "@prismicio/client" {
       FooterDocumentDataFooterContactInfoItem,
       HeaderDocument,
       HeaderDocumentData,
+      HeaderDocumentDataHeaderNavCategoriesItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataHeroCarouselDataItem,

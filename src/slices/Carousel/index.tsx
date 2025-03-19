@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -8,14 +10,6 @@ import { SliceComponentProps } from "@prismicio/react";
 import CarouselSlide from "./CarouselSlide";
 import { LinkButton } from "@/components/ui/button";
 import { SlideControls } from "@/components/slide-controls";
-
-// To ensure left alignment, we'll use these styles
-const swiperStyle = {
-    ".swiper-wrapper": {
-        display: "flex",
-        justifyContent: "flex-start",
-    },
-};
 
 /**
  * Props for `Carousel`.
@@ -50,7 +44,7 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
             )}
             <Swiper
                 modules={[Pagination, Autoplay]}
-                style={swiperStyle as React.CSSProperties}
+                wrapperClass="flex !justify-start"
                 spaceBetween={20}
                 slidesPerView="auto"
                 className="w-full h-full !overflow-visible flex flex-col"

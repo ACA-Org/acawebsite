@@ -1,15 +1,14 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import { MailIcon, SearchIcon, ShoppingCartIcon, UserIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import ACA from "@/app/images/aca-blue.png";
+import { Simplify } from "@/lib/utils";
+import { HeaderDocumentData } from "../../prismicio-types";
+
+export type HeaderProps = Simplify<HeaderDocumentData>;
 
 const Header = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -17,20 +16,12 @@ const Header = () => {
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            setIsCollapsed(scrollPosition > 500);
+            setIsCollapsed(scrollPosition > 250);
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const menuItems = [
-        { label: "About" },
-        { label: "Departments" },
-        { label: "Conferences" },
-        { label: "Standards & Accreditation" },
-        { label: "Resources" },
-    ];
 
     return (
         <header
@@ -47,22 +38,7 @@ const Header = () => {
                     src={ACA.src}
                 />
             </div>
-            <NavigationMenu className="max-w-none">
-                <NavigationMenuList className="flex items-center gap-8">
-                    {menuItems.map((item, index) => (
-                        <NavigationMenuItem key={index}>
-                            <NavigationMenuTrigger className="font-normal text-[#7f7f7f] text-base [font-family:'Poppins',Helvetica] bg-transparent hover:bg-transparent focus:bg-transparent">
-                                {item.label}
-                            </NavigationMenuTrigger>
-                            <NavigationMenuContent>
-                                <div className="p-4">
-                                    <p>Content for {item.label}</p>
-                                </div>
-                            </NavigationMenuContent>
-                        </NavigationMenuItem>
-                    ))}
-                </NavigationMenuList>
-            </NavigationMenu>
+            {/* <SubNav items={items} /> */}
             <div className="flex items-center gap-8">
                 <div className="flex items-center gap-6">
                     <SearchIcon className="w-4 h-[13px] text-[#7f7f7f]" />
