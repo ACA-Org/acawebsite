@@ -11,9 +11,9 @@ export const ArrowRight = (props: React.HTMLAttributes<SVGSVGElement>) => {
             <path
                 d="M12 1.5L20.5 10M20.5 10L12 18.5M20.5 10H1.5"
                 stroke="#808080"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             />
         </svg>
     );

@@ -121,73 +121,6 @@ export type FooterDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Header → HeaderNavCategories*
- */
-export interface HeaderDocumentDataHeaderNavCategoriesItem {
-  /**
-   * HeaderNavCategorySubLinks field in *Header → HeaderNavCategories*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header.headerNavCategories[].headerNavCategorySubLinks
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  headerNavCategorySubLinks: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-
-  /**
-   * HeaderNavCategoryLink field in *Header → HeaderNavCategories*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header.headerNavCategories[].headerNavCategoryLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  headerNavCategoryLink: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Content for Header documents
- */
-interface HeaderDocumentData {
-  /**
-   * HeaderNavCategories field in *Header*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: header.headerNavCategories[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  headerNavCategories: prismic.GroupField<
-    Simplify<HeaderDocumentDataHeaderNavCategoriesItem>
-  >;
-}
-
-/**
- * Header document from Prismic
- *
- * - **API ID**: `header`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type HeaderDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<HeaderDocumentData>,
-    "header",
-    Lang
-  >;
-
-/**
  * Item in *HomePage → HeroCarouselData*
  */
 export interface HomepageDocumentDataHeroCarouselDataItem {
@@ -397,6 +330,24 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+interface LayoutDocumentData {}
+
+/**
+ * Layout document from Prismic
+ *
+ * - **API ID**: `layout`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LayoutDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LayoutDocumentData>,
+    "layout",
+    Lang
+  >;
+
 type RightMenuDocumentDataSlicesSlice = RightMenuLinkSlice | RightMenuSlice;
 
 /**
@@ -444,8 +395,8 @@ export type RightMenuDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | FooterDocument
-  | HeaderDocument
   | HomepageDocument
+  | LayoutDocument
   | RightMenuDocument;
 
 /**
@@ -688,6 +639,136 @@ type CarouselSliceVariation = CarouselSliceDefault;
 export type CarouselSlice = prismic.SharedSlice<
   "carousel",
   CarouselSliceVariation
+>;
+
+/**
+ * Item in *MenuItem → Default → Primary → TierTwoMenuItems*
+ */
+export interface MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem {
+  /**
+   * TierTwoMenuIcon field in *MenuItem → Default → Primary → TierTwoMenuItems*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.tierTwoMenuItems[].tierTwoMenuIcon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  tierTwoMenuIcon: prismic.ImageField<never>;
+
+  /**
+   * TierTwoMenuDesc field in *MenuItem → Default → Primary → TierTwoMenuItems*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.tierTwoMenuItems[].tierTwoMenuDesc
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tierTwoMenuDesc: prismic.KeyTextField;
+
+  /**
+   * TierTwoMenuLink field in *MenuItem → Default → Primary → TierTwoMenuItems*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.tierTwoMenuItems[].tierTwoMenuLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tierTwoMenuLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *MenuItem → Default → Primary*
+ */
+export interface MenuItemSliceDefaultPrimary {
+  /**
+   * TierOneLink field in *MenuItem → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.tierOneLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tierOneLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * TierTwoMenuItems field in *MenuItem → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.tierTwoMenuItems[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tierTwoMenuItems: prismic.GroupField<
+    Simplify<MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem>
+  >;
+
+  /**
+   * FeaturedMenuImage field in *MenuItem → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.featuredMenuImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  featuredMenuImage: prismic.ImageField<never>;
+
+  /**
+   * FeaturedMenuLink field in *MenuItem → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_item.default.primary.featuredMenuLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  featuredMenuLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for MenuItem Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MenuItemSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MenuItem*
+ */
+type MenuItemSliceVariation = MenuItemSliceDefault;
+
+/**
+ * MenuItem Shared Slice
+ *
+ * - **API ID**: `menu_item`
+ * - **Description**: MenuItem
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MenuItemSlice = prismic.SharedSlice<
+  "menu_item",
+  MenuItemSliceVariation
 >;
 
 /**
@@ -988,14 +1069,13 @@ declare module "@prismicio/client" {
       FooterDocumentData,
       FooterDocumentDataFooterAddressItem,
       FooterDocumentDataFooterContactInfoItem,
-      HeaderDocument,
-      HeaderDocumentData,
-      HeaderDocumentDataHeaderNavCategoriesItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataHeroCarouselDataItem,
       HomepageDocumentDataIntroImagesItem,
       HomepageDocumentDataSlicesSlice,
+      LayoutDocument,
+      LayoutDocumentData,
       RightMenuDocument,
       RightMenuDocumentData,
       RightMenuDocumentDataSlicesSlice,
@@ -1010,6 +1090,11 @@ declare module "@prismicio/client" {
       CarouselSliceDefaultPrimary,
       CarouselSliceVariation,
       CarouselSliceDefault,
+      MenuItemSlice,
+      MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem,
+      MenuItemSliceDefaultPrimary,
+      MenuItemSliceVariation,
+      MenuItemSliceDefault,
       RightMenuSlice,
       RightMenuSliceDefaultPrimaryAccordionItemsItem,
       RightMenuSliceDefaultPrimary,

@@ -1,0 +1,84 @@
+{
+  "id": "menu_item",
+  "type": "SharedSlice",
+  "name": "MenuItem",
+  "description": "MenuItem",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "tierOneLink": {
+          "type": "Link",
+          "config": {
+            "label": "TierOneLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "tierTwoMenuItems": {
+          "type": "Group",
+          "config": {
+            "label": "TierTwoMenuItems",
+            "repeat": true,
+            "fields": {
+              "tierTwoMenuIcon": {
+                "type": "Image",
+                "config": {
+                  "label": "TierTwoMenuIcon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "tierTwoMenuDesc": {
+                "type": "Text",
+                "config": {
+                  "label": "TierTwoMenuDesc",
+                  "placeholder": ""
+                }
+              },
+              "tierTwoMenuLink": {
+                "type": "Link",
+                "config": {
+                  "label": "TierTwoMenuLink",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        },
+        "featuredMenuImage": {
+          "type": "Image",
+          "config": {
+            "label": "FeaturedMenuImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "featuredMenuLink": {
+          "type": "Link",
+          "config": {
+            "label": "FeaturedMenuLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

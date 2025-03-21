@@ -15,16 +15,16 @@ export const SlideControls = ({ className }: { className?: string }) => {
             <Button
                 variant={"secondary"}
                 onClick={() => swiper.slidePrev()}
-                className="h-16 w-auto aspect-square bg-white shadow-xl"
+                className="h-16 w-auto aspect-square bg-blue-100 hover:bg-gold-100 shadow-xl rounded-md"
             >
-                <ArrowLeft className="size-6 stroke-[#808080]" />
+                <ArrowLeft className="size-6 stroke-blue-300" />
             </Button>
             <Button
                 variant={"secondary"}
                 onClick={() => swiper.slideNext()}
-                className="h-16 w-auto aspect-square bg-white shadow-xl"
+                className="h-16 w-auto aspect-square bg-blue-100 hover:bg-gold-100 shadow-xl rounded-md"
             >
-                <ArrowRight className="size-6 stroke-[#808080]" />
+                <ArrowRight className="size-6 stroke-blue-300" />
             </Button>
         </div>
     );

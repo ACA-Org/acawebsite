@@ -27,7 +27,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
             }}
             className="w-full h-full relative"
             style={{
-                padding: "0 3%",
+                padding: "0 10% 0 3%",
             }}
         >
             {slides.map((slide, index) => (
@@ -47,7 +47,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
                     )}
                 </SwiperSlide>
             ))}
-            <SlideControls className="right-36 bottom-12 z-[500]" />
+            <SlideControls className="right-64 bottom-12 z-[500]" />
         </Swiper>
     );
 };

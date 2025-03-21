@@ -14,9 +14,24 @@ export default async function Home() {
     return (
         <div className="">
             <main>
-                <div className="min-h-[650px] flex items-center justify-center">
+                <section className="flex flex-col items-start justify-center gap-16 pb-12 pt-24">
+                    <div className="px-19 gap-6 flex flex-col">
+                        <h1 className="text-blue-300 text-[52px] leading-[70px]">
+                            Strengthening Corrections,
+                            <br />
+                            <span className="text-blue-200">
+                                Enhancing Communities
+                            </span>
+                        </h1>
+                        <p className="leading-7 text-[#808080] max-w-[900px]">
+                            Sed ut perspiciatis unde omnis iste natus error sit
+                            voluptatem accusantium doloremque laudantium, totam
+                            rem aperiam, eaque ipsa quae ab illo inventore
+                            veritatis et quasi architecto beatae
+                        </p>
+                    </div>
                     <HeroCarousel slides={data.heroCarouselData} />
-                </div>
+                </section>
                 <IntroContainer
                     introImages={data.introImages}
                     introAction={data.introAction}
