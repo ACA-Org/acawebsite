@@ -15,197 +15,195 @@ type Story = StoryObj<typeof MenuItem>;
 
 export const Primary: Story = {
     args: {
-        slice: {
-            version: "",
-            items: [],
-            slice_type: "menu_item",
-            slice_label: null,
-            id: "",
-            variation: "default",
-            primary: {
-                featuredMenuImage: {
-                    url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                    id: "",
-                    copyright: "",
-                    dimensions: {
-                        height: 3168,
-                        width: 4752,
-                    },
-                    edit: {
-                        x: 0,
-                        y: 0,
-                        zoom: 1,
-                        background: "transparent",
-                    },
-                    alt: "tall",
+        version: "",
+        items: [],
+        slice_type: "menu_item",
+        slice_label: null,
+        id: "",
+        variation: "default",
+        primary: {
+            featuredMenuImage: {
+                url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                id: "",
+                copyright: "",
+                dimensions: {
+                    height: 3168,
+                    width: 4752,
                 },
-                featuredMenuLink: {
-                    link_type: "Web",
-                    url: "http://google.com",
-                    text: "About",
+                edit: {
+                    x: 0,
+                    y: 0,
+                    zoom: 1,
+                    background: "transparent",
                 },
-                tierOneLink: {
-                    link_type: "Web",
-                    url: "http://google.com",
-                    text: "About",
-                },
-                tierTwoMenuItems: [
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-                        tierTwoMenuDesc: "Section description",
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "Our History & Mission",
-                        },
-                    },
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-
-                        tierTwoMenuDesc: "Section description",
-
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "Our Committees",
-                        },
-                    },
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-
-                        tierTwoMenuDesc: "Section description",
-
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "Executive Office",
-                        },
-                    },
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-
-                        tierTwoMenuDesc: "Section description",
-
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "ACA Awards",
-                        },
-                    },
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-
-                        tierTwoMenuDesc: "Section description",
-
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "ACA Leadership",
-                        },
-                    },
-                    {
-                        tierTwoMenuIcon: {
-                            url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-                            id: "",
-                            copyright: "",
-                            dimensions: {
-                                height: 3168,
-                                width: 4752,
-                            },
-                            edit: {
-                                x: 0,
-                                y: 0,
-                                zoom: 1,
-                                background: "transparent",
-                            },
-                            alt: "tall",
-                        },
-
-                        tierTwoMenuDesc: "Section description",
-
-                        tierTwoMenuLink: {
-                            link_type: "Web",
-                            url: "http://twitter.com",
-                            text: "Organizational Docs",
-                        },
-                    },
-                ],
+                alt: "tall",
             },
+            featuredMenuLink: {
+                link_type: "Web",
+                url: "http://google.com",
+                text: "About",
+            },
+            tierOneLink: {
+                link_type: "Web",
+                url: "http://google.com",
+                text: "About",
+            },
+            tierTwoMenuItems: [
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+                    tierTwoMenuDesc: "Section description",
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "Our History & Mission",
+                    },
+                },
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+
+                    tierTwoMenuDesc: "Section description",
+
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "Our Committees",
+                    },
+                },
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+
+                    tierTwoMenuDesc: "Section description",
+
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "Executive Office",
+                    },
+                },
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+
+                    tierTwoMenuDesc: "Section description",
+
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "ACA Awards",
+                    },
+                },
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+
+                    tierTwoMenuDesc: "Section description",
+
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "ACA Leadership",
+                    },
+                },
+                {
+                    tierTwoMenuIcon: {
+                        url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                        id: "",
+                        copyright: "",
+                        dimensions: {
+                            height: 3168,
+                            width: 4752,
+                        },
+                        edit: {
+                            x: 0,
+                            y: 0,
+                            zoom: 1,
+                            background: "transparent",
+                        },
+                        alt: "tall",
+                    },
+
+                    tierTwoMenuDesc: "Section description",
+
+                    tierTwoMenuLink: {
+                        link_type: "Web",
+                        url: "http://twitter.com",
+                        text: "Organizational Docs",
+                    },
+                },
+            ],
         },
     },
 };

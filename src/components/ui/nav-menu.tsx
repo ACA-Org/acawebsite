@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { PrismicNextLink } from "@prismicio/next";
 import { LinkField } from "@prismicio/client";
-import { ChevronDown } from "lucide-react";
+import { CaretDown } from "@/icons/CaretDown";
 
 interface NavItemProps {
     trigger: React.ReactNode;
@@ -23,8 +23,7 @@ const NavMenuItem = ({
     const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
     const handleMouseEnter = () => {
-        if (!timeoutRef?.current) return;
-        clearTimeout(timeoutRef.current);
+        clearTimeout(timeoutRef.current!);
         setIsOpen(true);
     };
 
@@ -41,13 +40,13 @@ const NavMenuItem = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <div className="p-1 group cursor-pointer flex gap-3">
+                <div className="p-1 group cursor-pointer flex gap-3 items-center justify-center">
                     {trigger}
 
                     {children && (
-                        <ChevronDown
+                        <CaretDown
                             className={cn(
-                                "w-4 h-auto transition-transform group-hover:text-blue-200",
+                                "w-2 h-auto transition-transform stroke-blue-300 group-hover:stroke-blue-200",
                                 isOpen && "rotate-180"
                             )}
                         />

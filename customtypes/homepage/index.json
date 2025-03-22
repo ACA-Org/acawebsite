@@ -82,16 +82,24 @@
           "repeat": false
         }
       },
-      "introImages": {
+      "introImageTile": {
         "type": "Group",
         "config": {
-          "label": "introImages",
+          "label": "IntroImageTile",
           "repeat": true,
           "fields": {
-            "introImage": {
+            "introImage1": {
               "type": "Image",
               "config": {
-                "label": "IntroImage",
+                "label": "IntroImage1",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "introImage2": {
+              "type": "Image",
+              "config": {
+                "label": "introImage2",
                 "constraint": {},
                 "thumbnails": []
               }

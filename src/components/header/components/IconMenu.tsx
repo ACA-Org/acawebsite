@@ -3,13 +3,43 @@ import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
 import { MailIcon } from "@/icons/MailIcon";
 import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
 
 export const IconMenu = () => {
     const [activeItem, setActiveItem] = useState("sign_in");
+    const timeoutRef = useRef<number>(0);
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+    const handleMouseLeave = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        timeoutRef.current = window.setTimeout(() => {
+            setActiveItem("sign_in");
+        }, 150);
+    };
+
+    const handleMouseEnter = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+    };
+
     return (
-        <div className="flex items-center gap-1">
+        <div
+            className="flex items-center justify-end gap-1 min-w-[400px]"
+            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnter}
+        >
             <ExpandingIcon
                 icon={SuitcaseIcon}
                 label="Job Bank"

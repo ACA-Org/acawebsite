@@ -9,12 +9,12 @@ import { NavContent, NavMenuItem } from "@/components/ui/nav-menu";
 /**
  * Props for `MenuItem`.
  */
-export type MenuItemProps = SliceComponentProps<Content.MenuItemSlice>;
+export type MenuItemProps = SliceComponentProps<Content.MenuItemSlice>["slice"];
 
 /**
  * Component for "MenuItem" Slices.
  */
-const MenuItem: FC<MenuItemProps> = ({ slice }) => {
+const MenuItem: FC<MenuItemProps> = (props) => {
     const {
         primary: {
             featuredMenuImage: featuredImage,
@@ -22,14 +22,14 @@ const MenuItem: FC<MenuItemProps> = ({ slice }) => {
             tierOneLink: link,
             tierTwoMenuItems,
         },
-    } = slice;
+    } = props;
     return (
         <NavMenuItem
             trigger={<NavItem link={link} />}
-            data-slice-type={slice.slice_type}
-            data-slice-variation={slice.variation}
+            data-slice-type={props.slice_type}
+            data-slice-variation={props.variation}
         >
-            <NavContent className="inline-flex p-12 items-end gap-8 w-max">
+            <NavContent className="inline-flex p-12 items-start gap-8 w-max">
                 <div className="grid grid-cols-2 gap-8 w-max">
                     {tierTwoMenuItems.map((i, index) => (
                         <NavMenuLink

@@ -13,18 +13,20 @@ export const SlideControls = ({ className }: { className?: string }) => {
             )}
         >
             <Button
-                variant={"secondary"}
+                variant={"tertiary"}
+                outlined
                 onClick={() => swiper.slidePrev()}
-                className="h-16 w-auto aspect-square bg-blue-100 hover:bg-gold-100 shadow-xl rounded-md"
+                className="h-16 w-auto aspect-square shadow-xl rounded-md"
             >
-                <ArrowLeft className="size-6 stroke-blue-300" />
+                <ArrowLeft className="size-6" />
             </Button>
             <Button
-                variant={"secondary"}
+                variant={"tertiary"}
+                outlined
                 onClick={() => swiper.slideNext()}
-                className="h-16 w-auto aspect-square bg-blue-100 hover:bg-gold-100 shadow-xl rounded-md"
+                className="h-16 w-auto aspect-square shadow-xl rounded-md"
             >
-                <ArrowRight className="size-6 stroke-blue-300" />
+                <ArrowRight className="size-6" />
             </Button>
         </div>
     );

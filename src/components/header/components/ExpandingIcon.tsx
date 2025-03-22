@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { LucideIcon } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { VariantProps } from "class-variance-authority";
@@ -21,86 +20,38 @@ type ExpandingIconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
 export function ExpandingIcon({
     icon: Icon,
     label,
-    buttonType,
     menuId,
-    variant = "primary",
-    setActiveItem,
     activeItem,
-    className,
-    ...props
+    setActiveItem,
 }: ExpandingIconButtonProps) {
-    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const isActive = menuId === activeItem;
 
     return (
-        <motion.div
-            className="w-fit"
-            initial={false}
-            animate={{
-                width: menuId === activeItem ? "auto" : "40px",
-            }}
-            transition={{
-                duration: 0.3,
-                ease: [0.4, 0, 0.2, 1],
-            }}
-        >
+        <div className="relative">
             <Button
-                ref={buttonRef}
-                variant={variant}
-                buttonType={buttonType}
                 className={cn(
-                    "w-full px-4 py-2 rounded-full transition-colors duration-300 ease-out bg-transparent hover:bg-blue-100",
-                    menuId === activeItem && "bg-blue-100",
-                    className
+                    "flex items-center overflow-hidden rounded-full h-8 px-2 transition-all duration-500 ease-in-out z-10 relative bg-transparent",
+                    isActive && "bg-blue-300 hover:bg-blue-300"
                 )}
                 onMouseEnter={() => setActiveItem(menuId)}
-                onMouseLeave={() => {
-                    // setTimeout(() => {
-                    setActiveItem("sign_in");
-                    // }, 150);
-                }}
-                {...props}
             >
-                <motion.div
-                    className="flex items-center justify-center gap-2"
-                    initial={false}
-                    animate={{
-                        width: menuId === activeItem ? "auto" : "20px",
-                    }}
-                    transition={{
-                        duration: 0.3,
-                        ease: [0.4, 0, 0.2, 1],
-                    }}
+                <Icon
+                    className={cn(
+                        "h-5 aspect-square transition-colors duration-500 ease-in-out stroke-gray-300",
+                        isActive && "stroke-white"
+                    )}
+                />
+                <span
+                    className={cn(
+                        "text-sm font-medium overflow-hidden whitespace-nowrap origin-left transition-all duration-500 ease-in-out text-white",
+                        isActive
+                            ? "opacity-100 max-w-[150px] scale-100 ml-1"
+                            : "opacity-0 max-w-0 scale-95 ml-0"
+                    )}
                 >
-                    <Icon
-                        className={cn(
-                            "h-6 aspect-square stroke-blue-300",
-                            menuId === activeItem && "strokeWhite"
-                        )}
-                    />
-                    <AnimatePresence>
-                        {menuId === activeItem && (
-                            <motion.span
-                                initial={{ opacity: 0, width: 0 }}
-                                animate={{
-                                    opacity: 1,
-                                    width: "auto",
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    width: 0,
-                                }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: [0.4, 0, 0.2, 1],
-                                }}
-                                className="whitespace-nowrap overflow-hidden text-sm leading-[14px]"
-                            >
-                                {label}
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
+                    {label}
+                </span>
             </Button>
-        </motion.div>
+        </div>
     );
 }

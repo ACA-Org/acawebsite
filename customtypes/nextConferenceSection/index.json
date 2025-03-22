@@ -1,0 +1,54 @@
+{
+  "format": "custom",
+  "id": "nextConferenceSection",
+  "label": "NextConferenceSection",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "conferenceTitle": {
+        "type": "Text",
+        "config": {
+          "label": "ConferenceTitle",
+          "placeholder": ""
+        }
+      },
+      "conferenceStartDateTime": {
+        "type": "Timestamp",
+        "config": {
+          "label": "ConferenceStartDateTime",
+          "placeholder": ""
+        }
+      },
+      "conferenceLink": {
+        "type": "Link",
+        "config": {
+          "label": "ConferenceLink",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "conferenceEndDateTime": {
+        "type": "Timestamp",
+        "config": {
+          "label": "ConferenceEndDateTime",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "conference_card": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

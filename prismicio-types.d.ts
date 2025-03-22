@@ -120,6 +120,40 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
+type HeaderDocumentDataSlicesSlice = MenuItemSlice;
+
+/**
+ * Content for Header documents
+ */
+interface HeaderDocumentData {
+  /**
+   * Slice Zone field in *Header*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<HeaderDocumentDataSlicesSlice>;
+}
+
+/**
+ * Header document from Prismic
+ *
+ * - **API ID**: `header`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HeaderDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HeaderDocumentData>,
+    "header",
+    Lang
+  >;
+
 /**
  * Item in *HomePage → HeroCarouselData*
  */
@@ -172,18 +206,28 @@ export interface HomepageDocumentDataHeroCarouselDataItem {
 }
 
 /**
- * Item in *HomePage → introImages*
+ * Item in *HomePage → IntroImageTile*
  */
-export interface HomepageDocumentDataIntroImagesItem {
+export interface HomepageDocumentDataIntroImageTileItem {
   /**
-   * IntroImage field in *HomePage → introImages*
+   * IntroImage1 field in *HomePage → IntroImageTile*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.introImages[].introImage
+   * - **API ID Path**: homepage.introImageTile[].introImage1
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  introImage: prismic.ImageField<never>;
+  introImage1: prismic.ImageField<never>;
+
+  /**
+   * introImage2 field in *HomePage → IntroImageTile*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.introImageTile[].introImage2
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  introImage2: prismic.ImageField<never>;
 }
 
 type HomepageDocumentDataSlicesSlice =
@@ -259,16 +303,16 @@ interface HomepageDocumentData {
   >;
 
   /**
-   * introImages field in *HomePage*
+   * IntroImageTile field in *HomePage*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.introImages[]
+   * - **API ID Path**: homepage.introImageTile[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  introImages: prismic.GroupField<
-    Simplify<HomepageDocumentDataIntroImagesItem>
+  introImageTile: prismic.GroupField<
+    Simplify<HomepageDocumentDataIntroImageTileItem>
   >;
 
   /**
@@ -330,21 +374,87 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-interface LayoutDocumentData {}
+type NextConferenceSectionDocumentDataSlicesSlice = ConferenceCardSlice;
 
 /**
- * Layout document from Prismic
+ * Content for NextConferenceSection documents
+ */
+interface NextConferenceSectionDocumentData {
+  /**
+   * ConferenceTitle field in *NextConferenceSection*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  conferenceTitle: prismic.KeyTextField;
+
+  /**
+   * ConferenceStartDateTime field in *NextConferenceSection*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceStartDateTime
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  conferenceStartDateTime: prismic.TimestampField;
+
+  /**
+   * ConferenceLink field in *NextConferenceSection*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceLink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  conferenceLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ConferenceEndDateTime field in *NextConferenceSection*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceEndDateTime
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  conferenceEndDateTime: prismic.TimestampField;
+
+  /**
+   * Slice Zone field in *NextConferenceSection*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<NextConferenceSectionDocumentDataSlicesSlice>;
+}
+
+/**
+ * NextConferenceSection document from Prismic
  *
- * - **API ID**: `layout`
+ * - **API ID**: `nextConferenceSection`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type LayoutDocument<Lang extends string = string> =
+export type NextConferenceSectionDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<LayoutDocumentData>,
-    "layout",
+    Simplify<NextConferenceSectionDocumentData>,
+    "nextConferenceSection",
     Lang
   >;
 
@@ -395,8 +505,9 @@ export type RightMenuDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | FooterDocument
+  | HeaderDocument
   | HomepageDocument
-  | LayoutDocument
+  | NextConferenceSectionDocument
   | RightMenuDocument;
 
 /**
@@ -639,6 +750,87 @@ type CarouselSliceVariation = CarouselSliceDefault;
 export type CarouselSlice = prismic.SharedSlice<
   "carousel",
   CarouselSliceVariation
+>;
+
+/**
+ * Primary content in *ConferenceCard → Default → Primary*
+ */
+export interface ConferenceCardSliceDefaultPrimary {
+  /**
+   * ConferenceCardImage field in *ConferenceCard → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conference_card.default.primary.conferenceCardImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  conferenceCardImage: prismic.ImageField<never>;
+
+  /**
+   * ConferenceCardTitle field in *ConferenceCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conference_card.default.primary.conferenceCardTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  conferenceCardTitle: prismic.KeyTextField;
+
+  /**
+   * conferenceCardDesc field in *ConferenceCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conference_card.default.primary.conferenceCardDesc
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  conferenceCardDesc: prismic.KeyTextField;
+
+  /**
+   * conferenceCardLink field in *ConferenceCard → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conference_card.default.primary.conferenceCardLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  conferenceCardLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for ConferenceCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ConferenceCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ConferenceCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ConferenceCard*
+ */
+type ConferenceCardSliceVariation = ConferenceCardSliceDefault;
+
+/**
+ * ConferenceCard Shared Slice
+ *
+ * - **API ID**: `conference_card`
+ * - **Description**: ConferenceCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ConferenceCardSlice = prismic.SharedSlice<
+  "conference_card",
+  ConferenceCardSliceVariation
 >;
 
 /**
@@ -1069,13 +1261,17 @@ declare module "@prismicio/client" {
       FooterDocumentData,
       FooterDocumentDataFooterAddressItem,
       FooterDocumentDataFooterContactInfoItem,
+      HeaderDocument,
+      HeaderDocumentData,
+      HeaderDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataHeroCarouselDataItem,
-      HomepageDocumentDataIntroImagesItem,
+      HomepageDocumentDataIntroImageTileItem,
       HomepageDocumentDataSlicesSlice,
-      LayoutDocument,
-      LayoutDocumentData,
+      NextConferenceSectionDocument,
+      NextConferenceSectionDocumentData,
+      NextConferenceSectionDocumentDataSlicesSlice,
       RightMenuDocument,
       RightMenuDocumentData,
       RightMenuDocumentDataSlicesSlice,
@@ -1090,6 +1286,10 @@ declare module "@prismicio/client" {
       CarouselSliceDefaultPrimary,
       CarouselSliceVariation,
       CarouselSliceDefault,
+      ConferenceCardSlice,
+      ConferenceCardSliceDefaultPrimary,
+      ConferenceCardSliceVariation,
+      ConferenceCardSliceDefault,
       MenuItemSlice,
       MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem,
       MenuItemSliceDefaultPrimary,

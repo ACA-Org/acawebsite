@@ -4,8 +4,16 @@
 import React, { useEffect, useState } from "react";
 import ACA from "@/app/images/aca-blue.png";
 import { IconMenu } from "./components/IconMenu";
+import { NavMenu } from "./components/NavMenu";
+import { MenuItemProps } from "@/slices/MenuItem";
 
-const Header = () => {
+const Header = ({
+    data,
+}: {
+    data: {
+        slices: MenuItemProps[];
+    };
+}) => {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
@@ -33,10 +41,9 @@ const Header = () => {
                     src={ACA.src}
                 />
             </div>
-            {/* <SubNav items={items} /> */}
-            <div className="flex items-center gap-8">
-                <IconMenu />
-            </div>
+            <NavMenu data={data} />
+
+            <IconMenu />
         </header>
     );
 };

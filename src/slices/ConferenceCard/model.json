@@ -1,0 +1,52 @@
+{
+  "id": "conference_card",
+  "type": "SharedSlice",
+  "name": "ConferenceCard",
+  "description": "ConferenceCard",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "conferenceCardImage": {
+          "type": "Image",
+          "config": {
+            "label": "ConferenceCardImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "conferenceCardTitle": {
+          "type": "Text",
+          "config": {
+            "label": "ConferenceCardTitle",
+            "placeholder": ""
+          }
+        },
+        "conferenceCardDesc": {
+          "type": "Text",
+          "config": {
+            "label": "conferenceCardDesc",
+            "placeholder": ""
+          }
+        },
+        "conferenceCardLink": {
+          "type": "Link",
+          "config": {
+            "label": "conferenceCardLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

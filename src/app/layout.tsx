@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getFooterData } from "./actions/getLayoutData";
+import { getFooterData, getHeaderData } from "./actions/getLayoutData";
 import Header from "@/components/header";
-import { FooterDocument } from "../../prismicio-types";
-import Footer from "@/components/footer";
+import { MenuItemSlice } from "../../prismicio-types";
+import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 
 export const metadata: Metadata = {
@@ -16,7 +16,8 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    let footerInfo: FooterDocument<string> | null = null;
+    let footerInfo: FooterProps | null = null;
+    let headerInfo: MenuItemSlice[] | null = null;
 
     const fetchFooterInfo = async () => {
         try {
@@ -26,18 +27,26 @@ export default async function RootLayout({
         }
     };
 
-    await Promise.allSettled([fetchFooterInfo()]);
+    const fetchHeaderInfo = async () => {
+        try {
+            const result = await getHeaderData();
+
+            headerInfo = result?.data || null;
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    await Promise.allSettled([fetchFooterInfo(), fetchHeaderInfo()]);
 
     return (
         <html lang="en">
             <body
                 className={`${gillSans.variable} antialiased [font-family:GillSans]`}
             >
-                <Header />
+                {headerInfo && <Header data={headerInfo} />}
                 <div className="mt-17">{children}</div>
-                {footerInfo && (
-                    <Footer {...(footerInfo as FooterDocument<string>).data} />
-                )}
+                {footerInfo && <Footer data={footerInfo} />}
             </body>
         </html>
     );

@@ -30,14 +30,13 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
             <div className="flex items-end gap-16 self-stretch z-20 max-w-[650px]">
                 <div className="text-white flex w-full flex-col items-start gap-4">
                     {title && (
-                        <h2 className="self-stretch text-5xl font-bold">
-                            {title}
-                        </h2>
+                        <h2 className="self-stretch heading-2">{title}</h2>
                     )}
                     {desc && <p>{desc}</p>}
                     {link && (
                         <LinkButton
                             variant="tertiary"
+                            outlined
                             className="pt-4"
                             field={link}
                         >

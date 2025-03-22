@@ -13,14 +13,14 @@ import { PrismicNextLink } from "@prismicio/next";
 
 export type FooterProps = Simplify<FooterDocumentData>;
 
-const Footer = (props: FooterProps) => {
+const Footer = ({ data }: { data: FooterProps }) => {
     const {
         footerAddress,
         footerContactInfo,
         helpfulNavLinks,
         memberNavLinks,
         subFooterNavLinks,
-    } = props;
+    } = data;
     // Organization information
     const organizationInfo = {
         name: "American Correctional Association",

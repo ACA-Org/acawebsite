@@ -26,7 +26,7 @@ const SpeedBump: FC<SideBySideProps> = ({ slice }) => {
         <div
             data-slice-type={slice.slice_type}
             data-slice-variation={slice.variation}
-            className="flex rounded-3xl shadow-2xl p-8 pr-16 overflow-hidden"
+            className="flex rounded-3xl shadow-2xl p-8 pr-16 overflow-hidden bg-[#EBFAFF]"
         >
             <div className="flex h-full items-center gap-8 self-stretch">
                 {hero && (
@@ -37,20 +37,18 @@ const SpeedBump: FC<SideBySideProps> = ({ slice }) => {
                         />
                     </figure>
                 )}
-                <div className="flex flex-col flex-1 gap-6 items-start text-[#808080] h-fit">
+                <div className="flex flex-col flex-1 gap-4 items-start h-fit">
                     <div className="flex flex-col gap-1">
                         {title && (
-                            <h2 className="text-4xl font-bold leading-[60px]">
+                            <h2 className="heading-3 text-blue-300 font-semibold">
                                 {title}
                             </h2>
                         )}
                     </div>
-                    {description && <p>{description}</p>}
-                    {link && (
-                        <LinkButton className="bg-[#808080] pt-4" field={link}>
-                            {link.text}
-                        </LinkButton>
+                    {description && (
+                        <p className="body-md text-gray-300">{description}</p>
                     )}
+                    {link && <LinkButton field={link}>{link.text}</LinkButton>}
                 </div>
             </div>
         </div>
