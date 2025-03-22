@@ -316,6 +316,17 @@ interface HomepageDocumentData {
   >;
 
   /**
+   * NextConferenceInfo field in *HomePage*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.nextConferenceInfo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  nextConferenceInfo: prismic.ContentRelationshipField<"nextConferenceSection">;
+
+  /**
    * Slice Zone field in *HomePage*
    *
    * - **Field Type**: Slice Zone
@@ -429,6 +440,28 @@ interface NextConferenceSectionDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#timestamp
    */
   conferenceEndDateTime: prismic.TimestampField;
+
+  /**
+   * ConferenceGeoPoint field in *NextConferenceSection*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceGeoPoint
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  conferenceGeoPoint: prismic.GeoPointField;
+
+  /**
+   * ConferenceLocation field in *NextConferenceSection*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nextConferenceSection.conferenceLocation
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  conferenceLocation: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *NextConferenceSection*
@@ -1133,6 +1166,17 @@ export interface SideBySideSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * SpeedBumpTheme field in *SpeedBump → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: light
+   * - **API ID Path**: side_by_side.default.primary.speedBumpTheme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpTheme: prismic.SelectField<"light" | "dark", "filled">;
 }
 
 /**

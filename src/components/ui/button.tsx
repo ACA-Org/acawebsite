@@ -14,7 +14,7 @@ const buttonVariants = cva(
                 secondary: "bg-blue-200 text-white hover:bg-blue-300",
                 tertiary:
                     "bg-gold-100 border-gold-100 hover:bg-blue-300 text-blue-300 hover:text-gold-100",
-                white: "",
+                white: "border-white",
             },
             outlined: {
                 false: "",
@@ -33,12 +33,16 @@ const buttonVariants = cva(
                 className:
                     "text-blue-50 border-blue-50 hover:bg-blue-50 hover:text-blue-300",
             },
-
             {
                 variant: "tertiary",
                 outlined: true,
                 className:
                     "text-gold-100 hover:bg-gold-100 hover:text-blue-300",
+            },
+            {
+                variant: "white",
+                outlined: true,
+                className: "text-white hover:text-blue-200 hover:bg-white",
             },
         ],
         defaultVariants: {

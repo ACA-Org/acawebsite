@@ -37,13 +37,18 @@
 				"type": "Text"
 			},
 			"speedBumpLink": {
-				"__TYPE__": "LinkContent",
 				"key": "491e2230-6cb7-42a4-8fe4-0cb38c40b208",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "https://prismic.io",
 					"text": "tomorrow"
 				}
+			},
+			"speedBumpTheme": {
+				"__TYPE__": "FieldContent",
+				"value": "light",
+				"type": "Select"
 			}
 		},
 		"items": []

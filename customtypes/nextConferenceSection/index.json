@@ -38,6 +38,19 @@
           "placeholder": ""
         }
       },
+      "conferenceGeoPoint": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "ConferenceGeoPoint"
+        }
+      },
+      "conferenceLocation": {
+        "type": "Text",
+        "config": {
+          "label": "ConferenceLocation",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

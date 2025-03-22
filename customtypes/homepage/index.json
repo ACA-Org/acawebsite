@@ -107,6 +107,15 @@
           }
         }
       },
+      "nextConferenceInfo": {
+        "type": "Link",
+        "config": {
+          "label": "NextConferenceInfo",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["nextConferenceSection"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

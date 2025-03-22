@@ -4,12 +4,18 @@ import IntroContainer from "./components/IntroContainer";
 import HeroCarousel from "./components/HeroCarousel";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
+import { NextConference } from "./components/NextConference";
+import { getHomePageData } from "./actions/getHomePageData";
 
 export default async function Home() {
     const client = createClient();
-    const page = await client.getSingle("homepage").catch(() => notFound());
 
-    const { data } = page;
+    const [page, conferenceInfo] = await Promise.all([
+        getHomePageData().catch(() => null),
+        client.getSingle("nextConferenceSection").catch(() => null),
+    ]);
+
+    if (!page) return notFound();
 
     return (
         <main>
@@ -29,16 +35,31 @@ export default async function Home() {
                         quasi architecto beatae
                     </p>
                 </div>
-                <HeroCarousel slides={data.heroCarouselData} />
+                <HeroCarousel slides={page?.heroCarouselData} />
             </section>
+
+            {conferenceInfo && <NextConference {...conferenceInfo.data} />}
+
             <IntroContainer
-                introImages={data.introImageTile}
-                introAction={data.introAction}
-                introHeader={data.introHeader}
-                introDescription={data.introDescription}
+                introImages={page?.introImageTile}
+                introAction={page?.introAction}
+                introHeader={page?.introHeader}
+                introDescription={page?.introDescription}
             />
-            <div className="flex flex-col gap-32">
-                <SliceZone slices={page.data.slices} components={components} />
+            <div className="flex flex-col">
+                <SliceZone
+                    slices={page?.slices}
+                    components={Object.fromEntries(
+                        Object.entries(components).map(([key, Component]) => [
+                            key,
+                            (props) => (
+                                <div className="px-12 py-8 overflow-clip">
+                                    <Component {...props} />
+                                </div>
+                            ),
+                        ])
+                    )}
+                />
             </div>
         </main>
     );

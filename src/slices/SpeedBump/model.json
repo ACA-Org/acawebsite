@@ -44,6 +44,18 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "speedBumpTheme": {
+          "type": "Select",
+          "config": {
+            "label": "SpeedBumpTheme",
+            "placeholder": "",
+            "options": [
+              "light",
+              "dark"
+            ],
+            "default_value": "light"
+          }
         }
       },
       "items": {}

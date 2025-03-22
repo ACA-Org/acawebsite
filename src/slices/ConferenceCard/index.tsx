@@ -8,12 +8,12 @@ import { LinkButton } from "@/components/ui/button";
  * Props for `ConferenceCard`.
  */
 export type ConferenceCardProps =
-    SliceComponentProps<Content.ConferenceCardSlice>;
+    SliceComponentProps<Content.ConferenceCardSlice>["slice"];
 
 /**
  * Component for "ConferenceCard" Slices.
  */
-const ConferenceCard: FC<ConferenceCardProps> = ({ slice }) => {
+const ConferenceCard: FC<ConferenceCardProps> = (slice) => {
     const {
         primary: {
             conferenceCardImage: image,
@@ -39,7 +39,7 @@ const ConferenceCard: FC<ConferenceCardProps> = ({ slice }) => {
                     </div>
                 </>
             )}
-            <div className="flex items-end gap-16 self-stretch z-20 translate-y-[80px] transform transition-transform duration-300 ease-in-out group-hover:translate-y-0">
+            <div className="flex items-end gap-16 self-stretch z-20 translate-y-[84px] transform transition-transform duration-300 ease-in-out group-hover:translate-y-0">
                 <div className="text-white flex w-full flex-col items-start gap-4">
                     {title && (
                         <h2 className="self-stretch heading-3 font-semibold">
@@ -51,7 +51,7 @@ const ConferenceCard: FC<ConferenceCardProps> = ({ slice }) => {
                         <LinkButton
                             variant="tertiary"
                             outlined
-                            className="w-full"
+                            className="w-full mt-4"
                             field={link}
                         >
                             {link.text}

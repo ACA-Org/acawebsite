@@ -18,6 +18,7 @@ export const Primary: Story = {
             id: "123",
             slice_label: null,
             primary: {
+                speedBumpTheme: "light",
                 speedBumpTitle: "Connect, Learn, and Lead",
                 speedBumpImage: {
                     alt: "Placeholder",
