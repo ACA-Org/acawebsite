@@ -23,7 +23,7 @@ export const Primary: Story = {
         variation: "default",
         primary: {
             featuredMenuImage: {
-                url: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
                 id: "",
                 copyright: "",
                 dimensions: {

@@ -38,7 +38,7 @@ const MenuItem: FC<MenuItemProps> = (props) => {
                         />
                     ))}
                 </div>
-                {featuredLink && (
+                {featuredLink.text && (
                     <PrismicNextLink
                         field={featuredLink}
                         className="flex flex-col items-start gap-4 pl-8 group/link"
