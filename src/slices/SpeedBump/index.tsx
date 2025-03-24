@@ -6,14 +6,14 @@ import { PrismicNextImage } from "@prismicio/next";
 import { cn } from "@/lib/utils";
 
 /**
- * Props for `SideBySide`.
+ * Props for `SpeedBump`.
  */
-export type SideBySideProps = SliceComponentProps<Content.SideBySideSlice>;
+export type SpeedBumpProps = SliceComponentProps<Content.SpeedBumpSlice>;
 
 /**
- * Component for "SideBySide" Slices.
+ * Component for "SpeedBump" Slices.
  */
-const SpeedBump: FC<SideBySideProps> = ({ slice }) => {
+const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
     const {
         primary: {
             speedBumpDescription: description,

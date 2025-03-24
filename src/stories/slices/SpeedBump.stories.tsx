@@ -14,7 +14,7 @@ export const Primary: Story = {
             variation: "default",
             version: "",
             items: [],
-            slice_type: "side_by_side",
+            slice_type: "speedBump",
             id: "123",
             slice_label: null,
             primary: {

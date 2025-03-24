@@ -1,4 +1,4 @@
-export const ArrowRight = (props: React.HTMLAttributes<SVGSVGElement>) => {
+export const ArrowLeft = (props: React.HTMLAttributes<SVGSVGElement>) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

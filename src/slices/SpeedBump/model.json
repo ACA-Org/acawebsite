@@ -1,8 +1,8 @@
 {
-  "id": "side_by_side",
+  "id": "speedBump",
   "type": "SharedSlice",
   "name": "SpeedBump",
-  "description": "SideBySide",
+  "description": "SpeedBump",
   "variations": [
     {
       "id": "default",

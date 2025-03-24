@@ -5,6 +5,7 @@ import { NavItem } from "./NavItem";
 import { NavMenuLink } from "./NavMenuLink";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { NavContent, NavMenuItem } from "@/components/ui/nav-menu";
+import { ArrowRight } from "@/icons/ArrowRight";
 
 /**
  * Props for `MenuItem`.
@@ -51,10 +52,18 @@ const MenuItem: FC<MenuItemProps> = (props) => {
                                 field={featuredImage}
                                 className="w-full h-full object-cover peer"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-[#0f2d52ac] h-full transform translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0 flex items-center justify-center">
-                                <span className="text-white font-lg">
+                            <div className="absolute bottom-0 left-0 right-0 bg-[#0f2d52e6] h-full transform translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0 flex items-center justify-center gap-3">
+                                <span className="text-white leading-4.5 text-lg">
                                     View Item
                                 </span>
+
+                                <ArrowRight
+                                    style={{
+                                        height: "15px",
+                                        width: "17px",
+                                    }}
+                                    className="stroke-white stroke-1"
+                                />
                             </div>
                         </div>
                     </PrismicNextLink>

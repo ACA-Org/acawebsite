@@ -6,9 +6,10 @@ export const components = {
   accordion: dynamic(() => import("./Accordion")),
   carousel: dynamic(() => import("./Carousel")),
   conference_card: dynamic(() => import("./ConferenceCard")),
+  link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),
   right_menu: dynamic(() => import("./RightMenuAccordion")),
   right_menu_link: dynamic(() => import("./RightMenuLinks")),
-  side_by_side: dynamic(() => import("./SpeedBump")),
   social_carousel: dynamic(() => import("./SocialCarousel")),
+  speedBump: dynamic(() => import("./SpeedBump")),
 };

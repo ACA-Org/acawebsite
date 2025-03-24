@@ -6,6 +6,7 @@ import ACA from "@/app/images/aca-blue.png";
 import { IconMenu } from "./components/IconMenu";
 import { NavMenu } from "./components/NavMenu";
 import { MenuItemProps } from "@/slices/MenuItem";
+import Link from "next/link";
 
 const Header = ({
     data,
@@ -32,7 +33,10 @@ const Header = ({
                 isCollapsed ? "py-4" : "py-8"
             }`}
         >
-            <div className="flex flex-col items-start justify-center transition-all duration-300">
+            <Link
+                href="/"
+                className="flex flex-col items-start justify-center transition-all duration-300"
+            >
                 <img
                     className={`object-cover transition-all duration-300 ${
                         isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
@@ -40,7 +44,7 @@ const Header = ({
                     alt="ACA logo"
                     src={ACA.src}
                 />
-            </div>
+            </Link>
             <NavMenu data={data} />
 
             <IconMenu />

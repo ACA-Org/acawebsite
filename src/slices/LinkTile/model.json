@@ -1,0 +1,27 @@
+{
+  "id": "link_tile",
+  "type": "SharedSlice",
+  "name": "LinkTile",
+  "description": "LinkTile",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "tileimage": {
+          "type": "Image",
+          "config": {
+            "label": "TileImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

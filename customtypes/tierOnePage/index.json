@@ -1,0 +1,85 @@
+{
+  "format": "page",
+  "id": "tierOnePage",
+  "label": "TierOnePage",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "pageTitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageTitle",
+          "placeholder": ""
+        }
+      },
+      "pageTextContent": {
+        "type": "StructuredText",
+        "config": {
+          "label": "pageContent",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "pageImage": {
+        "type": "Image",
+        "config": {
+          "label": "PageImage",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "right_menu_link": {
+              "type": "SharedSlice"
+            },
+            "right_menu": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}

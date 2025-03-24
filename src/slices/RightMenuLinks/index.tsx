@@ -24,10 +24,10 @@ const RightMenuLinks = ({ slice }: { slice: RightMenuLinkProps["slice"] }) => {
             {rightMenuLinks?.map((link, index) => (
                 <div
                     key={`${link.text}-${index}`}
-                    className="flex w-full h-15 items-center pl-5 pt-[18px] pb-[22px]"
+                    className="flex w-full h-15 items-center pl-5 py-4.5"
                 >
                     <PrismicNextLink
-                        className="w-60 text-gray-300 hover:text-black cursor-pointer font-normal text-sm leading-[140%]"
+                        className="w-60 text-gray-300 hover:text-black cursor-pointer body-md leading-4 font-(family-name:--font-gill-sans)"
                         field={link}
                     >
                         {link.text}

@@ -55,10 +55,11 @@ const NavMenuItem = ({
             </PopoverTrigger>
             {children && (
                 <PopoverContent
-                    className="p-2 w-max border-none rounded-xl shadow-xl"
+                    className="p-2 w-max border-none rounded-xl shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)]"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     align="center"
+                    sideOffset={20}
                 >
                     {children}
                 </PopoverContent>

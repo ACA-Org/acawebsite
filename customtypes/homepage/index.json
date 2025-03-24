@@ -12,7 +12,9 @@
           "label": "Footer",
           "select": "document",
           "repeat": false,
-          "customtypes": ["footer"]
+          "customtypes": [
+            "footer"
+          ]
         }
       },
       "heroCarouselData": {
@@ -113,7 +115,9 @@
           "label": "NextConferenceInfo",
           "select": "document",
           "repeat": false,
-          "customtypes": ["nextConferenceSection"]
+          "customtypes": [
+            "nextConferenceSection"
+          ]
         }
       },
       "slices": {
@@ -121,7 +125,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "side_by_side": {
+            "speedBump": {
               "type": "SharedSlice"
             },
             "social_carousel": {
