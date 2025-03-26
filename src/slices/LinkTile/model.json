@@ -12,12 +12,37 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "tileimage": {
+        "tileImage": {
           "type": "Image",
           "config": {
             "label": "TileImage",
             "constraint": {},
             "thumbnails": []
+          }
+        },
+        "tileTitle": {
+          "type": "Text",
+          "config": {
+            "label": "TileTitle",
+            "placeholder": ""
+          }
+        },
+        "tileDescription": {
+          "type": "Text",
+          "config": {
+            "label": "TileDescription",
+            "placeholder": ""
+          }
+        },
+        "tileLink": {
+          "type": "Link",
+          "config": {
+            "label": "TileLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

@@ -43,6 +43,15 @@
           "placeholder": ""
         }
       },
+      "parentPage": {
+        "type": "Link",
+        "config": {
+          "label": "ParentPage",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["tierOnePage"]
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

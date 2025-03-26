@@ -31,7 +31,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
 
     return (
         <footer className="flex flex-col w-full items-center text-white">
-            <div className="flex items-start justify-between gap-24 px-[76px] py-16 relative self-stretch w-full bg-blue-300 h-full [background:linear-gradient(90deg,#0C2545_0%,#081B31_100%)]">
+            <div className="flex items-start justify-between gap-24 px-[76px] py-16 relative self-stretch w-full h-full [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
                 <div className="flex flex-col w-[352px] items-start gap-12">
                     <div className="flex flex-col items-start gap-[22px] self-stretch w-full">
                         <img

@@ -6,7 +6,7 @@
   "variations": [
     {
       "id": "default",
-      "name": "Conference",
+      "name": "Default",
       "docURL": "...",
       "version": "initial",
       "description": "Default",
@@ -50,20 +50,6 @@
                   "allowText": true,
                   "repeat": false
                 }
-              },
-              "carouselSlideLocation": {
-                "type": "Text",
-                "config": {
-                  "label": "CarouselSlideLocation",
-                  "placeholder": "Location"
-                }
-              },
-              "carouselSlideDate": {
-                "type": "Timestamp",
-                "config": {
-                  "label": "CarouselSlideDate",
-                  "placeholder": "Date"
-                }
               }
             }
           }
@@ -91,6 +77,13 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "carouselTag": {
+          "type": "Text",
+          "config": {
+            "label": "CarouselTag",
+            "placeholder": ""
           }
         }
       },

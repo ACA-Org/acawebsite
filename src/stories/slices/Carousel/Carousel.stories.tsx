@@ -31,78 +31,163 @@ export const Primary: Story = {
                     url: "https://google.com",
                     text: "Learn More",
                 },
+                carouselTag: "Our Goals",
                 carouselSubTitle:
                     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae",
                 carouselSlides: [
                     {
                         carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
+                        },
                         carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
                         carouselSlideLink: {
                             link_type: "Web",
+                            url: "https://google.com",
+                            text: "Learn More",
+                        },
+                    },
+                    {
+                        carouselSlideDescription:
+                            "Lorem ipsum dolor sit amet...",
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
+                        },
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLink: {
+                            link_type: "Web",
+                            url: "https://google.com",
+                            text: "Learn More",
+                        },
+                    },
+                    {
+                        carouselSlideDescription:
+                            "Lorem ipsum dolor sit amet...",
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
+                        },
+                        carouselSlideTitle: "Conference Title Will Go Here",
+                        carouselSlideLink: {
+                            link_type: "Web",
+                            text: "Learn More",
                             url: "https://google.com",
                         },
                     },
                     {
                         carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
+                        },
                         carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
                         carouselSlideLink: {
                             link_type: "Web",
+                            text: "Learn More",
                             url: "https://google.com",
                         },
                     },
                     {
                         carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
+                        },
                         carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
                         carouselSlideLink: {
                             link_type: "Web",
+                            text: "Learn More",
                             url: "https://google.com",
                         },
                     },
                     {
                         carouselSlideDescription:
                             "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
-                        carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
-                        carouselSlideLink: {
-                            link_type: "Web",
-                            url: "https://google.com",
+                        carouselSlideBackground: {
+                            url: "https://images.unsplash.com/photo-1591553161262-0eeddc1f5c23",
+                            id: "",
+                            copyright: "",
+                            dimensions: {
+                                height: 3168,
+                                width: 4752,
+                            },
+                            edit: {
+                                x: 0,
+                                y: 0,
+                                zoom: 1,
+                                background: "transparent",
+                            },
+                            alt: "tall",
                         },
-                    },
-                    {
-                        carouselSlideDescription:
-                            "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
                         carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
                         carouselSlideLink: {
                             link_type: "Web",
-                            url: "https://google.com",
-                        },
-                    },
-                    {
-                        carouselSlideDescription:
-                            "Lorem ipsum dolor sit amet...",
-                        carouselSlideBackground: {},
-                        carouselSlideTitle: "Conference Title Will Go Here",
-                        carouselSlideLocation: "CHICAGO, IL",
-                        carouselSlideDate: `2025-04-01T17:00:00+0000`,
-                        carouselSlideLink: {
-                            link_type: "Web",
+                            text: "Learn More",
                             url: "https://google.com",
                         },
                     },

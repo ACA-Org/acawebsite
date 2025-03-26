@@ -2,15 +2,15 @@ import { RightMenu } from "@/components/right-menu";
 import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { headers } from "next/headers";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { SliceZone } from "@prismicio/react";
 import {
     getTierOnePageData,
     TierOnePageData,
 } from "../actions/getTierPageData";
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
-import SpeedBump from "@/slices/SpeedBump";
-import SocialCarousel from "@/slices/SocialCarousel";
+import { components } from "@/slices";
+import PageRichText from "../components/PageRichText";
 
 export default async function Page({
     params,
@@ -36,7 +36,7 @@ export default async function Page({
 
     const {
         data: {
-            pageTextContent: rtContent,
+            pageTextContent: pageContent,
             pageTitle: title,
             pageImage: img,
             slices,
@@ -70,62 +70,10 @@ export default async function Page({
                         )}
                     </div>
                     <div>
-                        <PrismicRichText
-                            field={rtContent}
-                            components={{
-                                heading1: ({ children }) => (
-                                    <h1 className="heading-1">{children}</h1>
-                                ),
-                                heading2: ({ children }) => (
-                                    <h2 className="heading-2 text-blue-200">
-                                        {children}
-                                    </h2>
-                                ),
-                                heading3: ({ children }) => (
-                                    <h3 className="heading-3">{children}</h3>
-                                ),
-                                heading4: ({ children }) => (
-                                    <h4 className="heading-4">{children}</h4>
-                                ),
-                                heading5: ({ children }) => (
-                                    <h5 className="heading-5">{children}</h5>
-                                ),
-                                heading6: ({ children }) => (
-                                    <h6 className="heading-6">{children}</h6>
-                                ),
-                                paragraph: ({ children }) => (
-                                    <p className="body-md text-gray-100">
-                                        {children}
-                                    </p>
-                                ),
-
-                                hyperlink: ({ node, children }) => {
-                                    if (node.data.link_type === "Web") {
-                                        return (
-                                            <a
-                                                href={node.data.url}
-                                                target={node.data.target}
-                                                className="text-blue-200 underline hover:text-blue-300 visited:text-blue-400"
-                                            >
-                                                {children}
-                                            </a>
-                                        );
-                                    }
-                                },
-                            }}
-                        />
+                        <PageRichText content={pageContent} />
                     </div>
 
-                    <SliceZone
-                        slices={slices}
-                        components={{
-                            speedBump: ({ slice, ...props }) => (
-                                <div className="mt-12">
-                                    <SpeedBump slice={slice} {...props} />
-                                </div>
-                            ),
-                        }}
-                    />
+                    <SliceZone slices={slices} components={components} />
                 </div>
                 {rightMenuData && (
                     <div className="w-fit ml-auto">
@@ -134,14 +82,7 @@ export default async function Page({
                 )}
             </div>
             {postArticleSlices?.length > 0 && (
-                <SliceZone
-                    slices={postArticleSlices}
-                    components={{
-                        social_carousel: ({ slice, ...props }) => (
-                            <SocialCarousel slice={slice} {...props} />
-                        ),
-                    }}
-                />
+                <SliceZone slices={postArticleSlices} components={components} />
             )}
         </div>
     );
