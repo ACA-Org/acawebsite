@@ -27,7 +27,7 @@ const RightMenuLinks = ({ slice }: { slice: RightMenuLinkProps["slice"] }) => {
                     className="flex w-full h-15 items-center pl-5 py-4.5"
                 >
                     <PrismicNextLink
-                        className="w-60 text-gray-300 hover:text-black cursor-pointer body-md leading-4 font-(family-name:--font-gill-sans)"
+                        className="w-60 text-gray-300 hover:text-black cursor-pointer body-md leading-4"
                         field={link}
                     >
                         {link.text}

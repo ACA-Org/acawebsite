@@ -5,81 +5,146 @@ import {
 } from "../../actions/getRightMenuData";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { headers } from "next/headers";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { notFound } from "next/navigation";
+import { PrismicNextImage } from "@prismicio/next";
+import SpeedBump from "@/slices/SpeedBump";
+import SocialCarousel from "@/slices/SocialCarousel";
+import {
+    getTierTwoPageData,
+    TierTwoPageData,
+} from "@/app/actions/getTierPageData";
 
 export default async function Page({
     params,
 }: {
     params: Promise<{ uid_1: string; uid_2: string }>;
 }) {
-    console.log({ params: await params });
+    const { uid_1, uid_2 } = await params;
     const headerList = await headers();
     const pathname = headerList.get("x-current-path");
 
     let rightMenuData: RightMenuData | null = null;
+    let pageData: TierTwoPageData = null;
+
+    pageData = await getTierTwoPageData(`${uid_1}-${uid_2}`).catch(() =>
+        notFound()
+    );
+
+    if (!pageData) return notFound();
 
     try {
         rightMenuData = await getRightMenuData("about");
     } catch {
         console.error("error!");
     }
+
+    const {
+        data: {
+            pageTextContent: rtContent,
+            pageTitle: title,
+            pageImage: img,
+            slices,
+            slices2: postArticleSlices,
+        },
+    } = pageData;
     return (
-        <div className="w-full flex flex-col mb-28">
-            <div className="mt-16 flex w-full min-h-[650px] items-end gap-2.5 shrink-0 [background:#DCDCDC] rounded-2xl" />
-            <div className="mt-12 flex w-full flex-col items-start gap-16 px-8">
-                {pathname && <Breadcrumbs path={pathname} />}
-                <h2 className="heading-2">Message from the Durrrector</h2>
-                <div className="w-full flex flex-row gap-16">
+        <div className="w-full flex flex-col mb-28 px-11">
+            <div className="relative mt-16 flex w-full h-full min-h-[415px] items-end gap-2.5 shrink-0 rounded-2xl overflow-clip p-12">
+                {img && (
+                    <>
+                        <div className="absolute inset-0 w-full h-full z-10">
+                            <PrismicNextImage
+                                field={img}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-10% via-transparent  to-[#0F0F0F]" />
+                        </div>
+                    </>
+                )}
+            </div>
+            <div className="flex flex-row gap-16 my-12">
+                <div className="flex w-full flex-col items-start gap-12 px-8">
+                    <div className="flex flex-col gap-12">
+                        {pathname && <Breadcrumbs path={pathname} />}
+                        {title && (
+                            <h1 className="heading-1 font-semibold z-20 text-blue-200">
+                                {title}
+                            </h1>
+                        )}
+                    </div>
                     <div>
-                        <p className="body-lg">
-                            Dear Valued Members and Colleagues of the American
-                            Correctional Association,
-                            <br />
-                            <br />
-                            I would like to extend my heartfelt gratitude to
-                            each of you for your participation in our 2025
-                            Winter Conference in Orlando, Florida. Your presence
-                            and insightful contributions made the event a
-                            resounding success, helping us promote the vital
-                            discussions that are powering our profession
-                            forward. <br />
-                            <br />
-                            As we continue to navigate the challenges and
-                            opportunities within the correctional field, I am
-                            excited to invite you to join us for the 155th
-                            Congress of Correction in Denver, Colorado. This
-                            extraordinary event promises to be a landmark
-                            occasion, featuring renowned speakers, engaging
-                            workshops and invaluable networking opportunities
-                            that will enhance our collective expertise and drive
-                            correctional excellence.
-                            <br />
-                            <br />
-                            Mark your calendars for August 21-26, and prepare to
-                            be inspired and informed as we come together to
-                            share knowledge and advance our profession. The
-                            Congress will provide a platform for collaboration,
-                            innovation and the exchange of exemplary practices
-                            that are crucial for shaping the future of
-                            corrections.
-                            <br />
-                            <br />
-                            Thank you once again for your continued support and
-                            dedication to the American Correctional Association.
-                            We look forward to seeing you in Denver for an
-                            unforgettable experience!
-                            <br />
-                            <br />
-                            <br />
-                            Warmest regards, <br />
-                            <br />
-                            Robert Green Executive Director
-                        </p>
+                        <PrismicRichText
+                            field={rtContent}
+                            components={{
+                                heading1: ({ children }) => (
+                                    <h1 className="heading-1">{children}</h1>
+                                ),
+                                heading2: ({ children }) => (
+                                    <h2 className="heading-2 text-blue-200">
+                                        {children}
+                                    </h2>
+                                ),
+                                heading3: ({ children }) => (
+                                    <h3 className="heading-3">{children}</h3>
+                                ),
+                                heading4: ({ children }) => (
+                                    <h4 className="heading-4">{children}</h4>
+                                ),
+                                heading5: ({ children }) => (
+                                    <h5 className="heading-5">{children}</h5>
+                                ),
+                                heading6: ({ children }) => (
+                                    <h6 className="heading-6">{children}</h6>
+                                ),
+                                paragraph: ({ children }) => (
+                                    <p className="body-md text-gray-100">
+                                        {children}
+                                    </p>
+                                ),
+
+                                hyperlink: ({ node, children }) => {
+                                    if (node.data.link_type === "Web") {
+                                        return (
+                                            <a
+                                                href={node.data.url}
+                                                target={node.data.target}
+                                                className="text-blue-200 underline hover:text-blue-300 visited:text-blue-400"
+                                            >
+                                                {children}
+                                            </a>
+                                        );
+                                    }
+                                },
+                            }}
+                        />
                     </div>
-                    <div className="w-fit ml-auto">
-                        <RightMenu data={rightMenuData} />
-                    </div>
+
+                    <SliceZone
+                        slices={slices}
+                        components={{
+                            speedBump: ({ slice, ...props }) => (
+                                <div className="mt-12">
+                                    <SpeedBump slice={slice} {...props} />
+                                </div>
+                            ),
+                        }}
+                    />
+                </div>
+                <div className="w-fit ml-auto">
+                    <RightMenu data={rightMenuData} />
                 </div>
             </div>
+            {postArticleSlices?.length > 0 && (
+                <SliceZone
+                    slices={postArticleSlices}
+                    components={{
+                        social_carousel: ({ slice, ...props }) => (
+                            <SocialCarousel slice={slice} {...props} />
+                        ),
+                    }}
+                />
+            )}
         </div>
     );
 }

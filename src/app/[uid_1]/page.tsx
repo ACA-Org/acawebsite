@@ -6,10 +6,11 @@ import { PrismicRichText, SliceZone } from "@prismicio/react";
 import {
     getTierOnePageData,
     TierOnePageData,
-} from "../actions/getTierOnePageData";
+} from "../actions/getTierPageData";
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import SpeedBump from "@/slices/SpeedBump";
+import SocialCarousel from "@/slices/SocialCarousel";
 
 export default async function Page({
     params,
@@ -39,17 +40,13 @@ export default async function Page({
             pageTitle: title,
             pageImage: img,
             slices,
+            slices2: postArticleSlices,
         },
     } = pageData;
 
     return (
         <div className="w-full flex flex-col mb-28 px-11">
-            <div className="relative mt-16 flex w-full min-h-[650px] items-end gap-2.5 shrink-0 rounded-2xl overflow-clip p-12">
-                {title && (
-                    <h1 className="heading-1 font-semibold z-20 text-white">
-                        {title}
-                    </h1>
-                )}
+            <div className="relative mt-16 flex w-full h-full min-h-[585px] items-end gap-2.5 shrink-0 rounded-2xl overflow-clip p-12">
                 {img && (
                     <>
                         <div className="absolute inset-0 w-full h-full z-10">
@@ -62,13 +59,17 @@ export default async function Page({
                     </>
                 )}
             </div>
-            <div className="mt-12 flex w-full flex-col items-start gap-12 px-8">
-                {pathname && <Breadcrumbs path={pathname} />}
-                <h2 className="heading-2">
-                    Message from the Executive Director
-                </h2>
-                <div className="w-full flex flex-row gap-16">
-                    <div className="flex-1">
+            <div className="flex flex-row gap-16 my-12">
+                <div className="flex w-full flex-col items-start gap-12 px-8">
+                    <div className="flex flex-col gap-12">
+                        {pathname && <Breadcrumbs path={pathname} />}
+                        {title && (
+                            <h1 className="heading-1 font-semibold z-20 text-blue-200">
+                                {title}
+                            </h1>
+                        )}
+                    </div>
+                    <div>
                         <PrismicRichText
                             field={rtContent}
                             components={{
@@ -76,7 +77,9 @@ export default async function Page({
                                     <h1 className="heading-1">{children}</h1>
                                 ),
                                 heading2: ({ children }) => (
-                                    <h2 className="heading-2">{children}</h2>
+                                    <h2 className="heading-2 text-blue-200">
+                                        {children}
+                                    </h2>
                                 ),
                                 heading3: ({ children }) => (
                                     <h3 className="heading-3">{children}</h3>
@@ -91,7 +94,9 @@ export default async function Page({
                                     <h6 className="heading-6">{children}</h6>
                                 ),
                                 paragraph: ({ children }) => (
-                                    <p className="body-md">{children}</p>
+                                    <p className="body-md text-gray-100">
+                                        {children}
+                                    </p>
                                 ),
 
                                 hyperlink: ({ node, children }) => {
@@ -109,22 +114,35 @@ export default async function Page({
                                 },
                             }}
                         />
-                        <SliceZone
-                            slices={slices}
-                            components={{
-                                speedBump: ({ slice, ...props }) => (
-                                    <div className="mt-12">
-                                        <SpeedBump slice={slice} {...props} />
-                                    </div>
-                                ),
-                            }}
-                        />
                     </div>
+
+                    <SliceZone
+                        slices={slices}
+                        components={{
+                            speedBump: ({ slice, ...props }) => (
+                                <div className="mt-12">
+                                    <SpeedBump slice={slice} {...props} />
+                                </div>
+                            ),
+                        }}
+                    />
+                </div>
+                {rightMenuData && (
                     <div className="w-fit ml-auto">
                         <RightMenu data={rightMenuData} />
                     </div>
-                </div>
+                )}
             </div>
+            {postArticleSlices?.length > 0 && (
+                <SliceZone
+                    slices={postArticleSlices}
+                    components={{
+                        social_carousel: ({ slice, ...props }) => (
+                            <SocialCarousel slice={slice} {...props} />
+                        ),
+                    }}
+                />
+            )}
         </div>
     );
 }

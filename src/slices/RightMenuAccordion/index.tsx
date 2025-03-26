@@ -28,11 +28,13 @@ const RightMenuAccordion = ({ slice }: { slice: RightMenuProps["slice"] }) => {
                         key={`${accordionLabel}-${index}`}
                         value={`${accordionLabel}-${index}`}
                     >
-                        <AccordionTrigger>{accordionLabel}</AccordionTrigger>
+                        <AccordionTrigger className="">
+                            {accordionLabel}
+                        </AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-0">
                             {accordionLinks.map((accordionLink, index) => (
                                 <PrismicNextLink
-                                    className="flex items-center pl-10 pt-[14px] pb-[16px] text-sm leading-[140%] text-gray-300 hover:text-black"
+                                    className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black"
                                     key={index}
                                     field={accordionLink}
                                 >

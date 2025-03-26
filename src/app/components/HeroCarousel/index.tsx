@@ -39,7 +39,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
                         <div
                             className={`
               w-full transition-all duration-300 h-full
-              ${isActive ? "opacity-100 scale-100" : "opacity-40 scale-90"}
+              ${isActive ? "opacity-100 scale-100 grayscale-0" : "opacity-40 scale-90 grayscale"}
             `}
                         >
                             <HeroCarouselSlide {...slide} />

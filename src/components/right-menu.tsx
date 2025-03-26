@@ -1,8 +1,13 @@
+"use client";
+
 import { RightMenuData } from "@/app/actions/getRightMenuData";
+import { ArrowLeft } from "@/icons/ArrowLeft";
 import RightMenuAccordion from "@/slices/RightMenuAccordion";
 import RightMenuLinks from "@/slices/RightMenuLinks";
+import { useRouter } from "next/navigation";
 
 export const RightMenu = ({ data }: { data: RightMenuData }) => {
+    const router = useRouter();
     if (!data) return null;
 
     const {
@@ -10,10 +15,10 @@ export const RightMenu = ({ data }: { data: RightMenuData }) => {
     } = data;
 
     return (
-        <div className="w-[380px]">
+        <div className="w-[380px] sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
             {rightMenuHeader && (
-                <div className="w-full h-[60px] border-b border-[#E5E5E5] pl-5 pb-5 pt-[18px]">
-                    <p className="font-semibold text-xl text-black">
+                <div className="w-full h-[60px] border-b border-blue-100 pl-5 pb-5 pt-[18px]">
+                    <p className="font-semibold body-xl text-blue-300">
                         {rightMenuHeader}
                     </p>
                 </div>
@@ -36,6 +41,16 @@ export const RightMenu = ({ data }: { data: RightMenuData }) => {
                         );
                     }
                 })}
+            </div>
+            <div
+                role="button"
+                onClick={() => router.back()}
+                className="flex items-center gap-6 self-stretch p-4 group cursor-pointer"
+            >
+                <ArrowLeft className="w-4 h-[14px] stroke-blue-200" />
+                <span className="body-lg text-blue-200 group-hover:underline">
+                    Back to Previous Page
+                </span>
             </div>
         </div>
     );

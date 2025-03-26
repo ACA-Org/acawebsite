@@ -23,7 +23,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
                             field={img}
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-20% via-transparent  to-[#0F0F0F]" />
+                        <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-20% via-transparent to-[#0F0F0F]" />
                     </div>
                 </>
             )}
