@@ -6,6 +6,7 @@ import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
 import { NextConference } from "./components/NextConference";
 import { getHomePageData } from "./actions/getHomePageData";
+import { LinkButton } from "@/components/ui/button";
 
 export default async function Home() {
     const client = createClient();
@@ -28,12 +29,16 @@ export default async function Home() {
                             Enhancing Communities
                         </span>
                     </h1>
-                    <p className="leading-7 text-[#808080] max-w-[900px]">
-                        Sed ut perspiciatis unde omnis iste natus error sit
-                        voluptatem accusantium doloremque laudantium, totam rem
-                        aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi architecto beatae
-                    </p>
+                    {page.heroSubTitle && (
+                        <p className="body-md text-gray-100 max-w-[800px]">
+                            {page.heroSubTitle}
+                        </p>
+                    )}
+                    {page.heroAction && (
+                        <LinkButton className="w-fit" field={page.heroAction}>
+                            {page.heroAction.text}
+                        </LinkButton>
+                    )}
                 </div>
                 <HeroCarousel slides={page?.heroCarouselData} />
             </section>

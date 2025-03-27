@@ -6,15 +6,31 @@
   "status": true,
   "json": {
     "Main": {
-      "footer": {
+      "heroTitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "HeroTitle",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading1,heading2,heading3,heading4,heading5,heading6"
+        }
+      },
+      "heroSubTitle": {
+        "type": "Text",
+        "config": {
+          "label": "HeroSubTitle",
+          "placeholder": ""
+        }
+      },
+      "heroAction": {
         "type": "Link",
         "config": {
-          "label": "Footer",
-          "select": "document",
-          "repeat": false,
-          "customtypes": [
-            "footer"
-          ]
+          "label": "HeroAction",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
         }
       },
       "heroCarouselData": {
@@ -115,9 +131,16 @@
           "label": "NextConferenceInfo",
           "select": "document",
           "repeat": false,
-          "customtypes": [
-            "nextConferenceSection"
-          ]
+          "customtypes": ["nextConferenceSection"]
+        }
+      },
+      "footer": {
+        "type": "Link",
+        "config": {
+          "label": "Footer",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["footer"]
         }
       },
       "slices": {

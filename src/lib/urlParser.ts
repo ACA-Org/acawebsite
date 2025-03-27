@@ -19,7 +19,7 @@ function sanitizePageName(name: string): string {
  * @returns PageNode hierarchy
  */
 export function parsePagePath(pathSegments: string[]): PageNode {
-    if (pathSegments.length === 0) {
+    if (pathSegments?.length === 0) {
         throw new Error("Path segments cannot be empty");
     }
 
@@ -30,7 +30,7 @@ export function parsePagePath(pathSegments: string[]): PageNode {
     };
     let currentNode = rootNode;
 
-    for (let i = 1; i < pathSegments.length; i++) {
+    for (let i = 1; i < pathSegments?.length; i++) {
         currentPath += `/${sanitizePageName(pathSegments[i])}`;
         const newNode: PageNode = { name: pathSegments[i], path: currentPath };
 

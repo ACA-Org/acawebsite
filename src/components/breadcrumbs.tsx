@@ -38,7 +38,7 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
                     <ChevronRight className="h-4 w-4 text-muted-foreground" />
                 </li>
                 {items.map((item, index) => {
-                    const isLast = index === items.length - 1;
+                    const isLast = index === items?.length - 1;
 
                     if (isLast)
                         return (

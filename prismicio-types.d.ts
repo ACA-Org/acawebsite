@@ -240,15 +240,43 @@ type HomepageDocumentDataSlicesSlice =
  */
 interface HomepageDocumentData {
   /**
-   * Footer field in *HomePage*
+   * HeroTitle field in *HomePage*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.footer
+   * - **API ID Path**: homepage.heroTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heroTitle: prismic.RichTextField;
+
+  /**
+   * HeroSubTitle field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.heroSubTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heroSubTitle: prismic.KeyTextField;
+
+  /**
+   * HeroAction field in *HomePage*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.heroAction
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  footer: prismic.ContentRelationshipField<"footer">;
+  heroAction: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 
   /**
    * HeroCarouselData field in *HomePage*
@@ -325,6 +353,17 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   nextConferenceInfo: prismic.ContentRelationshipField<"nextConferenceSection">;
+
+  /**
+   * Footer field in *HomePage*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.footer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  footer: prismic.ContentRelationshipField<"footer">;
 
   /**
    * Slice Zone field in *HomePage*
@@ -659,7 +698,11 @@ export type TierOnePageDocument<Lang extends string = string> =
     Lang
   >;
 
-type TierTwoPageDocumentDataSlicesSlice = never;
+type TierTwoPageDocumentDataSlicesSlice =
+  | SpeedBumpSlice
+  | CarouselSlice
+  | AccordionSlice
+  | LinkTileSlice;
 
 type TierTwoPageDocumentDataSlices2Slice = CarouselSlice;
 
@@ -1113,6 +1156,77 @@ export type ConferenceCardSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *LinkCard → Default → Primary*
+ */
+export interface LinkCardSliceDefaultPrimary {
+  /**
+   * CardTitle field in *LinkCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_card.default.primary.cardTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cardTitle: prismic.KeyTextField;
+
+  /**
+   * CardDescription field in *LinkCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_card.default.primary.cardDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cardDescription: prismic.KeyTextField;
+
+  /**
+   * CardLink field in *LinkCard → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_card.default.primary.cardLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cardLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for LinkCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LinkCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LinkCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LinkCard*
+ */
+type LinkCardSliceVariation = LinkCardSliceDefault;
+
+/**
+ * LinkCard Shared Slice
+ *
+ * - **API ID**: `link_card`
+ * - **Description**: LinkCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LinkCardSlice = prismic.SharedSlice<
+  "link_card",
+  LinkCardSliceVariation
+>;
+
+/**
  * Primary content in *LinkTile → Default → Primary*
  */
 export interface LinkTileSliceDefaultPrimary {
@@ -1550,19 +1664,15 @@ export interface SpeedBumpSliceDefaultPrimary {
   speedBumpDescription: prismic.KeyTextField;
 
   /**
-   * SpeedBumpLink field in *SpeedBump → Default → Primary*
+   * SpeedBumpLinks field in *SpeedBump → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: speedBump.default.primary.speedBumpLink
+   * - **API ID Path**: speedBump.default.primary.speedBumpLinks
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  speedBumpLink: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
+  speedBumpLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
   >;
 
   /**
@@ -1575,6 +1685,17 @@ export interface SpeedBumpSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   speedBumpTheme: prismic.SelectField<"light" | "dark", "filled">;
+
+  /**
+   * SpeedBumpLinkPosition field in *SpeedBump → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: bottom
+   * - **API ID Path**: speedBump.default.primary.speedBumpLinkPosition
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpLinkPosition: prismic.SelectField<"bottom" | "right", "filled">;
 }
 
 /**
@@ -1669,6 +1790,10 @@ declare module "@prismicio/client" {
       ConferenceCardSliceDefaultPrimary,
       ConferenceCardSliceVariation,
       ConferenceCardSliceDefault,
+      LinkCardSlice,
+      LinkCardSliceDefaultPrimary,
+      LinkCardSliceVariation,
+      LinkCardSliceDefault,
       LinkTileSlice,
       LinkTileSliceDefaultPrimary,
       LinkTileSliceVariation,

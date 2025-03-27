@@ -5,44 +5,46 @@ import { cn } from "@/lib/utils";
 import { PrismicNextLink } from "@prismicio/next";
 
 const buttonVariants = cva(
-    "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] body-lg transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive px-7 py-4 has-[>svg]:px-3",
+    "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[4px] body-lg transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:outline-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:outline-destructive px-7 py-4 has-[>svg]:px-3",
     {
         variants: {
             variant: {
                 primary:
-                    "bg-blue-300 text-white hover:bg-blue-200 border-0 border-blue-300",
+                    "bg-blue-300 text-white hover:bg-blue-200 outline-0 outline-blue-300",
                 secondary: "bg-blue-200 text-white hover:bg-blue-300",
                 tertiary:
-                    "bg-gold-100 border-gold-100 hover:bg-blue-300 text-blue-300 hover:text-gold-100",
-                white: "border-white",
+                    "bg-gold-100 outline-gold-100 hover:bg-blue-300 text-blue-300 hover:text-gold-100",
+                white: "outline-white",
             },
             outlined: {
                 false: "",
-                true: "!border-2 bg-transparent",
+                true: "!outline-2 bg-transparent",
             },
         },
         compoundVariants: [
             {
                 variant: "primary",
                 outlined: true,
-                className: "text-blue-300 hover:bg-blue-300 hover:text-white ",
+                className:
+                    "text-blue-300 hover:bg-blue-300 hover:text-white outline-solid -outline-offset-2",
             },
             {
                 variant: "secondary",
                 outlined: true,
                 className:
-                    "text-blue-50 border-blue-50 hover:bg-blue-50 hover:text-blue-300",
+                    "text-blue-50 outline-blue-50 hover:bg-blue-50 hover:text-blue-300 outline-solid -outline-offset-2",
             },
             {
                 variant: "tertiary",
                 outlined: true,
                 className:
-                    "text-gold-100 hover:bg-gold-100 hover:text-blue-300",
+                    "text-gold-100 hover:bg-gold-100 hover:text-blue-300 outline-solid -outline-offset-2",
             },
             {
                 variant: "white",
                 outlined: true,
-                className: "text-white hover:text-blue-200 hover:bg-white",
+                className:
+                    "text-white hover:text-blue-200 hover:bg-white outline-solid -outline-offset-2",
             },
         ],
         defaultVariants: {

@@ -21,7 +21,11 @@ const Accordion: FC<AccordionProps> = ({ slice }) => {
         primary: { accordionItems },
     } = slice;
     return (
-        <SAccordion type="single" collapsible className="w-full">
+        <SAccordion
+            type="single"
+            collapsible
+            className="w-full border-t border-b border-[rgba(207,207,207,1)]"
+        >
             {accordionItems.map(
                 ({ accordionDescription, accordionTitle }, index) => (
                     <AccordionItem

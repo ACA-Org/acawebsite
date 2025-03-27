@@ -36,18 +36,29 @@
 				"value": "nearby",
 				"type": "Text"
 			},
-			"speedBumpLink": {
-				"key": "491e2230-6cb7-42a4-8fe4-0cb38c40b208",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://prismic.io",
-					"text": "tomorrow"
-				}
-			},
 			"speedBumpTheme": {
 				"__TYPE__": "FieldContent",
 				"value": "light",
+				"type": "Select"
+			},
+			"speedBumpLinks": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "f2830c0e-22e0-467a-866c-e32e0e2db4ac",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://twitter.com",
+							"text": "atomic"
+						}
+					}
+				]
+			},
+			"speedBumpLinkPosition": {
+				"__TYPE__": "FieldContent",
+				"value": "bottom",
 				"type": "Select"
 			}
 		},

@@ -18,20 +18,20 @@ import PageRichText from "@/app/components/PageRichText";
 export default async function Page({
     params,
 }: {
-    params: Promise<{ uid_1: string; uid_2: string }>;
+    params: Promise<{ tier_one_uid: string; tier_two_uid: string }>;
 }) {
-    const { uid_1, uid_2 } = await params;
+    const { tier_two_uid: uid_2 } = await params;
     const headerList = await headers();
     const pathname = headerList.get("x-current-path");
 
     let rightMenuData: RightMenuData | null = null;
     let pageData: TierTwoPageData = null;
 
-    pageData = await getTierTwoPageData(`${uid_1}-${uid_2}`).catch(() =>
-        notFound()
-    );
+    pageData = await getTierTwoPageData(uid_2).catch(() => notFound());
 
     if (!pageData) return notFound();
+
+    console.log(pageData);
 
     try {
         rightMenuData = await getRightMenuData("about");

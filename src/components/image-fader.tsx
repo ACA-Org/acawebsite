@@ -30,13 +30,13 @@ const ImageFader: FC<ImageFaderProps> = ({
     useEffect(() => {
         const cycleImages = () => {
             setTimeout(() => {
-                setCurrentIndex((prev) => (prev + 1) % images.length);
+                setCurrentIndex((prev) => (prev + 1) % images?.length);
             }, fadeDuration);
         };
 
         const timer = setInterval(cycleImages, interval);
         return () => clearInterval(timer);
-    }, [images.length]);
+    }, [images?.length]);
 
     return (
         <div className="col-span-1 relative max-w-[300px] h-[235px] overflow-hidden rounded-lg bg-black">

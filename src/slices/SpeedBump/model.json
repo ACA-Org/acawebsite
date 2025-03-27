@@ -34,15 +34,15 @@
             "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
           }
         },
-        "speedBumpLink": {
+        "speedBumpLinks": {
           "type": "Link",
           "config": {
-            "label": "SpeedBumpLink",
+            "label": "SpeedBumpLinks",
             "placeholder": "",
             "select": null,
             "allowTargetBlank": true,
             "allowText": true,
-            "repeat": false
+            "repeat": true
           }
         },
         "speedBumpTheme": {
@@ -55,6 +55,18 @@
               "dark"
             ],
             "default_value": "light"
+          }
+        },
+        "speedBumpLinkPosition": {
+          "type": "Select",
+          "config": {
+            "label": "SpeedBumpLinkPosition",
+            "placeholder": "",
+            "options": [
+              "bottom",
+              "right"
+            ],
+            "default_value": "bottom"
           }
         }
       },

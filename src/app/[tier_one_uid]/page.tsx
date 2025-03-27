@@ -15,16 +15,16 @@ import PageRichText from "../components/PageRichText";
 export default async function Page({
     params,
 }: {
-    params: Promise<{ uid_1: string }>;
+    params: Promise<{ tier_one_uid: string }>;
 }) {
-    const { uid_1 } = await params;
+    const { tier_one_uid } = await params;
     const headerList = await headers();
     const pathname = headerList.get("x-current-path");
 
     let rightMenuData: RightMenuData | null = null;
     let pageData: TierOnePageData = null;
 
-    pageData = await getTierOnePageData(uid_1).catch(() => notFound());
+    pageData = await getTierOnePageData(tier_one_uid).catch(() => notFound());
 
     if (!pageData) return notFound();
 
@@ -46,7 +46,7 @@ export default async function Page({
 
     return (
         <div className="w-full flex flex-col mb-28 px-11">
-            <div className="relative mt-16 flex w-full h-full min-h-[585px] items-end gap-2.5 shrink-0 rounded-2xl overflow-clip p-12">
+            <div className="relative mt-16 flex w-full h-full min-h-[585px] items-end gap-2.5 shrink-0 rounded-[12px] overflow-clip p-12">
                 {img && (
                     <>
                         <div className="absolute inset-0 w-full h-full z-10">
