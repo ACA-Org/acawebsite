@@ -73,8 +73,8 @@ importers:
         specifier: ^3
         version: 3.3.0
       '@slicemachine/adapter-next':
-        specifier: ^0.3.70
-        version: 0.3.70(next@15.2.1(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        specifier: ^0.3.72
+        version: 0.3.72(next@15.2.1(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@storybook/addon-essentials':
         specifier: ^8.6.4
         version: 8.6.7(@types/react@19.0.11)(storybook@8.6.7(prettier@3.5.3))
@@ -121,8 +121,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       slice-machine-ui:
-        specifier: ^2.14.0
-        version: 2.14.0
+        specifier: ^2.14.2
+        version: 2.14.2
       storybook:
         specifier: ^8.6.4
         version: 8.6.7(prettier@3.5.3)
@@ -1192,8 +1192,8 @@ packages:
       webpack-plugin-serve:
         optional: true
 
-  '@prismicio/api-renderer@6.3.0':
-    resolution: {integrity: sha512-wgquXKL2rVm84zq0aTy/VgOvoonJKl4fECNPYRJKhxpzoziaZ8Pqv7nkspWoluzqVXekrovDSdEx5tJx1luF6w==}
+  '@prismicio/api-renderer@6.4.0':
+    resolution: {integrity: sha512-ekvFTaMicpEiucYU3VtPvkl1IUZ/mNtZpvbwVM0UFGHjyYYK0GZpeU43ZXfkoYX/qmbazyNEpx5vkJ9Faaj+ZA==}
     engines: {node: '>=18'}
     peerDependencies:
       fp-ts: ^2.11.8
@@ -1202,6 +1202,10 @@ packages:
 
   '@prismicio/client@7.16.1':
     resolution: {integrity: sha512-mH3JtysZyQv47OYWzuxp8vW3uWllMBJa6HD2j4cfc7vLCoxGxMrvH6Ttw12KMnChg2/exwFdq3K1OvHAtyEVdQ==}
+    engines: {node: '>=14.15.0'}
+
+  '@prismicio/client@7.17.0':
+    resolution: {integrity: sha512-7e1ICYk4IAxKX8zmtCOy9e8rXeeT9A45ZgJY9lNNWqUaL1LW/ilXnh/SsAZG/G5q14JyRJHwBIGIzcKY9hjJhw==}
     engines: {node: '>=14.15.0'}
 
   '@prismicio/custom-types-client@1.3.1':
@@ -1216,8 +1220,8 @@ packages:
     peerDependencies:
       '@prismicio/client': '>=7'
 
-  '@prismicio/mocks@2.11.0':
-    resolution: {integrity: sha512-KjVw/6ajUHwp8SHOJdA5DqSGeK+guZlNV8ZvrQThwDG/5ZZamcegL0Yz3tudY5ilOycfoJJcqd+ZzO9h2PeYgg==}
+  '@prismicio/mocks@2.12.0':
+    resolution: {integrity: sha512-rCB5f415We4+A22D8KZdCjtA5cibJvfTSaElAbwYuGm/HEM2Ma0rf5VzQm3mfvM6uxpheMEA0d43BrZRM0PUaw==}
     engines: {node: '>=12.7.0'}
 
   '@prismicio/next@2.0.0':
@@ -1239,8 +1243,8 @@ packages:
     resolution: {integrity: sha512-aBDwGghM8LqXOvdbJWJScBTpY8wuVl3CyCWFqiFwqC8l5SPrQtD2CwEVX0UCB0azPlisb7l7al5Wcg2nxQ6xrQ==}
     engines: {node: '>=14.15.0'}
 
-  '@prismicio/types-internal@3.6.0':
-    resolution: {integrity: sha512-7JzWi/MHDEU6u/mOCUu32jHYGU/lZ+Ss47AkJXc/BMde/0tv8FQw2XXtiavSt5A5ikiakCVxeo3na9xkr3KMqg==}
+  '@prismicio/types-internal@3.8.0':
+    resolution: {integrity: sha512-1o7pumA1gp/84dxh9a2hw4DFvPtmz3GnGFgKYQUUOUecGkzhEDL43AQG3FfsYYgnoM4KSXrLG0QF1fEkzoMosA==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
       fp-ts: ^2.11.8
@@ -1593,15 +1597,15 @@ packages:
   '@sideway/pinpoint@2.0.0':
     resolution: {integrity: sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==}
 
-  '@slicemachine/adapter-next@0.3.70':
-    resolution: {integrity: sha512-vux0y0zwL58sd4ZSKmUo80Ol3wysuvL/yqrgf7N8t9ZOsjSgUZmuS3RYdDOwaYL+YzRnOhW8oGgN5tydst7hVg==}
+  '@slicemachine/adapter-next@0.3.72':
+    resolution: {integrity: sha512-u/L9WS2C9gKPdv8qXbuTHmd5aUrZH8QJUkccTd+b+xGFJb76rxkYOXj2Vk/6EFiGAq8YIlXXoVeUmgvBHjxoRQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       next: ^11 || ^12 || ^13 || ^14 || ^15.0.0-rc.0
       react: ^17 || ^18 || ^19.0.0-rc.0
 
-  '@slicemachine/manager@0.24.7':
-    resolution: {integrity: sha512-R7LvE4Ro7ugBlxP8qdiTe/anjOvIyqeuyd4JyiayKGZiITNr6XcIdw1xD04mN04+232i0lG8S30ltpSCobp7tw==}
+  '@slicemachine/manager@0.24.9':
+    resolution: {integrity: sha512-/6lEqy7rH/Ky5AyZJnOwrO3j7TD9Lcvgd7xLJYOHd4T45XtymopQItznkXZQd0AZYN/qdGxUN5Yzm+JWsvJLbQ==}
     engines: {node: '>=14.15.0'}
     peerDependencies:
       msw: ^1.1.0
@@ -1609,8 +1613,8 @@ packages:
       msw:
         optional: true
 
-  '@slicemachine/plugin-kit@0.4.69':
-    resolution: {integrity: sha512-jdc4haz3Leoi9QGTDgtoN5W+75xjpiumgI4Q5MQtPAeJdOVHfWm+tnEEadrbuigOwQ1/96ONBee0vq+pFh3g+A==}
+  '@slicemachine/plugin-kit@0.4.71':
+    resolution: {integrity: sha512-UZXTRxB+7JpHazj2kBhHfk5hvIfzZdl18BJNJfZd9wRyCFnE1whqMHZOo5yOeh4U4Tz+0QPB8K0Ee8aQ+H1x0w==}
     engines: {node: '>=14.15.0'}
 
   '@storybook/addon-actions@8.6.7':
@@ -4794,8 +4798,8 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  slice-machine-ui@2.14.0:
-    resolution: {integrity: sha512-5IElAHtil0tZplRWQZd10d6oGpYLh66LoGf/FB5sBdlHxzqyGeWAcCxgTtJyveUPkYhrTJGxKqGYjPMUDF20AA==}
+  slice-machine-ui@2.14.2:
+    resolution: {integrity: sha512-xxJURmCYH5ccTIsPi142QJ2YK6k6Osv7Z11ufttxn2QcI4/rVO13i12dXwmERpOQQBJmePv5h4hoZaba93hKNw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4832,8 +4836,8 @@ packages:
   stackframe@1.3.4:
     resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==}
 
-  start-slicemachine@0.12.49:
-    resolution: {integrity: sha512-QZroAYoqdwQzJ80atnaeIQNwW+yozWT3vTPpyHjzH2y0pDx8uAastkWku+a78kuN8tSyDVMP5c2UrY/8ii2Qng==}
+  start-slicemachine@0.12.51:
+    resolution: {integrity: sha512-+++0ptMgKF+LgKw0Q8+lwAue0cSpQuKaGOOOV0dvqsU+vs8I6UvXXJa1nW1Jz7Ei11n06PsPwDZvw0azp3jTTA==}
     engines: {node: '>=14.15.0'}
     hasBin: true
 
@@ -6424,9 +6428,9 @@ snapshots:
       type-fest: 3.13.1
       webpack-hot-middleware: 2.26.1
 
-  '@prismicio/api-renderer@6.3.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))':
+  '@prismicio/api-renderer@6.4.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))':
     dependencies:
-      '@prismicio/types-internal': 3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@prismicio/types-internal': 3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
       fp-ts: 2.16.9
       io-ts: 2.2.22(fp-ts@2.16.9)
       io-ts-types: 0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9)))
@@ -6437,18 +6441,22 @@ snapshots:
     dependencies:
       imgix-url-builder: 0.0.5
 
-  '@prismicio/custom-types-client@1.3.1(@prismicio/client@7.16.1)':
+  '@prismicio/client@7.17.0':
     dependencies:
-      '@prismicio/client': 7.16.1
+      imgix-url-builder: 0.0.5
 
-  '@prismicio/custom-types-client@2.1.0(@prismicio/client@7.16.1)':
+  '@prismicio/custom-types-client@1.3.1(@prismicio/client@7.17.0)':
     dependencies:
-      '@prismicio/client': 7.16.1
+      '@prismicio/client': 7.17.0
 
-  '@prismicio/mocks@2.11.0':
+  '@prismicio/custom-types-client@2.1.0(@prismicio/client@7.17.0)':
     dependencies:
-      '@prismicio/api-renderer': 6.3.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
-      '@prismicio/types-internal': 3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@prismicio/client': 7.17.0
+
+  '@prismicio/mocks@2.12.0':
+    dependencies:
+      '@prismicio/api-renderer': 6.4.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@prismicio/types-internal': 3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
       fp-ts: 2.16.9
       io-ts: 2.2.22(fp-ts@2.16.9)
       io-ts-types: 0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9)))
@@ -6478,7 +6486,7 @@ snapshots:
       '@types/statuses': 2.0.5
       statuses: 2.0.1
 
-  '@prismicio/types-internal@3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))':
+  '@prismicio/types-internal@3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))':
     dependencies:
       fp-ts: 2.16.9
       io-ts: 2.2.22(fp-ts@2.16.9)
@@ -6810,11 +6818,11 @@ snapshots:
 
   '@sideway/pinpoint@2.0.0': {}
 
-  '@slicemachine/adapter-next@0.3.70(next@15.2.1(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
+  '@slicemachine/adapter-next@0.3.72(next@15.2.1(@babel/core@7.26.10)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@prismicio/simulator': 0.1.4
-      '@prismicio/types-internal': 3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
-      '@slicemachine/plugin-kit': 0.4.69
+      '@prismicio/types-internal': 3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@slicemachine/plugin-kit': 0.4.71
       common-tags: 1.8.2
       fp-ts: 2.16.9
       io-ts: 2.2.22(fp-ts@2.16.9)
@@ -6828,15 +6836,15 @@ snapshots:
     transitivePeerDependencies:
       - '@prismicio/types'
 
-  '@slicemachine/manager@0.24.7':
+  '@slicemachine/manager@0.24.9':
     dependencies:
       '@antfu/ni': 0.20.0
-      '@prismicio/client': 7.16.1
-      '@prismicio/custom-types-client': 2.1.0(@prismicio/client@7.16.1)
-      '@prismicio/mocks': 2.11.0
-      '@prismicio/types-internal': 3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@prismicio/client': 7.17.0
+      '@prismicio/custom-types-client': 2.1.0(@prismicio/client@7.17.0)
+      '@prismicio/mocks': 2.12.0
+      '@prismicio/types-internal': 3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
       '@segment/analytics-node': 2.2.1
-      '@slicemachine/plugin-kit': 0.4.69
+      '@slicemachine/plugin-kit': 0.4.71
       cookie: 1.0.2
       cors: 2.8.5
       execa: 7.2.0
@@ -6860,9 +6868,9 @@ snapshots:
       - '@prismicio/types'
       - encoding
 
-  '@slicemachine/plugin-kit@0.4.69':
+  '@slicemachine/plugin-kit@0.4.71':
     dependencies:
-      '@prismicio/client': 7.16.1
+      '@prismicio/client': 7.17.0
       common-tags: 1.8.2
       defu: 6.1.4
       dotenv: 16.3.1
@@ -6872,7 +6880,7 @@ snapshots:
       io-ts-reporters: 2.0.1(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))
       p-limit: 4.0.0
       prettier: 3.5.3
-      prismic-ts-codegen: 0.1.25(@prismicio/client@7.16.1)
+      prismic-ts-codegen: 0.1.25(@prismicio/client@7.17.0)
     transitivePeerDependencies:
       - '@prismicio/types'
 
@@ -10082,9 +10090,9 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 17.0.2
 
-  prismic-ts-codegen@0.1.25(@prismicio/client@7.16.1):
+  prismic-ts-codegen@0.1.25(@prismicio/client@7.17.0):
     dependencies:
-      '@prismicio/custom-types-client': 1.3.1(@prismicio/client@7.16.1)
+      '@prismicio/custom-types-client': 1.3.1(@prismicio/client@7.17.0)
       common-tags: 1.8.2
       fast-glob: 3.3.3
       jiti: 1.21.7
@@ -10094,7 +10102,7 @@ snapshots:
       pascal-case: 3.1.2
       quick-lru: 6.1.2
     optionalDependencies:
-      '@prismicio/client': 7.16.1
+      '@prismicio/client': 7.17.0
 
   process-nextick-args@2.0.1: {}
 
@@ -10594,10 +10602,10 @@ snapshots:
       is-arrayish: 0.3.2
     optional: true
 
-  slice-machine-ui@2.14.0:
+  slice-machine-ui@2.14.2:
     dependencies:
-      '@slicemachine/manager': 0.24.7
-      start-slicemachine: 0.12.49
+      '@slicemachine/manager': 0.24.9
+      start-slicemachine: 0.12.51
     transitivePeerDependencies:
       - '@prismicio/types'
       - '@types/express'
@@ -10635,11 +10643,11 @@ snapshots:
 
   stackframe@1.3.4: {}
 
-  start-slicemachine@0.12.49:
+  start-slicemachine@0.12.51:
     dependencies:
-      '@prismicio/mocks': 2.11.0
-      '@prismicio/types-internal': 3.6.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
-      '@slicemachine/manager': 0.24.7
+      '@prismicio/mocks': 2.12.0
+      '@prismicio/types-internal': 3.8.0(fp-ts@2.16.9)(io-ts-types@0.5.19(fp-ts@2.16.9)(io-ts@2.2.22(fp-ts@2.16.9))(monocle-ts@2.3.13(fp-ts@2.16.9))(newtype-ts@0.3.5(fp-ts@2.16.9)(monocle-ts@2.3.13(fp-ts@2.16.9))))(io-ts@2.2.22(fp-ts@2.16.9))
+      '@slicemachine/manager': 0.24.9
       body-parser: 1.20.3
       chalk: 4.1.2
       cors: 2.8.5

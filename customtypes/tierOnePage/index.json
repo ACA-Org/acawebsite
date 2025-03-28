@@ -48,12 +48,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "right_menu_link": {
-              "type": "SharedSlice"
-            },
-            "right_menu": {
-              "type": "SharedSlice"
-            },
             "speedBump": {
               "type": "SharedSlice"
             }

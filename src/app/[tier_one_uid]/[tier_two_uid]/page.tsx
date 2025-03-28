@@ -25,16 +25,15 @@ export default async function Page({
     const pathname = headerList.get("x-current-path");
 
     let rightMenuData: RightMenuData | null = null;
+
     let pageData: TierTwoPageData = null;
 
     pageData = await getTierTwoPageData(uid_2).catch(() => notFound());
 
     if (!pageData) return notFound();
 
-    console.log(pageData);
-
     try {
-        rightMenuData = await getRightMenuData("about");
+        rightMenuData = await getRightMenuData(uid_2, "two");
     } catch {
         console.error("error!");
     }
@@ -80,9 +79,14 @@ export default async function Page({
 
                         <SliceZone slices={slices} components={components} />
                     </div>
-                    <div className="w-fit ml-auto">
-                        <RightMenu data={rightMenuData} />
-                    </div>
+                    {rightMenuData && (
+                        <div className="w-fit ml-auto">
+                            <RightMenu
+                                items={rightMenuData}
+                                rightMenuHeader="In This Section"
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
             {postArticleSlices?.length > 0 && (

@@ -9,8 +9,6 @@ export const components = {
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),
-  right_menu: dynamic(() => import("./RightMenuAccordion")),
-  right_menu_link: dynamic(() => import("./RightMenuLinks")),
   social_carousel: dynamic(() => import("./SocialCarousel")),
   speedBump: dynamic(() => import("./SpeedBump")),
 };

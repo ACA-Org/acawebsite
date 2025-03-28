@@ -29,9 +29,10 @@ export default async function Page({
     if (!pageData) return notFound();
 
     try {
-        rightMenuData = await getRightMenuData("about");
-    } catch {
+        rightMenuData = await getRightMenuData(tier_one_uid);
+    } catch (err) {
         console.error("error!");
+        console.error(err);
     }
 
     const {
@@ -77,7 +78,10 @@ export default async function Page({
                 </div>
                 {rightMenuData && (
                     <div className="w-fit ml-auto">
-                        <RightMenu data={rightMenuData} />
+                        <RightMenu
+                            items={rightMenuData}
+                            rightMenuHeader="In This Section"
+                        />
                     </div>
                 )}
             </div>

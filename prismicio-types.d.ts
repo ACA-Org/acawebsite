@@ -530,55 +530,7 @@ export type NextConferenceSectionDocument<Lang extends string = string> =
     Lang
   >;
 
-type RightMenuDocumentDataSlicesSlice = RightMenuLinkSlice | RightMenuSlice;
-
-/**
- * Content for RightMenu documents
- */
-interface RightMenuDocumentData {
-  /**
-   * RIghtMenuHeader field in *RightMenu*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rightMenu.rightMenuHeader
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  rightMenuHeader: prismic.KeyTextField;
-
-  /**
-   * Slice Zone field in *RightMenu*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rightMenu.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<RightMenuDocumentDataSlicesSlice>;
-}
-
-/**
- * RightMenu document from Prismic
- *
- * - **API ID**: `rightMenu`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type RightMenuDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<RightMenuDocumentData>,
-    "rightMenu",
-    Lang
-  >;
-
-type TierOnePageDocumentDataSlicesSlice =
-  | RightMenuLinkSlice
-  | RightMenuSlice
-  | SpeedBumpSlice;
+type TierOnePageDocumentDataSlicesSlice = SpeedBumpSlice;
 
 type TierOnePageDocumentDataSlices2Slice = CarouselSlice | SocialCarouselSlice;
 
@@ -695,6 +647,82 @@ export type TierOnePageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<TierOnePageDocumentData>,
     "tierOnePage",
+    Lang
+  >;
+
+type TierThreePageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for TierThreePage documents
+ */
+interface TierThreePageDocumentData {
+  /**
+   * ParentPage field in *TierThreePage*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierThreePage.parentPage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  parentPage: prismic.ContentRelationshipField<"tierTwoPage">;
+
+  /**
+   * Slice Zone field in *TierThreePage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierThreePage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TierThreePageDocumentDataSlicesSlice> /**
+   * Meta Title field in *TierThreePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: tierThreePage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *TierThreePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: tierThreePage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *TierThreePage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierThreePage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * TierThreePage document from Prismic
+ *
+ * - **API ID**: `tierThreePage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TierThreePageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TierThreePageDocumentData>,
+    "tierThreePage",
     Lang
   >;
 
@@ -838,8 +866,8 @@ export type AllDocumentTypes =
   | HeaderDocument
   | HomepageDocument
   | NextConferenceSectionDocument
-  | RightMenuDocument
   | TierOnePageDocument
+  | TierThreePageDocument
   | TierTwoPageDocument;
 
 /**
@@ -1438,127 +1466,6 @@ export type MenuItemSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *RightMenuAccordion → Default → Primary → AccordionItems*
- */
-export interface RightMenuSliceDefaultPrimaryAccordionItemsItem {
-  /**
-   * AccordionLabel field in *RightMenuAccordion → Default → Primary → AccordionItems*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: right_menu.default.primary.accordionItems[].accordionLabel
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  accordionLabel: prismic.KeyTextField;
-
-  /**
-   * AccordionLinks field in *RightMenuAccordion → Default → Primary → AccordionItems*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: right_menu.default.primary.accordionItems[].accordionLinks
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  accordionLinks: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-}
-
-/**
- * Primary content in *RightMenuAccordion → Default → Primary*
- */
-export interface RightMenuSliceDefaultPrimary {
-  /**
-   * AccordionItems field in *RightMenuAccordion → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: right_menu.default.primary.accordionItems[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  accordionItems: prismic.GroupField<
-    Simplify<RightMenuSliceDefaultPrimaryAccordionItemsItem>
-  >;
-}
-
-/**
- * Default variation for RightMenuAccordion Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RightMenuSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RightMenuSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *RightMenuAccordion*
- */
-type RightMenuSliceVariation = RightMenuSliceDefault;
-
-/**
- * RightMenuAccordion Shared Slice
- *
- * - **API ID**: `right_menu`
- * - **Description**: RightMenu
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RightMenuSlice = prismic.SharedSlice<
-  "right_menu",
-  RightMenuSliceVariation
->;
-
-/**
- * Primary content in *RightMenuLinks → Default → Primary*
- */
-export interface RightMenuLinkSliceDefaultPrimary {
-  /**
-   * RightMenuLinks field in *RightMenuLinks → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: right_menu_link.default.primary.rightMenuLinks
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  rightMenuLinks: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-}
-
-/**
- * Default variation for RightMenuLinks Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RightMenuLinkSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RightMenuLinkSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *RightMenuLinks*
- */
-type RightMenuLinkSliceVariation = RightMenuLinkSliceDefault;
-
-/**
- * RightMenuLinks Shared Slice
- *
- * - **API ID**: `right_menu_link`
- * - **Description**: RightMenuLink
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RightMenuLinkSlice = prismic.SharedSlice<
-  "right_menu_link",
-  RightMenuLinkSliceVariation
->;
-
-/**
  * Primary content in *SocialCarousel → Default → Primary*
  */
 export interface SocialCarouselSliceDefaultPrimary {
@@ -1764,13 +1671,13 @@ declare module "@prismicio/client" {
       NextConferenceSectionDocument,
       NextConferenceSectionDocumentData,
       NextConferenceSectionDocumentDataSlicesSlice,
-      RightMenuDocument,
-      RightMenuDocumentData,
-      RightMenuDocumentDataSlicesSlice,
       TierOnePageDocument,
       TierOnePageDocumentData,
       TierOnePageDocumentDataSlicesSlice,
       TierOnePageDocumentDataSlices2Slice,
+      TierThreePageDocument,
+      TierThreePageDocumentData,
+      TierThreePageDocumentDataSlicesSlice,
       TierTwoPageDocument,
       TierTwoPageDocumentData,
       TierTwoPageDocumentDataSlicesSlice,
@@ -1803,15 +1710,6 @@ declare module "@prismicio/client" {
       MenuItemSliceDefaultPrimary,
       MenuItemSliceVariation,
       MenuItemSliceDefault,
-      RightMenuSlice,
-      RightMenuSliceDefaultPrimaryAccordionItemsItem,
-      RightMenuSliceDefaultPrimary,
-      RightMenuSliceVariation,
-      RightMenuSliceDefault,
-      RightMenuLinkSlice,
-      RightMenuLinkSliceDefaultPrimary,
-      RightMenuLinkSliceVariation,
-      RightMenuLinkSliceDefault,
       SocialCarouselSlice,
       SocialCarouselSliceDefaultPrimary,
       SocialCarouselSliceVariation,
