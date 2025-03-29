@@ -1,28 +1,28 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"socialCarouselTitle": {
-				"__TYPE__": "FieldContent",
-				"value": "able",
-				"type": "Text"
-			},
-			"socialCarouselDescription": {
-				"__TYPE__": "FieldContent",
-				"value": "known",
-				"type": "Text"
-			},
-			"socialCarouselLink": {
-				"__TYPE__": "LinkContent",
-				"key": "4eaf8112-90e7-40ee-bb6d-b7ffb3de9518",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://slicemachine.dev",
-					"text": "studied"
-				}
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "socialCarouselTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "able",
+        "type": "Text"
+      },
+      "socialCarouselDescription": {
+        "__TYPE__": "FieldContent",
+        "value": "known",
+        "type": "Text"
+      },
+      "socialCarouselLink": {
+        "__TYPE__": "LinkContent",
+        "key": "4eaf8112-90e7-40ee-bb6d-b7ffb3de9518",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "studied"
+        }
+      }
+    },
+    "items": []
+  }
 ]

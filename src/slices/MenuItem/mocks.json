@@ -1,111 +1,111 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"tierOneLink": {
-				"key": "fbef3a01-e506-4373-b339-faa4aa80f6d0",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://google.com",
-					"text": "symbol"
-				}
-			},
-			"tierTwoMenuItems": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"tierTwoMenuIcon",
-								{
-									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-										"width": 4752,
-										"height": 3168
-									},
-									"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
-									"width": 4752,
-									"height": 3168,
-									"edit": {
-										"zoom": 1,
-										"crop": {
-											"x": 0,
-											"y": 0
-										},
-										"background": "transparent"
-									},
-									"alt": "tall",
-									"credits": null,
-									"__TYPE__": "ImageContent",
-									"thumbnails": {}
-								}
-							],
-							[
-								"tierTwoMenuDesc",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "fighting",
-									"type": "Text"
-								}
-							],
-							[
-								"tierTwoMenuLink",
-								{
-									"key": "9c8eefaa-62af-448f-bf12-3d8030e6469d",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "http://twitter.com",
-										"text": "hold"
-									}
-								}
-							]
-						]
-					}
-				]
-			},
-			"featuredMenuImage": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
-					"width": 3199,
-					"height": 3199
-				},
-				"url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
-				"width": 3199,
-				"height": 3199,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"alt": "zero",
-				"credits": null,
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
-			"featuredMenuLink": {
-				"__TYPE__": "LinkContent",
-				"key": "c244f18c-3b54-4c84-a14c-a740d07bfe4f",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "http://twitter.com",
-					"text": "swept"
-				}
-			}
-		},
-		"items": [
-			{
-				"__TYPE__": "GroupItemContent",
-				"value": []
-			}
-		]
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "tierOneLink": {
+        "key": "fbef3a01-e506-4373-b339-faa4aa80f6d0",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "symbol"
+        }
+      },
+      "tierTwoMenuItems": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "tierTwoMenuIcon",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                    "width": 4752,
+                    "height": 3168
+                  },
+                  "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                  "width": 4752,
+                  "height": 3168,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "tall",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "tierTwoMenuDesc",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "fighting",
+                  "type": "Text"
+                }
+              ],
+              [
+                "tierTwoMenuLink",
+                {
+                  "key": "9c8eefaa-62af-448f-bf12-3d8030e6469d",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com",
+                    "text": "hold"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "featuredMenuImage": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
+          "width": 3199,
+          "height": 3199
+        },
+        "url": "https://images.unsplash.com/photo-1600804931749-2da4ce26c869",
+        "width": 3199,
+        "height": 3199,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "alt": "zero",
+        "credits": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "featuredMenuLink": {
+        "__TYPE__": "LinkContent",
+        "key": "c244f18c-3b54-4c84-a14c-a740d07bfe4f",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://twitter.com",
+          "text": "swept"
+        }
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
 ]

@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "slicemachine": "start-slicemachine",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "dev": "next dev --turbopack",
+    "format": "prettier --write .",
+    "lint": "next lint",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky"
+    "prepare": "husky",
+    "slicemachine": "start-slicemachine",
+    "start": "next start",
+    "storybook": "storybook dev -p 6006"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   },
   "dependencies": {
     "@prismicio/client": "^7.16.1",
@@ -25,6 +31,7 @@
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "format-package": "^7.0.0",
     "lucide-react": "^0.477.0",
     "motion": "^12.5.0",
     "next": "15.2.1",
@@ -51,16 +58,14 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.5",
     "eslint-plugin-storybook": "^0.11.4",
     "husky": "^9.1.7",
+    "prettier": "^3.5.3",
     "slice-machine-ui": "^2.14.2",
     "storybook": "^8.6.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "typescript": "5.3.3"
   }
 }
