@@ -2,23 +2,23 @@
 
 import { createClient } from "@/prismicio";
 import {
-    TierOnePageDocument,
-    TierTwoPageDocument,
+  TierOnePageDocument,
+  TierTwoPageDocument,
 } from "../../../prismicio-types";
 
 export type TierOnePageData = TierOnePageDocument<string> | null;
 export type TierTwoPageData = TierTwoPageDocument<string> | null;
 
 export async function getTierOnePageData(
-    uid: string
+  uid: string
 ): Promise<TierOnePageData> {
-    const client = createClient();
-    return client.getByUID("tierOnePage", uid);
+  const client = createClient();
+  return client.getByUID("tierOnePage", uid);
 }
 
 export async function getTierTwoPageData(
-    uid: string
+  uid: string
 ): Promise<TierTwoPageData> {
-    const client = createClient();
-    return client.getByUID("tierTwoPage", uid);
+  const client = createClient();
+  return client.getByUID("tierTwoPage", uid);
 }
