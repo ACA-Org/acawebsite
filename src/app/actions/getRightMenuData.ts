@@ -24,27 +24,47 @@ export async function getRightMenuData(
 ): Promise<RightMenuData> {
   const client = createClient();
 
-  // Fetch tier two pages
-  const tierTwoPages = (await client.getAllByType("tierTwoPage"))?.filter(
-    (i) =>
-      i.data.parentPage &&
-      (i.data.parentPage as FilledContentRelationshipField<"tierOnePage">)
-        .uid === uid
-  );
-
   if (tier === "one") {
+    // Fetch tier two pages
+    const tierTwoPages = (await client.getAllByType("tierTwoPage"))?.filter(
+      (i) =>
+        i.data.parentPage &&
+        !i.data.hideFromRightMenu &&
+        (i.data.parentPage as FilledContentRelationshipField<"tierOnePage">)
+          .uid === uid
+    );
     // Create menu items for tier two pages
     const menuItems: RightMenuData = await Promise.all(
       tierTwoPages.map(async (page: TierTwoPageDocument) => {
         // Fetch tier three pages for each tier two page
         const tierThreePages = (
-          await client.getAllByType("tierThreePage")
-        )?.filter(
-          (i) =>
-            i.data.parentPage &&
-            (i.data.parentPage as FilledContentRelationshipField<"tierTwoPage">)
-              .uid === page.uid
-        );
+          await client.getAllByType("tierThreePage", {
+            graphQuery: `
+                        {
+                            tierThreePage {
+                                uid
+                                hideFromRightMenu
+                                parentPage {
+                                    ... on tierTwoPage {
+                                        uid
+                                        hideFromRightMenu
+                                    }
+                                }
+                            }
+                        }
+                        `,
+          })
+        )?.filter((i) => {
+          const parentPage = i.data.parentPage as
+            | FilledContentRelationshipField<"tierTwoPage">
+            | undefined;
+
+          return (
+            parentPage &&
+            !i.data?.hideFromRightMenu &&
+            parentPage.uid === page.uid
+          );
+        });
 
         // Create children menu items for tier three pages
         const children = tierThreePages.map(
@@ -59,8 +79,6 @@ export async function getRightMenuData(
             href: `${page.uid}/${childPage.uid}`?.split("_").join("/"),
           })
         );
-
-        console.log({ tierTwoPages, children });
 
         return {
           label:
@@ -78,7 +96,6 @@ export async function getRightMenuData(
 
     return menuItems;
   }
-
   const tierThreePages = (await client.getAllByType("tierThreePage"))?.filter(
     (i) =>
       i.data.parentPage &&

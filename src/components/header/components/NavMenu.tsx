@@ -1,4 +1,5 @@
-import MenuItem, { MenuItemProps } from "@/slices/MenuItem";
+import { MenuItemProps, MenuItemV2 } from "@/slices/MenuItem";
+import { NavigationMenuList } from "@/components/ui/navigation-menu";
 
 export const NavMenu = ({
   data,
@@ -11,11 +12,11 @@ export const NavMenu = ({
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-1/2">
-      <div className="relative flex gap-4">
-        {slices.map((i, index) => (
-          <MenuItem key={index} {...i} />
+      <NavigationMenuList className="relative flex gap-4">
+        {slices.map((i) => (
+          <MenuItemV2 key={i.id} {...i} />
         ))}
-      </div>
+      </NavigationMenuList>
     </div>
   );
 };

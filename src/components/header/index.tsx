@@ -8,6 +8,7 @@ import { NavMenu } from "./components/NavMenu";
 import { MenuItemProps } from "@/slices/MenuItem";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { NavigationMenu } from "../ui/navigation-menu";
 
 const Header = ({
   data,
@@ -35,24 +36,26 @@ const Header = ({
         isCollapsed ? "py-4" : "py-8 border"
       )}
     >
-        <div className="relative px-9 flex items-center justify-between">
-        <Link
+      <NavigationMenu className="w-full">
+        <div className="relative px-9 flex items-center justify-between w-full">
+          <Link
             href="/"
             className="flex flex-col items-start justify-center transition-all duration-300"
-        >
+          >
             <img
-            className={cn(
+              className={cn(
                 "object-cover transition-all duration-300",
                 isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
-            )}
-            alt="ACA logo"
-            src={ACA.src}
+              )}
+              alt="ACA logo"
+              src={ACA.src}
             />
-        </Link>
-        <NavMenu data={data} />
+          </Link>
+          <NavMenu data={data} />
 
-        <IconMenu />
+          <IconMenu />
         </div>
+      </NavigationMenu>
     </header>
   );
 };

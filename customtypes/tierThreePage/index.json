@@ -21,6 +21,46 @@
           "customtypes": ["tierTwoPage"]
         }
       },
+      "pageImage": {
+        "type": "Image",
+        "config": {
+          "label": "PageImage",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "pageTitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageTitle",
+          "placeholder": ""
+        }
+      },
+      "pageSubTitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageSubTitle",
+          "placeholder": ""
+        }
+      },
+      "pageContent": {
+        "type": "StructuredText",
+        "config": {
+          "label": "PageContent",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "hideFromRightMenu": {
+        "type": "Boolean",
+        "config": {
+          "label": "Hide from Right Menu?",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
@@ -54,6 +94,25 @@
           "thumbnails": []
         },
         "type": "Image"
+      }
+    },
+    "PostContent": {
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "carousel": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "accordion": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

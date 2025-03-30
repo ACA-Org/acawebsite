@@ -75,6 +75,15 @@
           }
         }
       },
+      "nextConferenceInfo": {
+        "type": "Link",
+        "config": {
+          "label": "NextConferenceInfo",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["nextConferenceSection"]
+        }
+      },
       "introHeader": {
         "type": "Text",
         "config": {
@@ -123,24 +132,6 @@
               }
             }
           }
-        }
-      },
-      "nextConferenceInfo": {
-        "type": "Link",
-        "config": {
-          "label": "NextConferenceInfo",
-          "select": "document",
-          "repeat": false,
-          "customtypes": ["nextConferenceSection"]
-        }
-      },
-      "footer": {
-        "type": "Link",
-        "config": {
-          "label": "Footer",
-          "select": "document",
-          "repeat": false,
-          "customtypes": ["footer"]
         }
       },
       "slices": {

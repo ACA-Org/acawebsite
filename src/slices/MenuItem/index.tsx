@@ -4,8 +4,12 @@ import { SliceComponentProps } from "@prismicio/react";
 import { NavItem } from "./NavItem";
 import { NavMenuLink } from "./NavMenuLink";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import { NavContent, NavMenuItem } from "@/components/ui/nav-menu";
 import { ArrowRight } from "@/icons/ArrowRight";
+import {
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
 
 /**
  * Props for `MenuItem`.
@@ -15,6 +19,7 @@ export type MenuItemProps = SliceComponentProps<Content.MenuItemSlice>["slice"];
 /**
  * Component for "MenuItem" Slices.
  */
+
 const MenuItem: FC<MenuItemProps> = (props) => {
   const {
     primary: {
@@ -24,13 +29,17 @@ const MenuItem: FC<MenuItemProps> = (props) => {
       tierTwoMenuItems,
     },
   } = props;
+
   return (
-    <NavMenuItem
-      trigger={<NavItem link={link} />}
+    <NavigationMenuItem
+      key={props.id}
       data-slice-type={props.slice_type}
       data-slice-variation={props.variation}
     >
-      <NavContent className="inline-flex p-12 items-start gap-8 w-max">
+      <NavigationMenuTrigger>
+        <NavItem link={link} hasChildren={tierTwoMenuItems?.length > 0} />
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className="inline-flex p-12 items-start gap-8 w-max align-right">
         <div className="grid grid-cols-2 gap-8 w-max">
           {tierTwoMenuItems.map((i, index) => (
             <NavMenuLink key={`${i.tierTwoMenuLink.text}-${index}`} {...i} />
@@ -65,9 +74,11 @@ const MenuItem: FC<MenuItemProps> = (props) => {
             </div>
           </PrismicNextLink>
         )}
-      </NavContent>
-    </NavMenuItem>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
   );
 };
+
+export { MenuItemV2 };
 
 export default MenuItem;

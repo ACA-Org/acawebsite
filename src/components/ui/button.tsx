@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { PrismicNextLink } from "@prismicio/next";
@@ -58,16 +57,11 @@ function Button({
   className,
   variant,
   outlined,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot : "button";
 
+  ...props
+}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) {
   return (
-    <Comp
+    <button
       data-slot="button"
       className={cn(buttonVariants({ variant, outlined, className }))}
       {...props}
@@ -76,9 +70,7 @@ function Button({
 }
 
 export type LinkButtonProps = React.ComponentProps<typeof PrismicNextLink> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  };
+  VariantProps<typeof buttonVariants>;
 
 const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   ({ className, variant, href, outlined, field, ...props }, ref) => {
@@ -88,7 +80,7 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
         className={cn(buttonVariants({ variant, outlined, className }))}
         ref={ref}
         href={href || ""}
-        field={field}
+        field={field!}
         {...props}
       />
     );

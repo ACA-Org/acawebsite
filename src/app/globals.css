@@ -408,3 +408,8 @@
 @utility animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+nav:has(.align-center) > .left-0 {
+  right: auto;
+  left: auto;
+}

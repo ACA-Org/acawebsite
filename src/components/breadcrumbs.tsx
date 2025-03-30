@@ -16,6 +16,8 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
     // Parse underscores and capitalize each word
     const label = segment
       .split("_")
+      .join("-")
+      .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
 

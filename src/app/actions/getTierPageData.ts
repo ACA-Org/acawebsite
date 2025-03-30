@@ -3,11 +3,13 @@
 import { createClient } from "@/prismicio";
 import {
   TierOnePageDocument,
+  TierThreePageDocument,
   TierTwoPageDocument,
 } from "../../../prismicio-types";
 
 export type TierOnePageData = TierOnePageDocument<string> | null;
 export type TierTwoPageData = TierTwoPageDocument<string> | null;
+export type TierThreePageData = TierThreePageDocument<string> | null;
 
 export async function getTierOnePageData(
   uid: string
@@ -21,4 +23,11 @@ export async function getTierTwoPageData(
 ): Promise<TierTwoPageData> {
   const client = createClient();
   return client.getByUID("tierTwoPage", uid);
+}
+
+export async function getTierThreePageData(
+  uid: string
+): Promise<TierThreePageData> {
+  const client = createClient();
+  return client.getByUID("tierThreePage", uid);
 }

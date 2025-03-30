@@ -7,6 +7,21 @@ import { SliceZone } from "@prismicio/react";
 import { NextConference } from "./components/NextConference";
 import { getHomePageData } from "./actions/getHomePageData";
 import { LinkButton } from "@/components/ui/button";
+import { Metadata } from "next";
+import { asImageSrc } from "@prismicio/client";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle("homepage").catch(() => notFound());
+
+  return {
+    title: page.data.meta_title,
+    description: page.data.meta_description,
+    openGraph: {
+      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
+    },
+  };
+}
 
 export default async function Home() {
   const client = createClient();

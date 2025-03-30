@@ -24,7 +24,10 @@ export default async function Page({
   let rightMenuData: RightMenuData | null = null;
   let pageData: TierOnePageData = null;
 
-  pageData = await getTierOnePageData(tier_one_uid).catch(() => notFound());
+  pageData = await getTierOnePageData(tier_one_uid).catch((err) => {
+    console.error(err);
+    return notFound();
+  });
 
   if (!pageData) return notFound();
 
