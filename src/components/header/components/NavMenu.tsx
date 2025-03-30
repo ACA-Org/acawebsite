@@ -12,7 +12,7 @@ export const NavMenu = ({
 
   return (
     <div className="absolute top-1/2 left-1/2 -translate-1/2">
-      <NavigationMenuList className="relative flex gap-4">
+      <NavigationMenuList className="relative flex gap-8">
         {slices.map((i) => (
           <MenuItem key={i.id} {...i} />
         ))}
