@@ -79,6 +79,4 @@ const MenuItem: FC<MenuItemProps> = (props) => {
   );
 };
 
-export { MenuItemV2 };
-
 export default MenuItem;

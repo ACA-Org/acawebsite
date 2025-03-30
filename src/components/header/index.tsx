@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import ACA from "@/app/images/aca-blue-gold.png";
 import { IconMenu } from "./components/IconMenu";

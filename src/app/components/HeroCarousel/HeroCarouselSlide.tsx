@@ -1,7 +1,10 @@
 import { FC } from "react";
 import { LinkButton } from "@/components/ui/button";
-import { HomepageDocumentDataHeroCarouselDataItem } from "../../../../prismicio-types";
-import { Simplify } from "@/lib/utils";
+import {
+  HomepageDocumentDataHeroCarouselDataItem,
+  Simplify,
+} from "../../../../prismicio-types";
+
 import { PrismicNextImage } from "@prismicio/next";
 
 export type HeroCarouselSlideProps =

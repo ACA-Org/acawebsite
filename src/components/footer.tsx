@@ -1,14 +1,13 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import ACA from "@/app/images/aca-white-gold.png";
 import { Facebook } from "@/icons/Facebook";
 import { Instagram } from "@/icons/Instagram";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { X } from "@/icons/X";
-import { Simplify } from "@/lib/utils";
-import { FooterDocumentData } from "../../prismicio-types";
+
+import { FooterDocumentData, Simplify } from "../../prismicio-types";
 import { PrismicNextLink } from "@prismicio/next";
 
 export type FooterProps = Simplify<FooterDocumentData>;

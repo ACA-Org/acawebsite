@@ -1,7 +1,7 @@
-import { Simplify } from "@/lib/utils";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Link2 } from "lucide-react";
+import { Simplify } from "../../../prismicio-types";
 
 type NavMenuLinkProps =
   Simplify<Content.MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem>;

@@ -1,7 +1,9 @@
-import { Simplify } from "@/lib/utils";
 import { LinkButton } from "@/components/ui/button";
 import { GroupField, KeyTextField, LinkField } from "@prismicio/client";
-import { HomepageDocumentDataIntroImageTileItem } from "../../../prismicio-types";
+import {
+  HomepageDocumentDataIntroImageTileItem,
+  Simplify,
+} from "../../../prismicio-types";
 import ImageFader from "@/components/image-fader";
 
 type IntroContainerProps = {
