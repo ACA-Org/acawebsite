@@ -1,0 +1,28 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "cardTitle": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "E-Learning"
+      },
+      "cardDescription": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Lorem ipsum dolor sit amet ipsa quae ab illo inventore veritatis"
+      },
+      "cardLink": {
+        "__TYPE__": "LinkContent",
+        "key": "c9e84df6-1d60-4d1d-868e-2c626d93188f",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://prismic.io",
+          "text": "Learn More"
+        }
+      }
+    },
+    "items": []
+  }
+]

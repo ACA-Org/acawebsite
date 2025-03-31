@@ -1,47 +1,47 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"accordionItems": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"accordionDescription",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "average",
-									"type": "Text"
-								}
-							],
-							[
-								"accordionTitle",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "warn",
-									"type": "Text"
-								}
-							],
-							[
-								"accordionAction",
-								{
-									"__TYPE__": "LinkContent",
-									"key": "34af924e-4c25-4da9-82ec-23346a15669c",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "http://twitter.com",
-										"text": "change"
-									}
-								}
-							]
-						]
-					}
-				]
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "accordionItems": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "accordionDescription",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "average",
+                  "type": "Text"
+                }
+              ],
+              [
+                "accordionTitle",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "warn",
+                  "type": "Text"
+                }
+              ],
+              [
+                "accordionAction",
+                {
+                  "__TYPE__": "LinkContent",
+                  "key": "34af924e-4c25-4da9-82ec-23346a15669c",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com",
+                    "text": "change"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    "items": []
+  }
 ]

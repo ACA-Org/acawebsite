@@ -12,6 +12,15 @@
           "label": "UID"
         }
       },
+      "parentPage": {
+        "type": "Link",
+        "config": {
+          "label": "ParentPage",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["tierOnePage"]
+        }
+      },
       "pageImage": {
         "type": "Image",
         "config": {
@@ -27,6 +36,13 @@
           "placeholder": ""
         }
       },
+      "pageSubTitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageSubTitle",
+          "placeholder": ""
+        }
+      },
       "pageTextContent": {
         "type": "StructuredText",
         "config": {
@@ -36,18 +52,33 @@
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "pageSubTitle": {
-        "type": "Text",
+      "hideFromRightMenu": {
+        "type": "Boolean",
         "config": {
-          "label": "PageSubTitle",
-          "placeholder": ""
+          "label": "Hide from Right Menu?",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
         }
       },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "carousel": {
+              "type": "SharedSlice"
+            },
+            "accordion": {
+              "type": "SharedSlice"
+            },
+            "link_tile": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
@@ -78,12 +109,18 @@
         "type": "Image"
       }
     },
-    "PostArticle": {
+    "PostContent": {
       "slices2": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "accordion": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
             "carousel": {
               "type": "SharedSlice"
             }

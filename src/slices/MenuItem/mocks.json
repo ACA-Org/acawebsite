@@ -92,8 +92,8 @@
 				"thumbnails": {}
 			},
 			"featuredMenuLink": {
-				"__TYPE__": "LinkContent",
 				"key": "c244f18c-3b54-4c84-a14c-a740d07bfe4f",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://twitter.com",

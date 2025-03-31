@@ -12,10 +12,25 @@
           "label": "UID"
         }
       },
+      "pageImage": {
+        "type": "Image",
+        "config": {
+          "label": "PageImage",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "pageTitle": {
         "type": "Text",
         "config": {
           "label": "PageTitle",
+          "placeholder": ""
+        }
+      },
+      "pageSubTitle": {
+        "type": "Text",
+        "config": {
+          "label": "PageSubTitle",
           "placeholder": ""
         }
       },
@@ -28,30 +43,18 @@
           "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
-      "pageImage": {
-        "type": "Image",
-        "config": {
-          "label": "PageImage",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
-      "pageSubTitle": {
-        "type": "Text",
-        "config": {
-          "label": "PageSubTitle",
-          "placeholder": ""
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "right_menu_link": {
+            "accordion": {
               "type": "SharedSlice"
             },
-            "right_menu": {
+            "link_tile": {
+              "type": "SharedSlice"
+            },
+            "carousel": {
               "type": "SharedSlice"
             },
             "speedBump": {
@@ -88,12 +91,18 @@
         "type": "Image"
       }
     },
-    "PostArticle": {
+    "PostContent": {
       "slices2": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "accordion": {
+              "type": "SharedSlice"
+            },
             "carousel": {
               "type": "SharedSlice"
             },

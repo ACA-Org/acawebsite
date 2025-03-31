@@ -1,0 +1,44 @@
+{
+  "id": "link_card",
+  "type": "SharedSlice",
+  "name": "LinkCard",
+  "description": "LinkCard",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cardTitle": {
+          "type": "Text",
+          "config": {
+            "label": "CardTitle",
+            "placeholder": ""
+          }
+        },
+        "cardDescription": {
+          "type": "Text",
+          "config": {
+            "label": "CardDescription",
+            "placeholder": ""
+          }
+        },
+        "cardLink": {
+          "type": "Link",
+          "config": {
+            "label": "CardLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
