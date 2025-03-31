@@ -201,6 +201,50 @@
       height: 0;
     }
   }
+
+  @keyframes slide-down-fade {
+    0% {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes slide-up-fade {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.95);
+    }
+  }
+
+  @keyframes slide-in-right {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-left {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+  }
 }
 
 :root {
@@ -407,6 +451,22 @@
 
 @utility animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
+}
+
+@utility animate-slide-down-fade {
+  animation: slide-down-fade 0.15s ease-out;
+}
+
+@utility animate-slide-up-fade {
+  animation: slide-up-fade 0.15s ease-out;
+}
+
+@utility animate-slide-in-right {
+  animation: slide-in-right 0.15s ease-out;
+}
+
+@utility animate-slide-out-left {
+  animation: slide-out-left 0.15s ease-out;
 }
 
 nav:has(.align-center) > .left-0 {

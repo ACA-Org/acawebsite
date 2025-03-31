@@ -3,11 +3,10 @@
 import React, { useEffect, useState } from "react";
 import ACA from "@/app/images/aca-blue-gold.png";
 import { IconMenu } from "./components/IconMenu";
-import { NavMenu } from "./components/NavMenu";
 import { MenuItemProps } from "@/slices/MenuItem";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { NavigationMenu } from "../ui/navigation-menu";
+import { NavigationMenu } from "./components/NavigationMenu";
 
 const Header = ({
   data,
@@ -35,26 +34,24 @@ const Header = ({
         isCollapsed ? "py-4" : "py-8 border"
       )}
     >
-      <NavigationMenu className="w-full">
-        <div className="relative px-9 flex items-center justify-between w-full">
-          <Link
-            href="/"
-            className="flex flex-col items-start justify-center transition-all duration-300"
-          >
-            <img
-              className={cn(
-                "object-cover transition-all duration-300",
-                isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
-              )}
-              alt="ACA logo"
-              src={ACA.src}
-            />
-          </Link>
-          <NavMenu data={data} />
+      <div className="relative px-9 flex items-center justify-between w-full">
+        <Link
+          href="/"
+          className="flex flex-col items-start justify-center transition-all duration-300"
+        >
+          <img
+            className={cn(
+              "object-cover transition-all duration-300",
+              isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
+            )}
+            alt="ACA logo"
+            src={ACA.src}
+          />
+        </Link>
+        <NavigationMenu slices={data.slices} />
 
-          <IconMenu />
-        </div>
-      </NavigationMenu>
+        <IconMenu />
+      </div>
     </header>
   );
 };
