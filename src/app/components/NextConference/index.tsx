@@ -78,7 +78,7 @@ export const NextConference = (
             <Button
               variant="secondary"
               outlined
-              className="bg-transparent hover:bg-gold-100 hover:border-gold-100 flex h-13 items-center justify-center gap-4 relative self-stretch w-full rounded-none !rounded-b-xl !border !border-t-0 border-solid border-[#2e3d51]"
+              className="bg-transparent hover:bg-gold-100 outline-transparent hover:outline-gold-100 flex h-13 items-center justify-center gap-4 relative self-stretch w-full rounded-none !rounded-b-xl !border !border-t-0 border-solid border-[#2e3d51]"
             >
               <span className="relative w-fit mt-[-0.50px] body-lg whitespace-nowrap">
                 View Details

@@ -33,9 +33,9 @@ const ConferenceCard: FC<ConferenceCardProps> = (slice) => {
           <div className="absolute inset-0 w-full h-full">
             <PrismicNextImage
               field={image}
-              className="w-full h-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-0"
+              className="w-full h-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-40"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-20% via-transparent to-[#0F0F0F] transition-opacity duration-300 ease-in-out group-hover:via-[rgba(15,15,15,0.6)] group-hover:to-[rgba(15,15,15,0.9)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-20% via-transparent to-[#0F0F0F] transition-opacity duration-300 ease-in-out group-hover:via-[rgba(15,15,15,0.6)] group-hover:to-[rgba(15,15,15,1)]" />
           </div>
         </>
       )}

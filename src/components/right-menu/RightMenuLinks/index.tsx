@@ -11,7 +11,7 @@ const RightMenuLink = ({ link }: { link: RightMenuItem }) => {
   return (
     <div className="flex w-full h-15 items-center pl-5 py-4.5">
       <Link
-        className="w-60 text-gray-300 hover:text-black cursor-pointer body-md leading-4"
+        className="w-60 text-gray-300 hover:text-black hover:underline cursor-pointer body-md leading-4"
         href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
       >
         {label}

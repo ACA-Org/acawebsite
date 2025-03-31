@@ -16,7 +16,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
       <AccordionContent className="flex flex-col gap-0">
         <Link
           href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
-          className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black"
+          className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black hover:underline"
         >
           Overview
         </Link>
@@ -25,7 +25,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
             href={
               pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href
             }
-            className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black"
+            className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black hover:underline"
             key={index}
           >
             {label}
