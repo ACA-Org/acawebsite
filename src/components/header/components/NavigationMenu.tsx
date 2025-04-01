@@ -5,6 +5,7 @@ import { ArrowRight } from "@/icons/ArrowRight";
 import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
+import SVG from "react-inlinesvg";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -21,8 +22,11 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   }, [activeItem, slices]);
 
   return (
-    <nav className={cn(className, "absolute top-1/2 left-1/2 -translate-1/2")}>
-      <div className="relative" onMouseLeave={() => setActiveItem(null)}>
+    <nav
+      onMouseLeave={() => setActiveItem(null)}
+      className={cn(className, "absolute top-1/2 left-1/2 -translate-1/2 p-8")}
+    >
+      <div className="relative">
         <div className="flex justify-center">
           <ul className="flex items-center gap-8 p-2 w-full justify-center">
             {slices.map(
@@ -68,11 +72,14 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     className="w-max col-span-1 group"
                   >
                     <span className="flex h-9 items-center gap-3 pr-3 w-max">
-                      <span className="flex items-center justify-center w-9 h-9 p-2 bg-gray-200 group-hover:bg-blue-300 transition-colors rounded-sm stroke-gray-300 text-gray-300 group-hover:stroke-white group-hover:text-white">
+                      <span className="flex items-center justify-center w-9 h-9 p-2 bg-gray-200 group-hover:bg-blue-300 transition-colors rounded-sm">
                         {i.tierTwoMenuIcon?.url ? (
-                          <PrismicNextImage field={i.tierTwoMenuIcon} />
+                          <SVG
+                            src={i.tierTwoMenuIcon.url}
+                            className="[&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
+                          />
                         ) : (
-                          <Link2 />
+                          <Link2 className="stroke-gray-300 group-hover:stroke-white" />
                         )}
                       </span>
 
