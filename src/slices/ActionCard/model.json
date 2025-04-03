@@ -1,0 +1,44 @@
+{
+  "id": "action_card",
+  "type": "SharedSlice",
+  "name": "ActionCard",
+  "description": "ActionCard",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cardActions": {
+          "type": "Link",
+          "config": {
+            "label": "CardActions",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        },
+        "cardTitle": {
+          "type": "Text",
+          "config": {
+            "label": "CardTitle",
+            "placeholder": ""
+          }
+        },
+        "cardDescription": {
+          "type": "Text",
+          "config": {
+            "label": "CardDescription",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

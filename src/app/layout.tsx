@@ -40,7 +40,7 @@ export default async function RootLayout({
   await Promise.allSettled([fetchFooterInfo(), fetchHeaderInfo()]);
 
   return (
-    <html lang="en">
+    <html lang="en" className="w-screen overflow-x-clip">
       <body
         className={`${gillSans.variable} antialiased [font-family:GillSans]`}
       >

@@ -4,8 +4,10 @@ import dynamic from "next/dynamic";
 
 export const components = {
   accordion: dynamic(() => import("./Accordion")),
+  action_card: dynamic(() => import("./ActionCard")),
   carousel: dynamic(() => import("./Carousel")),
   conference_card: dynamic(() => import("./ConferenceCard")),
+  contact_form: dynamic(() => import("./ContactForm")),
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),

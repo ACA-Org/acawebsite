@@ -4,6 +4,104 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ContactPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for ContactPage documents
+ */
+interface ContactPageDocumentData {
+  /**
+   * PageImage field in *ContactPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageImage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  pageImage: prismic.ImageField<never>;
+
+  /**
+   * PageTitle field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *ContactPage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *ContactPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContactPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: contactPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: contactPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *ContactPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * ContactPage document from Prismic
+ *
+ * - **API ID**: `contactPage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ContactPageDocumentData>,
+    "contactPage",
+    Lang
+  >;
+
 /**
  * Item in *Footer → FooterAddress*
  */
@@ -944,6 +1042,7 @@ export type TierTwoPageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | ContactPageDocument
   | FooterDocument
   | HeaderDocument
   | HomepageDocument
@@ -1038,6 +1137,73 @@ type AccordionSliceVariation = AccordionSliceDefault;
 export type AccordionSlice = prismic.SharedSlice<
   "accordion",
   AccordionSliceVariation
+>;
+
+/**
+ * Primary content in *ActionCard → Default → Primary*
+ */
+export interface ActionCardSliceDefaultPrimary {
+  /**
+   * CardActions field in *ActionCard → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: action_card.default.primary.cardActions
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cardActions: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * CardTitle field in *ActionCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: action_card.default.primary.cardTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cardTitle: prismic.KeyTextField;
+
+  /**
+   * CardDescription field in *ActionCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: action_card.default.primary.cardDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cardDescription: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ActionCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ActionCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ActionCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ActionCard*
+ */
+type ActionCardSliceVariation = ActionCardSliceDefault;
+
+/**
+ * ActionCard Shared Slice
+ *
+ * - **API ID**: `action_card`
+ * - **Description**: ActionCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ActionCardSlice = prismic.SharedSlice<
+  "action_card",
+  ActionCardSliceVariation
 >;
 
 /**
@@ -1263,6 +1429,36 @@ type ConferenceCardSliceVariation = ConferenceCardSliceDefault;
 export type ConferenceCardSlice = prismic.SharedSlice<
   "conference_card",
   ConferenceCardSliceVariation
+>;
+
+/**
+ * Default variation for ContactForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactForm*
+ */
+type ContactFormSliceVariation = ContactFormSliceDefault;
+
+/**
+ * ContactForm Shared Slice
+ *
+ * - **API ID**: `contact_form`
+ * - **Description**: ContactForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSlice = prismic.SharedSlice<
+  "contact_form",
+  ContactFormSliceVariation
 >;
 
 /**
@@ -1738,6 +1934,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ContactPageDocument,
+      ContactPageDocumentData,
+      ContactPageDocumentDataSlicesSlice,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataFooterAddressItem,
@@ -1771,6 +1970,10 @@ declare module "@prismicio/client" {
       AccordionSliceDefaultPrimary,
       AccordionSliceVariation,
       AccordionSliceDefault,
+      ActionCardSlice,
+      ActionCardSliceDefaultPrimary,
+      ActionCardSliceVariation,
+      ActionCardSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,
@@ -1780,6 +1983,9 @@ declare module "@prismicio/client" {
       ConferenceCardSliceDefaultPrimary,
       ConferenceCardSliceVariation,
       ConferenceCardSliceDefault,
+      ContactFormSlice,
+      ContactFormSliceVariation,
+      ContactFormSliceDefault,
       LinkCardSlice,
       LinkCardSliceDefaultPrimary,
       LinkCardSliceVariation,

@@ -27,8 +27,12 @@ export const RightMenu = ({
           </p>
         </div>
       )}
-      <div className="divide-y divide-[#E5E5E5]">
-        <Accordion type="single" collapsible className="w-full">
+      <div className="divide-y divide-blue-500/10">
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full divide-y divide-blue-500/12 border-b border-blue-500/12"
+        >
           {items.map((menuItem, index) => {
             if (!menuItem?.children || menuItem?.children.length < 1) {
               return (
