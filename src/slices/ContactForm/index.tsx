@@ -126,9 +126,7 @@ const ContactForm = () => {
             id="message"
             placeholder="Type your message here"
             aria-required="true"
-            className={`h-[148px] px-4 py-3 bg-[#dfeef3] text-gray-300 text-lg opacity-65 font-normal border-[#dfeef4] w-full rounded-md resize-none ${
-              errors.message ? "border-red-500" : ""
-            }`}
+            rows={4}
           />
           {errors.message && (
             <span className="text-red-500 text-sm">
