@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import PageRichText from "../components/PageRichText";
 import ContactForm from "@/slices/ContactForm";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 export default async function Page() {
   const headerList = await headers();
@@ -17,7 +19,12 @@ export default async function Page() {
 
   if (!pageData) return notFound();
 
-  const { pageContent, pageTitle: title, pageImage: img } = pageData;
+  const {
+    pageContent,
+    pageTitle: title,
+    pageImage: img,
+    slices2: rightSlices,
+  } = pageData;
 
   return (
     <div className="w-full flex flex-col">
@@ -35,7 +42,7 @@ export default async function Page() {
             </>
           )}
         </div>
-        <div className="max-w-[920px]">
+        <div>
           <div className="flex flex-row gap-16 my-12">
             <div className="flex w-full flex-col items-start gap-12 px-8">
               <div className="flex flex-col gap-12">
@@ -50,6 +57,11 @@ export default async function Page() {
                 <PageRichText content={pageContent} />
               </div>
             </div>
+            {rightSlices?.length > 0 && (
+              <div className="max-w-[380px] flex flex-col gap-4">
+                <SliceZone slices={rightSlices} components={components} />
+              </div>
+            )}
           </div>
 
           <ContactForm />

@@ -6,6 +6,11 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type ContactPageDocumentDataSlicesSlice = never;
 
+type ContactPageDocumentDataSlices2Slice =
+  | SpeedBumpSlice
+  | AccordionSlice
+  | LinkCardSlice;
+
 /**
  * Content for ContactPage documents
  */
@@ -83,7 +88,16 @@ interface ContactPageDocumentData {
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  meta_image: prismic.ImageField<never>;
+  meta_image: prismic.ImageField<never> /**
+   * Slice Zone field in *ContactPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.slices2[]
+   * - **Tab**: RightSection
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<ContactPageDocumentDataSlices2Slice>;
 }
 
 /**
@@ -1140,73 +1154,6 @@ export type AccordionSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *ActionCard → Default → Primary*
- */
-export interface ActionCardSliceDefaultPrimary {
-  /**
-   * CardActions field in *ActionCard → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: action_card.default.primary.cardActions
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  cardActions: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-
-  /**
-   * CardTitle field in *ActionCard → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: action_card.default.primary.cardTitle
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  cardTitle: prismic.KeyTextField;
-
-  /**
-   * CardDescription field in *ActionCard → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: action_card.default.primary.cardDescription
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  cardDescription: prismic.KeyTextField;
-}
-
-/**
- * Default variation for ActionCard Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ActionCardSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ActionCardSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ActionCard*
- */
-type ActionCardSliceVariation = ActionCardSliceDefault;
-
-/**
- * ActionCard Shared Slice
- *
- * - **API ID**: `action_card`
- * - **Description**: ActionCard
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ActionCardSlice = prismic.SharedSlice<
-  "action_card",
-  ActionCardSliceVariation
->;
-
-/**
  * Item in *Carousel → Default → Primary → CarouselSlides*
  */
 export interface CarouselSliceDefaultPrimaryCarouselSlidesItem {
@@ -1897,9 +1844,91 @@ export type SpeedBumpSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *SpeedBump → Vertical → Primary*
+ */
+export interface SpeedBumpSliceVerticalPrimary {
+  /**
+   * SpeedBumpImage field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  speedBumpImage: prismic.ImageField<never>;
+
+  /**
+   * SpeedBumpTitle field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Content Title
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  speedBumpTitle: prismic.KeyTextField;
+
+  /**
+   * SpeedBumpDescription field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut...
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  speedBumpDescription: prismic.KeyTextField;
+
+  /**
+   * SpeedBumpLinks field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpLinks
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  speedBumpLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * SpeedBumpTheme field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: light
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpTheme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpTheme: prismic.SelectField<"light" | "dark", "filled">;
+
+  /**
+   * SpeedBumpLinkPosition field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: bottom
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpLinkPosition
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpLinkPosition: prismic.SelectField<"bottom" | "right", "filled">;
+}
+
+/**
+ * Vertical variation for SpeedBump Slice
+ *
+ * - **API ID**: `vertical`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SpeedBumpSliceVertical = prismic.SharedSliceVariation<
+  "vertical",
+  Simplify<SpeedBumpSliceVerticalPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *SpeedBump*
  */
-type SpeedBumpSliceVariation = SpeedBumpSliceDefault;
+type SpeedBumpSliceVariation = SpeedBumpSliceDefault | SpeedBumpSliceVertical;
 
 /**
  * SpeedBump Shared Slice
@@ -1937,6 +1966,7 @@ declare module "@prismicio/client" {
       ContactPageDocument,
       ContactPageDocumentData,
       ContactPageDocumentDataSlicesSlice,
+      ContactPageDocumentDataSlices2Slice,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataFooterAddressItem,
@@ -1970,10 +2000,6 @@ declare module "@prismicio/client" {
       AccordionSliceDefaultPrimary,
       AccordionSliceVariation,
       AccordionSliceDefault,
-      ActionCardSlice,
-      ActionCardSliceDefaultPrimary,
-      ActionCardSliceVariation,
-      ActionCardSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,
@@ -2005,8 +2031,10 @@ declare module "@prismicio/client" {
       SocialCarouselSliceDefault,
       SpeedBumpSlice,
       SpeedBumpSliceDefaultPrimary,
+      SpeedBumpSliceVerticalPrimary,
       SpeedBumpSliceVariation,
       SpeedBumpSliceDefault,
+      SpeedBumpSliceVertical,
     };
   }
 }

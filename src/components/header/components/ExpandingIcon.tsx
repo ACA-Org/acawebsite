@@ -21,6 +21,7 @@ export function ExpandingIcon({
   menuId,
   activeItem,
   setActiveItem,
+  ...props
 }: ExpandingIconButtonProps) {
   const isActive = menuId === activeItem;
 
@@ -32,6 +33,7 @@ export function ExpandingIcon({
           isActive && "bg-blue-300 hover:bg-blue-300"
         )}
         onMouseEnter={() => setActiveItem(menuId)}
+        {...props}
       >
         <Icon
           className={cn(

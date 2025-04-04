@@ -5,10 +5,12 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
 import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
+import { useRouter } from "next/navigation";
 
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
   const timeoutRef = useRef<number>(0);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -51,6 +53,9 @@ export const IconMenu = () => {
         icon={MailIcon}
         label="Contact Us"
         menuId="contact_us"
+        onClick={() => {
+          router.push("/contact");
+        }}
         activeItem={activeItem}
         setActiveItem={setActiveItem}
       />

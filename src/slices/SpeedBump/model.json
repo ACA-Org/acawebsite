@@ -50,7 +50,10 @@
           "config": {
             "label": "SpeedBumpTheme",
             "placeholder": "",
-            "options": ["light", "dark"],
+            "options": [
+              "light",
+              "dark"
+            ],
             "default_value": "light"
           }
         },
@@ -59,7 +62,78 @@
           "config": {
             "label": "SpeedBumpLinkPosition",
             "placeholder": "",
-            "options": ["bottom", "right"],
+            "options": [
+              "bottom",
+              "right"
+            ],
+            "default_value": "bottom"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "vertical",
+      "name": "Vertical",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "speedBumpImage": {
+          "type": "Image",
+          "config": {
+            "label": "SpeedBumpImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "speedBumpTitle": {
+          "type": "Text",
+          "config": {
+            "label": "SpeedBumpTitle",
+            "placeholder": "Content Title"
+          }
+        },
+        "speedBumpDescription": {
+          "type": "Text",
+          "config": {
+            "label": "SpeedBumpDescription",
+            "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
+          }
+        },
+        "speedBumpLinks": {
+          "type": "Link",
+          "config": {
+            "label": "SpeedBumpLinks",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        },
+        "speedBumpTheme": {
+          "type": "Select",
+          "config": {
+            "label": "SpeedBumpTheme",
+            "placeholder": "",
+            "options": [
+              "light",
+              "dark"
+            ],
+            "default_value": "light"
+          }
+        },
+        "speedBumpLinkPosition": {
+          "type": "Select",
+          "config": {
+            "label": "SpeedBumpLinkPosition",
+            "placeholder": "",
+            "options": [
+              "bottom",
+              "right"
+            ],
             "default_value": "bottom"
           }
         }

@@ -15,6 +15,7 @@ export type SpeedBumpProps = SliceComponentProps<Content.SpeedBumpSlice>;
  */
 const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
   const {
+    variation,
     primary: {
       speedBumpDescription: description,
       speedBumpImage: hero,
@@ -31,11 +32,12 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className={cn(
         "flex rounded-3xl p-8 pr-16 overflow-hidden",
+        variation === "vertical" && "w-fit p-6 pt-8 pr-6",
         theme === "light" ? "bg-blue-50" : "bg-blue-300"
       )}
     >
       <div className="flex h-full items-center gap-8 self-stretch">
-        {hero && (
+        {hero.url && (
           <figure className="relative h-full w-auto">
             <PrismicNextImage
               className="w-full h-full max-h-[210px] object-cover rounded-md"
@@ -46,6 +48,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
         <div
           className={cn(
             "flex flex-1 gap-4 h-fit",
+            variation === "vertical" && "flex-col",
             position === "bottom"
               ? "flex-col items-start"
               : "flex-row items-center"
@@ -57,6 +60,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                 <h2
                   className={cn(
                     "heading-3 font-semibold",
+                    variation === "vertical" && "text-center",
                     theme === "light" ? "text-blue-300" : "text-white"
                   )}
                 >
@@ -68,6 +72,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
               <p
                 className={cn(
                   "body-md",
+                  variation === "vertical" && "text-center",
                   theme === "light" ? "text-gray-300" : "text-white"
                 )}
               >
@@ -76,14 +81,19 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
             )}
           </div>
           {links?.length > 0 && (
-            <div className="flex gap-4 items-center justify-center">
+            <div
+              className={cn(
+                "flex gap-4 items-center justify-center",
+                variation === "vertical" && "flex-col w-full"
+              )}
+            >
               {links.map((link, index) => (
                 <LinkButton
                   key={link.key}
                   outlined={theme !== "light" || index % 2 === 1}
                   variant={theme === "light" ? "primary" : "white"}
                   field={link}
-                  className=""
+                  className={cn(variation === "vertical" && "w-full")}
                 >
                   {link.text}
                 </LinkButton>

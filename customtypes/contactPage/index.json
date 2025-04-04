@@ -64,6 +64,25 @@
         },
         "type": "Image"
       }
+    },
+    "RightSection": {
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "accordion": {
+              "type": "SharedSlice"
+            },
+            "link_card": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
     }
   }
 }
