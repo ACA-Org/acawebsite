@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
+import CacheProvider from "react-inlinesvg/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -44,7 +45,9 @@ export default async function RootLayout({
       <body
         className={`${gillSans.variable} antialiased [font-family:GillSans]`}
       >
-        {headerInfo && <Header data={headerInfo} />}
+        <CacheProvider>
+          {headerInfo && <Header data={headerInfo} />}
+        </CacheProvider>
         <div className="mt-17">{children}</div>
         {footerInfo && <Footer data={footerInfo} />}
       </body>
