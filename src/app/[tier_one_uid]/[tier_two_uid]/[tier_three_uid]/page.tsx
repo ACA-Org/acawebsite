@@ -9,16 +9,17 @@ import {
 } from "@/app/actions/getTierPageData";
 import { components } from "@/slices";
 import PageRichText from "@/app/components/PageRichText";
+import { Metadata } from "next/types";
+import { createClient } from "@/prismicio";
+import { asImageSrc } from "@prismicio/client";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{
-    tier_one_uid: string;
-    tier_two_uid: string;
-    tier_three_uid: string;
-  }>;
-}) {
+type Params = {
+  tier_one_uid: string;
+  tier_two_uid: string;
+  tier_three_uid: string;
+};
+
+export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_three_uid: uid_3 } = await params;
   const headerList = await headers();
   const pathname = headerList.get("x-current-path");
@@ -77,4 +78,31 @@ export default async function Page({
       )}
     </div>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}): Promise<Metadata> {
+  const { tier_three_uid } = await params;
+  const client = createClient();
+  const page = await client
+    .getByUID("tierThreePage", tier_three_uid)
+    .catch(() => notFound());
+
+  return {
+    title: page.data.meta_title,
+    description: page.data.meta_description,
+    openGraph: {
+      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const client = createClient();
+  const pages = await client.getAllByType("tierOnePage");
+
+  return pages.map((page) => ({ uid: page.uid }));
 }

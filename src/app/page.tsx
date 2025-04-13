@@ -9,6 +9,7 @@ import { getHomePageData } from "./actions/getHomePageData";
 import { LinkButton } from "@/components/ui/button";
 import { Metadata } from "next";
 import { asImageSrc } from "@prismicio/client";
+import { ACAFullLogoColor } from "@/logos/ACAFullLogoColor";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -36,22 +37,23 @@ export default async function Home() {
   return (
     <main>
       <section className="flex flex-col items-start justify-center gap-16 pb-12 pt-24">
-        <div className="px-19 gap-6 flex flex-col">
-          <h1 className="text-blue-300 text-[52px] leading-[70px]">
-            Strengthening Corrections,
-            <br />
-            <span className="text-blue-200">Enhancing Communities</span>
-          </h1>
-          {page.heroSubTitle && (
-            <p className="body-md text-gray-100 max-w-[800px]">
-              {page.heroSubTitle}
-            </p>
-          )}
-          {page.heroAction && (
-            <LinkButton className="w-fit" field={page.heroAction}>
-              {page.heroAction.text}
-            </LinkButton>
-          )}
+        <div className="flex gap-8 pt-12 items-start px-19">
+          <div className="gap-6 flex flex-col w-1/2">
+            <h1 className="text-blue-300 text-[52px] leading-[70px]">
+              Strengthening Corrections,
+              <br />
+              <span className="text-blue-200">Enhancing Communities</span>
+            </h1>
+            {page.heroSubTitle && (
+              <p className="body-md text-gray-100">{page.heroSubTitle}</p>
+            )}
+            {page.heroAction && (
+              <LinkButton className="w-fit" field={page.heroAction}>
+                {page.heroAction.text}
+              </LinkButton>
+            )}
+          </div>
+          <ACAFullLogoColor className="flex-1 w-full h-auto" />
         </div>
         <HeroCarousel slides={page?.heroCarouselData} />
       </section>

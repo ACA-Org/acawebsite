@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ACA from "@/app/images/aca-blue-gold.png";
 import { IconMenu } from "./components/IconMenu";
 import { MenuItemProps } from "@/slices/MenuItem";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { NavigationMenu } from "./components/NavigationMenu";
+import { ACALogoColor } from "@/logos/ACALogoColor";
+import { usePathname } from "next/navigation";
 
 const Header = ({
   data,
@@ -15,6 +16,7 @@ const Header = ({
     slices: MenuItemProps[];
   };
 }) => {
+  const pathName = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const Header = ({
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathName]);
 
   return (
     <header
@@ -39,13 +41,11 @@ const Header = ({
           href="/"
           className="flex flex-col items-start justify-center transition-all duration-300"
         >
-          <img
+          <ACALogoColor
             className={cn(
               "object-cover transition-all duration-300",
               isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
             )}
-            alt="ACA logo"
-            src={ACA.src}
           />
         </Link>
         <NavigationMenu slices={data.slices} />

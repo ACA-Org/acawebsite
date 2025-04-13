@@ -4,17 +4,14 @@ import { ContactPageDocumentData } from "../../../prismicio-types";
 import { getContactPage } from "../actions/getContactPageData";
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
-import PageRichText from "../components/PageRichText";
-import ContactForm from "@/slices/ContactForm";
-import { SliceZone } from "@prismicio/react";
-import { components } from "@/slices";
+import Map from "@/components/interactive-map";
 import { Metadata } from "next/types";
 import { asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("contactPage").catch(() => notFound());
+  const page = await client.getSingle("locationsPage").catch(() => notFound());
 
   return {
     title: page.data.meta_title,
@@ -24,7 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
 export default async function Page() {
   const headerList = await headers();
   const pathname = headerList.get("x-current-path");
@@ -35,12 +31,7 @@ export default async function Page() {
 
   if (!pageData) return notFound();
 
-  const {
-    pageContent,
-    pageTitle: title,
-    pageImage: img,
-    slices2: rightSlices,
-  } = pageData;
+  const { pageTitle: title, pageImage: img } = pageData;
 
   return (
     <div className="w-full flex flex-col">
@@ -59,28 +50,19 @@ export default async function Page() {
           )}
         </div>
         <div>
-          <div className="flex flex-row gap-16 my-12">
-            <div className="flex w-full flex-col items-start gap-12 px-8">
-              <div className="flex flex-col gap-12">
-                {pathname && <Breadcrumbs path={pathname} />}
-                {title && (
-                  <h1 className="heading-1 font-semibold z-20 text-blue-200">
-                    {title}
-                  </h1>
-                )}
-              </div>
-              <div>
-                <PageRichText content={pageContent} />
-              </div>
+          <div className="flex w-full flex-col items-start gap-12 px-8">
+            <div className="flex flex-col gap-12">
+              {pathname && <Breadcrumbs path={pathname} />}
+              {title && (
+                <h1 className="heading-1 font-semibold z-20 text-blue-200">
+                  Locations
+                </h1>
+              )}
             </div>
-            {rightSlices?.length > 0 && (
-              <div className="max-w-[380px] flex flex-col gap-4">
-                <SliceZone slices={rightSlices} components={components} />
-              </div>
-            )}
+            <div className="w-full min-h-screen">
+              <Map />
+            </div>
           </div>
-
-          <ContactForm />
         </div>
       </div>
     </div>
