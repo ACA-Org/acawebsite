@@ -6,6 +6,7 @@ import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
 import SVG from "react-inlinesvg";
+import { FilledContentRelationshipField } from "@prismicio/client";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -33,6 +34,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
               ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
                 <li key={index} className="relative">
                   <PrismicNextLink
+                    linkResolver={(i) => `/${i.uid}`}
                     field={tierOneLink}
                     onMouseEnter={() => setActiveItem(index)}
                     className="group/link body-sm text-blue-300 hover:underline hover:text-blue-200 hover:bg-transparent flex gap-2"
@@ -69,6 +71,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   <PrismicNextLink
                     key={`${i.tierTwoMenuLink.text}-${index}`}
                     field={i.tierTwoMenuLink}
+                    linkResolver={(i) => {
+                      return `/${(activeSlice.primary.tierOneLink as FilledContentRelationshipField).uid}/${i.uid}`;
+                    }}
                     className="w-max col-span-1 group"
                   >
                     <span className="flex h-9 items-center gap-3 pr-3 w-max">
@@ -102,10 +107,21 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     {activeSlice?.primary.featuredMenuLink.text}
                   </p>
                   <div className="relative w-[200px] h-[113px] overflow-clip group rounded-lg">
-                    <PrismicNextImage
+                    {/* <PrismicNextImage
                       field={activeSlice?.primary.featuredMenuImage}
                       className="w-full h-full object-cover peer"
+                    /> */}
+                    <PrismicNextImage
+                      field={activeSlice?.primary.featuredMenuImage}
+                      className="w-full h-full object-cover peer opacity-0 transition-opacity duration-300"
+                      onLoad={(e) => {
+                        const el = e.currentTarget;
+                        el.classList.remove("opacity-0");
+                        el.classList.add("opacity-100");
+                        el.nextElementSibling?.classList.add("hidden"); // hide the skeleton
+                      }}
                     />
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 bg-[#0f2d52e6] h-full transform translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0 flex items-center justify-center gap-3">
                       <span className="text-white leading-4.5 text-lg">
                         View Item

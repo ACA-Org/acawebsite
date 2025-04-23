@@ -740,6 +740,93 @@ export type NextConferenceSectionDocument<Lang extends string = string> =
     Lang
   >;
 
+type PrivacyPolicyDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Privacy Policy documents
+ */
+interface PrivacyPolicyDocumentData {
+  /**
+   * PageTitle field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *Privacy Policy*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Privacy Policy*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PrivacyPolicyDocumentDataSlicesSlice> /**
+   * Meta Title field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: privacyPolicy.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: privacyPolicy.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Privacy Policy*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Privacy Policy document from Prismic
+ *
+ * - **API ID**: `privacyPolicy`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PrivacyPolicyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PrivacyPolicyDocumentData>,
+    "privacyPolicy",
+    Lang
+  >;
+
 type TierOnePageDocumentDataSlicesSlice =
   | AccordionSlice
   | LinkTileSlice
@@ -1171,6 +1258,7 @@ export type AllDocumentTypes =
   | HomepageDocument
   | LocationsPageDocument
   | NextConferenceSectionDocument
+  | PrivacyPolicyDocument
   | TierOnePageDocument
   | TierThreePageDocument
   | TierTwoPageDocument;
@@ -2095,6 +2183,9 @@ declare module "@prismicio/client" {
       NextConferenceSectionDocument,
       NextConferenceSectionDocumentData,
       NextConferenceSectionDocumentDataSlicesSlice,
+      PrivacyPolicyDocument,
+      PrivacyPolicyDocumentData,
+      PrivacyPolicyDocumentDataSlicesSlice,
       TierOnePageDocument,
       TierOnePageDocumentData,
       TierOnePageDocumentDataSlicesSlice,

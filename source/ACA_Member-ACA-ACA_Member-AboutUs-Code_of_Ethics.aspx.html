@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+
+
+
+<html id="MainHtml" lang="en">
+<head id="ctl01_Head1"><script type="text/javascript">
+    !function(v,y,T){var S=v.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w=(D[b](),"crossOrigin"),N="POST",e="appInsightsSDK",t=T.name||"appInsights",n=((T.name||v[e])&&(v[e]=t),v[t]||function(l){var u=!1,d=!1,g={initialize:!0,queue:[],sv:"6",version:2,config:l};function m(e,t){var n={ },a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(g.sv||g.version),{time:(a=new Date).getUTCFullYear()+"-"+i(1+a.getUTCMonth())+"-"+i(a.getUTCDate())+"T"+i(a.getUTCHours())+":"+i(a.getUTCMinutes())+":"+i(a.getUTCSeconds())+"."+(a.getUTCMilliseconds()/1e3).toFixed(3).slice(2,5)+"Z",iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}};function i(e){e = "" + e;return 1===e.length?"0"+e:e}}var e,n,f=l.url||T.src;function a(e){var t,n,a,i,o,s,r,c,p;u=!0,g.queue=[],d||(d=!0,i=f,r=(c=function(){var e,t={ },n=l.connectionString;if(n)for(var a=n.split(";"),i=0;i<a.length;i++){var o=a[i].split("=");2===o.length&&(t[o[0][b]()]=o[1])}return t[C]||(t[C]="https://"+((e=(n=t.endpointsuffix)?t.location:null)?e+".":"")+"dc."+(n||"services.visualstudio.com")),t}()).instrumentationkey||l[D]||"",c=(c=c[C])?c+"/v2/track":l.endpointUrl,(p=[]).push((t="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",n=i,o=c,(s=(a=m(r,"Exception")).data).baseType="ExceptionData",s.baseData.exceptions=[{typeName:"SDKLoadFailed",message:t.replace(/\./g,"-"),hasFullStack:!1,stack:t+"\nSnippet failed to load ["+n+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+o,parsedStack:[]}],a)),p.push((s=i,t=c,(o=(n=m(r,"Message")).data).baseType="MessageData",(a=o.baseData).message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+s+")").replace(/\"/g,"")+'"',a.properties={endpoint:t},n)),i=p,r=c,JSON&&((o=v.fetch)&&!T.useXhr?o(r,{method:N,body:JSON.stringify(i),mode:"cors"}):XMLHttpRequest&&((s=new XMLHttpRequest).open(N,r),s.setRequestHeader("Content-type","application/json"),s.send(JSON.stringify(i)))))}function i(e,t){d || setTimeout(function () { !t && g.core || a() }, 500)}f&&((n=y.createElement(k)).src=f,!(o=T[w])&&""!==o||"undefined"==n[w]||(n[w]=o),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded" !== n.readyState && "complete" !== n.readyState || i(0, t)},e=n,T.ld<0?y.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){y.getElementsByTagName(k)[0].parentNode.appendChild(e)},T.ld||0));try{g.cookie = y.cookie}catch(h){ }function t(e){for(;e.length;)!function(t){g[t] = function () { var e = arguments; u || g.queue.push(function () { g[t].apply(g, e) }) }}(e.pop())}var s,r,o="track",c="TrackPage",p="TrackEvent",o=(t([o+"Event",o+"PageView",o+"Exception",o+"Trace",o+"DependencyData",o+"Metric",o+"PageViewPerformance","start"+c,"stop"+c,"start"+p,"stop"+p,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),g.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4},(l.extensionConfig||{ }).ApplicationInsightsAnalytics||{ });return!0!==l[I]&&!0!==o[I]&&(t(["_"+(s="onerror")]),r=v[s],v[s]=function(e,t,n,a,i){var o=r&&r(e,t,n,a,i);return!0!==o&&g["_"+s]({message:e,url:t,lineNumber:n,columnNumber:a,error:i,evt:v.event}),o},l.autoExceptionInstrumented=!0),g}(T.cfg));function a(){T.onInit && T.onInit(n)}(v[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({ })):a()}(window,document,{
+        src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+    crossOrigin: "anonymous",
+    onInit: function (sdk) {
+        window.appInsights.context.telemetryTrace.traceID = "648f8a17f28fa638c993c7ebf20ea655";
+        sdk.addTelemetryInitializer(function (envelope) {
+            envelope.data = envelope.data || {};
+            envelope.data.TenantId = "ACA";
+        });
+    },
+
+    cfg:
+    { // Application Insights Configuration
+     connectionString: "InstrumentationKey=96392a35-9d5a-4f7c-adcb-1a186bd1a320;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/",
+     autoTrackPageVisitTime:true,
+     enableRequestHeaderTracking: true,
+     disableCookiesUsage: true
+
+}});
+</script><meta charset="UTF-8" /><title>
+	Code of Ethics
+</title><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="/Assets/css/10-UltraWaveResponsive.css?v=638769039600000000"><!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ND0DBVWRNR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ND0DBVWRNR');
+</script>
+
+<script src="https://assets.adobedtm.com/175f7caa2b90/a39ecf4779a2/launch-f1ab340a6d82.min.js" async></script><link rel="shortcut icon" href="/images/aca_icons/aca logo sept. 2024/2024 aca_symbol_rgb.png" />
+<link rel="apple-touch-icon-precomposed" href="/images/aca_icons/aca logo sept. 2024/2024 aca_symbol_rgb.png" />
+<link rel="canonical" href="https://www.aca.org/ACA_Member/ACA/ACA_Member/AboutUs/Code_of_Ethics.aspx" />
+
+
+<script type="text/javascript">
+//Do not place any JavaScript above this line
+//<![CDATA[
+var gDocumentTitle = document.title, gPostBackFormObject = null, gPostBackFormProcessSubmit = true, gWindowOnLoad = [], gWebRoot ='', gWebSiteRoot ='https://aca.org', gPageTheme ='ACA_Austin_Responsive', gWebsiteKey ='139f6b09-e150-4c56-9c66-284b92f21e51', gHKey ='61577ed2-c0c3-4529-bc01-36a248f79eba',gIsPostBack=false,gDefaultConfirmMessage='Continue without saving changes?',gIsEasyEditEnabled=false,gMasterPage='/templates/masterpages/cities_responsive.master',gCurrentCultureCode='en-US';if(gWebsiteKey!=='fbdf17a3-cae7-4943-b1eb-71b9c0dd65d2'&&gWebsiteKey!=='fad2fd17-7e27-4c96-babe-3291ecde4822'){gIsEasyEditEnabled=false; } 
+!function (n) { n.Modernizr = { mq: function () { sessionStorage.getItem("modernizrDeprecated") || (console.warn("Asi: Modernizr has been deprecated."), sessionStorage.setItem("modernizrDeprecated", "true")) } } }(window);
+//]]>
+</script>
+<link href="../../../../App_Themes/ACA_Austin_Responsive/99-Austin_Responsive.css" type="text/css" rel="stylesheet" /><link href="../../../../App_Themes/ACA_Austin_Responsive/ZZjc.css" type="text/css" rel="stylesheet" /><script src="/AsiCommon/Scripts/Jquery/Jquery.min.js" type="text/javascript" ></script><script src="/AsiCommon/Scripts/Jquery/jquery-migrate.min.js" type="text/javascript" ></script><script src="/AsiCommon/Scripts/Jquery/jquery-ui.min.js" type="text/javascript" ></script><style type="text/css">html body #masterContentArea iFrame
+{
+   max-width:100%!important;
+}
+
+img { max-width: 100%;
+height: auto !important;}</style><link href="/Telerik.Web.UI.WebResource.axd?d=PMrIT5dOWaVYIcpFWUE4nCdPAHWSTT0s-GQFZJ-_48Idp7mZN2v7XJ8SRHSsaP6w0v18afbvgJssqHb6hksnYACTrUWjuiFhRdJfRrV-HeqJJRdb8K8OFRwtHwtTgB5v0&amp;t=638628063619626917&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bTelerik.Web.UI%2c+Version%3d2024.3.805.462%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3a169c7ca7-1df1-4370-a5b9-ee71a36cb3f0%3ad7e35272%3a505983de%3aaac68f9%3a92753c09%3bTelerik.Web.UI.Skins%2c+Version%3d2024.3.805.462%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3af0e9e05d-4727-4169-8c0f-7a638a136e64%3ad19c3573" type="text/css" rel="stylesheet" /><meta property="og:title" content="Code of Ethics" /></head>
+<body id="MainBody">
+    
+    <a href="#ctl01_ContentPanel" class="screen-reader-text show-on-focus">Skip to main content</a>
+    <form method="post" action="/ACA_Member/ACA/ACA_Member/AboutUs/Code_of_Ethics.aspx?hkey=61577ed2-c0c3-4529-bc01-36a248f79eba" id="aspnetForm" novalidate="">
+<div class="aspNetHidden">
+<input type="hidden" name="__WPPS" id="__WPPS" value="s" />
+<input type="hidden" name="__CTRLKEY" id="__CTRLKEY" value="" />
+<input type="hidden" name="__SHIFTKEY" id="__SHIFTKEY" value="" />
+<input type="hidden" name="ctl01_ScriptManager1_TSM" id="ctl01_ScriptManager1_TSM" value="" />
+<input type="hidden" name="ctl01_StyleSheetManager1_TSSM" id="ctl01_StyleSheetManager1_TSSM" value="" />
+<input type="hidden" name="PageInstanceKey" id="PageInstanceKey" value="9d864e8a-3e84-4263-8329-a4f48ab7e123" />
+<input type="hidden" name="__RequestVerificationToken" id="__RequestVerificationToken" value="4VXZ1THbvfqGUXuvjwfQL-YJA1rUFUDVNcVF1vnXgG8MNcLeJVbH4uOWiyzeq8dAIzf6TIT2tOYJuYM8O96u571E831rCHfL5iy3YhQnKq81" />
+<input type="hidden" name="TemplateUserMessagesID" id="TemplateUserMessagesID" value="ctl01_TemplateUserMessages_ctl00_Messages" />
+<input type="hidden" name="PageIsDirty" id="PageIsDirty" value="false" />
+<input type="hidden" name="IsControlPostBack" id="IsControlPostBack" value="1" />
+<input type="hidden" name="NavMenuClientID" id="NavMenuClientID" value="ctl01_Primary_NavMenu" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="4QV2Y1M1X3ZVAi8hYXalUp6tPUGF9wZU366qUpa8YrH/HBvJP5Vt1AFmL1FtRY1pcNaBA/9VAml12B2ZVY/Q2uF3OK+KKawHGyUBJaae6kqIA8YegsA/43xfBAkyiwAy4aFXByx4qbKtWks2kFbLFRz75jjE446lwPpIflX04IGItJ/oxqP8KvZ6QP1VXOEC06VkyaFX5IU3nrHVwSG+SjNPA3lO06gW+yRnXOPbxwRXo4gquUZsRQKUoaEEU8zlzNRuaxcCU06bcOBm7R8gK8xNdGsyHtF6MYj0C38QcGN3JoWx0YymcoiaWbQO7W2eSGiY81w7kry49gfDx07Cn7b6uFXlBLvQ5VIYyK6QPABPOBAP6eY2gn0PnguQ4Dng2zD3V1u39q6LFpsYz6lTRhX98UCnrhGmlc0Bch+0qq2a9KOvDzg/XZAcNqfqDiEyiD0WMAh+UwZXI3MXPunnBg==" />
+</div>
+
+
+<script src="/ScriptResource.axd?d=xtDSkLnUefsDkXzy1V9OGQdY47xishJ4TgjcNdpUPlbMIWzQVJ-GfnrSbNqvqYFMMvxqFNE9goraq562BXAZ3-CTLnYThnl9PNao2I_XpB2xtI6wgwSsqU2Y0JzopELTInsrVJDOGDVAad-9KP_NhA2&amp;t=278a62a3" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function CopyMoveContentItem_Callback(dialogWindow)
+{
+    if (!dialogWindow.result) return;
+    eval(dialogWindow.Argument.replace('[[RESULT]]',dialogWindow.result));
+}
+//]]>
+</script>
+
+<script src="/Telerik.Web.UI.WebResource.axd?_TSM_HiddenField_=ctl01_ScriptManager1_TSM&amp;compress=1&amp;_TSM_CombinedScripts_=%3b%3bAjaxControlToolkit%3aen-US%3a0c8c847b-b611-49a7-8e75-2196aa6e72fa%3aea597d4b%3ab25378d2%3bTelerik.Web.UI%2c+Version%3d2024.3.805.462%2c+Culture%3dneutral%2c+PublicKeyToken%3d121fae78165ba3d4%3aen-US%3a169c7ca7-1df1-4370-a5b9-ee71a36cb3f0%3a16e4e7cd%3a33715776%3af7645509%3a24ee1bba%3ae330518b%3a2003d0b8%3ac128760b%3a1e771326%3a88144a7a%3ac8618e41%3a1a73651d%3a16d8629e%3af46195d3%3ae524c98b%3aed16cbdc%3a19620875%3a874f8ea2%3ab2e06756%3a92fe8ea0%3afa31b949%3a4877f69a%3a490a9d4e%3abd8f85e4" type="text/javascript"></script>
+<script src="/AsiCommon/Scripts/Asi.js?v=-951759873" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var PageMethods = function() {
+PageMethods.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+PageMethods.prototype = {
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return PageMethods._staticInstance.get_path();},
+GetActionLink:function(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetActionLink',false,{action:action,templateType:templateType,docType:docType,hierarchyKey:hierarchyKey,documentVersionKey:documentVersionKey,folderHierarchyKey:folderHierarchyKey,itemCount:itemCount,closeWindowOnCommit:closeWindowOnCommit,websiteKey:websiteKey,pageInstanceKey:pageInstanceKey},succeededCallback,failedCallback,userContext); },
+GetWindowProperties:function(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetWindowProperties',false,{action:action,templateType:templateType,docType:docType,hierarchyKey:hierarchyKey,documentVersionKey:documentVersionKey,folderHierarchyKey:folderHierarchyKey,itemCount:itemCount,closeWindowOnCommit:closeWindowOnCommit,websiteKey:websiteKey,pageInstanceKey:pageInstanceKey},succeededCallback,failedCallback,userContext); },
+GetAddressCompletionList:function(prefixText,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetAddressCompletionList',false,{prefixText:prefixText},succeededCallback,failedCallback,userContext); },
+CheckForPasteConflict:function(selectedKeys,targetHierarchyKey,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CheckForPasteConflict',false,{selectedKeys:selectedKeys,targetHierarchyKey:targetHierarchyKey},succeededCallback,failedCallback,userContext); }}
+PageMethods.registerClass('PageMethods',Sys.Net.WebServiceProxy);
+PageMethods._staticInstance = new PageMethods();
+PageMethods.set_path = function(value) { PageMethods._staticInstance.set_path(value); }
+PageMethods.get_path = function() { return PageMethods._staticInstance.get_path(); }
+PageMethods.set_timeout = function(value) { PageMethods._staticInstance.set_timeout(value); }
+PageMethods.get_timeout = function() { return PageMethods._staticInstance.get_timeout(); }
+PageMethods.set_defaultUserContext = function(value) { PageMethods._staticInstance.set_defaultUserContext(value); }
+PageMethods.get_defaultUserContext = function() { return PageMethods._staticInstance.get_defaultUserContext(); }
+PageMethods.set_defaultSucceededCallback = function(value) { PageMethods._staticInstance.set_defaultSucceededCallback(value); }
+PageMethods.get_defaultSucceededCallback = function() { return PageMethods._staticInstance.get_defaultSucceededCallback(); }
+PageMethods.set_defaultFailedCallback = function(value) { PageMethods._staticInstance.set_defaultFailedCallback(value); }
+PageMethods.get_defaultFailedCallback = function() { return PageMethods._staticInstance.get_defaultFailedCallback(); }
+PageMethods.set_enableJsonp = function(value) { PageMethods._staticInstance.set_enableJsonp(value); }
+PageMethods.get_enableJsonp = function() { return PageMethods._staticInstance.get_enableJsonp(); }
+PageMethods.set_jsonpCallbackParameter = function(value) { PageMethods._staticInstance.set_jsonpCallbackParameter(value); }
+PageMethods.get_jsonpCallbackParameter = function() { return PageMethods._staticInstance.get_jsonpCallbackParameter(); }
+PageMethods.set_path("Code_of_Ethics.aspx");
+PageMethods.GetActionLink= function(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetActionLink(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,onSuccess,onFailed,userContext); }
+PageMethods.GetWindowProperties= function(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetWindowProperties(action,templateType,docType,hierarchyKey,documentVersionKey,folderHierarchyKey,itemCount,closeWindowOnCommit,websiteKey,pageInstanceKey,onSuccess,onFailed,userContext); }
+PageMethods.GetAddressCompletionList= function(prefixText,onSuccess,onFailed,userContext) {PageMethods._staticInstance.GetAddressCompletionList(prefixText,onSuccess,onFailed,userContext); }
+PageMethods.CheckForPasteConflict= function(selectedKeys,targetHierarchyKey,onSuccess,onFailed,userContext) {PageMethods._staticInstance.CheckForPasteConflict(selectedKeys,targetHierarchyKey,onSuccess,onFailed,userContext); }
+var gtc = Sys.Net.WebServiceProxy._generateTypedConstructor;
+Type.registerNamespace('Asi.Web.UI.Common.BSA');
+if (typeof(Asi.Web.UI.Common.BSA.WindowProperties) === 'undefined') {
+Asi.Web.UI.Common.BSA.WindowProperties=gtc("Asi.Web.UI.Common.BSA.WindowProperties");
+Asi.Web.UI.Common.BSA.WindowProperties.registerClass('Asi.Web.UI.Common.BSA.WindowProperties');
+}
+Type.registerNamespace('Asi.Web.UI');
+if (typeof(Asi.Web.UI.PageOperation) === 'undefined') {
+Asi.Web.UI.PageOperation = function() { throw Error.invalidOperation(); }
+Asi.Web.UI.PageOperation.prototype = {None: 0,Edit: 1,New: 2,Execute: 3,Select: 4,SelectAndReturnValue: 5,Delete: 6,Purge: 7,Import: 8,Export: 9,Publish: 10,Versions: 11,Refresh: 12,Cut: 13,Copy: 14,Paste: 15,Undo: 16,SelectAll: 17,Search: 18,Preview: 19,Submit: 20,RequestDelete: 21,PurgeAll: 22,Download: 23}
+Asi.Web.UI.PageOperation.registerEnum('Asi.Web.UI.PageOperation', true);
+}
+if (typeof(Asi.Web.UI.TemplateType) === 'undefined') {
+Asi.Web.UI.TemplateType = function() { throw Error.invalidOperation(); }
+Asi.Web.UI.TemplateType.prototype = {I: 0,D: 1,P: 2,E: 3,T: 4,F: 5,A: 6}
+Asi.Web.UI.TemplateType.registerEnum('Asi.Web.UI.TemplateType', true);
+}
+//]]>
+</script>
+<object hidden type='application/json'><param name='__ClientContext' id='__ClientContext' value='{"baseUrl":"/","isAnonymous":true,"tenantId":"ACA","loggedInPartyId":"10751225","selectedPartyId":"10751225","websiteRoot":"https://aca.org/","virtualDir":"","appTimeZoneOffset":-14400000.0,"cookieConsent":2}'></object>
+        <input type="hidden" name="ctl01$lastClickedElementId" id="lastClickedElementId" />
+        <input type="hidden" name="ctl01$ScriptManager1" id="ctl01_ScriptManager1" />
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.setServerId("ctl01_ScriptManager1", "ctl01$ScriptManager1");
+Sys.Application._enableHistoryInScriptManager();
+//]]>
+</script>
+
+        <!-- This control will display the progress image when a page load activity is taking a while -->
+        <div id="ctl01_TemplateFillLoadingPanel" style="display:none;">
+	
+                <div class="NotPrinted ProgressDiv" id="FillProgressDiv">
+                    <span id="ctl01_LoadingLabel" translate="yes">Loading</span> 
+                    <img id="ctl01_ProgressImage2" src="/images/ImageLibrary/loading.gif" alt="Loading" />
+                </div>
+            
+</div>
+
+        <div id="ctl01_masterWrapper" class="wrapper">
+            <header id="hd" class="header ClearFix navbar" data-height-offset="true">
+                <div class="header-top-container">
+                    <div class="header-container">
+                        <div id="masterLogoArea" class="header-logo-container">
+                            <!-- Logo -->
+                            <div id="ste_container_HeaderLogoSpan" class="ContentItemContainer"><div class="home_logo_wrap">
+<a href="https://aca.org"><img src="/images/aca_icons/ACA%20Logo%20Sept.%202024/2024%20ACA%20Logo_Tagline_REV.png" style="width: 386px; height: 188px;"></a>
+</div></div><div class="ContentRecordPageButtonPanel">
+
+</div>
+                        </div>
+                        <!-- Auxiliary area -->
+                        <div class="navbar-header nav-auxiliary" id="auxiliary-container" role="navigation" aria-label="utility">
+                            <div class="auth-link-container-sm" data-set="auth-link"></div>
+                            
+                            <ul class='NavigationUnorderedList'><li id="ctl01_Auxiliary_Auxiliary_rptWrapper_Auxiliary_rptWrapper_rpt_ctl01_NavigationListItem" class="NavigationListItem"><a id="ctl01_Auxiliary_Auxiliary_rptWrapper_Auxiliary_rptWrapper_rpt_ctl01_NavigationLink" class="NavigationLink" onClick="MenuLI_OnClick(&#39;/ACA_Member/ACA/ACA_Member/Cart_new.aspx?hkey=d47406ec-e41a-4c9d-91ce-8710dfbbeb38&#39;)" href="/ACA_Member/ACA/ACA_Member/Cart_new.aspx?hkey=d47406ec-e41a-4c9d-91ce-8710dfbbeb38"><span class="nav-text" translate="yes">Cart </span><span><span data-cartlink='y' class="cartEmpty"><span class="cartSprite"></span></span></span></a></li></ul>
+                            <div id="masterSocialNetworking" class="header-social">
+                                <div id="ste_container_SocialNetworking" class="ContentItemContainer"><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'ar,es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-13069975-1'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="google_translate_element"></div>
+<a href="https://twitter.com/ACAinfo" class=""><img src="/images/Sarah Castillo Test/Icons-02.png" style="width: 24px; height: 33px;"></a><a href="https://www.facebook.com/AmericanCorrectionalAssociation/" class=""><img src="/images/Sarah Castillo Test/Icons-03.png" style="width: 24px; height: 33px;"></a><a href="https://www.linkedin.com/company/american-correctional-association/mycompany/?viewAsMember=true" class=""><img src="/images/Sarah Castillo Test/Icons-04.png" style="width: 24px; height: 33px;"></a><a href="https://www.instagram.com/amercorrectionalassoc/" class=""><img src="/images/Sarah Castillo Test/Icons-06.png" style="width: 24px; height: 33px;"></a><a href="https://www.youtube.com/@AmericanCorrection" class=""><img src="/images/Sarah Castillo Test/Icons-07.png" style="width: 24px; height: 33px;"></a><a href="https://www.threads.net/@amercorrectionalassoc" class=""><img src="/images/Sarah Castillo Test/Icons-08.png" style="width: 24px; height: 33px;"></a></div><div class="ContentRecordPageButtonPanel">
+
+</div>
+                            </div>
+                            <!-- Buttons to toggle the search bar and primary navigation on xs screens -->
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#search-collapse" data-parent=".navbar">
+                                <span class="sr-only">Toggle search</span>
+                                <span class="icon-search"></span>
+                            </button>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" data-parent=".navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="search-container-sm" data-set="searchbar"></div>
+                            <div>
+                                
+                            </div>
+                            <div class="ste-section">
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.header-container -->
+                </div>
+                <!-- /.header-top-container -->
+                <div class="header-bottom-container">
+                    <div class="header-container">
+                        <div class="collapse navbar-collapse" id="search-collapse">
+                            <div class="search-container" data-set="searchbar">
+                                
+                                
+                                <div class="header-search">
+                                    <div id="SimpleSearchBlock" role="search" class="SimpleSearchBlock"><label for="ctl01_SearchField_SearchTerms" id="ctl01_SearchField_Prompt" class="screen-reader-text" translate="yes">Keyword Search</label><input name="ctl01$SearchField$SearchTerms" type="text" value="Keyword Search" id="ctl01_SearchField_SearchTerms" class="search-field Watermarked" onfocus="SimpleSearchField_OnFocus(&#39;ctl01_SearchField_SearchTerms&#39;, ctl01_SearchField_SearchTermsProperties);" onblur="SimpleSearchField_OnBlur(&#39;ctl01_SearchField_SearchTerms&#39;, ctl01_SearchField_SearchTermsProperties);" onkeypress="return clickButton(event,&#39;ctl01_SearchField_GoSearch&#39;);" translate="yes" /><input type="button" name="ctl01$SearchField$GoSearch" value="Go" onclick="SimpleSearchField_ExecuteSearch(&#39;ctl01_SearchField_SearchTerms&#39;, ctl01_SearchField_SearchTermsProperties); return cancelEvent();__doPostBack(&#39;ctl01$SearchField$GoSearch&#39;,&#39;&#39;)" id="ctl01_SearchField_GoSearch" class="header-search-submit TextButton" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav class="collapse navbar-collapse nav-primary" id="navbar-collapse" aria-label="primary">
+                            <div class="auth-link-container" data-set="auth-link">
+                                
+                                
+                                <a id="ctl01_LoginStatus1" accesskey="l" class="auth-link" href="javascript:__doPostBack(&#39;ctl01$LoginStatus1$ctl02&#39;,&#39;&#39;)">Sign In</a>
+                            </div>
+                            <!-- Primary navigation -->
+                            <nav id="ctl01_Primary_NavWrapper" aria-label="primary">
+    <div tabindex="0" id="ctl01_Primary_NavMenu" class="RadMenu RadMenu_Austin  MainMenu MegaDropDownMenuOuter rmResponsive" Translate="Yes" PerspectiveId="c93a5f1b-593f-4411-a8a6-e19bdd99db21" NavigationArea="1" MaxDataBindDepth="3" style="z-index:2999;">
+	<!-- 2024.3.805.462 --><input class="rmRootGroup rmToggleHandles rmHorizontal" id="ctl01_Primary_NavMenu_ClientState" name="ctl01_Primary_NavMenu_ClientState" type="hidden" />
+</div> 
+</nav>
+                        </nav>
+                    </div>
+                    <!-- /.header-container -->
+                </div>
+                <!-- /.header-bottom-container -->
+            </header>
+            <!-- /.header -->
+
+            
+            <div id="masterContentArea" class="container">
+                <!-- Group Breadcrumbs, Proxy and Page Tasks so they can be controlled together -->
+                <div id="masterReferenceArea" class="breadcrumb-obo-container ClearFix" data-height-offset="true">
+                    <!-- This control will display the currently applicable Breadcrumb Navigation (if any) -->
+                    <div id="masterMainBreadcrumb" data-height-offset="true" ></div>
+                    
+                    <div class="obo-container">
+                        
+                    </div>
+                </div>
+
+                <!-- This panel contains the Main content area for a page -->
+                <a id="contentstart" tabindex="-1"></a>
+                <div id="ctl01_ContentPanel" role="main" class="body-container">
+	
+                    
+
+                    <div id="ctl01_UserMessagesUpdatePanel">
+		
+                            
+                            
+                        
+	</div>
+
+                    
+
+                    <div class="col-primary">
+                        
+<script type="text/javascript">
+
+</script>
+	<div id="ctl01_TemplateBody_PublishUpdatePanel">
+
+	</div><div id="ctl01_TemplateBody_WebPartManager1___Drag" style="display:none;position:absolute;z-index:32000;filter:alpha(opacity=75);">
+
+	</div>
+<div>
+	<div class="row">
+		<div class="col-sm-12">
+						<div class="ContentItemContainer">
+				<div id="WebPartZone1_Page1" class="WebPartZone ">
+
+			<div class="iMIS-WebPart">
+				<div id="ste_container_ciCodeofEthics_42a960244fc942699447e25412c35a01" class="ContentItemContainer"><div id="ctl01_TemplateBody_WebPartManager1_gwpciCodeofEthics_42a960244fc942699447e25412c35a01_ciCodeofEthics_42a960244fc942699447e25412c35a01_Panel_CodeofEthics">
+	<h1>ACA Code Of Ethics</h1>
+<br />
+<span style="font-size: 16px;"><strong>Preamble</strong><br />
+<br />
+The American correctional Association expects of its members unfailing honesty, respect for the dignity and individuality of human beings and a commitment to professional and compassionate service. To this end, we subscribe to the following principles.<br />
+<ul>
+    <li><span style="line-height: 1.231;">Members shall respect and protect the civil and legal rights of all individuals.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall treat every professional situation with concern for the welfare of the individuals involved and with no intent to personal gain.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall maintain relationships with colleagues to promote mutual respect within the profession and improve the quality of service.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall make public criticism of their colleagues or their agencies only when warranted, verifiable, and constructive.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall respect the importance of all disciplines within the criminal justice system and work to improve cooperation with each segment.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall honor the public's right to information and share information with the public to the extent permitted by law subject to individuals' right to privacy.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall respect and protect the right of the public to be safeguarded from criminal activity.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall refrain from using their positions to secure personal privileges or advantages.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall refrain from allowing personal interest to impair objectivity in the performance of duty while acting in an official capacity.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall refrain from entering into any formal or informal activity or agreement which presents a conflict of interest or is inconsistent with the conscientious performance of duties.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall refrain from accepting any gifts, services, or favors that is or appears to be improper or implies an obligation inconsistent with the free and objective exercise of professional duties.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall clearly differentiate between personal views/statements and views/statements/positions made on behalf of the agency or Association.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall report to appropriate authorities any corrupt or unethical behaviors in which there is sufficient evidence to justify review.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall refrain from discriminating against any individual because of race, gender, creed, national origin, religious affiliation, age, disability, or any other type of prohibited discrimination.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall preserve the integrity of private information; they shall refrain from seeking information on individuals beyond that which is necessary to implement responsibilities and perform their duties; members shall refrain from revealing nonpublic information unless expressly authorized to do so.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall make all appointments, promotions, and dismissals in accordance with established civil service rules, applicable contract agreements, and individual merit, rather than furtherance of personal interests.</span></li>
+    <br />
+    <li><span style="line-height: 1.231;">Members shall respect, promote, and contribute to a work place that is safe, healthy, and free of harassment in any form.</span></li>
+</ul>
+<br />
+<hr />
+<em>Adopted by the Board of Governors and Delegate<span class="Apple-tab-span" style="white-space: pre;">	</span>Assembly in August 1994.</em></span>
+</div></div>
+			</div>
+			</div>
+		
+			<div id="ctl01_TemplateBody_ContentPage1_downloadContainer" style="display:none;">
+			<input type="hidden" name="ctl01$TemplateBody$ContentPage1$HiddenDownloadPathField" id="ctl01_TemplateBody_ContentPage1_HiddenDownloadPathField" /><input type="submit" name="ctl01$TemplateBody$ContentPage1$downloadButton" value="Download Path" id="ctl01_TemplateBody_ContentPage1_downloadButton" style="display:none" />
+		</div></div>
+
+		</div>
+	</div>
+</div>	
+
+
+    
+    
+
+
+                        
+                        <div id="ctl01_ButtonPanel" class="ButtonPanel NotPrinted">
+		
+                            <div id="masterMainButtonBar" class="CommandBar" data-height-offset="true">
+                                <span id="ctl01_ButtonBar"></span>
+                                
+                                
+                            </div>
+                        
+	</div>
+                        <!-- /.ButtonPanel -->
+                    </div>
+                    <!-- /.col-primary -->
+
+                    <!-- Sub Navigation -->
+                    <div id="ctl01_SubNavPanel" class="col-secondary cs-right d-none NotPrinted">
+		
+                        
+                            <nav id="ctl01_PageSubNavigationPlaceHolder_Secondary_NavWrapper" class="sub-nav" aria-labelledby="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavHead">
+    <div id="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavHead" class="sub-nav-head" translate="yes">
+			
+        
+    
+		</div>
+    <div id="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavPanel" class="sub-nav-body" translate="yes">
+			
+        <div id="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree" class="RadTreeView RadTreeView_Austin" NavigateOnClick="true" PerspectiveId="c93a5f1b-593f-4411-a8a6-e19bdd99db21" NavigationArea="2" StartingNodeOffset="1" WrapperContainerId="ctl01_masterWrapper" SubNavTitleContainerId="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavHead">
+				<input id="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree_ClientState" name="ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree_ClientState" type="hidden" />
+			</div>
+    
+		</div> 
+</nav>
+                        
+                        
+                        
+                    
+	</div>
+                    <!-- /.sub-nav-container -->
+
+                
+</div>
+                <!-- /.body-container -->
+            </div>
+
+            <footer id="ft" class="footer">
+                <div class="footer-content">
+                    <div class="container">
+                           <div>
+	<div class="row">
+    <div class="col-sm-3">
+<div id="ctl01_FooterCommunications_Zone1PlaceHolder">
+	<div id="ste_container_SocialNetworking" class="ContentItemContainer"><style>
+    .icon-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    }
+    .icon-container a {
+    flex: 1;
+    text-align: center;
+    }
+    .icon-container img {
+    width: 100%;
+    max-width: 96px; /* Maximum size for the icons */
+    }
+</style>
+<div class="icon-container">
+<a href="https://twitter.com/ACAinfo"><img src="/images/Sarah Castillo Test/Icons-02.png" alt="Twitter"></a>
+<a href="https://www.facebook.com/AmericanCorrectionalAssociation/"><img src="/images/Sarah Castillo Test/Icons-03.png" alt="Facebook"></a>
+<a href="https://www.linkedin.com/company/american-correctional-association/mycompany/?viewAsMember=true"><img src="/images/Sarah Castillo Test/Icons-04.png" alt="LinkedIn"></a>
+<a href="https://www.instagram.com/amercorrectionalassoc/"><img src="/images/Sarah Castillo Test/Icons-06.png" alt="Instagram"></a>
+<a href="https://www.youtube.com/@AmericanCorrection"><img src="/images/Sarah Castillo Test/Icons-07.png" alt="YouTube"></a>
+<a href="https://www.threads.net/@amercorrectionalassoc"><img src="/images/Sarah Castillo Test/Icons-08.png" alt="Threads"></a>
+</div></div><div id="ste_container_FooterCommunications" class="ContentItemContainer"></div>
+</div>    </div>
+    <div class="col-sm-9">
+<div id="ctl01_FooterCommunications_Zone2PlaceHolder">
+	<div id="ste_container_NewContentHtml" class="ContentItemContainer"><h4><span style="line-height: 1.42857; font-family: &quot;Segoe UI&quot;; font-size: 16px;">American Correctional Association</span></h4>
+<p><span font-size:="16px;&quot;" style="font-family: &quot;Segoe UI&quot;;">
+206 N. Washington Street &nbsp;| &nbsp;Suite 200 &nbsp;| &nbsp;Alexandria, VA 22314<br>
+Phone: (703) 224-0000 &nbsp;| &nbsp;Fax: (703) 224-0010</span></p>
+<p><span font-size:="16px;&quot;" style="font-family: &quot;Segoe UI&quot;;">&nbsp;</span></p>
+<h4 style="color: #ffffff;">Have Questions Regarding Membership? Call the Membership Support Center&nbsp;at 703-224-0115</h4></div>
+</div>    </div>
+</div>
+
+	</div>
+<div class="ContentRecordPageButtonPanel">
+
+</div>
+                    </div>
+                </div>
+                <!-- /.footer-content -->
+
+                <div class="footer-nav-copyright">
+                    <div class="container" role="navigation" aria-label="footer">
+                        <!-- The following control will display the applicable Footer Navigation (if any) -->
+                        <ul class='NavigationUnorderedList'><li id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl01_NavigationListItem" class="NavigationListItem"><a id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl01_NavigationLink" class="NavigationLink" onClick="MenuLI_OnClick(&#39;/ACA_Member/ACA/ACA_Member/Job_Bank/JobBank_Home.aspx?hkey=087d4534-38f3-43ec-9c52-98be89eb8af7&#39;)" href="/ACA_Member/ACA/ACA_Member/Job_Bank/JobBank_Home.aspx?hkey=087d4534-38f3-43ec-9c52-98be89eb8af7"><span class="nav-text" translate="yes">Job Bank</span></a></li><li id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl02_NavigationListItem" class="NavigationListItem"><a id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl02_NavigationLink" class="NavigationLink" onClick="MenuLI_OnClick(&#39;http://www.aca.org/aca_prod_imis/docs/needhelp2019.pdf&#39;)" href="http://www.aca.org/aca_prod_imis/docs/needhelp2019.pdf" target="_blank"><span class="nav-text" translate="yes">Need Help?</span></a></li><li id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl03_NavigationListItem" class="NavigationListItem"><a id="ctl01_Foot_Foot_rptWrapper_Foot_rptWrapper_rpt_ctl03_NavigationLink" class="NavigationLink" onClick="MenuLI_OnClick(&#39;/ACA_Member/ACA/ACA_Member/AboutUs/ContactUs.aspx?hkey=e4ee84c2-3589-458d-baf1-c8251932f24e&#39;)" href="/ACA_Member/ACA/ACA_Member/AboutUs/ContactUs.aspx?hkey=e4ee84c2-3589-458d-baf1-c8251932f24e"><span class="nav-text" translate="yes">Contact Us</span></a></li></ul>
+                        <div class="footer-copyright">
+                            <div id="ste_container_FooterCopyright" class="ContentItemContainer"><p style="text-align: center;"><span><strong>Copyright © American Correctional Association</strong><br>
+<span style="line-height: 1.4em;"><a href="/common/Uploaded files/WebPageFIles/TermsConditions.pdf" class="" target="_blank">Terms and Conditions</a>&nbsp;&nbsp;<span class="Apple-tab-span" style="white-space: pre;"></span><a href="/Staff_Site_Content/Privacy_Policy.aspx" class="">Privacy Policy</a></span></span><br>
+<span id="siteseal">
+<script async="" type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=y4y97PbAvbO9d1sYqdJByr6RjiWzcbSNoEj4zI40Y9UJ1c3jyCifiqt44K0m"></script>
+</span></p></div><div class="ContentRecordPageButtonPanel">
+
+</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.footer-nav-copyright -->
+            </footer>
+            <!-- /.footer -->
+        </div>
+        <!-- /.wrapper -->
+    <div id="ctl01_RadAjaxManager1SU">
+	<span id="ctl01_RadAjaxManager1" style="display:none;"></span>
+</div><div id="ctl01_WindowManager1" style="display:none;">
+	<div id="ctl01_GenericWindow" style="display:none;">
+		<div id="ctl01_GenericWindow_C" style="display:none;">
+
+		</div><input id="ctl01_GenericWindow_ClientState" name="ctl01_GenericWindow_ClientState" type="hidden" />
+	</div><div id="ctl01_ObjectBrowser" style="display:none;">
+		<div id="ctl01_ObjectBrowser_C" style="display:none;">
+
+		</div><input id="ctl01_ObjectBrowser_ClientState" name="ctl01_ObjectBrowser_ClientState" type="hidden" />
+	</div><div id="ctl01_ObjectBrowserDialog" style="display:none;">
+		<div id="ctl01_ObjectBrowserDialog_C" style="display:none;">
+
+		</div><input id="ctl01_ObjectBrowserDialog_ClientState" name="ctl01_ObjectBrowserDialog_ClientState" type="hidden" />
+	</div><div id="ctl01_WindowManager1_alerttemplate" style="display:none;">
+        <div class="rwDialogPopup radalert">
+            <div class="rwDialogText">
+            {1}
+            </div>
+
+            <div>
+                <a  onclick="$find('{0}').close(true);"
+                class="rwPopupButton" href="javascript:void(0);">
+                    <span class="rwOuterSpan">
+                        <span class="rwInnerSpan">##LOC[OK]##</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        </div><div id="ctl01_WindowManager1_prompttemplate" style="display:none;">
+         <div class="rwDialogPopup radprompt">
+                <div class="rwDialogText">
+                {1}
+                </div>
+                <div>
+                    <script type="text/javascript">
+                    function RadWindowprompt_detectenter(id, ev, input)
+                    {
+                        if (!ev) ev = window.event;
+                        if (ev.keyCode == 13)
+                        {
+                            var but = input.parentNode.parentNode.getElementsByTagName("A")[0];
+                            if (but)
+                            {
+                                if (but.click) but.click();
+                                else if (but.onclick)
+                                {
+                                    but.focus(); var click = but.onclick; but.onclick = null; if (click) click.call(but);
+                                }
+                            }
+                           return false;
+                        }
+                        else return true;
+                    }
+                    </script>
+                    <input title="Enter Value" onkeydown="return RadWindowprompt_detectenter('{0}', event, this);" type="text"  class="rwDialogInput" value="{2}" />
+                </div>
+                <div>
+                    <a onclick="$find('{0}').close(this.parentNode.parentNode.getElementsByTagName('input')[0].value);"
+                        class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+                    <a onclick="$find('{0}').close(null);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+                </div>
+            </div>
+        </div><div id="ctl01_WindowManager1_confirmtemplate" style="display:none;">
+        <div class="rwDialogPopup radconfirm">
+            <div class="rwDialogText">
+            {1}
+            </div>
+            <div>
+                <a onclick="$find('{0}').close(true);"  class="rwPopupButton" href="javascript:void(0);" ><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+                <a onclick="$find('{0}').close(false);" class="rwPopupButton"  href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+            </div>
+        </div>
+        </div><input id="ctl01_WindowManager1_ClientState" name="ctl01_WindowManager1_ClientState" type="hidden" />
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+
+    var gCartCount;
+    var cartDiv = $get("CartItemCount");
+    if (cartDiv != null){
+        jQuery.ajax({
+            type: "POST",
+            url: gWebRoot + "/WebMethodUtilities.aspx/GetCartItemCount",
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(result) {
+                if (result.d != '' && result.d != null) {
+                    gCartCount = result.d;
+                    if (gCartCount != null) {
+                        cartDiv.innerHTML = gCartCount;
+                    }
+                }
+            },
+            async: true
+        });
+    }
+
+    function CheckForChildren() {
+        var contentRecordPageButtonPanelHasChildren = false;
+        var contentRecordPageButtonPanel = jQuery('div.ContentRecordPageButtonPanel');
+        for (var i = 0, max = contentRecordPageButtonPanel.length; i < max; i++) {
+            if (contentRecordPageButtonPanel[i].children.length > 0) {
+                contentRecordPageButtonPanelHasChildren = true;
+                break;
+            }
+        }
+        if (!contentRecordPageButtonPanelHasChildren) {
+            jQuery("Body").addClass("TemplateAreaEasyEditOn");
+        }
+    }
+    if (gIsEasyEditEnabled)
+        CheckForChildren();  
+    //]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="608EE49C" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+if(typeof(window['ctl01_TemplateBody_ContentPage1_contentitemdisplaybasejsmanager'])==='undefined') {
+                     window['ctl01_TemplateBody_ContentPage1_contentitemdisplaybasejsmanager']=new Asi_WebRoot_AsiCommon_ContentManagement_DownloadDocument();              
+                     }if(typeof(window['ctl01_TemplateBody_ContentPage1_contentitemdisplaybasejsmanager'])!=='undefined') { window['ctl01_TemplateBody_ContentPage1_contentitemdisplaybasejsmanager'].OnLoad('#ctl01_TemplateBody_ContentPage1_downloadButton','#ctl01_TemplateBody_ContentPage1_HiddenDownloadPathField'); }__Document_Head_Init('https://aca.org/NoCookies.html', '', false);window.__TsmHiddenField = $get('ctl01_ScriptManager1_TSM');NavigationList_NavControlId = 'Auxiliary_rptWrapper';NavigationList_Init();var ctl01_SearchField_SearchTermsProperties = new SimpleSearchFieldProperties();
+ctl01_SearchField_SearchTermsProperties.WatermarkClass = 'Watermarked';
+ctl01_SearchField_SearchTermsProperties.WatermarkText = 'Keyword Search';
+ctl01_SearchField_SearchTermsProperties.SearchTarget = 'https://aca.org/Search';
+NavigationList_NavControlId = 'ctl01_Primary_NavMenu';NavigationList_Init();PageNavR_NavMenuClientID = 'ctl01_Primary_NavMenu';var __wpmExportWarning='This Web Part Page has been personalized. As a result, one or more Web Part properties may contain confidential information. Make sure the properties contain information that is safe for others to read. After exporting this Web Part, view properties in the Web Part description file (.WebPart) by using a text editor such as Microsoft Notepad.';var __wpmCloseProviderWarning='You are about to close this Web Part.  It is currently providing data to other Web Parts, and these connections will be deleted if this Web Part is closed.  To close this Web Part, click OK.  To keep this Web Part, click Cancel.';var __wpmDeleteWarning='You are about to permanently delete this Web Part.  Are you sure you want to do this?  To delete this Web Part, click OK.  To keep this Web Part, click Cancel.';NavigationList_NavControlId = 'ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree';NavigationList_Init();Telerik.Web.UI.RadTreeView._preInitialize("ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree","0");;(function() {
+                        function loadHandler() {
+                            var hf = $get('ctl01_StyleSheetManager1_TSSM');
+                            if (!hf._RSSM_init) { hf._RSSM_init = true; hf.value = ''; }
+                            hf.value += ';Telerik.Web.UI, Version=2024.3.805.462, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-US:169c7ca7-1df1-4370-a5b9-ee71a36cb3f0:d7e35272:505983de:aac68f9:92753c09;Telerik.Web.UI.Skins, Version=2024.3.805.462, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-US:f0e9e05d-4727-4169-8c0f-7a638a136e64:d19c3573';
+                            Sys.Application.remove_load(loadHandler);
+                        };
+                        Sys.Application.add_load(loadHandler);
+                    })();Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadMenu, {"_childListElementCssClass":"rmRootGroup rmToggleHandles rmHorizontal","_renderMode":2,"_skin":"Austin","attributes":{"Translate":"Yes","PerspectiveId":"c93a5f1b-593f-4411-a8a6-e19bdd99db21","NavigationArea":"1","MaxDataBindDepth":"3"},"autoScrollMinimumWidth":100,"clientStateFieldID":"ctl01_Primary_NavMenu_ClientState","collapseAnimation":"{\"duration\":450}","defaultGroupSettings":"{\"flow\":0,\"expandDirection\":2,\"offsetX\":0}","expandAnimation":"{\"duration\":450}","expandDelay":500,"itemData":[],"showToggleHandle":true}, {"itemClicking":PageNavR_OnClientItemClicking,"itemClosed":PageNavR_OnItemClosed,"itemOpened":PageNavR_OnItemOpened,"load":PageNavR_OnClientLoadHandler}, null, $get("ctl01_Primary_NavMenu"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadTreeView, {"_renderMode":2,"_showLineImages":false,"_skin":"Austin","_uniqueId":"ctl01$PageSubNavigationPlaceHolder$Secondary$SubNavigationTree","attributes":{"NavigateOnClick":"true","PerspectiveId":"c93a5f1b-593f-4411-a8a6-e19bdd99db21","NavigationArea":"2","StartingNodeOffset":"1","WrapperContainerId":"ctl01_masterWrapper","SubNavTitleContainerId":"ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavHead"},"clientStateFieldID":"ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree_ClientState","collapseAnimation":"{\"duration\":200}","expandAnimation":"{\"duration\":200}","nodeData":[],"persistLoadOnDemandNodes":false,"singleExpandPath":true}, {"load":SubNavigation_OnClientLoad,"nodeClicked":SubNavigation_OnClientNodeClicked,"nodeClicking":SubNavigation_OnClientNodeClicking}, null, $get("ctl01_PageSubNavigationPlaceHolder_Secondary_SubNavigationTree"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"AjaxStatusLoadingPanel","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl01$RadAjaxManager1","updatePanelsRenderMode":0}, null, null, $get("ctl01_RadAjaxManager1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":false,"behaviors":117,"clientStateFieldID":"ctl01_GenericWindow_ClientState","enableAriaSupport":true,"formID":"aspnetForm","height":"550px","iconUrl":"","localization":"{\"Close\":\"Close\",\"Maximize\":\"Maximize\",\"Minimize\":\"Minimize\",\"Reload\":\"Reload\",\"PinOn\":\"PinOn\",\"PinOff\":\"PinOff\",\"Restore\":\"Restore\",\"OK\":\"OK\",\"Cancel\":\"Cancel\",\"Yes\":\"Yes\",\"No\":\"No\"}","minimizeIconUrl":"","modal":true,"name":"GenericWindow","shortcuts":"[[\u0027close\u0027,\u0027Esc\u0027]]","showContentDuringLoad":false,"skin":"MetroTouch","visibleStatusbar":false,"width":"800px"}, null, null, $get("ctl01_GenericWindow"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":false,"behaviors":117,"clientStateFieldID":"ctl01_ObjectBrowser_ClientState","enableAriaSupport":true,"formID":"aspnetForm","height":"550px","iconUrl":"","localization":"{\"Close\":\"Close\",\"Maximize\":\"Maximize\",\"Minimize\":\"Minimize\",\"Reload\":\"Reload\",\"PinOn\":\"PinOn\",\"PinOff\":\"PinOff\",\"Restore\":\"Restore\",\"OK\":\"OK\",\"Cancel\":\"Cancel\",\"Yes\":\"Yes\",\"No\":\"No\"}","minimizeIconUrl":"","modal":true,"name":"ObjectBrowser","shortcuts":"[[\u0027close\u0027,\u0027Esc\u0027]]","showContentDuringLoad":false,"skin":"MetroTouch","visibleStatusbar":false,"width":"760px"}, null, null, $get("ctl01_ObjectBrowser"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindow, {"_dockMode":false,"behaviors":117,"clientStateFieldID":"ctl01_ObjectBrowserDialog_ClientState","enableAriaSupport":true,"formID":"aspnetForm","height":"400px","iconUrl":"","localization":"{\"Close\":\"Close\",\"Maximize\":\"Maximize\",\"Minimize\":\"Minimize\",\"Reload\":\"Reload\",\"PinOn\":\"PinOn\",\"PinOff\":\"PinOff\",\"Restore\":\"Restore\",\"OK\":\"OK\",\"Cancel\":\"Cancel\",\"Yes\":\"Yes\",\"No\":\"No\"}","minimizeIconUrl":"","modal":true,"name":"ObjectBrowserDialog","shortcuts":"[[\u0027close\u0027,\u0027Esc\u0027]]","showContentDuringLoad":false,"skin":"MetroTouch","visibleStatusbar":false,"width":"600px"}, null, null, $get("ctl01_ObjectBrowserDialog"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"behaviors":117,"clientStateFieldID":"ctl01_WindowManager1_ClientState","enableAriaSupport":true,"formID":"aspnetForm","iconUrl":"","localization":"{\"Close\":\"Close\",\"Maximize\":\"Maximize\",\"Minimize\":\"Minimize\",\"Reload\":\"Reload\",\"PinOn\":\"PinOn\",\"PinOff\":\"PinOff\",\"Restore\":\"Restore\",\"OK\":\"OK\",\"Cancel\":\"Cancel\",\"Yes\":\"Yes\",\"No\":\"No\"}","minimizeIconUrl":"","name":"WindowManager1","shortcuts":"[[\u0027close\u0027,\u0027Esc\u0027]]","skin":"MetroTouch","windowControls":"['ctl01_GenericWindow','ctl01_ObjectBrowser','ctl01_ObjectBrowserDialog']"}, null, {"child":"ctl01_GenericWindow"}, $get("ctl01_WindowManager1"));
+});
+//]]>
+</script>
+</form>
+    <script type="text/javascript">
+        //<![CDATA[
+        var ie6 = false;
+       
+        // adapted from bs.collapse - if the search bar is open when opening the menu, close it (and vise versa)
+        jQuery('.navbar-collapse').on('show.bs.collapse', function () {
+            var actives = jQuery('.header-container').find('> .in')
+
+            if (actives && actives.length) {
+                var hasData = actives.data('bs.collapse')
+                if (hasData && hasData.transitioning) return
+                actives.collapse('hide')
+                hasData || actives.data('bs.collapse', null)
+            }
+        })
+            
+        // Use appendAround to reposition the search bar and sign in/out links
+        // in conjunction with display styles defined in the stylesheet
+        jQuery(".header-search").appendAround();
+        jQuery(".auth-link").appendAround();
+    //]]>
+    </script>
+
+    <!--jscript from Page.ResgisterStartupScript extension is loaded here -->
+    <Div><script type="text/javascript">Sys.Application.add_load(function () {{ MasterPageBase_Init(); }});</script>
+</Div><input name="ctl01$TemplateScripts$timeoutsoonmsg" type="hidden" id="timeoutsoonmsg" value="PGgyPllvdSBhcmUgYWJvdXQgdG8gYmUgc2lnbmVkIG91dDwvaDI+DQo8cD5Zb3Ugd2lsbCBiZSBzaWduZWQgb3V0IGluIDxzdHJvbmc+W1NlY29uZHNSZW1haW5pbmddPC9zdHJvbmc+IHNlY29uZHMgZHVlIHRvIGluYWN0aXZpdHkuIFlvdXIgY2hhbmdlcyB3aWxsIG5vdCBiZSBzYXZlZC4gVG8gY29udGludWUgd29ya2luZyBvbiB0aGUgd2Vic2l0ZSwgY2xpY2sgIlN0YXkgU2lnbmVkIEluIiBiZWxvdy48L3A+" /><input name="ctl01$TemplateScripts$timeoutsoonstaysignintxt" type="hidden" id="timeoutsoonstaysignintxt" value="U3RheSBTaWduZWQgSW4=" /><input name="ctl01$TemplateScripts$timeoutsoonlogouttxt" type="hidden" id="timeoutsoonlogouttxt" value="U2lnbiBPdXQ=" /><input name="ctl01$TemplateScripts$stayLoggedInURL" type="hidden" id="stayLoggedInURL" /><input name="ctl01$TemplateScripts$logoutUrl" type="hidden" id="logoutUrl" value="aHR0cHM6Ly9hY2Eub3JnL2FzaWNvbW1vbi9jb250cm9scy9zaGFyZWQvZm9ybXNhdXRoZW50aWNhdGlvbi9sb2dpbi5hc3B4P1Nlc3Npb25UaW1lb3V0PTEmUmV0dXJuVXJsPSUyZkFDQV9NZW1iZXIlMmZBQ0ElMmZBQ0FfTWVtYmVyJTJmQWJvdXRVcyUyZkNvZGVfb2ZfRXRoaWNzLmFzcHglM2Zoa2V5JTNkNjE1NzdlZDItYzBjMy00NTI5LWJjMDEtMzZhMjQ4Zjc5ZWJh" />
+
+<!-- Bootstrap Modal -->
+<div id="BootstrapModal" class="modal fade" tabindex="-1" role="dialog" aria-label="Modal" aria-hidden="true">
+    <div id="BootstrapDocument" class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-0 m-0">
+                <iframe id="ContentFrame" class="modal-content-iframe" width="100%" height="100px" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Facebook API is loaded into here -->
+    <div id="fb-root"></div>
+
+</body>
+
+</html>

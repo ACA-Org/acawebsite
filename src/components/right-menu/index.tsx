@@ -33,23 +33,25 @@ export const RightMenu = ({
           collapsible
           className="w-full divide-y divide-blue-500/12 border-b border-blue-500/12"
         >
-          {items.map((menuItem, index) => {
-            if (!menuItem?.children || menuItem?.children.length < 1) {
-              return (
-                <RightMenuLinks
-                  key={`${menuItem.href}-${index}`}
-                  link={menuItem}
-                />
-              );
-            } else {
-              return (
-                <RightMenuAccordion
-                  key={`${menuItem.href}-${index}`}
-                  link={menuItem}
-                />
-              );
-            }
-          })}
+          {items
+            .sort((a, b) => a.label.localeCompare(b.label))
+            .map((menuItem, index) => {
+              if (!menuItem?.children || menuItem?.children.length < 1) {
+                return (
+                  <RightMenuLinks
+                    key={`${menuItem.href}-${index}`}
+                    link={menuItem}
+                  />
+                );
+              } else {
+                return (
+                  <RightMenuAccordion
+                    key={`${menuItem.href}-${index}`}
+                    link={menuItem}
+                  />
+                );
+              }
+            })}
         </Accordion>
       </div>
       <div

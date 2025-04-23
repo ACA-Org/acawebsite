@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { labelFormatter } from "@/lib/strting";
 
 interface BreadcrumbsProps {
   path: string;
@@ -48,7 +49,7 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
                 key={item.href}
                 className="flex items-center space-x-2 body-sm hover:text-foreground transition-colors font-medium text-foreground"
               >
-                {item.label}
+                {labelFormatter(item.label)}
               </li>
             );
 
@@ -60,7 +61,7 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
                   "body-sm hover:text-foreground transition-colors text-muted-foreground"
                 }
               >
-                {item.label}
+                {labelFormatter(item.label)}
               </Link>
 
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
