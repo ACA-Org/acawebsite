@@ -101,13 +101,13 @@ const navbarLinks = [
   "https://aca.org/ACA_Member/ACA/ACA_Member/Marketplace/Subscriptions.aspx?hkey=96fa3cfb-c877-4ca6-bdcd-166c54082412",
   "https://aca.org/ACA_Member/ACA/ACA_Member/Marketplace/Standards_Merchandise.aspx?hkey=dafe5b44-2c3b-4d06-80e2-1c8bf1b84831",
   "https://aca.org/ACA_Member/ACA/ACA_Member/Marketplace/ACA_Store_Videos.aspx?hkey=8535e27b-7ef0-4125-b380-18fe4c780f17",
-  "http://correctionsmarketplace.com/"
+  "http://correctionsmarketplace.com/",
 ];
 
-navbarLinks.forEach(i => {
+navbarLinks.forEach((i) => {
   const url = new URL(i);
 
-  console.log(url.pathname)
-})
+  console.log(url.pathname);
+});
 
-module.exports = { navbarLinks }
+module.exports = { navbarLinks };

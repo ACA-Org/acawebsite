@@ -32,27 +32,39 @@ export const ConferenceCarousel = ({
   }, []);
 
   return (
-    <Swiper
-      modules={[Pagination]}
-      className="w-full h-full !static"
-      containerModifierClass="static"
-      spaceBetween={1}
-      slidesPerView={3.75}
-      pagination={false}
-      style={{
-        position: "static",
-      }}
-      ref={swiperRef}
-    >
-      {slices.map((slice, index) => (
-        <SwiperSlide
-          key={`${slice.id}-${index}`}
-          className="h-full w-full flex items-center justify-center"
+    <>
+      {slices?.length && slices.length > 3 ? (
+        <Swiper
+          modules={[Pagination]}
+          className="w-full h-full !static"
+          containerModifierClass="static"
+          spaceBetween={1}
+          slidesPerView={3}
+          pagination={false}
+          style={{
+            position: "static",
+          }}
+          ref={swiperRef}
         >
-          <ConferenceCard {...slice} key={index} />
-        </SwiperSlide>
-      ))}
-      {showControls && <SlideControls className="right-19 bottom-24 z-40" />}
-    </Swiper>
+          {slices.map((slice, index) => (
+            <SwiperSlide
+              key={`${slice.id}-${index}`}
+              className="h-full w-full flex items-center justify-center"
+            >
+              <ConferenceCard {...slice} key={index} />
+            </SwiperSlide>
+          ))}
+          {showControls && (
+            <SlideControls className="right-19 bottom-24 z-40" />
+          )}
+        </Swiper>
+      ) : (
+        <div className="flex gap-6 max-md:flex-col">
+          {slices.map((slice, index) => (
+            <ConferenceCard {...slice} key={index} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
