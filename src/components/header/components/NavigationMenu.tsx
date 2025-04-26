@@ -101,27 +101,6 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                           )}
                         </span>
 
-                        <div className="flex flex-col justify-center items-start text-gray-300 w-max">
-                          <p className="group-hover:text-blue-200 transition-colors">
-                            {i.tierTwoMenuLink.text}
-                          </p>
-                          <p className="text-xs">{i.tierTwoMenuDesc}</p>
-                        </div>
-                      </span>
-                    </PrismicNextLink>
-                  ))}
-                </div>
-
-                {activeSlice?.primary.featuredMenuLink.text && (
-                  <PrismicNextLink
-                    field={activeSlice?.primary.featuredMenuLink}
-                    className="flex flex-col items-start gap-4 pl-8 group/link"
-                  >
-                    <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
-                      {activeSlice?.primary.featuredMenuLink.text}
-                    </p>
-                    <div className="relative w-[200px] h-[113px] overflow-clip group rounded-lg">
-                      {/* <PrismicNextImage
                       <div className="flex flex-col justify-center items-start text-gray-300 w-max">
                         <p className="group-hover:text-blue-200 transition-colors">
                           {i.tierTwoMenuLink.text}
