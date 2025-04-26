@@ -18,14 +18,14 @@ const eslintConfig = [
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_"
-        }
+          caughtErrorsIgnorePattern: "^_",
+        },
       ],
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/ban-ts-comment": "off",
-      "@next/next/no-img-element": "off"
-    }
+      "@next/next/no-img-element": "off",
+    },
   },
 ];
 

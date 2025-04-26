@@ -88,7 +88,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         )}
                       </span>
 
-                      <div className="flex flex-col justify-center items-start gap-1 text-gray-300 w-max">
+                      <div className="flex flex-col justify-center items-start text-gray-300 w-max">
                         <p className="group-hover:text-blue-200 transition-colors">
                           {i.tierTwoMenuLink.text}
                         </p>

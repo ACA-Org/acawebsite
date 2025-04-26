@@ -50,10 +50,7 @@
           "config": {
             "label": "SpeedBumpTheme",
             "placeholder": "",
-            "options": [
-              "light",
-              "dark"
-            ],
+            "options": ["light", "dark"],
             "default_value": "light"
           }
         },
@@ -62,10 +59,7 @@
           "config": {
             "label": "SpeedBumpLinkPosition",
             "placeholder": "",
-            "options": [
-              "bottom",
-              "right"
-            ],
+            "options": ["bottom", "right"],
             "default_value": "bottom"
           }
         }
@@ -118,10 +112,7 @@
           "config": {
             "label": "SpeedBumpTheme",
             "placeholder": "",
-            "options": [
-              "light",
-              "dark"
-            ],
+            "options": ["light", "dark"],
             "default_value": "light"
           }
         },
@@ -130,10 +121,7 @@
           "config": {
             "label": "SpeedBumpLinkPosition",
             "placeholder": "",
-            "options": [
-              "bottom",
-              "right"
-            ],
+            "options": ["bottom", "right"],
             "default_value": "bottom"
           }
         }

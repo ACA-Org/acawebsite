@@ -36,26 +36,33 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="flex flex-col items-start justify-center gap-16 pb-12 pt-24">
-        <div className="flex gap-8 pt-12 items-start px-19">
-          <div className="gap-6 flex flex-col w-1/2">
-            <h1 className="text-blue-300 text-[52px] leading-[70px]">
-              Strengthening Corrections,
-              <br />
-              <span className="text-blue-200">Enhancing Communities</span>
-            </h1>
-            {page.heroSubTitle && (
-              <p className="body-md text-gray-100">{page.heroSubTitle}</p>
-            )}
-            {page.heroAction && (
-              <LinkButton className="w-fit" field={page.heroAction}>
-                {page.heroAction.text}
-              </LinkButton>
-            )}
+      <section className="">
+        <div className="flex flex-col items-start justify-center gap-16 pb-16">
+          <div className="flex gap-8 pt-12 items-center w-full">
+            <div className="max-w-[1440px] w-full mx-auto px-4 pt-12 md:px-8 lg:pt-24">
+              <div className="flex justify-between items-center max-lg:flex-col-reverse max-lg:gap-8 max-lg:items-start">
+                <div className="gap-6 flex flex-col w-full lg:w-1/2">
+                  <h1 className="text-blue-300 text-[52px] leading-[70px]">
+                    Strengthening Corrections,
+                    <br />
+                    <span className="text-blue-200">Enhancing Communities</span>
+                  </h1>
+                  {page.heroSubTitle && (
+                    <p className="body-md text-gray-100">{page.heroSubTitle}</p>
+                  )}
+                  {page.heroAction && (
+                    <LinkButton className="w-fit" field={page.heroAction}>
+                      {page.heroAction.text}
+                    </LinkButton>
+                  )}
+                </div>
+
+                <ACAFullLogoColor className="flex-1 max-lg:w-1/2 w-full h-auto" />
+              </div>
+            </div>
           </div>
-          <ACAFullLogoColor className="flex-1 w-full h-auto" />
+          <HeroCarousel slides={page?.heroCarouselData} />
         </div>
-        <HeroCarousel slides={page?.heroCarouselData} />
       </section>
 
       {conferenceInfo && <NextConference {...conferenceInfo.data} />}
@@ -73,7 +80,7 @@ export default async function Home() {
             Object.entries(components).map(([key, Component]) => [
               key,
               (props) => (
-                <div className="px-12 py-8 overflow-clip">
+                <div className="overflow-clip">
                   <Component {...props} />
                 </div>
               ),
