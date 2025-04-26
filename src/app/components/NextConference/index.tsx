@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import React from "react";
 import { Button, LinkButton } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { NextConferenceSectionDocumentData } from "../../../../prismicio-types";
 import { CountdownTimer } from "./CountdownTimer";
 import { ConferenceCarousel } from "./ConferenceCarousel";
