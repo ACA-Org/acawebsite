@@ -68,10 +68,11 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
           </div>
 
           <div
-            className={`absolute top-full left-1/2 -translate-x-1/2 w-fit mt-2 bg-white rounded-lg shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${activeSlice
+            className={`absolute top-full left-1/2 -translate-x-1/2 w-fit mt-2 bg-white rounded-lg shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${
+              activeSlice
                 ? "opacity-100 translate-y-0 pointer-events-auto animate-slide-down-fade"
                 : "opacity-0 -translate-y-2 pointer-events-none animate-slide-up-fade"
-              }`}
+            }`}
           >
             {activeSlice && (
               <div
@@ -121,6 +122,26 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     </p>
                     <div className="relative w-[200px] h-[113px] overflow-clip group rounded-lg">
                       {/* <PrismicNextImage
+                      <div className="flex flex-col justify-center items-start text-gray-300 w-max">
+                        <p className="group-hover:text-blue-200 transition-colors">
+                          {i.tierTwoMenuLink.text}
+                        </p>
+                        <p className="text-xs">{i.tierTwoMenuDesc}</p>
+                      </div>
+                    </span>
+                  </PrismicNextLink>
+                ))}
+              </div>
+              {activeSlice?.primary.featuredMenuLink.text && (
+                <PrismicNextLink
+                  field={activeSlice?.primary.featuredMenuLink}
+                  className="flex flex-col items-start gap-4 pl-8 group/link"
+                >
+                  <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
+                    {activeSlice?.primary.featuredMenuLink.text}
+                  </p>
+                  <div className="relative w-[200px] h-[113px] overflow-clip group rounded-lg">
+                    {/* <PrismicNextImage
                       field={activeSlice?.primary.featuredMenuImage}
                       className="w-full h-full object-cover peer"
                     /> */}
@@ -210,7 +231,25 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     field={item.tierTwoMenuLink}
                     className="text-gray-700 text-base block"
                   >
-                    {item.tierTwoMenuLink.text}
+                    <span className="flex h-9 items-center gap-3 pr-3 w-max">
+                      <span className="flex items-center justify-center w-9 h-9 p-2 bg-gray-200 group-hover:bg-blue-300 transition-colors rounded-sm">
+                        {item.tierTwoMenuIcon?.url ? (
+                          <SVG
+                            src={item.tierTwoMenuIcon.url}
+                            className="[&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
+                          />
+                        ) : (
+                          <Link2 className="stroke-gray-300 group-hover:stroke-white" />
+                        )}
+                      </span>
+
+                      <div className="flex flex-col justify-center items-start text-gray-300 w-max">
+                        <p className="group-hover:text-blue-200 transition-colors">
+                          {item.tierTwoMenuLink.text}
+                        </p>
+                        <p className="text-xs">{item.tierTwoMenuDesc}</p>
+                      </div>
+                    </span>
                   </PrismicNextLink>
                 )
               )}
