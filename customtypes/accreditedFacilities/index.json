@@ -1,0 +1,61 @@
+{
+  "format": "custom",
+  "id": "accreditedFacilities",
+  "label": "AccreditedFacilities",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "accreditedFacility": {
+        "type": "Group",
+        "config": {
+          "label": "AccreditedFacility",
+          "repeat": true,
+          "fields": {
+            "companyName": {
+              "type": "Text",
+              "config": {
+                "label": "Company Name",
+                "placeholder": ""
+              }
+            },
+            "companyAddress": {
+              "type": "Text",
+              "config": {
+                "label": "Company Address",
+                "placeholder": ""
+              }
+            },
+            "companyCodeId": {
+              "type": "Text",
+              "config": {
+                "label": "Company Code Id",
+                "placeholder": ""
+              }
+            },
+            "companyWebsite": {
+              "type": "Text",
+              "config": {
+                "label": "Company Website",
+                "placeholder": ""
+              }
+            },
+            "facilityType": {
+              "type": "Text",
+              "config": {
+                "label": "Facility Type",
+                "placeholder": ""
+              }
+            },
+            "companyLocation": {
+              "type": "GeoPoint",
+              "config": {
+                "label": "Company Location"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

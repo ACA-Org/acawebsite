@@ -37,6 +37,14 @@
           "thumbnails": []
         }
       },
+      "locations": {
+        "type": "Group",
+        "config": {
+          "label": "Locations",
+          "repeat": true,
+          "fields": {}
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

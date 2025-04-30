@@ -1,0 +1,20 @@
+export type Location = {
+  companyName: string;
+  companyAddress: string | null;
+  companyWebsite: string;
+  facilityType: string;
+  companyCodeId: string;
+  latitude?: string;
+  longitude?: string;
+  accuracyScore?: string;
+  accuracyType?: string;
+  number?: string;
+  street?: string;
+  unitType?: string;
+  unitNumber?: string;
+  city?: string;
+  state?: string;
+  county?: string;
+  zip?: string;
+  country?: string;
+};

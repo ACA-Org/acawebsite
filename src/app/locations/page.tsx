@@ -8,6 +8,8 @@ import Map from "@/components/interactive-map";
 import { Metadata } from "next/types";
 import { asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
+import { Suspense } from "react";
+import data from "./data/facilities";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -21,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+
 export default async function Page() {
   const headerList = await headers();
   const pathname = headerList.get("x-current-path");
@@ -49,7 +52,7 @@ export default async function Page() {
             </>
           )}
         </div>
-        <div>
+        <div className="flex flex-row gap-16 my-12">
           <div className="flex w-full flex-col items-start gap-12 px-8">
             <div className="flex flex-col gap-12">
               {pathname && <Breadcrumbs path={pathname} />}
@@ -59,8 +62,10 @@ export default async function Page() {
                 </h1>
               )}
             </div>
-            <div className="w-full min-h-screen">
-              <Map />
+            <div className="w-full h-[700px]">
+              <Suspense fallback={<Map facilities={[]} isLoading={true} />}>
+                <Map facilities={data} />
+              </Suspense>
             </div>
           </div>
         </div>
