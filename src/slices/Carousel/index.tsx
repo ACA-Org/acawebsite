@@ -30,12 +30,12 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
     },
   } = slice;
   return (
-    <div className="flex px-19 py-24 flex-col items-start gap-12 w-full h-full [background:linear-gradient(90deg,#0C2545_0%,#081B31_100%)] overflow-visible">
+    <div className="flex h-full w-full flex-col items-start gap-12 overflow-visible px-19 py-24 [background:linear-gradient(90deg,#0C2545_0%,#081B31_100%)]">
       {(title || subTitle) && (
-        <div className="flex flex-col items-start flex-1 gap-6">
-          {tag && <p className="body-tag uppercase text-blue-50">{tag}</p>}
+        <div className="flex flex-1 flex-col items-start gap-6">
+          {tag && <p className="body-tag text-blue-50 uppercase">{tag}</p>}
           {title && <h2 className="heading-2 text-gold-100">{title}</h2>}
-          {subTitle && <p className="text-white body-sm">{subTitle}</p>}
+          {subTitle && <p className="body-sm text-white">{subTitle}</p>}
         </div>
       )}
       <Swiper
@@ -43,17 +43,17 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
         wrapperClass="flex !justify-start"
         spaceBetween={20}
         slidesPerView="auto"
-        className="w-full h-full !overflow-visible flex flex-col"
+        className="flex h-full w-full flex-col !overflow-visible"
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
       >
         {slides.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className="h-full !w-fit flex items-center justify-center !overflow-visible"
+            className="flex h-full !w-fit items-center justify-center !overflow-visible"
           >
             <div
-              className={"transition-all duration-300 h-full overflow-visible"}
+              className={"h-full overflow-visible transition-all duration-300"}
             >
               <LinkTile
                 variation="default"
@@ -79,7 +79,7 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
         <LinkButton
           variant="secondary"
           outlined
-          className="text-white text-lg font-medium pt-4"
+          className="pt-4 text-lg font-medium text-white"
           field={link}
         >
           {link.text}

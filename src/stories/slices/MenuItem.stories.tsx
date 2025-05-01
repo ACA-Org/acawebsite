@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof MenuItem> = {
   component: MenuItem,
   render: (args) => (
-    <div className="w-full flex justify-center">
+    <div className="flex w-full justify-center">
       <MenuItem {...args} />
     </div>
   ),

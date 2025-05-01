@@ -29,24 +29,24 @@ export function ExpandingIcon({
     <div className="relative">
       <Button
         className={cn(
-          "flex items-center overflow-hidden rounded-full h-8 px-0 transition-all duration-300 ease-in-out z-10 relative bg-transparent",
-          isActive && "bg-blue-300 hover:bg-blue-300 px-2"
+          "relative z-10 flex h-8 items-center overflow-hidden rounded-full bg-transparent px-0 transition-all duration-300 ease-in-out",
+          isActive && "bg-blue-300 px-2 hover:bg-blue-300"
         )}
         onMouseEnter={() => setActiveItem(menuId)}
         {...props}
       >
         <Icon
           className={cn(
-            "h-5 aspect-square transition-colors duration-300 ease-in-out stroke-gray-300",
+            "aspect-square h-5 stroke-gray-300 transition-colors duration-300 ease-in-out",
             isActive && "stroke-white"
           )}
         />
         <span
           className={cn(
-            "text-sm font-medium overflow-hidden whitespace-nowrap origin-right transition-all duration-500 ease-in-out text-white",
+            "origin-right overflow-hidden text-sm font-medium whitespace-nowrap text-white transition-all duration-500 ease-in-out",
             isActive
-              ? "opacity-100 max-w-[150px] scale-100 ml-1"
-              : "opacity-0 max-w-0 scale-95 ml-0"
+              ? "ml-1 max-w-[150px] scale-100 opacity-100"
+              : "ml-0 max-w-0 scale-95 opacity-0"
           )}
         >
           {label}

@@ -29,131 +29,142 @@ const Footer = ({ data }: { data: FooterProps }) => {
   };
 
   return (
-    <footer className="flex flex-col w-full items-center text-white">
-      <div className="flex items-start justify-between gap-24 px-[76px] py-16 relative self-stretch w-full h-full [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
-        <div className="flex flex-col w-[352px] items-start gap-12">
-          <div className="flex flex-col items-start gap-[22px] self-stretch w-full">
-            <img
-              className="w-[114.78px] h-11 object-cover"
-              alt="Aca logo blue"
-              src={ACA.src}
-            />
+    <footer className="flex w-full flex-col items-center overflow-clip text-white [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
+      <div className="mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8">
+        <div className="relative flex items-start justify-between gap-12 max-lg:flex-col">
+          {/* Contact Info */}
+          <div className="flex w-full flex-col items-start gap-12 self-stretch border-blue-200 max-lg:border-b max-lg:pb-12 lg:max-w-1/3 lg:border-r">
+            <div className="flex w-full flex-col items-start gap-[22px] self-stretch">
+              <img
+                className="h-11 w-[114.78px] object-cover"
+                alt="Aca logo blue"
+                src={ACA.src}
+              />
 
-            <div className="flex flex-col items-start gap-1 self-stretch w-full">
-              <div className="self-stretch heading-5 text-blue-50">
-                {organizationInfo.name}
+              <div className="flex w-full flex-col items-start gap-1 self-stretch">
+                <div className="heading-5 self-stretch text-blue-50">
+                  {organizationInfo.name}
+                </div>
+
+                <div className="body-lg self-stretch italic">
+                  {organizationInfo.tagline}
+                </div>
+              </div>
+            </div>
+
+            <div className="body-sm flex w-[200px] flex-col items-start gap-6">
+              <div className="flex w-full flex-col items-start gap-1 self-stretch">
+                {organizationInfo.address.map((line, index) => (
+                  <div
+                    key={`address-${index}`}
+                    className={`self-stretch ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                  >
+                    {line}
+                  </div>
+                ))}
               </div>
 
-              <div className="self-stretch italic body-lg">
-                {organizationInfo.tagline}
+              <div className="flex w-full flex-col items-start gap-1 self-stretch">
+                {organizationInfo.contact.map((line, index) => (
+                  <div
+                    key={`contact-${index}`}
+                    className={`self-stretch ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                  >
+                    {line}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col w-[200px] items-start gap-6 body-sm">
-            <div className="flex flex-col items-start gap-1 w-full self-stretch">
-              {organizationInfo.address.map((line, index) => (
-                <div
-                  key={`address-${index}`}
-                  className={`self-stretch ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                >
-                  {line}
-                </div>
-              ))}
+          {/* Columns */}
+          <div className="flex flex-1 gap-12 max-lg:w-full max-md:flex-col">
+            {/* Helpful Links */}
+            <div className="flex flex-1 flex-col items-start gap-4">
+              <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
+                Helpful Links
+              </div>
+
+              <div className="flex w-full flex-col items-start gap-2 self-stretch">
+                {helpfulNavLinks?.map((link, index) => (
+                  <PrismicNextLink
+                    key={`helpful-${index}`}
+                    className={`body-md hover:text-gold-100 cursor-pointer self-stretch transition-colors ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                    field={link}
+                  >
+                    {link.text}
+                  </PrismicNextLink>
+                ))}
+              </div>
             </div>
 
-            <div className="flex flex-col items-start gap-1 w-full self-stretch">
-              {organizationInfo.contact.map((line, index) => (
-                <div
-                  key={`contact-${index}`}
-                  className={`self-stretch ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                >
-                  {line}
-                </div>
-              ))}
+            {/* Member Links */}
+            <div className="flex flex-1 flex-col items-start gap-4">
+              <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
+                Members
+              </div>
+
+              <div className="flex w-full flex-col items-start gap-2 self-stretch">
+                {memberNavLinks?.map((link, index) => (
+                  <PrismicNextLink
+                    key={`member-${index}`}
+                    className={`body-md hover:text-gold-100 cursor-pointer self-stretch transition-colors ${index === 0 ? "mt-[-1.00px]" : ""}`}
+                    field={link}
+                  >
+                    {link.text}
+                  </PrismicNextLink>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col h-full w-px" />
+            <div className="flex flex-1 flex-col items-start gap-4">
+              <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
+                Connect with Us
+              </div>
 
-        <div className="flex w-[233px] flex-col items-start gap-4 pt-8">
-          <div className="w-fit mt-[-1.00px] heading-5 text-blue-50">
-            Helpful Links
-          </div>
-
-          <div className="flex flex-col items-start gap-2 self-stretch w-full">
-            {helpfulNavLinks?.map((link, index) => (
-              <PrismicNextLink
-                key={`helpful-${index}`}
-                className={`self-stretch body-md cursor-pointer transition-colors hover:text-gold-100 ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                field={link}
-              >
-                {link.text}
-              </PrismicNextLink>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col w-[233px] items-start gap-4 pt-8">
-          <div className="w-fit mt-[-1.00px] heading-5 text-blue-50">
-            Members
-          </div>
-
-          <div className="flex flex-col items-start gap-2 self-stretch w-full">
-            {memberNavLinks?.map((link, index) => (
-              <PrismicNextLink
-                key={`member-${index}`}
-                className={`self-stretch body-md cursor-pointer transition-colors hover:text-gold-100 ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                field={link}
-              >
-                {link.text}
-              </PrismicNextLink>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col w-[233px] items-start gap-4 pt-8">
-          <div className="w-fit mt-[-1.00px] heading-5 text-blue-50">
-            Connect with Us
-          </div>
-
-          <div className="gap-4 flex flex-row">
-            <Facebook
-              role="button"
-              className="fill-white h-7 w-auto hover:fill-gold-100 transition-colors cursor-pointer"
-            />
-            <Instagram
-              role="button"
-              className="fill-white h-7 w-auto hover:fill-gold-100 transition-colors cursor-pointer"
-            />
-            <LinkedIn
-              role="button"
-              className="fill-white h-7 w-auto hover:fill-gold-100 transition-colors cursor-pointer"
-            />
-            <X
-              role="button"
-              className="fill-white h-7 w-auto hover:fill-gold-100 transition-colors cursor-pointer"
-            />
+              <div className="flex flex-row gap-4">
+                <Facebook
+                  role="button"
+                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
+                />
+                <Instagram
+                  role="button"
+                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
+                />
+                <LinkedIn
+                  role="button"
+                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
+                />
+                <X
+                  role="button"
+                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-[76px] py-8 self-stretch w-full bg-[#091B31]">
-        <div className="inline-flex items-center gap-6">
-          {subFooterNavLinks?.map((link, index) => (
-            <PrismicNextLink
-              key={`sub-footer-${index}`}
-              field={link}
-              className="w-fit mt-[-1.00px] body-sm cursor-pointer hover:text-blue-100"
-            >
-              {link.text}
-            </PrismicNextLink>
-          ))}
-        </div>
+      {/* Site Links & Copyright */}
+      <div className="w-full self-stretch bg-[#091B31] py-8">
+        <div className="mx-auto w-full max-w-[1440px] px-4 md:px-8">
+          <div className="flex items-center justify-between max-md:flex-col max-md:items-start max-md:gap-8">
+            <div className="flex gap-6 max-md:flex-col">
+              {subFooterNavLinks?.map((link, index) => (
+                <PrismicNextLink
+                  key={`sub-footer-${index}`}
+                  field={link}
+                  className="body-sm cursor-pointer hover:text-blue-100"
+                >
+                  {link.text}
+                </PrismicNextLink>
+              ))}
+            </div>
 
-        <div className="w-fit mt-[-1.00px] body-sm">
-          Copyright © American Correctional Association
+            <div className="body-sm">
+              Copyright © American Correctional Association
+            </div>
+          </div>
         </div>
       </div>
     </footer>

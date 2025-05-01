@@ -39,7 +39,7 @@ const ImageFader: FC<ImageFaderProps> = ({
   }, [images?.length]);
 
   return (
-    <div className="col-span-1 relative w-full h-[235px] overflow-hidden rounded-lg bg-black">
+    <div className="relative col-span-1 h-[235px] w-full overflow-hidden rounded-lg bg-black">
       {images.map((img, index) => (
         <PrismicNextImage
           key={index}
@@ -53,7 +53,7 @@ const ImageFader: FC<ImageFaderProps> = ({
           }`}
         />
       ))}
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-black/20 to-transparent" />
+      <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/20 to-transparent" />
     </div>
   );
 };

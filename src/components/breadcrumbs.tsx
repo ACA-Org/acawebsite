@@ -34,11 +34,11 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
         <li className="flex gap-2">
           <Link
             href="/"
-            className="flex items-center text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
           >
             <span className="body-sm">Home</span>
           </Link>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          <ChevronRight className="text-muted-foreground h-4 w-4" />
         </li>
         {items.map((item, index) => {
           const isLast = index === items?.length - 1;
@@ -47,7 +47,7 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
             return (
               <li
                 key={item.href}
-                className="flex items-center space-x-2 body-sm hover:text-foreground transition-colors font-medium text-foreground"
+                className="body-sm hover:text-foreground text-foreground flex items-center space-x-2 font-medium transition-colors"
               >
                 {labelFormatter(item.label)}
               </li>
@@ -58,13 +58,13 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
               <Link
                 href={item.href}
                 className={
-                  "body-sm hover:text-foreground transition-colors text-muted-foreground"
+                  "body-sm hover:text-foreground text-muted-foreground transition-colors"
                 }
               >
                 {labelFormatter(item.label)}
               </Link>
 
-              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+              <ChevronRight className="text-muted-foreground h-4 w-4" />
             </li>
           );
         })}

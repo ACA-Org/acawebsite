@@ -25,30 +25,30 @@ const LinkTile: FC<LinkTileProps> = (slice) => {
     <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="group relative flex w-[340px] h-[350px] flex-col justify-end items-center gap-2 p-6 rounded-lg overflow-clip [background:linear-gradient(180deg,rgba(15,45,82,0.00)_0%,rgba(15,45,82,0.75)_100%),#005F96]"
+      className="group relative flex h-[350px] w-[340px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6 [background:linear-gradient(180deg,rgba(15,45,82,0.00)_0%,rgba(15,45,82,0.75)_100%),#005F96]"
     >
       {image && (
         <>
-          <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 h-full w-full">
             <PrismicNextImage
               field={image}
-              className="w-full h-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-0"
+              className="h-full w-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-0"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-20% via-transparent to-[#0F0F0F] transition-opacity duration-300 ease-in-out group-hover:opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F] transition-opacity duration-300 ease-in-out group-hover:opacity-50" />
           </div>
         </>
       )}
-      <div className="flex items-end gap-16 self-stretch z-20 translate-y-[84px] transform transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-        <div className="text-white flex w-full flex-col items-start gap-4">
+      <div className="z-20 flex translate-y-[84px] transform items-end gap-16 self-stretch transition-transform duration-300 ease-in-out group-hover:translate-y-0">
+        <div className="flex w-full flex-col items-start gap-4 text-white">
           {title && (
-            <h2 className="self-stretch heading-3 font-semibold">{title}</h2>
+            <h2 className="heading-3 self-stretch font-semibold">{title}</h2>
           )}
           {desc && <p className="body-sm">{desc}</p>}
           {link && (
             <LinkButton
               variant="tertiary"
               outlined
-              className="w-full mt-4"
+              className="mt-4 w-full"
               field={link}
             >
               {link.text}

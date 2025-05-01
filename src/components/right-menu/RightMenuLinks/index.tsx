@@ -11,9 +11,9 @@ const RightMenuLink = ({ link }: { link: RightMenuItem }) => {
   const pathName = usePathname();
 
   return (
-    <div className="flex w-full h-15 items-center pl-5 py-4.5">
+    <div className="flex h-15 w-full items-center py-4.5 pl-5">
       <PrismicNextLink
-        className="w-60 text-gray-300 hover:text-black hover:underline cursor-pointer body-md leading-4"
+        className="body-md w-60 cursor-pointer leading-4 text-gray-300 hover:text-black hover:underline"
         href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
       >
         {labelFormatter(label)}

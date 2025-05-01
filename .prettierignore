@@ -1,0 +1,10 @@
+package.json
+node_modules
+build
+.next
+dist
+src/temp
+source
+markdown
+customtypes
+.storybook
