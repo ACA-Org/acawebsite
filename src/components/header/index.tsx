@@ -32,8 +32,8 @@ const Header = ({
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 w-full bg-[#f9f9f9] transition-all duration-300 ease-in-out z-50 border-b-[rgba(0,95,150,0.08)] border-b border-solid",
-        isCollapsed ? "py-4" : "py-8 border"
+        "fixed top-0 left-0 right-0 w-full bg-[#f9f9f9] transition-all duration-300 ease-in-out z-100 border-b-[rgba(0,95,150,0.08)] border-b border-solid",
+        isCollapsed ? "py-4" : "py-8 border max-lg:py-4"
       )}
     >
       <div className="relative px-9 flex items-center justify-between w-full">
@@ -44,10 +44,13 @@ const Header = ({
           <ACALogoColor
             className={cn(
               "object-cover transition-all duration-300",
-              isCollapsed ? "w-[68px] h-[26px]" : "w-[114.78px] h-11"
+              isCollapsed
+                ? "w-[68px] h-[26px]"
+                : "w-[114.78px] h-11 max-lg:w-[68px] h-[26px]"
             )}
           />
         </Link>
+
         <NavigationMenu slices={data.slices} />
 
         <IconMenu />
