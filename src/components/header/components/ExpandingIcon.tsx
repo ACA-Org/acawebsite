@@ -29,8 +29,8 @@ export function ExpandingIcon({
     <div className="relative">
       <Button
         className={cn(
-          "flex items-center overflow-hidden rounded-full h-8 px-2 transition-all duration-300 ease-in-out z-10 relative bg-transparent",
-          isActive && "bg-blue-300 hover:bg-blue-300"
+          "flex items-center overflow-hidden rounded-full h-8 px-0 transition-all duration-300 ease-in-out z-10 relative bg-transparent",
+          isActive && "bg-blue-300 hover:bg-blue-300 px-2"
         )}
         onMouseEnter={() => setActiveItem(menuId)}
         {...props}
