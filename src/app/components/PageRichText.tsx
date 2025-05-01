@@ -18,8 +18,13 @@ export default function PageRichText({
         heading4: ({ children }) => <h4 className="heading-4">{children}</h4>,
         heading5: ({ children }) => <h5 className="heading-5">{children}</h5>,
         heading6: ({ children }) => <h6 className="heading-6">{children}</h6>,
-        paragraph: ({ children }) => (
-          <p className="body-md text-gray-100">{children}</p>
+        paragraph: ({ children, text }) => {
+          if (text === "-----")
+            return <div className="w-full h-0.5 bg-gray-300" />;
+          return <p className="body-md text-gray-100">{children}</p>;
+        },
+        list: ({ children }) => (
+          <ul className="list-disc list-inside">{children}</ul>
         ),
 
         hyperlink: ({ node, children }) => {

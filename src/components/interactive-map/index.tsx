@@ -3,11 +3,23 @@
 import { Location } from "@/app/locations/data/types";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { MapPinIcon } from "lucide-react";
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, {
+  useCallback,
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { NativeSelect } from "../ui/native-select";
+import Supercluster from "supercluster";
+import {
+  elementScroll,
+  useVirtualizer,
+  VirtualizerOptions,
+} from "@tanstack/react-virtual";
 
 const mapContainerStyle = {
   width: "100%",
@@ -141,6 +153,10 @@ const FilterInputs = React.memo(
 
 FilterInputs.displayName = "FilterInputs";
 
+function easeInOutQuint(t: number) {
+  return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
+}
+
 // Separate FacilityList component
 const FacilityList = React.memo(
   ({
@@ -156,6 +172,62 @@ const FacilityList = React.memo(
     map: google.maps.Map | null;
     isLoading: boolean;
   }) => {
+    const parentRef = useRef<HTMLDivElement>(null);
+    const scrollingRef = useRef<number>(undefined);
+
+    const scrollToFn: VirtualizerOptions<any, any>["scrollToFn"] =
+      React.useCallback((offset, canSmooth, instance) => {
+        const duration = 1000;
+        const start = parentRef.current?.scrollTop || 0;
+        const startTime = (scrollingRef.current = Date.now());
+
+        const run = () => {
+          if (scrollingRef.current !== startTime) return;
+          const now = Date.now();
+          const elapsed = now - startTime;
+          const progress = easeInOutQuint(Math.min(elapsed / duration, 1));
+          const interpolated = start + (offset - start) * progress;
+
+          if (elapsed < duration) {
+            elementScroll(interpolated, canSmooth, instance);
+            requestAnimationFrame(run);
+          } else {
+            elementScroll(interpolated, canSmooth, instance);
+          }
+        };
+
+        requestAnimationFrame(run);
+      }, []);
+
+    const rowVirtualizer = useVirtualizer({
+      count: facilities.length,
+      getScrollElement: () => parentRef.current,
+      estimateSize: () => 285, // Initial estimate, will be adjusted by measureElement
+      overscan: 5,
+      scrollToFn,
+      measureElement: (element) => {
+        // Get the actual height of the element including margins
+        const style = window.getComputedStyle(element);
+        const marginTop = parseFloat(style.marginTop);
+        const marginBottom = parseFloat(style.marginBottom);
+        return (
+          element.getBoundingClientRect().height + marginTop + marginBottom
+        );
+      },
+    });
+
+    // Scroll to facility when selectedFacility changes
+    useEffect(() => {
+      if (selectedFacility && parentRef.current) {
+        const index = facilities.findIndex(
+          (f) => f.companyCodeId === selectedFacility.companyCodeId
+        );
+        if (index !== -1) {
+          rowVirtualizer.scrollToIndex(index);
+        }
+      }
+    }, [selectedFacility, facilities, rowVirtualizer]);
+
     const handleViewLocation = useCallback(
       (facility: Location) => {
         if (map && facility.latitude && facility.longitude) {
@@ -178,64 +250,156 @@ const FacilityList = React.memo(
     }
 
     return (
-      <div className="h-full overflow-y-auto">
-        {facilities.map((facility, index) => (
-          <div key={index} className="px-4 my-2">
-            <div
-              className={cn(
-                "bg-white rounded-lg border border-solid border-[#005f9626] shadow-[0px_8px_24px_#00000014] p-4 cursor-pointer transition-all flex flex-col",
-                selectedFacility?.companyName === facility.companyName &&
-                  "ring-2 ring-blue-300"
-              )}
-              onClick={() => setSelectedFacility(facility)}
-            >
-              <div className="mb-4">
-                <h2 className="font-heading-4 text-blue-300 text-[24px]">
-                  {facility.companyName}
-                </h2>
-                <p className="text-gray-500 text-sm mt-1">
-                  {facility.facilityType}
-                </p>
-              </div>
+      <div ref={parentRef} className="h-full overflow-auto">
+        <div
+          style={{
+            height: `${rowVirtualizer.getTotalSize()}px`,
+            width: "100%",
+            position: "relative",
+          }}
+        >
+          {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+            const facility = facilities[virtualRow.index];
+            return (
+              <div
+                key={virtualRow.index}
+                data-index={virtualRow.index}
+                ref={rowVirtualizer.measureElement}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  transform: `translateY(${virtualRow.start}px)`,
+                }}
+                className="px-4 my-2"
+              >
+                <div
+                  className={cn(
+                    "bg-white rounded-lg border border-solid border-[#005f9626] shadow-[0px_8px_24px_#00000014] p-4 cursor-pointer transition-all flex flex-col h-fit",
+                    selectedFacility?.companyName === facility.companyName &&
+                      "ring-2 ring-blue-300"
+                  )}
+                  onClick={() => setSelectedFacility(facility)}
+                >
+                  <div className="mb-4">
+                    <h2 className="font-heading-4 text-blue-300 text-[24px]">
+                      {facility.companyName}
+                    </h2>
+                    <p className="text-gray-500 text-sm mt-1">
+                      {facility.facilityType}
+                    </p>
+                  </div>
 
-              <div className="flex flex-col gap-4 flex-1">
-                <div className="flex items-start gap-2.5">
-                  <MapPinIcon className="flex-shrink-0 text-gray-300" />
-                  <div className="text-gray-300 whitespace-pre-line">
-                    {facility.companyAddress}
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="flex items-start gap-2.5">
+                      <MapPinIcon className="flex-shrink-0 text-gray-300" />
+                      <div className="text-gray-300 whitespace-pre-line">
+                        {facility.companyAddress}
+                      </div>
+                    </div>
+
+                    {facility.companyWebsite && (
+                      <a
+                        href={facility.companyWebsite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-300 hover:text-blue-200"
+                      >
+                        Visit Website
+                      </a>
+                    )}
+
+                    <Button
+                      className="w-full mt-auto"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleViewLocation(facility);
+                      }}
+                    >
+                      View Location
+                    </Button>
                   </div>
                 </div>
-
-                {facility.companyWebsite && (
-                  <a
-                    href={facility.companyWebsite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-300 hover:text-blue-200"
-                  >
-                    Visit Website
-                  </a>
-                )}
-
-                <Button
-                  className="w-full mt-auto"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleViewLocation(facility);
-                  }}
-                >
-                  View Location
-                </Button>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </div>
     );
   }
 );
 
 FacilityList.displayName = "FacilityList";
+
+// Memoize the cluster markers component
+const ClusterMarkers = React.memo(
+  ({
+    clusters,
+    supercluster,
+    map,
+    setSelectedFacility,
+  }: {
+    clusters: any[];
+    supercluster: Supercluster;
+    map: google.maps.Map | null;
+    setSelectedFacility: (facility: Location) => void;
+  }) => {
+    return (
+      <>
+        {clusters.map((cluster) => {
+          const [longitude, latitude] = cluster.geometry.coordinates;
+          const { cluster: isCluster, point_count: pointCount } =
+            cluster.properties;
+
+          if (isCluster) {
+            return (
+              <Marker
+                key={`cluster-${cluster.properties.cluster_id}`}
+                position={{ lat: latitude, lng: longitude }}
+                onClick={() => {
+                  const expansionZoom = Math.min(
+                    supercluster.getClusterExpansionZoom(
+                      cluster.properties.cluster_id
+                    ),
+                    20
+                  );
+                  map?.panTo({ lat: latitude, lng: longitude });
+                  map?.setZoom(expansionZoom);
+                }}
+                icon={{
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: 10 + Math.min(pointCount, 20),
+                  fillColor: "#005f96",
+                  fillOpacity: 0.7,
+                  strokeColor: "#ffffff",
+                  strokeWeight: 2,
+                }}
+                label={{
+                  text: pointCount.toString(),
+                  color: "#ffffff",
+                  fontSize: "12px",
+                }}
+              />
+            );
+          }
+
+          const facility = cluster.properties.facility;
+          return (
+            <Marker
+              key={`marker-${facility.companyCodeId}`}
+              position={{ lat: latitude, lng: longitude }}
+              title={facility.companyName}
+              onClick={() => setSelectedFacility(facility)}
+            />
+          );
+        })}
+      </>
+    );
+  }
+);
+
+ClusterMarkers.displayName = "ClusterMarkers";
 
 export default function Map({ facilities, isLoading = false }: MapProps) {
   const { isLoaded, loadError } = useLoadScript({
@@ -256,6 +420,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   const [mapBounds, setMapBounds] = useState<google.maps.LatLngBounds | null>(
     null
   );
+  const [clusters, setClusters] = useState<any[]>([]);
 
   // Debounce the filter values
   const debouncedNameFilter = useDebounce(nameFilter, 1000);
@@ -340,6 +505,47 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     ]
   );
 
+  // Create Supercluster instance
+  const supercluster = useMemo(() => {
+    return new Supercluster({
+      radius: 100, // 50 mile radius
+      maxZoom: 20,
+      minZoom: 0,
+    });
+  }, []);
+
+  // Convert facilities to GeoJSON points
+  const points = useMemo(() => {
+    return facilitiesWithPositions.map((facility) => ({
+      type: "Feature" as const,
+      properties: { facility },
+      geometry: {
+        type: "Point" as const,
+        coordinates: [Number(facility.longitude), Number(facility.latitude)],
+      },
+    }));
+  }, [facilitiesWithPositions]);
+
+  // Update clusters when map bounds or zoom changes
+  useEffect(() => {
+    if (!mapBounds || !map) return;
+
+    const bounds: [number, number, number, number] = [
+      mapBounds.getSouthWest().lng(),
+      mapBounds.getSouthWest().lat(),
+      mapBounds.getNorthEast().lng(),
+      mapBounds.getNorthEast().lat(),
+    ];
+
+    const zoom = map.getZoom() || 0;
+    const currentZoom = Math.floor(zoom);
+
+    // Recalculate clusters when bounds change or zoom level changes
+    supercluster.load(points);
+    const newClusters = supercluster.getClusters(bounds, currentZoom);
+    setClusters(newClusters);
+  }, [mapBounds, map, points, supercluster]);
+
   const onLoad = useCallback((map: google.maps.Map) => {
     setMap(map);
     setMapBounds(map.getBounds() || null);
@@ -401,17 +607,12 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
           onLoad={onLoad}
           onBoundsChanged={handleBoundsChanged}
         >
-          {facilitiesWithPositions.map((facility, index) => (
-            <Marker
-              key={index}
-              position={{
-                lat: Number(facility?.latitude),
-                lng: Number(facility?.longitude),
-              }}
-              title={facility.companyName}
-              onClick={() => setSelectedFacility(facility)}
-            />
-          ))}
+          <ClusterMarkers
+            clusters={clusters}
+            supercluster={supercluster}
+            map={map}
+            setSelectedFacility={setSelectedFacility}
+          />
         </GoogleMap>
       </div>
 

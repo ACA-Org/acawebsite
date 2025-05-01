@@ -81,7 +81,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <SliceZone slices={slices} components={components} />
           </div>
           {rightMenuData && (
-            <div className="w-fit ml-auto">
+            <div className="hidden sm:flex w-fit ml-auto">
               <RightMenu
                 items={rightMenuData}
                 rightMenuHeader="In This Section"
@@ -109,7 +109,7 @@ export async function generateMetadata({
     .catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],

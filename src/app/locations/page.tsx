@@ -1,7 +1,6 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { headers } from "next/headers";
-import { ContactPageDocumentData } from "../../../prismicio-types";
-import { getContactPage } from "../actions/getContactPageData";
+import { LocationsPageDocumentData } from "../../../prismicio-types";
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import Map from "@/components/interactive-map";
@@ -10,13 +9,14 @@ import { asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { Suspense } from "react";
 import data from "./data/facilities";
+import { getLocationsPageData } from "../actions/getLocationsPageData";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("locationsPage").catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
@@ -28,9 +28,9 @@ export default async function Page() {
   const headerList = await headers();
   const pathname = headerList.get("x-current-path");
 
-  let pageData: ContactPageDocumentData | null = null;
+  let pageData: LocationsPageDocumentData | null = null;
 
-  pageData = await getContactPage().catch(() => notFound());
+  pageData = await getLocationsPageData().catch(() => notFound());
 
   if (!pageData) return notFound();
 
@@ -58,7 +58,7 @@ export default async function Page() {
               {pathname && <Breadcrumbs path={pathname} />}
               {title && (
                 <h1 className="heading-1 font-semibold z-20 text-blue-200">
-                  Locations
+                  {title}
                 </h1>
               )}
             </div>
