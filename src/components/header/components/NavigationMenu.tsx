@@ -5,6 +5,8 @@ import { ArrowRight } from "@/icons/ArrowRight";
 import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
+import SVG from "react-inlinesvg";
+import { FilledContentRelationshipField } from "@prismicio/client";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -21,14 +23,18 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   }, [activeItem, slices]);
 
   return (
-    <nav className={cn(className, "absolute top-1/2 left-1/2 -translate-1/2")}>
-      <div className="relative" onMouseLeave={() => setActiveItem(null)}>
+    <nav
+      onMouseLeave={() => setActiveItem(null)}
+      className={cn(className, "absolute top-1/2 left-1/2 -translate-1/2 p-8")}
+    >
+      <div className="relative">
         <div className="flex justify-center">
           <ul className="flex items-center gap-8 p-2 w-full justify-center">
             {slices.map(
               ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
                 <li key={index} className="relative">
                   <PrismicNextLink
+                    linkResolver={(i) => `/${i.uid}`}
                     field={tierOneLink}
                     onMouseEnter={() => setActiveItem(index)}
                     className="group/link body-sm text-blue-300 hover:underline hover:text-blue-200 hover:bg-transparent flex gap-2"
@@ -65,18 +71,24 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   <PrismicNextLink
                     key={`${i.tierTwoMenuLink.text}-${index}`}
                     field={i.tierTwoMenuLink}
+                    linkResolver={(i) => {
+                      return `/${(activeSlice.primary.tierOneLink as FilledContentRelationshipField).uid}/${i.uid}`;
+                    }}
                     className="w-max col-span-1 group"
                   >
                     <span className="flex h-9 items-center gap-3 pr-3 w-max">
-                      <span className="flex items-center justify-center w-9 h-9 p-2 bg-gray-200 group-hover:bg-blue-300 transition-colors rounded-sm stroke-gray-300 text-gray-300 group-hover:stroke-white group-hover:text-white">
+                      <span className="flex items-center justify-center w-9 h-9 p-2 bg-gray-200 group-hover:bg-blue-300 transition-colors rounded-sm">
                         {i.tierTwoMenuIcon?.url ? (
-                          <PrismicNextImage field={i.tierTwoMenuIcon} />
+                          <SVG
+                            src={i.tierTwoMenuIcon.url}
+                            className="[&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
+                          />
                         ) : (
-                          <Link2 />
+                          <Link2 className="stroke-gray-300 group-hover:stroke-white" />
                         )}
                       </span>
 
-                      <div className="flex flex-col justify-center items-start gap-1 text-gray-300 w-max">
+                      <div className="flex flex-col justify-center items-start text-gray-300 w-max">
                         <p className="group-hover:text-blue-200 transition-colors">
                           {i.tierTwoMenuLink.text}
                         </p>
@@ -95,10 +107,21 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     {activeSlice?.primary.featuredMenuLink.text}
                   </p>
                   <div className="relative w-[200px] h-[113px] overflow-clip group rounded-lg">
-                    <PrismicNextImage
+                    {/* <PrismicNextImage
                       field={activeSlice?.primary.featuredMenuImage}
                       className="w-full h-full object-cover peer"
+                    /> */}
+                    <PrismicNextImage
+                      field={activeSlice?.primary.featuredMenuImage}
+                      className="w-full h-full object-cover peer opacity-0 transition-opacity duration-300"
+                      onLoad={(e) => {
+                        const el = e.currentTarget;
+                        el.classList.remove("opacity-0");
+                        el.classList.add("opacity-100");
+                        el.nextElementSibling?.classList.add("hidden"); // hide the skeleton
+                      }}
                     />
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse pointer-events-none" />
                     <div className="absolute bottom-0 left-0 right-0 bg-[#0f2d52e6] h-full transform translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0 flex items-center justify-center gap-3">
                       <span className="text-white leading-4.5 text-lg">
                         View Item

@@ -4,6 +4,118 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ContactPageDocumentDataSlicesSlice = never;
+
+type ContactPageDocumentDataSlices2Slice =
+  | SpeedBumpSlice
+  | AccordionSlice
+  | LinkCardSlice;
+
+/**
+ * Content for ContactPage documents
+ */
+interface ContactPageDocumentData {
+  /**
+   * PageImage field in *ContactPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageImage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  pageImage: prismic.ImageField<never>;
+
+  /**
+   * PageTitle field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *ContactPage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *ContactPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ContactPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: contactPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *ContactPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: contactPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *ContactPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never> /**
+   * Slice Zone field in *ContactPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contactPage.slices2[]
+   * - **Tab**: RightSection
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<ContactPageDocumentDataSlices2Slice>;
+}
+
+/**
+ * ContactPage document from Prismic
+ *
+ * - **API ID**: `contactPage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ContactPageDocumentData>,
+    "contactPage",
+    Lang
+  >;
+
 /**
  * Item in *Footer → FooterAddress*
  */
@@ -413,6 +525,115 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type LocationsPageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for LocationsPage documents
+ */
+interface LocationsPageDocumentData {
+  /**
+   * PageTitle field in *LocationsPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageSubTitle field in *LocationsPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.pageSubTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageSubTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *LocationsPage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * PageImage field in *LocationsPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.pageImage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  pageImage: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *LocationsPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<LocationsPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *LocationsPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: locationsPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *LocationsPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: locationsPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *LocationsPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * LocationsPage document from Prismic
+ *
+ * - **API ID**: `locationsPage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LocationsPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LocationsPageDocumentData>,
+    "locationsPage",
+    Lang
+  >;
+
 type NextConferenceSectionDocumentDataSlicesSlice = ConferenceCardSlice;
 
 /**
@@ -516,6 +737,93 @@ export type NextConferenceSectionDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<NextConferenceSectionDocumentData>,
     "nextConferenceSection",
+    Lang
+  >;
+
+type PrivacyPolicyDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Privacy Policy documents
+ */
+interface PrivacyPolicyDocumentData {
+  /**
+   * PageTitle field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *Privacy Policy*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Privacy Policy*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PrivacyPolicyDocumentDataSlicesSlice> /**
+   * Meta Title field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: privacyPolicy.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Privacy Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: privacyPolicy.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Privacy Policy*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: privacyPolicy.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Privacy Policy document from Prismic
+ *
+ * - **API ID**: `privacyPolicy`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PrivacyPolicyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PrivacyPolicyDocumentData>,
+    "privacyPolicy",
     Lang
   >;
 
@@ -944,10 +1252,13 @@ export type TierTwoPageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | ContactPageDocument
   | FooterDocument
   | HeaderDocument
   | HomepageDocument
+  | LocationsPageDocument
   | NextConferenceSectionDocument
+  | PrivacyPolicyDocument
   | TierOnePageDocument
   | TierThreePageDocument
   | TierTwoPageDocument;
@@ -1263,6 +1574,36 @@ type ConferenceCardSliceVariation = ConferenceCardSliceDefault;
 export type ConferenceCardSlice = prismic.SharedSlice<
   "conference_card",
   ConferenceCardSliceVariation
+>;
+
+/**
+ * Default variation for ContactForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactForm*
+ */
+type ContactFormSliceVariation = ContactFormSliceDefault;
+
+/**
+ * ContactForm Shared Slice
+ *
+ * - **API ID**: `contact_form`
+ * - **Description**: ContactForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactFormSlice = prismic.SharedSlice<
+  "contact_form",
+  ContactFormSliceVariation
 >;
 
 /**
@@ -1701,9 +2042,91 @@ export type SpeedBumpSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *SpeedBump → Vertical → Primary*
+ */
+export interface SpeedBumpSliceVerticalPrimary {
+  /**
+   * SpeedBumpImage field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  speedBumpImage: prismic.ImageField<never>;
+
+  /**
+   * SpeedBumpTitle field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Content Title
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  speedBumpTitle: prismic.KeyTextField;
+
+  /**
+   * SpeedBumpDescription field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut...
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpDescription
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  speedBumpDescription: prismic.KeyTextField;
+
+  /**
+   * SpeedBumpLinks field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpLinks
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  speedBumpLinks: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+
+  /**
+   * SpeedBumpTheme field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: light
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpTheme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpTheme: prismic.SelectField<"light" | "dark", "filled">;
+
+  /**
+   * SpeedBumpLinkPosition field in *SpeedBump → Vertical → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: bottom
+   * - **API ID Path**: speedBump.vertical.primary.speedBumpLinkPosition
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  speedBumpLinkPosition: prismic.SelectField<"bottom" | "right", "filled">;
+}
+
+/**
+ * Vertical variation for SpeedBump Slice
+ *
+ * - **API ID**: `vertical`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SpeedBumpSliceVertical = prismic.SharedSliceVariation<
+  "vertical",
+  Simplify<SpeedBumpSliceVerticalPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *SpeedBump*
  */
-type SpeedBumpSliceVariation = SpeedBumpSliceDefault;
+type SpeedBumpSliceVariation = SpeedBumpSliceDefault | SpeedBumpSliceVertical;
 
 /**
  * SpeedBump Shared Slice
@@ -1738,6 +2161,10 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ContactPageDocument,
+      ContactPageDocumentData,
+      ContactPageDocumentDataSlicesSlice,
+      ContactPageDocumentDataSlices2Slice,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataFooterAddressItem,
@@ -1750,9 +2177,15 @@ declare module "@prismicio/client" {
       HomepageDocumentDataHeroCarouselDataItem,
       HomepageDocumentDataIntroImageTileItem,
       HomepageDocumentDataSlicesSlice,
+      LocationsPageDocument,
+      LocationsPageDocumentData,
+      LocationsPageDocumentDataSlicesSlice,
       NextConferenceSectionDocument,
       NextConferenceSectionDocumentData,
       NextConferenceSectionDocumentDataSlicesSlice,
+      PrivacyPolicyDocument,
+      PrivacyPolicyDocumentData,
+      PrivacyPolicyDocumentDataSlicesSlice,
       TierOnePageDocument,
       TierOnePageDocumentData,
       TierOnePageDocumentDataSlicesSlice,
@@ -1780,6 +2213,9 @@ declare module "@prismicio/client" {
       ConferenceCardSliceDefaultPrimary,
       ConferenceCardSliceVariation,
       ConferenceCardSliceDefault,
+      ContactFormSlice,
+      ContactFormSliceVariation,
+      ContactFormSliceDefault,
       LinkCardSlice,
       LinkCardSliceDefaultPrimary,
       LinkCardSliceVariation,
@@ -1799,8 +2235,10 @@ declare module "@prismicio/client" {
       SocialCarouselSliceDefault,
       SpeedBumpSlice,
       SpeedBumpSliceDefaultPrimary,
+      SpeedBumpSliceVerticalPrimary,
       SpeedBumpSliceVariation,
       SpeedBumpSliceDefault,
+      SpeedBumpSliceVertical,
     };
   }
 }
