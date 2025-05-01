@@ -34,7 +34,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
   } = slice;
 
   return (
-    <div className="mx-auto max-w-[1440px] p-4 md:px-8">
+    <div className="mx-auto w-full max-w-[1440px] p-4 md:px-8">
       <div className="relative flex w-full flex-col items-start gap-16 overflow-clip rounded-2xl border border-solid border-[#0f2d5226] bg-blue-50 px-8 pt-12 pb-8">
         <div className="w-full p-0">
           <div className="flex w-full items-start justify-between">

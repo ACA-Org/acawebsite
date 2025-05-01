@@ -19,7 +19,7 @@ export const RightMenu = ({
   if (!items || items.length < 1) return null;
 
   return (
-    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] w-[380px] overflow-scroll">
+    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
       {rightMenuHeader && (
         <div className="h-[60px] w-full border-b border-blue-100 pt-[18px] pb-5 pl-5">
           <p className="body-xl font-semibold text-blue-300">

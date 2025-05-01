@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   } = pageData;
 
   return (
-    <div className="mb-28 flex w-full flex-col px-11">
+    <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
       <div className="relative mt-16 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
         {img && (
           <>
@@ -64,24 +64,27 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           </>
         )}
       </div>
-      <div className="my-12 flex flex-row gap-16">
-        <div className="flex w-full flex-col items-start gap-12 px-8">
-          <div className="flex flex-col gap-12">
-            {pathname && <Breadcrumbs path={pathname} />}
-            {title && (
-              <h1 className="heading-1 z-20 font-semibold text-blue-200">
-                {title}
-              </h1>
-            )}
-          </div>
+      <div className="mx-auto mt-12 w-full max-w-[1440px]">
+        <div className="flex flex-col gap-12">
+          {pathname && <Breadcrumbs path={pathname} />}
+          {title && (
+            <h1 className="heading-1 z-20 font-semibold text-blue-300">
+              {title}
+            </h1>
+          )}
+        </div>
+      </div>
+      <div className="my-12 flex flex-row gap-16 max-md:flex-col-reverse">
+        <div className="flex w-3/4 flex-col items-start gap-12 max-lg:w-2/3 max-md:w-full">
           <div>
             <PageRichText content={pageContent} />
           </div>
 
           <SliceZone slices={slices} components={components} />
         </div>
+
         {rightMenuData && (
-          <div className="ml-auto w-fit">
+          <div className="ml-auto w-1/4 max-lg:w-1/3 max-md:w-full">
             <RightMenu
               items={rightMenuData}
               rightMenuHeader="In This Section"
