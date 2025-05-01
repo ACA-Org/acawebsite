@@ -36,7 +36,7 @@ export const ConferenceCarousel = ({
       {slices?.length && slices.length > 3 ? (
         <Swiper
           modules={[Pagination]}
-          className="w-full h-full !static"
+          className="!static h-full w-full"
           containerModifierClass="static"
           spaceBetween={1}
           slidesPerView={3}
@@ -49,7 +49,7 @@ export const ConferenceCarousel = ({
           {slices.map((slice, index) => (
             <SwiperSlide
               key={`${slice.id}-${index}`}
-              className="h-full w-full flex items-center justify-center"
+              className="flex h-full w-full items-center justify-center"
             >
               <ConferenceCard {...slice} key={index} />
             </SwiperSlide>

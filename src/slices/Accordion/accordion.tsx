@@ -35,17 +35,17 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start gap-4 rounded-md py-[28px] text-left transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 body-xl-semibold text-blue-300 hover:text-blue-200 data-[state=open]:text-blue-200 cursor-pointer group",
+          "focus-visible:border-ring focus-visible:ring-ring/50 body-xl-semibold group flex flex-1 cursor-pointer items-start gap-4 rounded-md py-[28px] text-left text-blue-300 transition-all outline-none hover:text-blue-200 hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-blue-200 [&[data-state=open]>svg]:rotate-180",
           className
         )}
         {...props}
       >
-        <div className={cn("relative w-6 h-6")}>
-          <div className="absolute inset-0 transform transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-90 group-data-[state=open]:opacity-0 group-data-[state=closed]:rotate-0 group-data-[state=closed]:opacity-100">
-            <Plus className="w-6 h-6 text-blue-200" />
+        <div className={cn("relative h-6 w-6")}>
+          <div className="absolute inset-0 transform transition-transform duration-300 ease-in-out group-data-[state=closed]:rotate-0 group-data-[state=closed]:opacity-100 group-data-[state=open]:rotate-90 group-data-[state=open]:opacity-0">
+            <Plus className="h-6 w-6 text-blue-200" />
           </div>
-          <div className="absolute inset-0 transform transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-0 group-data-[state=open]:opacity-100 group-data-[state=closed]:-rotate-180 group-data-[state=closed]:opacity-0">
-            <Minus className="w-6 h-6 text-blue-100" />
+          <div className="absolute inset-0 transform transition-transform duration-300 ease-in-out group-data-[state=closed]:-rotate-180 group-data-[state=closed]:opacity-0 group-data-[state=open]:rotate-0 group-data-[state=open]:opacity-100">
+            <Minus className="h-6 w-6 text-blue-100" />
           </div>
         </div>
         {children}
@@ -62,11 +62,11 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-gray-300 text-base font-normal leading-[175%] flex mb-4 gap-8"
+      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down mb-4 flex gap-8 overflow-hidden text-base leading-[175%] font-normal text-gray-300"
       {...props}
     >
-      <div className="w-1 h-fill shrink-0 bg-blue-100" />
-      <div className={cn("pt-0 pb-4 body-md text-gray-300", className)}>
+      <div className="h-fill w-1 shrink-0 bg-blue-100" />
+      <div className={cn("body-md pt-0 pb-4 text-gray-300", className)}>
         {children}
       </div>
     </AccordionPrimitive.Content>

@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof LinkCard> = {
   component: LinkCard,
   render: (args) => (
-    <div className="w-full flex justify-center">
+    <div className="flex w-full justify-center">
       <LinkCard {...args} />
     </div>
   ),

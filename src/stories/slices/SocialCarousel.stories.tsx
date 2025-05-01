@@ -5,7 +5,7 @@ const meta: Meta<typeof SocialCarousel> = {
   component: SocialCarousel,
   render: (args) => {
     return (
-      <div className="w-full max-h-[624px]">
+      <div className="max-h-[624px] w-full">
         <SocialCarousel {...args} />
       </div>
     );

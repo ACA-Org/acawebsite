@@ -19,10 +19,10 @@ export const RightMenu = ({
   if (!items || items.length < 1) return null;
 
   return (
-    <div className="w-[380px] sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
+    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] w-[380px] overflow-scroll">
       {rightMenuHeader && (
-        <div className="w-full h-[60px] border-b border-blue-100 pl-5 pb-5 pt-[18px]">
-          <p className="font-semibold body-xl text-blue-300">
+        <div className="h-[60px] w-full border-b border-blue-100 pt-[18px] pb-5 pl-5">
+          <p className="body-xl font-semibold text-blue-300">
             {rightMenuHeader}
           </p>
         </div>
@@ -57,9 +57,9 @@ export const RightMenu = ({
       <div
         role="button"
         onClick={() => router.back()}
-        className="flex items-center gap-6 self-stretch p-4 group cursor-pointer"
+        className="group flex cursor-pointer items-center gap-6 self-stretch p-4"
       >
-        <ArrowLeft className="w-4 h-[14px] stroke-blue-200" />
+        <ArrowLeft className="h-[14px] w-4 stroke-blue-200" />
         <span className="body-lg text-blue-200 group-hover:underline">
           Back to Previous Page
         </span>

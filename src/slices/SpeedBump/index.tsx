@@ -27,12 +27,12 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
   } = slice;
 
   return (
-    <div className="max-w-[1440px] px-4 md:px-8 mx-auto w-full mb-12">
+    <div className="mx-auto mb-12 w-full max-w-[1440px] px-4 md:px-8">
       <div
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className={cn(
-          "flex rounded-3xl p-8 overflow-hidden",
+          "flex overflow-hidden rounded-3xl p-8 max-lg:rounded-lg max-lg:p-4",
           variation === "vertical" && "w-fit p-6 pt-8",
           theme === "light" ? "bg-blue-50" : "bg-blue-300"
         )}
@@ -41,14 +41,14 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
           {hero.url && (
             <figure className="relative h-full w-auto max-md:w-full">
               <PrismicNextImage
-                className="w-full h-full max-h-[210px] object-cover rounded-md"
+                className="h-full max-h-[210px] w-full rounded-md object-cover"
                 field={hero}
               />
             </figure>
           )}
           <div
             className={cn(
-              "flex flex-1 gap-4 h-fit",
+              "flex h-fit flex-1 gap-4",
               variation === "vertical" && "flex-col",
               position === "bottom"
                 ? "flex-col items-start"
@@ -84,8 +84,8 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
             {links?.length > 0 && (
               <div
                 className={cn(
-                  "flex gap-4 items-center justify-center",
-                  variation === "vertical" && "flex-col w-full"
+                  "flex items-center justify-center gap-4",
+                  variation === "vertical" && "w-full flex-col"
                 )}
               >
                 {links.map((link, index) => (

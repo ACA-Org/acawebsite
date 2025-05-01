@@ -75,7 +75,7 @@ export default function Map() {
   }
 
   return (
-    <div className="flex h-full rounded-xl overflow-hidden border border-solid border-[#aed2ff]">
+    <div className="flex h-full overflow-hidden rounded-xl border border-solid border-[#aed2ff]">
       <div className="relative flex-1">
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
@@ -94,15 +94,15 @@ export default function Map() {
         </GoogleMap>
       </div>
 
-      <div className="w-[368px] bg-blue-50 border-l border-[#aed2ff] overflow-y-auto">
+      <div className="w-[368px] overflow-y-auto border-l border-[#aed2ff] bg-blue-50">
         <div className="flex flex-col gap-4 p-4">
           {locations.map((location, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg border border-solid border-[#005f9626] shadow-[0px_8px_24px_#00000014] p-4"
+              className="rounded-lg border border-solid border-[#005f9626] bg-white p-4 shadow-[0px_8px_24px_#00000014]"
             >
               <div className="mb-4">
-                <h2 className="font-heading-4 text-blue-300 text-[24px]">
+                <h2 className="font-heading-4 text-[24px] text-blue-300">
                   {location.name}
                 </h2>
               </div>
@@ -110,7 +110,7 @@ export default function Map() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-start gap-2.5">
                   <MapPinIcon className="flex-shrink-0 text-gray-300" />
-                  <div className="text-gray-300 whitespace-pre-line">
+                  <div className="whitespace-pre-line text-gray-300">
                     {location.address}
                   </div>
                 </div>
@@ -121,7 +121,7 @@ export default function Map() {
                 </div>
 
                 <button
-                  className="w-full bg-blue-300 text-white hover:bg-blue-200 py-2 px-4 rounded-md transition-colors"
+                  className="w-full rounded-md bg-blue-300 px-4 py-2 text-white transition-colors hover:bg-blue-200"
                   onClick={() => {
                     if (map) {
                       map.panTo(location.position);

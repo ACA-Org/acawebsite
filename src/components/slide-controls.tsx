@@ -12,12 +12,12 @@ export const SlideControls = ({
 }) => {
   const swiper = useSwiper();
   return (
-    <div className={cn("flex flex-row items-start gap-4 absolute", className)}>
+    <div className={cn("absolute flex flex-row items-start gap-4", className)}>
       <Button
         variant={variant}
         outlined
         onClick={() => swiper.slidePrev()}
-        className="h-16 w-auto aspect-square shadow-xl rounded-md"
+        className="aspect-square h-16 w-auto rounded-md shadow-xl"
       >
         <ArrowLeft className="size-6" />
       </Button>
@@ -25,7 +25,7 @@ export const SlideControls = ({
         variant={variant}
         outlined
         onClick={() => swiper.slideNext()}
-        className="h-16 w-auto aspect-square shadow-xl rounded-md"
+        className="aspect-square h-16 w-auto rounded-md shadow-xl"
       >
         <ArrowRight className="size-6" />
       </Button>

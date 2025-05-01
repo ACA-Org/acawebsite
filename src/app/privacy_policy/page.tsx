@@ -17,13 +17,13 @@ export default async function Page() {
   } = page;
 
   return (
-    <div className="w-full flex flex-col mb-28 px-11">
-      <div className="flex flex-row gap-16 my-12">
+    <div className="mb-28 flex w-full flex-col px-11">
+      <div className="my-12 flex flex-row gap-16">
         <div className="flex w-full flex-col items-start gap-12 px-8">
           <div className="flex flex-col gap-12">
             {pathname && <Breadcrumbs path={pathname} />}
             {title && (
-              <h1 className="heading-1 font-semibold z-20 text-blue-200">
+              <h1 className="heading-1 z-20 font-semibold text-blue-200">
                 {title}
               </h1>
             )}

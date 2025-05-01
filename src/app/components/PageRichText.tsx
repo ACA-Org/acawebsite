@@ -28,7 +28,7 @@ export default function PageRichText({
               <a
                 href={node.data.url}
                 target={node.data.target}
-                className="text-blue-200 underline hover:text-blue-300 visited:text-blue-400"
+                className="text-blue-200 underline visited:text-blue-400 hover:text-blue-300"
               >
                 {children}
               </a>

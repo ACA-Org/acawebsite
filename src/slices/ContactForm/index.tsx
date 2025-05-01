@@ -40,13 +40,13 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-blue-50 rounded-2xl border-none p-8">
+    <div className="rounded-2xl border-none bg-blue-50 p-8">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="flex items-center gap-[41px] relative w-full mb-8">
-          <div className="flex flex-col items-start gap-2 flex-1">
+        <div className="relative mb-8 flex w-full items-center gap-[41px]">
+          <div className="flex flex-1 flex-col items-start gap-2">
             <label
               htmlFor="firstName"
-              className="font-body-LG text-blue-300 text-[18px] leading-normal"
+              className="font-body-LG text-[18px] leading-normal text-blue-300"
             >
               First Name
             </label>
@@ -59,16 +59,16 @@ const ContactForm = () => {
               hasError={!!errors?.firstName?.message}
             />
             {errors.firstName && (
-              <span className="text-red-500 text-sm">
+              <span className="text-sm text-red-500">
                 {errors.firstName.message}
               </span>
             )}
           </div>
 
-          <div className="flex flex-col items-start gap-2 flex-1">
+          <div className="flex flex-1 flex-col items-start gap-2">
             <label
               htmlFor="lastName"
-              className="font-body-LG text-blue-300 text-[18px] leading-normal"
+              className="font-body-LG text-[18px] leading-normal text-blue-300"
             >
               Last Name
             </label>
@@ -81,17 +81,17 @@ const ContactForm = () => {
               hasError={!!errors?.lastName}
             />
             {errors.lastName && (
-              <span className="text-red-500 text-sm">
+              <span className="text-sm text-red-500">
                 {errors.lastName.message}
               </span>
             )}
           </div>
         </div>
 
-        <div className="flex flex-col items-start gap-2 w-full mb-8">
+        <div className="mb-8 flex w-full flex-col items-start gap-2">
           <label
             htmlFor="email"
-            className="font-body-LG text-blue-300 text-[18px] leading-normal"
+            className="font-body-LG text-[18px] leading-normal text-blue-300"
           >
             Email Address
           </label>
@@ -110,14 +110,14 @@ const ContactForm = () => {
             hasError={!!errors?.email}
           />
           {errors.email && (
-            <span className="text-red-500 text-sm">{errors.email.message}</span>
+            <span className="text-sm text-red-500">{errors.email.message}</span>
           )}
         </div>
 
-        <div className="flex flex-col items-start gap-2 w-full mb-8">
+        <div className="mb-8 flex w-full flex-col items-start gap-2">
           <label
             htmlFor="message"
-            className="font-body-LG text-blue-300 text-[18px] leading-normal"
+            className="font-body-LG text-[18px] leading-normal text-blue-300"
           >
             Message
           </label>
@@ -129,7 +129,7 @@ const ContactForm = () => {
             rows={4}
           />
           {errors.message && (
-            <span className="text-red-500 text-sm">
+            <span className="text-sm text-red-500">
               {errors.message.message}
             </span>
           )}
