@@ -30,14 +30,12 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   }, [activeItem, slices]);
 
   return (
-    <nav onMouseLeave={() => setActiveItem(null)} className="relative z-40">
+    <nav
+      onMouseLeave={() => setActiveItem(null)}
+      className="relative z-40 xl:absolute xl:top-1/2 xl:left-1/2 xl:-translate-1/2 xl:p-8"
+    >
       {/* Desktop Nav */}
-      <div
-        className={cn(
-          className,
-          "relative hidden lg:block xl:absolute xl:top-1/2 xl:left-1/2 xl:-translate-1/2 xl:p-8"
-        )}
-      >
+      <div className={cn(className, "hidden lg:block")}>
         <div className="relative">
           <div className="flex justify-center">
             <ul className="flex w-full items-center justify-center gap-8 p-2">
