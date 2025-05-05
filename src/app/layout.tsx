@@ -45,7 +45,6 @@ export default async function RootLayout({
   const fetchPathMap = async () => {
     try {
       const result = await getPathMap();
-      console.log("Path map fetched!");
       pathMap = result || null;
     } catch (err) {
       console.error(err);

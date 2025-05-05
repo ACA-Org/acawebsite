@@ -77,15 +77,14 @@ export type LinkButtonProps = React.ComponentProps<typeof PrismicNextLink> &
   VariantProps<typeof buttonVariants>;
 
 const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ className, variant, href, outlined, field, ...props }, ref) => {
+  ({ className, variant, outlined, ...props }, ref) => {
+    const pathMap = useAtomValue(pathMapAtom);
     return (
-      // @ts-expect-error PrismicNextLink field issue
       <PrismicNextLink
         className={cn(buttonVariants({ variant, outlined, className }))}
-        {...props}
+        linkResolver={(doc) => pathMap?.get(doc.id) || `/${doc.uid}`}
         ref={ref}
-        href={href || ""}
-        field={field!}
+        {...props}
       />
     );
   }
@@ -93,27 +92,7 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
 
 LinkButton.displayName = "LinkButton";
 
-type PrismicLinkButtonProps = React.ComponentProps<typeof PrismicNextLink> &
-  VariantProps<typeof buttonVariants>;
-
-const PrismicLinkButton = React.forwardRef<
-  HTMLAnchorElement,
-  PrismicLinkButtonProps
->(({ className, variant, outlined, ...props }, ref) => {
-  const pathMap = useAtomValue(pathMapAtom);
-  return (
-    <PrismicNextLink
-      {...props}
-      className={cn(buttonVariants({ variant, outlined, className }))}
-      linkResolver={(doc) => pathMap?.get(doc.id) || `/${doc.uid}`}
-      ref={ref}
-    />
-  );
-});
-
-PrismicLinkButton.displayName = "PrismicLinkButton";
-
-const TextLink = React.forwardRef<HTMLAnchorElement, PrismicLinkButtonProps>(
+const TextLink = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   ({ className, ...props }, ref) => {
     const pathMap = useAtomValue(pathMapAtom);
 
@@ -133,5 +112,5 @@ const TextLink = React.forwardRef<HTMLAnchorElement, PrismicLinkButtonProps>(
 
 TextLink.displayName = "TextLink";
 
-export { LinkButton, Button, buttonVariants, TextLink, PrismicLinkButton };
+export { LinkButton, Button, buttonVariants, TextLink };
 

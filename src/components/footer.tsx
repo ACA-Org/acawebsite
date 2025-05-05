@@ -85,18 +85,18 @@ const Footer = ({ data }: { data: FooterProps }) => {
                 Helpful Links
               </div>
 
-          <div className="flex flex-col items-start gap-2 self-stretch w-full">
-            {helpfulNavLinks?.map((link, index) => (
-              <TextLink
-                key={`helpful-${index}`}
-                className={index === 0 ? "mt-[-1.00px]" : ""}
-                field={link}
-              >
-                {link.text}
-              </TextLink>
-            ))}
-          </div>
-        </div>
+              <div className="flex w-full flex-col items-start gap-2 self-stretch">
+                {helpfulNavLinks?.map((link, index) => (
+                  <TextLink
+                    key={`helpful-${index}`}
+                    className={index === 0 ? "mt-[-1.00px]" : ""}
+                    field={link}
+                  >
+                    {link.text}
+                  </TextLink>
+                ))}
+              </div>
+            </div>
 
             {/* Member Links */}
             <div className="flex flex-1 flex-col items-start gap-4">
@@ -104,18 +104,18 @@ const Footer = ({ data }: { data: FooterProps }) => {
                 Members
               </div>
 
-          <div className="flex flex-col items-start gap-2 self-stretch w-full">
-            {memberNavLinks?.map((link, index) => (
-              <TextLink
-                key={`member-${index}`}
-                className={index === 0 ? "mt-[-1.00px]" : ""}
-                field={link}
-              >
-                {link.text}
-              </TextLink>
-            ))}
-          </div>
-        </div>
+              <div className="flex w-full flex-col items-start gap-2 self-stretch">
+                {memberNavLinks?.map((link, index) => (
+                  <TextLink
+                    key={`member-${index}`}
+                    className={index === 0 ? "mt-[-1.00px]" : ""}
+                    field={link}
+                  >
+                    {link.text}
+                  </TextLink>
+                ))}
+              </div>
+            </div>
 
             <div className="flex flex-1 flex-col items-start gap-4">
               <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
@@ -145,7 +145,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-[76px] py-8 self-stretch w-full bg-[#091B31]">
+      <div className="flex w-full items-center justify-between self-stretch bg-[#091B31] px-[76px] py-8">
         <div className="inline-flex items-center gap-6">
           {subFooterNavLinks?.map((link, index) => (
             <TextLink
@@ -158,10 +158,8 @@ const Footer = ({ data }: { data: FooterProps }) => {
           ))}
         </div>
 
-            <div className="body-sm">
-              Copyright © American Correctional Association
-            </div>
-          </div>
+        <div className="body-sm">
+          Copyright © American Correctional Association
         </div>
       </div>
     </footer>

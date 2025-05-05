@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicLinkButton } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/button";
 
 /**
  * Props for `ButtonGroup`.
@@ -19,20 +19,21 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex flex-row gap-4 w-full items-center justify-center"
+      className="flex w-full flex-row items-center justify-center gap-4"
     >
       {actions.slice(0, 2).map((action, index) => (
-        <PrismicLinkButton
+        <LinkButton
           className="w-full max-w-64"
           variant={index % 2 === 0 ? "secondary" : "primary"}
           key={action.key}
           field={action}
         >
           {action.text}
-        </PrismicLinkButton>
+        </LinkButton>
       ))}
     </section>
   );
 };
 
 export default ButtonGroup;
+
