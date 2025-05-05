@@ -1,0 +1,63 @@
+{
+  "id": "card_container",
+  "type": "SharedSlice",
+  "name": "CardContainer",
+  "description": "CardContainer",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "repeat": true,
+            "fields": {
+              "cardImage": {
+                "type": "Image",
+                "config": {
+                  "label": "CardImage",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "cardTitle": {
+                "type": "Text",
+                "config": {
+                  "label": "CardTitle",
+                  "placeholder": ""
+                }
+              },
+              "cardDescription": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "CardDescription",
+                  "placeholder": "This is where the content for the card will be populated using a rich text element.",
+                  "allowTargetBlank": true,
+                  "single": "paragraph,strong,em,hyperlink,list-item"
+                }
+              },
+              "cardLink": {
+                "type": "Link",
+                "config": {
+                  "label": "CardLink",
+                  "placeholder": "Card Button",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

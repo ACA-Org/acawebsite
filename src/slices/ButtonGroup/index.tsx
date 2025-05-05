@@ -36,4 +36,3 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ slice }) => {
 };
 
 export default ButtonGroup;
-

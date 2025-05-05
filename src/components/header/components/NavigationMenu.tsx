@@ -222,4 +222,3 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
     </nav>
   );
 }
-

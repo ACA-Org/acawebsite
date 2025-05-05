@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   } = pageData;
   return (
     <div className="flex w-full flex-col">
-      <div className="mb-28 flex w-full flex-col px-11">
+      <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
         <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-2xl p-12">
           {img && (
             <>
@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           )}
         </div>
         <div className="my-12 flex flex-row gap-16">
-          <div className="flex w-full flex-col items-start gap-12 px-8">
+          <div className="flex w-full flex-col items-start gap-12 max-md:gap-8">
             <div className="flex flex-col gap-12">
               {pathname && <Breadcrumbs path={pathname} />}
               {title && (

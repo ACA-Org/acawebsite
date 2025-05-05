@@ -48,6 +48,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "card_container": {
+              "type": "SharedSlice"
+            },
+            "card": {
+              "type": "SharedSlice"
+            },
             "button_group": {
               "type": "SharedSlice"
             },

@@ -38,7 +38,7 @@ const NativeSelect = forwardRef(
         >
           {children}
         </select>
-        <ChevronDownIcon className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 size-4" />
+        <ChevronDownIcon className="absolute top-1/2 right-3 size-4 -translate-y-1/2 text-gray-500" />
       </div>
     );
   }

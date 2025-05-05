@@ -125,4 +125,3 @@ export async function generateStaticParams() {
 
   return pages.map((page) => ({ uid: page.uid }));
 }
-

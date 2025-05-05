@@ -29,7 +29,7 @@ export function Breadcrumbs({ path }: BreadcrumbsProps) {
   });
 
   return (
-    <nav aria-label="Breadcrumb" className="py-2">
+    <nav aria-label="Breadcrumb" className="hidden py-2 lg:block">
       <ol className="flex items-center space-x-2">
         <li className="flex gap-2">
           <Link
