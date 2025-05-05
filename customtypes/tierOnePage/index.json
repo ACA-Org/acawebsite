@@ -48,6 +48,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "button_group": {
+              "type": "SharedSlice"
+            },
             "accordion": {
               "type": "SharedSlice"
             },

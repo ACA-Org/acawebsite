@@ -18,7 +18,9 @@
           "label": "ParentPage",
           "select": "document",
           "repeat": false,
-          "customtypes": ["tierTwoPage"]
+          "customtypes": [
+            "tierTwoPage"
+          ]
         }
       },
       "pageImage": {
@@ -65,7 +67,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "button_group": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

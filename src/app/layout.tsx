@@ -6,6 +6,9 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
+import { getPathMap, PathMap } from "@/lib/prismicPathMap";
+import { HydrationBoundary } from "jotai-ssr";
+import { pathMapAtom } from "./atoms/pathMapAtom";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,6 +22,7 @@ export default async function RootLayout({
 }>) {
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
+  let pathMap: PathMap | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -38,19 +42,36 @@ export default async function RootLayout({
     }
   };
 
-  await Promise.allSettled([fetchFooterInfo(), fetchHeaderInfo()]);
+  const fetchPathMap = async () => {
+    try {
+      const result = await getPathMap();
+      console.log("Path map fetched!");
+      pathMap = result || null;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  await Promise.allSettled([
+    fetchFooterInfo(),
+    fetchHeaderInfo(),
+    fetchPathMap(),
+  ]);
 
   return (
     <html lang="en" className="w-screen overflow-x-clip">
       <body
         className={`${gillSans.variable} [font-family:GillSans] antialiased`}
       >
-        <CacheProvider>
-          {headerInfo && <Header data={headerInfo} />}
-        </CacheProvider>
-        <div className="mt-17">{children}</div>
-        {footerInfo && <Footer data={footerInfo} />}
+        <HydrationBoundary hydrateAtoms={[[pathMapAtom, pathMap]]}>
+          <CacheProvider>
+            {headerInfo && <Header data={headerInfo} />}
+          </CacheProvider>
+          <div className="mt-17">{children}</div>
+          {footerInfo && <Footer data={footerInfo} />}
+        </HydrationBoundary>
       </body>
     </html>
   );
 }
+

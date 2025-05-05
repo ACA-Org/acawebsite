@@ -34,6 +34,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "format-package": "^7.0.0",
+    "jotai": "^2.12.3",
+    "jotai-ssr": "^0.2.0",
     "jsdom": "^26.1.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.477.0",

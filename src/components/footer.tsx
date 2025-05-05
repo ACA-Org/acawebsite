@@ -8,7 +8,7 @@ import { LinkedIn } from "@/icons/LinkedIn";
 import { X } from "@/icons/X";
 
 import { FooterDocumentData, Simplify } from "../../prismicio-types";
-import { PrismicNextLink } from "@prismicio/next";
+import { TextLink } from "./ui/button";
 
 export type FooterProps = Simplify<FooterDocumentData>;
 
@@ -85,18 +85,18 @@ const Footer = ({ data }: { data: FooterProps }) => {
                 Helpful Links
               </div>
 
-              <div className="flex w-full flex-col items-start gap-2 self-stretch">
-                {helpfulNavLinks?.map((link, index) => (
-                  <PrismicNextLink
-                    key={`helpful-${index}`}
-                    className={`body-md hover:text-gold-100 cursor-pointer self-stretch transition-colors ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                    field={link}
-                  >
-                    {link.text}
-                  </PrismicNextLink>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-col items-start gap-2 self-stretch w-full">
+            {helpfulNavLinks?.map((link, index) => (
+              <TextLink
+                key={`helpful-${index}`}
+                className={index === 0 ? "mt-[-1.00px]" : ""}
+                field={link}
+              >
+                {link.text}
+              </TextLink>
+            ))}
+          </div>
+        </div>
 
             {/* Member Links */}
             <div className="flex flex-1 flex-col items-start gap-4">
@@ -104,18 +104,18 @@ const Footer = ({ data }: { data: FooterProps }) => {
                 Members
               </div>
 
-              <div className="flex w-full flex-col items-start gap-2 self-stretch">
-                {memberNavLinks?.map((link, index) => (
-                  <PrismicNextLink
-                    key={`member-${index}`}
-                    className={`body-md hover:text-gold-100 cursor-pointer self-stretch transition-colors ${index === 0 ? "mt-[-1.00px]" : ""}`}
-                    field={link}
-                  >
-                    {link.text}
-                  </PrismicNextLink>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-col items-start gap-2 self-stretch w-full">
+            {memberNavLinks?.map((link, index) => (
+              <TextLink
+                key={`member-${index}`}
+                className={index === 0 ? "mt-[-1.00px]" : ""}
+                field={link}
+              >
+                {link.text}
+              </TextLink>
+            ))}
+          </div>
+        </div>
 
             <div className="flex flex-1 flex-col items-start gap-4">
               <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
@@ -145,21 +145,18 @@ const Footer = ({ data }: { data: FooterProps }) => {
         </div>
       </div>
 
-      {/* Site Links & Copyright */}
-      <div className="w-full self-stretch bg-[#091B31] py-8">
-        <div className="mx-auto w-full max-w-[1440px] px-4 md:px-8">
-          <div className="flex items-center justify-between max-md:flex-col max-md:items-start max-md:gap-8">
-            <div className="flex gap-6 max-md:flex-col">
-              {subFooterNavLinks?.map((link, index) => (
-                <PrismicNextLink
-                  key={`sub-footer-${index}`}
-                  field={link}
-                  className="body-sm cursor-pointer hover:text-blue-100"
-                >
-                  {link.text}
-                </PrismicNextLink>
-              ))}
-            </div>
+      <div className="flex items-center justify-between px-[76px] py-8 self-stretch w-full bg-[#091B31]">
+        <div className="inline-flex items-center gap-6">
+          {subFooterNavLinks?.map((link, index) => (
+            <TextLink
+              key={`sub-footer-${index}`}
+              className={index === 0 ? "mt-[-1.00px]" : ""}
+              field={link}
+            >
+              {link.text}
+            </TextLink>
+          ))}
+        </div>
 
             <div className="body-sm">
               Copyright © American Correctional Association

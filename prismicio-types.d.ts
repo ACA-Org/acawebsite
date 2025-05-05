@@ -945,6 +945,7 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
   >;
 
 type TierOnePageDocumentDataSlicesSlice =
+  | ButtonGroupSlice
   | AccordionSlice
   | LinkTileSlice
   | CarouselSlice
@@ -1072,7 +1073,7 @@ export type TierOnePageDocument<Lang extends string = string> =
     Lang
   >;
 
-type TierThreePageDocumentDataSlicesSlice = never;
+type TierThreePageDocumentDataSlicesSlice = ButtonGroupSlice;
 
 type TierThreePageDocumentDataSlices2Slice =
   | CarouselSlice
@@ -1219,6 +1220,7 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
+  | ButtonGroupSlice
   | SpeedBumpSlice
   | CarouselSlice
   | AccordionSlice
@@ -1467,6 +1469,53 @@ type AccordionSliceVariation = AccordionSliceDefault;
 export type AccordionSlice = prismic.SharedSlice<
   "accordion",
   AccordionSliceVariation
+>;
+
+/**
+ * Primary content in *ButtonGroup → Default → Primary*
+ */
+export interface ButtonGroupSliceDefaultPrimary {
+  /**
+   * Actions field in *ButtonGroup → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: button_group.default.primary.actions
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  actions: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Default variation for ButtonGroup Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonGroupSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ButtonGroupSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ButtonGroup*
+ */
+type ButtonGroupSliceVariation = ButtonGroupSliceDefault;
+
+/**
+ * ButtonGroup Shared Slice
+ *
+ * - **API ID**: `button_group`
+ * - **Description**: ButtonGroup
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonGroupSlice = prismic.SharedSlice<
+  "button_group",
+  ButtonGroupSliceVariation
 >;
 
 /**
@@ -2326,6 +2375,10 @@ declare module "@prismicio/client" {
       AccordionSliceDefaultPrimary,
       AccordionSliceVariation,
       AccordionSliceDefault,
+      ButtonGroupSlice,
+      ButtonGroupSliceDefaultPrimary,
+      ButtonGroupSliceVariation,
+      ButtonGroupSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,

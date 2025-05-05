@@ -15,11 +15,7 @@ import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { NativeSelect } from "../ui/native-select";
 import Supercluster from "supercluster";
-import {
-  elementScroll,
-  useVirtualizer,
-  VirtualizerOptions,
-} from "@tanstack/react-virtual";
+import {useVirtualizer} from "@tanstack/react-virtual";
 
 const mapContainerStyle = {
   width: "100%",
@@ -153,10 +149,6 @@ const FilterInputs = React.memo(
 
 FilterInputs.displayName = "FilterInputs";
 
-function easeInOutQuint(t: number) {
-  return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
-}
-
 // Separate FacilityList component
 const FacilityList = React.memo(
   ({
@@ -173,38 +165,13 @@ const FacilityList = React.memo(
     isLoading: boolean;
   }) => {
     const parentRef = useRef<HTMLDivElement>(null);
-    const scrollingRef = useRef<number>(undefined);
 
-    const scrollToFn: VirtualizerOptions<any, any>["scrollToFn"] =
-      React.useCallback((offset, canSmooth, instance) => {
-        const duration = 1000;
-        const start = parentRef.current?.scrollTop || 0;
-        const startTime = (scrollingRef.current = Date.now());
-
-        const run = () => {
-          if (scrollingRef.current !== startTime) return;
-          const now = Date.now();
-          const elapsed = now - startTime;
-          const progress = easeInOutQuint(Math.min(elapsed / duration, 1));
-          const interpolated = start + (offset - start) * progress;
-
-          if (elapsed < duration) {
-            elementScroll(interpolated, canSmooth, instance);
-            requestAnimationFrame(run);
-          } else {
-            elementScroll(interpolated, canSmooth, instance);
-          }
-        };
-
-        requestAnimationFrame(run);
-      }, []);
 
     const rowVirtualizer = useVirtualizer({
       count: facilities.length,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 285, // Initial estimate, will be adjusted by measureElement
       overscan: 5,
-      scrollToFn,
       measureElement: (element) => {
         // Get the actual height of the element including margins
         const style = window.getComputedStyle(element);
@@ -509,8 +476,9 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   const supercluster = useMemo(() => {
     return new Supercluster({
       radius: 100, // 50 mile radius
-      maxZoom: 20,
+      maxZoom: 100,
       minZoom: 0,
+      minPoints: 10,
     });
   }, []);
 
@@ -538,12 +506,9 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     ];
 
     const zoom = map.getZoom() || 0;
-    const currentZoom = Math.floor(zoom);
-
-    // Recalculate clusters when bounds change or zoom level changes
     supercluster.load(points);
-    const newClusters = supercluster.getClusters(bounds, currentZoom);
-    setClusters(newClusters);
+    const clusters = supercluster.getClusters(bounds, Math.floor(zoom));
+    setClusters(clusters);
   }, [mapBounds, map, points, supercluster]);
 
   const onLoad = useCallback((map: google.maps.Map) => {
@@ -607,12 +572,53 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
           onLoad={onLoad}
           onBoundsChanged={handleBoundsChanged}
         >
-          <ClusterMarkers
-            clusters={clusters}
-            supercluster={supercluster}
-            map={map}
-            setSelectedFacility={setSelectedFacility}
-          />
+          {clusters.map((cluster, index) => {
+            const [longitude, latitude] = cluster.geometry.coordinates;
+            const { cluster: isCluster, point_count: pointCount } =
+              cluster.properties;
+
+            if (isCluster) {
+              return (
+                <Marker
+                  key={`cluster-${index}`}
+                  position={{ lat: latitude, lng: longitude }}
+                  onClick={() => {
+                    const expansionZoom = Math.min(
+                      supercluster.getClusterExpansionZoom(
+                        cluster.properties.cluster_id
+                      ),
+                      20
+                    );
+                    map?.panTo({ lat: latitude, lng: longitude });
+                    map?.setZoom(expansionZoom);
+                  }}
+                  icon={{
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10 + Math.min(pointCount, 20),
+                    fillColor: "#005f96",
+                    fillOpacity: 0.7,
+                    strokeColor: "#ffffff",
+                    strokeWeight: 2,
+                  }}
+                  label={{
+                    text: pointCount.toString(),
+                    color: "#ffffff",
+                    fontSize: "12px",
+                  }}
+                />
+              );
+            }
+
+            const facility = cluster.properties.facility;
+            return (
+              <Marker
+                key={`marker-${index}`}
+                position={{ lat: latitude, lng: longitude }}
+                title={facility.companyName}
+                onClick={() => setSelectedFacility(facility)}
+              />
+            );
+          })}
         </GoogleMap>
       </div>
 
