@@ -53,16 +53,16 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
     <div className="flex gap-4">
       {timeUnits.map((item, index) => (
         <React.Fragment key={index}>
-          <div className="flex flex-col w-min items-center gap-1 relative">
-            <div className="relative self-stretch mt-[-1.00px] [font-family:'Gill_Sans-Regular',Helvetica] font-normal text-blue-50 text-[50px] tracking-[0] leading-[normal]">
+          <div className="relative flex w-min flex-col items-center gap-1">
+            <div className="relative mt-[-1.00px] self-stretch [font-family:'Gill_Sans-Regular',Helvetica] text-[50px] leading-[normal] font-normal tracking-[0] text-blue-50">
               {item.value}
             </div>
-            <div className="relative w-fit [font-family:'Gill_Sans-Regular',Helvetica] font-normal text-white text-lg text-center tracking-[0] leading-[normal] whitespace-nowrap">
+            <div className="relative w-fit text-center [font-family:'Gill_Sans-Regular',Helvetica] text-lg leading-[normal] font-normal tracking-[0] whitespace-nowrap text-white">
               {item.label}
             </div>
           </div>
           {index < timeUnits.length - 1 && (
-            <div className="text-white text-4xl self-start mt-4">:</div>
+            <div className="mt-4 self-start text-4xl text-white">:</div>
           )}
         </React.Fragment>
       ))}

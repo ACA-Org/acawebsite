@@ -597,7 +597,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   }
 
   return (
-    <div className="flex h-full rounded-xl overflow-hidden border border-solid border-[#aed2ff]">
+    <div className="flex h-full overflow-hidden rounded-xl border border-solid border-[#aed2ff]">
       <div className="relative flex-1">
         <GoogleMap
           mapContainerStyle={mapContainerStyle}

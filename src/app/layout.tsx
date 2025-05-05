@@ -43,7 +43,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="w-screen overflow-x-clip">
       <body
-        className={`${gillSans.variable} antialiased [font-family:GillSans]`}
+        className={`${gillSans.variable} [font-family:GillSans] antialiased`}
       >
         <CacheProvider>
           {headerInfo && <Header data={headerInfo} />}

@@ -15,7 +15,7 @@ interface HeroCarouselProps {
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
   return (
     <div className="w-full">
-      <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8">
+      <div className="mx-auto w-full max-w-[1440px] overflow-visible px-4 md:px-8">
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={0}
@@ -24,29 +24,26 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
           loop={true}
           pagination={false}
           autoplay={{
-            delay: 3000,
+            delay: 6000,
             disableOnInteraction: false,
           }}
-          className="w-full h-full relative !overflow-visible"
+          className="relative h-full w-full !overflow-visible"
         >
           {slides.map((slide, index) => (
             <SwiperSlide
               key={index}
-              className="h-full w-full flex items-center justify-center"
+              className="flex h-full w-full items-center justify-center"
             >
               {({ isActive }) => (
                 <div
-                  className={`
-              w-full transition-all duration-800 h-full
-              ${isActive ? "opacity-100 scale-100 grayscale-0" : "opacity-40 scale-95 grayscale"}
-            `}
+                  className={`h-full w-full transition-all duration-800 ${isActive ? "scale-100 opacity-100 grayscale-0" : "scale-95 opacity-40 grayscale"} `}
                 >
                   <HeroCarouselSlide {...slide} />
                 </div>
               )}
             </SwiperSlide>
           ))}
-          <SlideControls className="right-12 bottom-12 z-40" />
+          <SlideControls className="right-12 bottom-12 z-40 max-lg:right-6 max-lg:bottom-6" />
         </Swiper>
       </div>
     </div>

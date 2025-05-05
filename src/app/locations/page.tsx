@@ -37,17 +37,17 @@ export default async function Page() {
   const { pageTitle: title, pageImage: img } = pageData;
 
   return (
-    <div className="w-full flex flex-col">
-      <div className="w-full flex flex-col px-11 mb-28">
-        <div className="relative mt-16 flex w-full h-full min-h-[300px] items-end gap-2.5 shrink-0 rounded-2xl overflow-clip p-12">
+    <div className="flex w-full flex-col">
+      <div className="mb-28 flex w-full flex-col px-11">
+        <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-2xl p-12">
           {img && (
             <>
-              <div className="absolute inset-0 w-full h-full z-10">
+              <div className="absolute inset-0 z-10 h-full w-full">
                 <PrismicNextImage
                   field={img}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-10% via-transparent  to-[#0F0F0F]" />
+                <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
               </div>
             </>
           )}

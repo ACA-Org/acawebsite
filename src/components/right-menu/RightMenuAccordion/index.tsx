@@ -13,7 +13,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
       <AccordionContent className="flex flex-col gap-0 divide-y divide-blue-500/12">
         <PrismicNextLink
           href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
-          className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black hover:underline bg-blue-50 border-t border-blue-500/12"
+          className="body-sm flex items-center border-t border-blue-500/12 bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
         >
           Overview
         </PrismicNextLink>
@@ -22,7 +22,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
             href={
               pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href
             }
-            className="flex items-center pl-10 pt-[14px] pb-[16px] body-sm text-gray-300 hover:text-black hover:underline bg-blue-50"
+            className="body-sm flex items-center bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
             key={index}
           >
             {labelFormatter(label)}
