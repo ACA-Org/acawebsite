@@ -4,6 +4,105 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *AccreditedFacilities → AccreditedFacility*
+ */
+export interface AccreditedFacilitiesDocumentDataAccreditedFacilityItem {
+  /**
+   * Company Name field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyName
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  companyName: prismic.KeyTextField;
+
+  /**
+   * Company Address field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyAddress
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  companyAddress: prismic.KeyTextField;
+
+  /**
+   * Company Code Id field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyCodeId
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  companyCodeId: prismic.KeyTextField;
+
+  /**
+   * Company Website field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyWebsite
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  companyWebsite: prismic.KeyTextField;
+
+  /**
+   * Facility Type field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].facilityType
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  facilityType: prismic.KeyTextField;
+
+  /**
+   * Company Location field in *AccreditedFacilities → AccreditedFacility*
+   *
+   * - **Field Type**: GeoPoint
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyLocation
+   * - **Documentation**: https://prismic.io/docs/field#geopoint
+   */
+  companyLocation: prismic.GeoPointField;
+}
+
+/**
+ * Content for AccreditedFacilities documents
+ */
+interface AccreditedFacilitiesDocumentData {
+  /**
+   * AccreditedFacility field in *AccreditedFacilities*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accreditedFacilities.accreditedFacility[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  accreditedFacility: prismic.GroupField<
+    Simplify<AccreditedFacilitiesDocumentDataAccreditedFacilityItem>
+  >;
+}
+
+/**
+ * AccreditedFacilities document from Prismic
+ *
+ * - **API ID**: `accreditedFacilities`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AccreditedFacilitiesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AccreditedFacilitiesDocumentData>,
+    "accreditedFacilities",
+    Lang
+  >;
+
 type ContactPageDocumentDataSlicesSlice = never;
 
 type ContactPageDocumentDataSlices2Slice =
@@ -525,6 +624,11 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *LocationsPage → Locations*
+ */
+export interface LocationsPageDocumentDataLocationsItem {}
+
 type LocationsPageDocumentDataSlicesSlice = never;
 
 /**
@@ -574,6 +678,19 @@ interface LocationsPageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   pageImage: prismic.ImageField<never>;
+
+  /**
+   * Locations field in *LocationsPage*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: locationsPage.locations[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  locations: prismic.GroupField<
+    Simplify<LocationsPageDocumentDataLocationsItem>
+  >;
 
   /**
    * Slice Zone field in *LocationsPage*
@@ -828,6 +945,7 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
   >;
 
 type TierOnePageDocumentDataSlicesSlice =
+  | ButtonGroupSlice
   | AccordionSlice
   | LinkTileSlice
   | CarouselSlice
@@ -955,7 +1073,7 @@ export type TierOnePageDocument<Lang extends string = string> =
     Lang
   >;
 
-type TierThreePageDocumentDataSlicesSlice = never;
+type TierThreePageDocumentDataSlicesSlice = ButtonGroupSlice;
 
 type TierThreePageDocumentDataSlices2Slice =
   | CarouselSlice
@@ -1102,6 +1220,7 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
+  | ButtonGroupSlice
   | SpeedBumpSlice
   | CarouselSlice
   | AccordionSlice
@@ -1252,6 +1371,7 @@ export type TierTwoPageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | AccreditedFacilitiesDocument
   | ContactPageDocument
   | FooterDocument
   | HeaderDocument
@@ -1349,6 +1469,53 @@ type AccordionSliceVariation = AccordionSliceDefault;
 export type AccordionSlice = prismic.SharedSlice<
   "accordion",
   AccordionSliceVariation
+>;
+
+/**
+ * Primary content in *ButtonGroup → Default → Primary*
+ */
+export interface ButtonGroupSliceDefaultPrimary {
+  /**
+   * Actions field in *ButtonGroup → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: button_group.default.primary.actions
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  actions: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Default variation for ButtonGroup Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonGroupSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ButtonGroupSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ButtonGroup*
+ */
+type ButtonGroupSliceVariation = ButtonGroupSliceDefault;
+
+/**
+ * ButtonGroup Shared Slice
+ *
+ * - **API ID**: `button_group`
+ * - **Description**: ButtonGroup
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ButtonGroupSlice = prismic.SharedSlice<
+  "button_group",
+  ButtonGroupSliceVariation
 >;
 
 /**
@@ -2161,6 +2328,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AccreditedFacilitiesDocument,
+      AccreditedFacilitiesDocumentData,
+      AccreditedFacilitiesDocumentDataAccreditedFacilityItem,
       ContactPageDocument,
       ContactPageDocumentData,
       ContactPageDocumentDataSlicesSlice,
@@ -2179,6 +2349,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       LocationsPageDocument,
       LocationsPageDocumentData,
+      LocationsPageDocumentDataLocationsItem,
       LocationsPageDocumentDataSlicesSlice,
       NextConferenceSectionDocument,
       NextConferenceSectionDocumentData,
@@ -2204,6 +2375,10 @@ declare module "@prismicio/client" {
       AccordionSliceDefaultPrimary,
       AccordionSliceVariation,
       AccordionSliceDefault,
+      ButtonGroupSlice,
+      ButtonGroupSliceDefaultPrimary,
+      ButtonGroupSliceVariation,
+      ButtonGroupSliceDefault,
       CarouselSlice,
       CarouselSliceDefaultPrimaryCarouselSlidesItem,
       CarouselSliceDefaultPrimary,

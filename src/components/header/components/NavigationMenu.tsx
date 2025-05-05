@@ -6,7 +6,8 @@ import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
 import SVG from "react-inlinesvg";
-import { FilledContentRelationshipField } from "@prismicio/client";
+import { useAtomValue } from "jotai";
+import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -18,11 +19,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
-
-  // const closeMobileMenu = () => {
-  //   setIsMobileOpen(false);
-  //   setActiveMobileItem(null);
-  // };
+  const pathMap = useAtomValue(pathMapAtom);
 
   useEffect(() => {
     if (activeItem === null) return setActiveSlice(null);
@@ -34,7 +31,6 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
       onMouseLeave={() => setActiveItem(null)}
       className="relative z-40 xl:absolute xl:top-1/2 xl:left-1/2 xl:-translate-1/2 xl:p-8"
     >
-      {/* Desktop Nav */}
       <div className={cn(className, "hidden lg:block")}>
         <div className="relative">
           <div className="flex justify-center">
@@ -43,7 +39,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                 ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
                   <li key={index} className="relative">
                     <PrismicNextLink
-                      linkResolver={(i) => `/${i.uid}`}
+                      linkResolver={(doc) =>
+                        pathMap?.get(doc.id) || `/${doc.uid}`
+                      }
                       field={tierOneLink}
                       onMouseEnter={() => setActiveItem(index)}
                       className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
@@ -82,9 +80,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     <PrismicNextLink
                       key={`${i.tierTwoMenuLink.text}-${index}`}
                       field={i.tierTwoMenuLink}
-                      linkResolver={(i) => {
-                        return `/${(activeSlice.primary.tierOneLink as FilledContentRelationshipField).uid}/${i.uid}`;
-                      }}
+                      linkResolver={(doc) =>
+                        pathMap?.get(doc.id) || `/${doc.uid}`
+                      }
                       className="group col-span-1 w-max"
                     >
                       <span className="flex h-9 w-max items-center gap-3 pr-3">
@@ -113,16 +111,15 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                 {activeSlice?.primary.featuredMenuLink.text && (
                   <PrismicNextLink
                     field={activeSlice?.primary.featuredMenuLink}
+                    linkResolver={(doc) =>
+                      pathMap?.get(doc.id) || `/${doc.uid}`
+                    }
                     className="group/link flex flex-col items-start gap-4 pl-8"
                   >
                     <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
                       {activeSlice?.primary.featuredMenuLink.text}
                     </p>
                     <div className="group relative h-[113px] w-[200px] overflow-clip rounded-lg">
-                      {/* <PrismicNextImage
-                      field={activeSlice?.primary.featuredMenuImage}
-                      className="w-full h-full object-cover peer"
-                    /> */}
                       <PrismicNextImage
                         field={activeSlice?.primary.featuredMenuImage}
                         className="peer h-full w-full object-cover opacity-0 transition-opacity duration-300"
@@ -209,6 +206,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   <PrismicNextLink
                     key={i}
                     field={item.tierTwoMenuLink}
+                    linkResolver={(doc) =>
+                      pathMap?.get(doc.id) || `/${doc.uid}`
+                    }
                     className="block text-base text-gray-700"
                   >
                     {item.tierTwoMenuLink.text}
@@ -222,3 +222,4 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
     </nav>
   );
 }
+

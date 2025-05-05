@@ -111,7 +111,7 @@ export async function generateMetadata({
     .catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
@@ -125,3 +125,4 @@ export async function generateStaticParams() {
 
   return pages.map((page) => ({ uid: page.uid }));
 }
+

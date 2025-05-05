@@ -48,6 +48,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       slices2: postArticleSlices,
     },
   } = pageData;
+
   return (
     <div className="flex w-full flex-col">
       <div className="mb-28 flex w-full flex-col px-11">
@@ -109,7 +110,7 @@ export async function generateMetadata({
     .catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
+    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],

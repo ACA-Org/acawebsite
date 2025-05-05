@@ -1,0 +1,30 @@
+{
+  "id": "button_group",
+  "type": "SharedSlice",
+  "name": "ButtonGroup",
+  "description": "ButtonGroup",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "actions": {
+          "type": "Link",
+          "config": {
+            "label": "Actions",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
