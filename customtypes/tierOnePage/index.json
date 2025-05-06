@@ -48,6 +48,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "image_callout": {
+              "type": "SharedSlice"
+            },
+            "card_container": {
+              "type": "SharedSlice"
+            },
             "button_group": {
               "type": "SharedSlice"
             },

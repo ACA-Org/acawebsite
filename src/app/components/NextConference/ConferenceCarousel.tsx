@@ -38,11 +38,19 @@ export const ConferenceCarousel = ({
           modules={[Pagination]}
           className="!static h-full w-full"
           containerModifierClass="static"
-          spaceBetween={1}
-          slidesPerView={3}
+          spaceBetween={24}
+          slidesPerView={1}
           pagination={false}
           style={{
             position: "static",
+          }}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
           }}
           ref={swiperRef}
         >
@@ -54,9 +62,7 @@ export const ConferenceCarousel = ({
               <ConferenceCard {...slice} key={index} />
             </SwiperSlide>
           ))}
-          {showControls && (
-            <SlideControls className="right-19 bottom-24 z-40" />
-          )}
+          {showControls && <SlideControls className="right-0 bottom-0 z-40" />}
         </Swiper>
       ) : (
         <div className="flex gap-6 max-md:flex-col">

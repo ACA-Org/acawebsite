@@ -1,0 +1,89 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "cards": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "cardImage",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
+                    "width": 3810,
+                    "height": 5715
+                  },
+                  "url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
+                  "width": 3810,
+                  "height": 5715,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "solar",
+                  "credits": null,
+                  "__TYPE__": "ImageContent",
+                  "thumbnails": {}
+                }
+              ],
+              [
+                "cardTitle",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "seat",
+                  "type": "Text"
+                }
+              ],
+              [
+                "cardDescription",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Voluptate est aliquip anim qui laborum non incididunt. Lorem nulla sint mollit. Culpa adipisicing officia exercitation ipsum ex cupidatat cillum ullamco ea."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "cardLink",
+                {
+                  "key": "5763e135-05c7-4822-8748-4162cd8e0920",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://slicemachine.dev",
+                    "text": "corn"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "cardContainerTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "far",
+        "type": "Text"
+      },
+      "cardContainerDesc": {
+        "__TYPE__": "FieldContent",
+        "value": "meal",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
+]

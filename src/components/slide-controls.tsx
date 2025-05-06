@@ -17,7 +17,7 @@ export const SlideControls = ({
         variant={variant}
         outlined
         onClick={() => swiper.slidePrev()}
-        className="aspect-square h-16 w-auto rounded-md shadow-xl"
+        className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
       >
         <ArrowLeft className="size-6" />
       </Button>
@@ -25,7 +25,7 @@ export const SlideControls = ({
         variant={variant}
         outlined
         onClick={() => swiper.slideNext()}
-        className="aspect-square h-16 w-auto rounded-md shadow-xl"
+        className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
       >
         <ArrowRight className="size-6" />
       </Button>

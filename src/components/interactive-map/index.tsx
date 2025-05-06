@@ -15,7 +15,7 @@ import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { NativeSelect } from "../ui/native-select";
 import Supercluster from "supercluster";
-import {useVirtualizer} from "@tanstack/react-virtual";
+import { useVirtualizer } from "@tanstack/react-virtual";
 
 const mapContainerStyle = {
   width: "100%",
@@ -127,14 +127,14 @@ const FilterInputs = React.memo(
             placeholder="Enter ZIP code..."
             value={zipFilter}
             onChange={handleZipChange}
-            className="flex-1 h-full"
+            className="h-full flex-1"
           />
           <NativeSelect
             value={distanceFilter || ""}
             disabled={!zipFilter}
             defaultValue="10"
             onChange={handleDistanceChange}
-            className={"flex-1 h-full"}
+            className={"h-full flex-1"}
           >
             <option value="10">10 miles</option>
             <option value="25">25 miles</option>
@@ -165,7 +165,6 @@ const FacilityList = React.memo(
     isLoading: boolean;
   }) => {
     const parentRef = useRef<HTMLDivElement>(null);
-
 
     const rowVirtualizer = useVirtualizer({
       count: facilities.length,
@@ -210,7 +209,7 @@ const FacilityList = React.memo(
 
     if (isLoading) {
       return (
-        <div className="text-center text-gray-500 p-4">
+        <div className="p-4 text-center text-gray-500">
           Loading facilities...
         </div>
       );
@@ -239,29 +238,29 @@ const FacilityList = React.memo(
                   width: "100%",
                   transform: `translateY(${virtualRow.start}px)`,
                 }}
-                className="px-4 my-2"
+                className="my-2 px-4"
               >
                 <div
                   className={cn(
-                    "bg-white rounded-lg border border-solid border-[#005f9626] shadow-[0px_8px_24px_#00000014] p-4 cursor-pointer transition-all flex flex-col h-fit",
+                    "flex h-fit cursor-pointer flex-col rounded-lg border border-solid border-[#005f9626] bg-white p-4 shadow-[0px_8px_24px_#00000014] transition-all",
                     selectedFacility?.companyName === facility.companyName &&
                       "ring-2 ring-blue-300"
                   )}
                   onClick={() => setSelectedFacility(facility)}
                 >
                   <div className="mb-4">
-                    <h2 className="font-heading-4 text-blue-300 text-[24px]">
+                    <h2 className="font-heading-4 text-[24px] text-blue-300">
                       {facility.companyName}
                     </h2>
-                    <p className="text-gray-500 text-sm mt-1">
+                    <p className="mt-1 text-sm text-gray-500">
                       {facility.facilityType}
                     </p>
                   </div>
 
-                  <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-1 flex-col gap-4">
                     <div className="flex items-start gap-2.5">
                       <MapPinIcon className="flex-shrink-0 text-gray-300" />
-                      <div className="text-gray-300 whitespace-pre-line">
+                      <div className="whitespace-pre-line text-gray-300">
                         {facility.companyAddress}
                       </div>
                     </div>
@@ -278,7 +277,7 @@ const FacilityList = React.memo(
                     )}
 
                     <Button
-                      className="w-full mt-auto"
+                      className="mt-auto w-full"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleViewLocation(facility);
@@ -622,8 +621,8 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </GoogleMap>
       </div>
 
-      <div className="w-[368px] bg-blue-50 border-l border-[#aed2ff] flex flex-col">
-        <div className="p-4 border-b border-[#aed2ff]">
+      <div className="flex w-[368px] flex-col border-l border-[#aed2ff] bg-blue-50">
+        <div className="border-b border-[#aed2ff] p-4">
           <FilterInputs
             nameFilter={nameFilter}
             setNameFilter={setNameFilter}

@@ -1,0 +1,96 @@
+{
+  "id": "image_callout",
+  "type": "SharedSlice",
+  "name": "ImageCallout",
+  "description": "ImageCallout",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "imageCalloutImage": {
+          "type": "Image",
+          "config": {
+            "label": "ImageCalloutImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "imageCalloutTitle": {
+          "type": "Text",
+          "config": {
+            "label": "ImageCalloutTitle",
+            "placeholder": ""
+          }
+        },
+        "imageCalloutDesc": {
+          "type": "Text",
+          "config": {
+            "label": "ImageCalloutDesc",
+            "placeholder": ""
+          }
+        },
+        "imageCalloutLink": {
+          "type": "Link",
+          "config": {
+            "label": "ImageCalloutLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "textLeft",
+      "name": "TextLeft",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "imageCalloutImage": {
+          "type": "Image",
+          "config": {
+            "label": "ImageCalloutImage",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "imageCalloutTitle": {
+          "type": "Text",
+          "config": {
+            "label": "ImageCalloutTitle",
+            "placeholder": ""
+          }
+        },
+        "imageCalloutDesc": {
+          "type": "Text",
+          "config": {
+            "label": "ImageCalloutDesc",
+            "placeholder": ""
+          }
+        },
+        "imageCalloutLink": {
+          "type": "Link",
+          "config": {
+            "label": "ImageCalloutLink",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

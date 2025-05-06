@@ -5,13 +5,14 @@ import dynamic from "next/dynamic";
 export const components = {
   accordion: dynamic(() => import("./Accordion")),
   button_group: dynamic(() => import("./ButtonGroup")),
+  card_container: dynamic(() => import("./CardContainer")),
   carousel: dynamic(() => import("./Carousel")),
   conference_card: dynamic(() => import("./ConferenceCard")),
   contact_form: dynamic(() => import("./ContactForm")),
+  image_callout: dynamic(() => import("./ImageCallout")),
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),
   social_carousel: dynamic(() => import("./SocialCarousel")),
   speedBump: dynamic(() => import("./SpeedBump")),
 };
-
