@@ -32,7 +32,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
         className={cn(
-          "flex overflow-hidden rounded-3xl p-8 max-lg:rounded-lg max-lg:p-4",
+          "flex overflow-hidden rounded-xl p-8 max-lg:rounded-lg max-lg:p-4",
           variation === "vertical" && "w-fit p-6 pt-8",
           theme === "light" ? "bg-blue-50" : "bg-blue-300"
         )}

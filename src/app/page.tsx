@@ -57,7 +57,7 @@ export default async function Home() {
                   )}
                 </div>
 
-                <ACAFullLogoColor className="h-auto w-full flex-1 max-lg:w-1/2" />
+                {/* <ACAFullLogoColor className="h-auto w-full flex-1 max-lg:w-1/2" /> */}
               </div>
             </div>
           </div>

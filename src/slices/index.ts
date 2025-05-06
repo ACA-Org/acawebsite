@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 export const components = {
   accordion: dynamic(() => import("./Accordion")),
   button_group: dynamic(() => import("./ButtonGroup")),
-  card: dynamic(() => import("./Card")),
   card_container: dynamic(() => import("./CardContainer")),
   carousel: dynamic(() => import("./Carousel")),
   conference_card: dynamic(() => import("./ConferenceCard")),

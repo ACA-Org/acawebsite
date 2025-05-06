@@ -946,7 +946,6 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
 
 type TierOnePageDocumentDataSlicesSlice =
   | CardContainerSlice
-  | CardSlice
   | ButtonGroupSlice
   | AccordionSlice
   | LinkTileSlice
@@ -1077,7 +1076,6 @@ export type TierOnePageDocument<Lang extends string = string> =
 
 type TierThreePageDocumentDataSlicesSlice =
   | CardContainerSlice
-  | CardSlice
   | ButtonGroupSlice;
 
 type TierThreePageDocumentDataSlices2Slice =
@@ -1226,7 +1224,6 @@ export type TierThreePageDocument<Lang extends string = string> =
 
 type TierTwoPageDocumentDataSlicesSlice =
   | CardContainerSlice
-  | CardSlice
   | ButtonGroupSlice
   | SpeedBumpSlice
   | CarouselSlice
@@ -1524,84 +1521,6 @@ export type ButtonGroupSlice = prismic.SharedSlice<
   "button_group",
   ButtonGroupSliceVariation
 >;
-
-/**
- * Primary content in *Card → Default → Primary*
- */
-export interface CardSliceDefaultPrimary {
-  /**
-   * CardImage field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: card.default.primary.cardImage
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  cardImage: prismic.ImageField<never>;
-
-  /**
-   * CardTitle field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Card Title Placeholder
-   * - **API ID Path**: card.default.primary.cardTitle
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  cardTitle: prismic.KeyTextField;
-
-  /**
-   * CardContent field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: This is where the content for the card will be populated using a rich text element.
-   * - **API ID Path**: card.default.primary.cardContent
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  cardContent: prismic.RichTextField;
-
-  /**
-   * CardLink field in *Card → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Card Button
-   * - **API ID Path**: card.default.primary.cardLink
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  cardLink: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Default variation for Card Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CardSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<CardSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Card*
- */
-type CardSliceVariation = CardSliceDefault;
-
-/**
- * Card Shared Slice
- *
- * - **API ID**: `card`
- * - **Description**: Card
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type CardSlice = prismic.SharedSlice<"card", CardSliceVariation>;
 
 /**
  * Item in *CardContainer → Default → Primary → Cards*
@@ -2562,10 +2481,6 @@ declare module "@prismicio/client" {
       ButtonGroupSliceDefaultPrimary,
       ButtonGroupSliceVariation,
       ButtonGroupSliceDefault,
-      CardSlice,
-      CardSliceDefaultPrimary,
-      CardSliceVariation,
-      CardSliceDefault,
       CardContainerSlice,
       CardContainerSliceDefaultPrimaryCardsItem,
       CardContainerSliceDefaultPrimary,
