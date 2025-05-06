@@ -15,18 +15,24 @@ export type CardContainerProps =
  */
 const CardContainer: FC<CardContainerProps> = ({ slice }) => {
   const {
-    primary: { cards },
+    primary: { cards, cardContainerTitle, cardContainerDesc },
   } = slice;
 
-  console.log("Cards", cards);
   return (
-    <>
+    <section
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+    >
+      {cardContainerTitle && (
+        <h2 className="heading-2 mb-6 text-blue-200">{cardContainerTitle}</h2>
+      )}
+
+      {cardContainerDesc && (
+        <div className="mb-6 w-full max-w-[900px]">{cardContainerDesc}</div>
+      )}
+
       {cards.length > 1 ? (
-        <section
-          data-slice-type={slice.slice_type}
-          data-slice-variation={slice.variation}
-          className="flex gap-6 max-lg:flex-wrap max-md:flex-col"
-        >
+        <div className="flex gap-6 max-lg:flex-wrap max-md:flex-col">
           {cards.map((card, i) => (
             <div
               key={i}
@@ -60,12 +66,9 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
               </div>
             </div>
           ))}
-        </section>
+        </div>
       ) : (
-        <section
-          data-slice-type={slice.slice_type}
-          data-slice-variation={slice.variation}
-        >
+        <>
           {cards.map((card, i) => (
             <div
               key={i}
@@ -101,9 +104,9 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
               </div>
             </div>
           ))}
-        </section>
+        </>
       )}
-    </>
+    </section>
   );
 };
 

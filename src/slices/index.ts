@@ -9,6 +9,7 @@ export const components = {
   carousel: dynamic(() => import("./Carousel")),
   conference_card: dynamic(() => import("./ConferenceCard")),
   contact_form: dynamic(() => import("./ContactForm")),
+  image_callout: dynamic(() => import("./ImageCallout")),
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),

@@ -86,19 +86,19 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                       className="group col-span-1 w-max"
                     >
                       <span className="flex h-9 w-max items-center gap-3 pr-3">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-gray-200 p-2 transition-colors group-hover:bg-blue-300">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-gray-200 p-2 transition-all duration-300 group-hover:bg-blue-300">
                           {i.tierTwoMenuIcon?.url ? (
                             <SVG
                               src={i.tierTwoMenuIcon.url}
-                              className="[&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
+                              className="transition-all duration-300 [&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
                             />
                           ) : (
-                            <Link2 className="stroke-gray-300 group-hover:stroke-white" />
+                            <Link2 className="stroke-gray-300 transition-all duration-300 group-hover:stroke-white" />
                           )}
                         </span>
 
                         <div className="flex w-max flex-col items-start justify-center text-gray-300">
-                          <p className="transition-colors group-hover:text-blue-200">
+                          <p className="transition-all duration-300 group-hover:text-blue-200">
                             {i.tierTwoMenuLink.text}
                           </p>
                           <p className="text-xs">{i.tierTwoMenuDesc}</p>
@@ -131,7 +131,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         }}
                       />
                       <div className="pointer-events-none absolute inset-0 animate-pulse bg-gray-200" />
-                      <div className="absolute right-0 bottom-0 left-0 flex h-full translate-y-full transform items-center justify-center gap-3 bg-[#0f2d52e6] transition-transform duration-300 ease-in-out group-hover:translate-y-0">
+                      <div className="absolute top-0 right-0 left-0 flex h-full transform items-center justify-center gap-3 bg-[#0f2d52e6] opacity-0 duration-500 ease-in-out group-hover:opacity-100">
                         <span className="text-lg leading-4.5 text-white">
                           View Item
                         </span>

@@ -1,0 +1,105 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "imageCalloutImage": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+          "width": 3456,
+          "height": 3456
+        },
+        "url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
+        "width": 3456,
+        "height": 3456,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "alt": "exist",
+        "credits": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "imageCalloutTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "actually",
+        "type": "Text"
+      },
+      "imageCalloutDesc": {
+        "__TYPE__": "FieldContent",
+        "value": "wish",
+        "type": "Text"
+      },
+      "imageCalloutLink": {
+        "key": "c878e036-9ec0-4615-8f4a-100be31cc1e1",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "http://google.com",
+          "text": "giant"
+        }
+      }
+    },
+    "items": []
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "textLeft",
+    "primary": {
+      "imageCalloutImage": {
+        "origin": {
+          "id": "main",
+          "url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+          "width": 5848,
+          "height": 3899
+        },
+        "url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+        "width": 5848,
+        "height": 3899,
+        "edit": {
+          "zoom": 1,
+          "crop": {
+            "x": 0,
+            "y": 0
+          },
+          "background": "transparent"
+        },
+        "alt": "enough",
+        "credits": null,
+        "__TYPE__": "ImageContent",
+        "thumbnails": {}
+      },
+      "imageCalloutTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "slipped",
+        "type": "Text"
+      },
+      "imageCalloutDesc": {
+        "__TYPE__": "FieldContent",
+        "value": "sing",
+        "type": "Text"
+      },
+      "imageCalloutLink": {
+        "key": "055c66d3-8940-47e3-a143-bb0005cbe4bc",
+        "__TYPE__": "LinkContent",
+        "value": {
+          "__TYPE__": "ExternalLink",
+          "url": "https://slicemachine.dev",
+          "text": "exact"
+        }
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

@@ -12,6 +12,20 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "cardContainerTitle": {
+          "type": "Text",
+          "config": {
+            "label": "CardContainerTitle",
+            "placeholder": "Optional Title"
+          }
+        },
+        "cardContainerDesc": {
+          "type": "Text",
+          "config": {
+            "label": "CardContainerDesc",
+            "placeholder": "This is where the content for the card container will be populated using a rich text element."
+          }
+        },
         "cards": {
           "type": "Group",
           "config": {

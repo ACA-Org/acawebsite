@@ -72,6 +72,16 @@
             ]
           }
         ]
+      },
+      "cardContainerTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "far",
+        "type": "Text"
+      },
+      "cardContainerDesc": {
+        "__TYPE__": "FieldContent",
+        "value": "meal",
+        "type": "Text"
       }
     },
     "items": []
