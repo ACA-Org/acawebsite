@@ -64,7 +64,7 @@ export default async function Page() {
               <div className="flex flex-col gap-12">
                 {pathname && <Breadcrumbs path={pathname} />}
                 {title && (
-                  <h1 className="heading-1 z-20 font-semibold text-blue-200">
+                  <h1 className="heading-1 z-20 font-semibold text-blue-300">
                     {title}
                   </h1>
                 )}

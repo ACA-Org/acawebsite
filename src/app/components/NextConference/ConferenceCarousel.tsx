@@ -39,10 +39,18 @@ export const ConferenceCarousel = ({
           className="!static h-full w-full"
           containerModifierClass="static"
           spaceBetween={24}
-          slidesPerView={3}
+          slidesPerView={1}
           pagination={false}
           style={{
             position: "static",
+          }}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
           }}
           ref={swiperRef}
         >

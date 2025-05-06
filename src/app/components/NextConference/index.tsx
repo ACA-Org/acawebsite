@@ -33,7 +33,11 @@ export const NextConference = (
     slices,
   } = props;
   return (
-    <section className="relative [background:linear-gradient(90deg,rgba(12,37,69,1)_0%,rgba(8,27,49,1)_100%)]">
+    <section
+      id="next-conference"
+      className="relative [background:linear-gradient(90deg,rgba(12,37,69,1)_0%,rgba(8,27,49,1)_100%)]"
+    >
+      <div id="conference-sentinel" className="absolute top-0 h-px w-full" />
       <div className="mx-auto w-full max-w-[1440px] px-4 py-24 md:px-8">
         <div className="relative flex w-full flex-col items-start gap-12 self-stretch">
           <div className="relative flex w-full items-center justify-between gap-16 max-md:flex-col max-md:items-start">

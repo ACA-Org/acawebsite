@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                   field={img}
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
+                {/* <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" /> */}
               </div>
             </>
           )}
@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <div className="flex flex-col gap-12">
               {pathname && <Breadcrumbs path={pathname} />}
               {title && (
-                <h1 className="heading-1 z-20 font-semibold text-blue-200">
+                <h1 className="heading-1 z-20 font-semibold text-blue-300">
                   {title}
                 </h1>
               )}

@@ -39,14 +39,14 @@ const Header = ({
       <div className="relative flex w-full items-center justify-between px-9">
         <Link
           href="/"
-          className="flex flex-col items-start justify-center transition-all duration-300"
+          className="flex items-start justify-start text-left transition-all duration-300"
         >
           <ACALogoColor
             className={cn(
-              "object-cover transition-all duration-300",
+              "object-cover transition-all duration-500",
               isCollapsed
                 ? "h-[26px] w-[68px]"
-                : "h-11 h-[26px] w-[114.78px] max-lg:w-[68px]"
+                : "h-[43px] w-[114.78px] max-lg:w-[68px]"
             )}
           />
         </Link>
