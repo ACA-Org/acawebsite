@@ -15,6 +15,27 @@ export async function Breadcrumbs({ path }: BreadcrumbsProps) {
   // Create the breadcrumb items with proper links
   const items = await Promise.all(
     segments.map(async (segment, index) => {
+      // Handle predefined pages
+      if (segment === "contact") {
+        return {
+          href: "/contact",
+          label: "Contact Us",
+        };
+      }
+      if (segment === "locations") {
+        return {
+          href: "/locations",
+          label: "Locations",
+        };
+      }
+      if (segment === "privacy-policy") {
+        return {
+          href: "/privacy-policy",
+          label: "Privacy Policy",
+        };
+      }
+
+      // Handle regular pages
       const page = await client.getByUID(
         index === 0
           ? "tierOnePage"

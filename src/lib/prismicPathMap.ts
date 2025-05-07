@@ -5,12 +5,21 @@ export type PathMap = Map<string, string> | null;
 
 export async function getPathMap(): Promise<Map<string, string>> {
   const client = createClient();
-  const tierOneDocs = await client.getAllByType("tierOnePage");
-  const tierTwoDocs = await client.getAllByType("tierTwoPage");
-  const tierThreeDocs = await client.getAllByType("tierThreePage");
-  const contactPage = await client.getSingle("contactPage");
-  const locationsPage = await client.getSingle("locationsPage");
-  const privacyPolicy = await client.getSingle("privacyPolicy");
+  const [
+    tierOneDocs,
+    tierTwoDocs,
+    tierThreeDocs,
+    contactPage,
+    locationsPage,
+    privacyPolicy,
+  ] = await Promise.all([
+    client.getAllByType("tierOnePage"),
+    client.getAllByType("tierTwoPage"),
+    client.getAllByType("tierThreePage"),
+    client.getSingle("contactPage"),
+    client.getSingle("locationsPage"),
+    client.getSingle("privacyPolicy"),
+  ]);
 
   const map = new Map<string, string>();
 

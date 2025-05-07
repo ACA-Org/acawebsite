@@ -6,9 +6,10 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
-import { getPathMap, PathMap } from "@/lib/prismicPathMap";
 import { HydrationBoundary } from "jotai-ssr";
-import { pathMapAtom } from "./atoms/pathMapAtom";
+import { SearchDialog } from "./components/SearchDialog";
+import { getSearchData, PageData } from "./actions/getSearchData";
+import { pageInfoAtom } from "./atoms/pageInfoAtom";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,7 +23,7 @@ export default async function RootLayout({
 }>) {
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
-  let pathMap: PathMap | null = null;
+  let pageInfo: PageData[] | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -42,10 +43,10 @@ export default async function RootLayout({
     }
   };
 
-  const fetchPathMap = async () => {
+  const fetchPageInfo = async () => {
     try {
-      const result = await getPathMap();
-      pathMap = result || null;
+      const result = await getSearchData();
+      pageInfo = result || null;
     } catch (err) {
       console.error(err);
     }
@@ -54,7 +55,7 @@ export default async function RootLayout({
   await Promise.allSettled([
     fetchFooterInfo(),
     fetchHeaderInfo(),
-    fetchPathMap(),
+    fetchPageInfo(),
   ]);
 
   return (
@@ -62,12 +63,13 @@ export default async function RootLayout({
       <body
         className={`${gillSans.variable} [font-family:GillSans] antialiased`}
       >
-        <HydrationBoundary hydrateAtoms={[[pathMapAtom, pathMap]]}>
+        <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pageInfo || []]]}>
           <CacheProvider>
             {headerInfo && <Header data={headerInfo} />}
           </CacheProvider>
           <div className="mt-17">{children}</div>
           {footerInfo && <Footer data={footerInfo} />}
+          <SearchDialog />
         </HydrationBoundary>
       </body>
     </html>

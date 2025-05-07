@@ -19,6 +19,10 @@ import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 
 type Params = { tier_one_uid: string };
 
+// async function wait(ms: number) {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// }
+
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_one_uid } = await params;
   const headerList = await headers();

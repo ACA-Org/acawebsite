@@ -8,6 +8,8 @@ import { UserIcon } from "@/icons/UserIcon";
 import { useRouter } from "next/navigation";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
+import { useSetAtom } from "jotai";
+import { searchDialogAtom } from "@/app/atoms/searchDialogAtom";
 
 const quickLinks = [
   {
@@ -34,6 +36,7 @@ const quickLinks = [
 
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
+  const setSearchDialogOpen = useSetAtom(searchDialogAtom);
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
   const router = useRouter();
@@ -124,6 +127,9 @@ export const IconMenu = () => {
           menuId="search"
           activeItem={activeItem}
           setActiveItem={setActiveItem}
+          onClick={() => {
+            setSearchDialogOpen(true);
+          }}
         />
         <ExpandingIcon
           icon={ShoppingCart}
