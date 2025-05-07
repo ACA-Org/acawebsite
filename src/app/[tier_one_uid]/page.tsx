@@ -14,6 +14,8 @@ import PageRichText from "../components/PageRichText";
 import { Metadata } from "next/types";
 import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
+import { Suspense } from "react";
+import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 
 type Params = { tier_one_uid: string };
 
@@ -51,8 +53,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   return (
     <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
-      <div className="relative mt-16 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
-        {img && (
+      {img.url && (
+        <div className="relative mt-16 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
           <>
             <div className="absolute inset-0 z-10 h-full w-full">
               <PrismicNextImage
@@ -62,11 +64,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
             </div>
           </>
-        )}
-      </div>
+        </div>
+      )}
       <div className="mx-auto mt-12 w-full max-w-[1440px]">
         <div className="flex flex-col gap-12">
-          {pathname && <Breadcrumbs path={pathname} />}
+          <Suspense fallback={<BreadcrumbsLoading />}>
+            {pathname && <Breadcrumbs path={pathname} />}
+          </Suspense>
           {title && (
             <h1 className="heading-1 z-20 font-semibold text-blue-300">
               {title}

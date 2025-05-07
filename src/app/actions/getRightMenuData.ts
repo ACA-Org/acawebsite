@@ -33,7 +33,6 @@ export async function getRightMenuData(
         (i.data.parentPage as FilledContentRelationshipField<"tierOnePage">)
           .uid === uid
     );
-    // Create menu items for tier two pages
     const menuItems: RightMenuData = await Promise.all(
       tierTwoPages.map(async (page: TierTwoPageDocument) => {
         // Fetch tier three pages for each tier two page
@@ -69,25 +68,13 @@ export async function getRightMenuData(
         // Create children menu items for tier three pages
         const children = tierThreePages.map(
           (childPage: TierThreePageDocument) => ({
-            label:
-              childPage.uid
-                ?.split("_")
-                .at(-1)
-                ?.split("-")
-                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(" ") || "",
+            label: childPage.data.pageTitle || "",
             href: `${page.uid}/${childPage.uid}`?.split("_").join("/"),
           })
         );
 
         return {
-          label:
-            page.uid
-              ?.split("_")
-              .at(-1)
-              ?.split("-")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ") || "",
+          label: page.data.pageTitle || "",
           href: `${page.uid}`.replace("_", "/"),
           ...(children.length > 0 ? { children } : {}),
         };
@@ -103,13 +90,7 @@ export async function getRightMenuData(
         .uid === uid
   );
   const menuItems = tierThreePages.map((childPage: TierThreePageDocument) => ({
-    label:
-      childPage.uid
-        ?.split("_")
-        .at(-1)
-        ?.split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ") || "",
+    label: childPage.data.pageTitle || "",
     href: `${childPage.uid}`?.split("_").join("/"),
   }));
   return menuItems;
