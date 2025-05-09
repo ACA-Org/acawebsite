@@ -6,10 +6,6 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
-import { HydrationBoundary } from "jotai-ssr";
-import { SearchDialog } from "./components/SearchDialog";
-import { getSearchData, PageData } from "./actions/getSearchData";
-import { pageInfoAtom } from "./atoms/pageInfoAtom";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +19,6 @@ export default async function RootLayout({
 }>) {
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
-  let pageInfo: PageData[] | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -43,34 +38,18 @@ export default async function RootLayout({
     }
   };
 
-  const fetchPageInfo = async () => {
-    try {
-      const result = await getSearchData();
-      pageInfo = result || null;
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  await Promise.allSettled([
-    fetchFooterInfo(),
-    fetchHeaderInfo(),
-    fetchPageInfo(),
-  ]);
+  await Promise.allSettled([fetchFooterInfo(), fetchHeaderInfo()]);
 
   return (
     <html lang="en" className="w-screen overflow-x-clip">
       <body
         className={`${gillSans.variable} [font-family:GillSans] antialiased`}
       >
-        <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pageInfo || []]]}>
-          <CacheProvider>
-            {headerInfo && <Header data={headerInfo} />}
-          </CacheProvider>
-          <div className="mt-17">{children}</div>
-          {footerInfo && <Footer data={footerInfo} />}
-          <SearchDialog />
-        </HydrationBoundary>
+        <CacheProvider>
+          {headerInfo && <Header data={headerInfo} />}
+        </CacheProvider>
+        <div className="mt-17">{children}</div>
+        {footerInfo && <Footer data={footerInfo} />}
       </body>
     </html>
   );

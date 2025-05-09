@@ -493,7 +493,37 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     }));
   }, [facilitiesWithPositions]);
 
-  // Update clusters when map bounds or zoom changes
+  // Memoize the bounds changed handler
+  const handleBoundsChanged = useCallback(() => {
+    if (map) {
+      setMapBounds(map.getBounds() || null);
+    }
+  }, [map]);
+
+  // Add bounds changed listener with debounce
+  useEffect(() => {
+    if (!map) return;
+
+    let timeoutId: NodeJS.Timeout;
+    const debouncedBoundsChanged = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        handleBoundsChanged();
+      }, 150); // 150ms debounce
+    };
+
+    const boundsChangedListener = map.addListener(
+      "bounds_changed",
+      debouncedBoundsChanged
+    );
+
+    return () => {
+      google.maps.event.removeListener(boundsChangedListener);
+      clearTimeout(timeoutId);
+    };
+  }, [map, handleBoundsChanged]);
+
+  // Update clusters when map bounds or zoom changes - with optimization
   useEffect(() => {
     if (!mapBounds || !map) return;
 
@@ -505,36 +535,35 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     ];
 
     const zoom = map.getZoom() || 0;
-    supercluster.load(points);
-    const clusters = supercluster.getClusters(bounds, Math.floor(zoom));
-    setClusters(clusters);
+
+    // Only update clusters if zoom level has changed significantly or bounds have moved significantly
+    const shouldUpdateClusters = () => {
+      const lastZoom = map.get("lastZoom") || 0;
+      const lastBounds = map.get("lastBounds");
+
+      if (!lastBounds) return true;
+
+      const zoomDiff = Math.abs(zoom - lastZoom);
+      const boundsChanged = !lastBounds.equals(mapBounds);
+
+      return zoomDiff >= 1 || boundsChanged;
+    };
+
+    if (shouldUpdateClusters()) {
+      supercluster.load(points);
+      const clusters = supercluster.getClusters(bounds, Math.floor(zoom));
+      setClusters(clusters);
+
+      // Store current zoom and bounds for next comparison
+      map.set("lastZoom", zoom);
+      map.set("lastBounds", mapBounds);
+    }
   }, [mapBounds, map, points, supercluster]);
 
   const onLoad = useCallback((map: google.maps.Map) => {
     setMap(map);
     setMapBounds(map.getBounds() || null);
   }, []);
-
-  // Memoize the bounds changed handler
-  const handleBoundsChanged = useCallback(() => {
-    if (map) {
-      setMapBounds(map.getBounds() || null);
-    }
-  }, [map]);
-
-  // Add bounds changed listener
-  useEffect(() => {
-    if (!map) return;
-
-    const boundsChangedListener = map.addListener(
-      "bounds_changed",
-      handleBoundsChanged
-    );
-
-    return () => {
-      google.maps.event.removeListener(boundsChangedListener);
-    };
-  }, [map, handleBoundsChanged]);
 
   // Memoize visible facilities
   const visibleFacilities = useMemo(() => {
@@ -569,17 +598,15 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
           center={center}
           options={mapOptions}
           onLoad={onLoad}
-          onBoundsChanged={handleBoundsChanged}
         >
           {clusters.map((cluster, index) => {
             const [longitude, latitude] = cluster.geometry.coordinates;
-            const { cluster: isCluster, point_count: pointCount } =
-              cluster.properties;
+            const { cluster: isCluster } = cluster.properties;
 
             if (isCluster) {
               return (
                 <Marker
-                  key={`cluster-${index}`}
+                  key={`marker-${index}`}
                   position={{ lat: latitude, lng: longitude }}
                   onClick={() => {
                     const expansionZoom = Math.min(
@@ -590,19 +617,6 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
                     );
                     map?.panTo({ lat: latitude, lng: longitude });
                     map?.setZoom(expansionZoom);
-                  }}
-                  icon={{
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10 + Math.min(pointCount, 20),
-                    fillColor: "#005f96",
-                    fillOpacity: 0.7,
-                    strokeColor: "#ffffff",
-                    strokeWeight: 2,
-                  }}
-                  label={{
-                    text: pointCount.toString(),
-                    color: "#ffffff",
-                    fontSize: "12px",
                   }}
                 />
               );

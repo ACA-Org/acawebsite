@@ -3,13 +3,11 @@ import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
 import { MailIcon } from "@/icons/MailIcon";
 import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
 import { useRouter } from "next/navigation";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
-import { useSetAtom } from "jotai";
-import { searchDialogAtom } from "@/app/atoms/searchDialogAtom";
 
 const quickLinks = [
   {
@@ -36,7 +34,6 @@ const quickLinks = [
 
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
-  const setSearchDialogOpen = useSetAtom(searchDialogAtom);
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
   const router = useRouter();
@@ -128,7 +125,7 @@ export const IconMenu = () => {
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           onClick={() => {
-            setSearchDialogOpen(true);
+            router.push("/search");
           }}
         />
         <ExpandingIcon

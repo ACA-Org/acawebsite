@@ -42,9 +42,11 @@ export async function getRightMenuData(
                         {
                             tierThreePage {
                                 uid
+                                pageTitle
                                 hideFromRightMenu
                                 parentPage {
                                     ... on tierTwoPage {
+                                        pageTitle
                                         uid
                                         hideFromRightMenu
                                     }

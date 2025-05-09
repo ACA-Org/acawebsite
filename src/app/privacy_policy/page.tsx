@@ -2,15 +2,13 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
-import { headers } from "next/headers";
+
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import PageRichText from "../components/PageRichText";
 
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("privacyPolicy").catch(() => notFound());
-  const headerList = await headers();
-  const pathname = headerList.get("x-current-path");
 
   const {
     data: { pageContent, pageTitle: title },
@@ -21,7 +19,7 @@ export default async function Page() {
       <div className="mx-auto my-12 flex w-full max-w-[1440px] flex-row gap-16">
         <div className="flex w-full flex-col items-start gap-12 max-md:gap-8">
           <div className="flex flex-col gap-12">
-            {pathname && <Breadcrumbs path={pathname} />}
+            <Breadcrumbs />
             {title && (
               <h1 className="heading-1 z-20 font-semibold text-blue-300">
                 {title}

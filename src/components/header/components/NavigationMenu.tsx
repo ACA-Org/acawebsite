@@ -6,8 +6,6 @@ import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
 import SVG from "react-inlinesvg";
-import { useAtomValue } from "jotai";
-import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -19,7 +17,6 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
-  const pathMap = useAtomValue(pathMapAtom);
 
   useEffect(() => {
     if (activeItem === null) return setActiveSlice(null);
@@ -39,11 +36,11 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                 ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
                   <li key={index} className="relative">
                     <PrismicNextLink
-                      linkResolver={(doc) =>
-                        pathMap?.get(doc.id) || `/${doc.uid}`
-                      }
                       field={tierOneLink}
                       onMouseEnter={() => setActiveItem(index)}
+                      onClick={() => {
+                        setActiveItem(null);
+                      }}
                       className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
                     >
                       <span className="whitespace-nowrap">
@@ -80,9 +77,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     <PrismicNextLink
                       key={`${i.tierTwoMenuLink.text}-${index}`}
                       field={i.tierTwoMenuLink}
-                      linkResolver={(doc) =>
-                        pathMap?.get(doc.id) || `/${doc.uid}`
-                      }
+                      onClick={() => {
+                        setActiveItem(null);
+                      }}
                       className="group col-span-1 w-max"
                     >
                       <span className="flex h-9 w-max items-center gap-3 pr-3">
@@ -111,9 +108,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                 {activeSlice?.primary.featuredMenuLink.text && (
                   <PrismicNextLink
                     field={activeSlice?.primary.featuredMenuLink}
-                    linkResolver={(doc) =>
-                      pathMap?.get(doc.id) || `/${doc.uid}`
-                    }
+                    onClick={() => {
+                      setActiveItem(null);
+                    }}
                     className="group/link flex flex-col items-start gap-4 pl-8"
                   >
                     <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
@@ -206,9 +203,6 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   <PrismicNextLink
                     key={i}
                     field={item.tierTwoMenuLink}
-                    linkResolver={(doc) =>
-                      pathMap?.get(doc.id) || `/${doc.uid}`
-                    }
                     className="block text-base text-gray-700"
                   >
                     {item.tierTwoMenuLink.text}

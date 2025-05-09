@@ -1,7 +1,7 @@
+"use server";
+
 import { RightMenu } from "@/components/right-menu";
-import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { headers } from "next/headers";
 import { SliceZone } from "@prismicio/react";
 import {
   getTierOnePageData,
@@ -16,6 +16,7 @@ import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
 import { Suspense } from "react";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
+import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 
 type Params = { tier_one_uid: string };
 
@@ -25,8 +26,6 @@ type Params = { tier_one_uid: string };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_one_uid } = await params;
-  const headerList = await headers();
-  const pathname = headerList.get("x-current-path");
 
   let rightMenuData: RightMenuData | null = null;
   let pageData: TierOnePageData = null;
@@ -40,6 +39,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   try {
     rightMenuData = await getRightMenuData(tier_one_uid);
+    console.log(rightMenuData);
   } catch (err) {
     console.error("error!");
     console.error(err);
@@ -73,7 +73,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       <div className="mx-auto mt-12 w-full max-w-[1440px]">
         <div className="flex flex-col gap-12">
           <Suspense fallback={<BreadcrumbsLoading />}>
-            {pathname && <Breadcrumbs path={pathname} />}
+            <Breadcrumbs />
           </Suspense>
           {title && (
             <h1 className="heading-1 z-20 font-semibold text-blue-300">

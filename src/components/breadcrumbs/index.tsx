@@ -1,66 +1,72 @@
+"use client";
+
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { labelFormatter } from "@/lib/strting";
-import { createClient } from "@/prismicio";
+import { usePathname } from "next/navigation";
+import { useAtomValue } from "jotai";
+import { pathMapAtom } from "@/app/atoms/pathMapAtom";
+import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 
-interface BreadcrumbsProps {
-  path: string;
-}
+export function Breadcrumbs() {
+  const pathname = usePathname();
+  const pathMap = useAtomValue(pathMapAtom);
+  const pages = useAtomValue(pageInfoAtom);
 
-export async function Breadcrumbs({ path }: BreadcrumbsProps) {
-  const client = createClient();
+  if (!pathname || !pathMap) return null;
+
   // Remove trailing slash and split the path
-  const segments = path.replace(/\/$/, "").split("/").filter(Boolean);
+  const segments = pathname.replace(/\/$/, "").split("/").filter(Boolean);
 
   // Create the breadcrumb items with proper links
-  const items = await Promise.all(
-    segments.map(async (segment, index) => {
-      // Handle predefined pages
-      if (segment === "contact") {
-        return {
-          href: "/contact",
-          label: "Contact Us",
-        };
-      }
-      if (segment === "locations") {
-        return {
-          href: "/locations",
-          label: "Locations",
-        };
-      }
-      if (segment === "privacy-policy") {
-        return {
-          href: "/privacy-policy",
-          label: "Privacy Policy",
-        };
-      }
-
-      // Handle regular pages
-      const page = await client.getByUID(
-        index === 0
-          ? "tierOnePage"
-          : index === 1
-            ? "tierTwoPage"
-            : "tierThreePage",
-        segment
-      );
-
-      const href = `/${segments.slice(0, index + 1).join("/")}`;
-      const label =
-        page?.data?.pageTitle ||
-        segment
-          .split("_")
-          .join("-")
-          .split("-")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ");
-
+  const items = segments.map((segment, index) => {
+    // Handle predefined pages
+    if (segment === "contact") {
       return {
-        href,
-        label,
+        href: "/contact",
+        label: "Contact Us",
       };
-    })
-  );
+    }
+    if (segment === "search") {
+      return {
+        href: "/search",
+        label: "Search",
+      };
+    }
+    if (segment === "locations") {
+      return {
+        href: "/locations",
+        label: "Locations",
+      };
+    }
+    if (segment === "privacy-policy") {
+      return {
+        href: "/privacy-policy",
+        label: "Privacy Policy",
+      };
+    }
+
+    // For regular pages, find the page in our pages list
+    const href = `/${segments.slice(0, index + 1).join("/")}`;
+    const page = pages.find((p) => {
+      const pagePath = pathMap.get(p.id);
+      return pagePath === href;
+    });
+
+    const label =
+      page?.data?.pageTitle ||
+      segment
+        .split("_")
+        .join("-")
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+    return {
+      href,
+      label,
+    };
+  });
 
   return (
     <nav aria-label="Breadcrumb" className="hidden py-2 lg:block">

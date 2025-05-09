@@ -1,5 +1,4 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { headers } from "next/headers";
 import { ContactPageDocumentData } from "../../../prismicio-types";
 import { getContactPage } from "../actions/getContactPageData";
 import { notFound } from "next/navigation";
@@ -26,9 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const headerList = await headers();
-  const pathname = headerList.get("x-current-path");
-
   let pageData: ContactPageDocumentData | null = null;
 
   pageData = await getContactPage().catch(() => notFound());
@@ -62,7 +58,7 @@ export default async function Page() {
           <div className="my-12 flex flex-row gap-16">
             <div className="flex w-full flex-col items-start gap-12 max-md:gap-8">
               <div className="flex flex-col gap-12">
-                {pathname && <Breadcrumbs path={pathname} />}
+                <Breadcrumbs />
                 {title && (
                   <h1 className="heading-1 z-20 font-semibold text-blue-300">
                     {title}
