@@ -6,6 +6,8 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -51,6 +53,7 @@ export default async function RootLayout({
         <div className="mt-17">{children}</div>
         {footerInfo && <Footer data={footerInfo} />}
       </body>
+      <PrismicPreview repositoryName={repositoryName} />
     </html>
   );
 }
