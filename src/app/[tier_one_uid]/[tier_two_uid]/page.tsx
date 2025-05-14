@@ -20,6 +20,7 @@ import {
   getRightMenuData,
   RightMenuData,
 } from "@/app/actions/getRightMenuData";
+import { cn } from "@/lib/utils";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
 
@@ -65,7 +66,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           </>
         </div>
       )}
-      <div className="mx-auto mt-12 w-full max-w-[1440px]">
+      <div
+        className={cn(
+          "mx-auto mt-12 w-full max-w-[1440px]",
+          !img.url && "mt-16"
+        )}
+      >
         <div className="flex flex-col gap-12">
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />

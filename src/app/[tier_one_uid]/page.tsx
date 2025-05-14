@@ -17,6 +17,7 @@ import { asImageSrc } from "@prismicio/client";
 import { Suspense } from "react";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
+import { cn } from "@/lib/utils";
 
 type Params = { tier_one_uid: string };
 
@@ -68,7 +69,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           </>
         </div>
       )}
-      <div className="mx-auto mt-12 w-full max-w-[1440px]">
+      <div
+        className={cn(
+          "mx-auto mt-12 w-full max-w-[1440px]",
+          !img.url && "mt-16"
+        )}
+      >
         <div className="flex flex-col gap-12">
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />
