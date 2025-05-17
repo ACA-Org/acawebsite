@@ -9,6 +9,7 @@ import { X } from "@/icons/X";
 
 import { FooterDocumentData, Simplify } from "../../prismicio-types";
 import { TextLink } from "./ui/button";
+import Link from "next/link";
 
 export type FooterProps = Simplify<FooterDocumentData>;
 
@@ -123,22 +124,34 @@ const Footer = ({ data }: { data: FooterProps }) => {
               </div>
 
               <div className="flex flex-row gap-4">
-                <Facebook
-                  role="button"
-                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
-                />
-                <Instagram
-                  role="button"
-                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
-                />
-                <LinkedIn
-                  role="button"
-                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
-                />
-                <X
-                  role="button"
-                  className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors"
-                />
+                <Link
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                >
+                  <Facebook className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+                </Link>
+                <Link
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                >
+                  <Instagram className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+                </Link>
+                <Link
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                >
+                  <LinkedIn className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+                </Link>
+                <Link
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  href="https://twitter.com/ACAinfo"
+                >
+                  <X className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+                </Link>
               </div>
             </div>
           </div>

@@ -13,6 +13,7 @@ import { X } from "@/icons/X";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { Instagram } from "@/icons/Instagram";
 import { Facebook } from "@/icons/Facebook";
+import Link from "next/link";
 
 /**
  * Props for `SocialCarousel`.
@@ -49,22 +50,34 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
             </div>
 
             <div className="flex gap-2">
-              <Facebook
-                role="button"
-                className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors"
-              />
-              <Instagram
-                role="button"
-                className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors"
-              />
-              <LinkedIn
-                role="button"
-                className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors"
-              />
-              <X
-                role="button"
-                className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors"
-              />
+              <Link
+                rel="noreferrer noopener"
+                target="_blank"
+                href="https://www.facebook.com/AmericanCorrectionalAssociation"
+              >
+                <Facebook className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+              </Link>
+              <Link
+                rel="noreferrer noopener"
+                target="_blank"
+                href="https://www.facebook.com/AmericanCorrectionalAssociation"
+              >
+                <Instagram className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+              </Link>
+              <Link
+                rel="noreferrer noopener"
+                target="_blank"
+                href="https://www.facebook.com/AmericanCorrectionalAssociation"
+              >
+                <LinkedIn className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+              </Link>
+              <Link
+                rel="noreferrer noopener"
+                target="_blank"
+                href="https://twitter.com/ACAinfo"
+              >
+                <X className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
+              </Link>
             </div>
           </div>
         </div>
