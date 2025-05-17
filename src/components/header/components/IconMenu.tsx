@@ -64,12 +64,12 @@ export const IconMenu = () => {
 
   return (
     <>
-      <div className="relative w-full max-w-[200px] px-4 py-2 max-lg:hidden xl:hidden">
+      <div className="relative w-full max-w-[200px] max-lg:hidden xl:hidden">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="flex w-full items-center justify-between rounded-md bg-white px-4 py-2 text-sm hover:bg-blue-50"
         >
-          <span>Quick Links</span>
+          <span className="mt-1 block">Quick Links</span>
           <CaretDown
             className={cn("h-auto w-2 stroke-blue-300 transition-transform", {
               "rotate-180": isOpen,

@@ -46,4 +46,3 @@ export async function getSearchData(): Promise<PageData[]> {
     privacyPolicy,
   ];
 }
-
