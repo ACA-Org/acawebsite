@@ -134,14 +134,14 @@ const Footer = ({ data }: { data: FooterProps }) => {
                 <Link
                   rel="noreferrer noopener"
                   target="_blank"
-                  href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                  href="https://www.instagram.com/amercorrectionalassoc"
                 >
                   <Instagram className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
                 </Link>
                 <Link
                   rel="noreferrer noopener"
                   target="_blank"
-                  href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                  href="https://www.linkedin.com/company/american-correctional-association/mycompany/?viewAsMember=true"
                 >
                   <LinkedIn className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-white transition-colors" />
                 </Link>
