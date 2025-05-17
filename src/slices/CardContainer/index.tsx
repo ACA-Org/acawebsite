@@ -22,6 +22,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="w-full"
     >
       {cardContainerTitle && (
         <h2 className="heading-2 mb-6 text-blue-200">{cardContainerTitle}</h2>
