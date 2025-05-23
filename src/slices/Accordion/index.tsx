@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import {
   Accordion as SAccordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
+import PageRichText from "@/app/components/PageRichText";
 
 /**
  * Props for `Accordion`.
@@ -45,7 +46,7 @@ const Accordion: FC<AccordionProps> = ({ slice }) => {
             >
               <AccordionTrigger>{accordionTitle}</AccordionTrigger>
               <AccordionContent>
-                <PrismicRichText field={accordionDescription} />
+                <PageRichText content={accordionDescription} />
               </AccordionContent>
             </AccordionItem>
           )

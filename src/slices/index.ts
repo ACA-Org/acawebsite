@@ -13,6 +13,8 @@ export const components = {
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
   menu_item: dynamic(() => import("./MenuItem")),
+  rich_text_box: dynamic(() => import("./RichTextBox")),
   social_carousel: dynamic(() => import("./SocialCarousel")),
   speedBump: dynamic(() => import("./SpeedBump")),
+  table: dynamic(() => import("./Table")),
 };

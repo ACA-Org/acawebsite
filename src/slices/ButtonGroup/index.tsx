@@ -23,7 +23,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ slice }) => {
     >
       {actions.slice(0, 2).map((action, index) => (
         <LinkButton
-          className="w-full max-w-64"
+          className="w-fit"
           variant={index % 2 === 0 ? "secondary" : "primary"}
           key={action.key}
           field={action}

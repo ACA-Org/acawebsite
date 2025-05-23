@@ -1,0 +1,86 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"tableData": {
+				"__TYPE__": "TableContent",
+				"content": [
+					{
+						"key": "f5754547-4608-4ef0-bb14-c62eace77a9b",
+						"type": "tableRow",
+						"content": [
+							{
+								"key": "17043ede-089a-4ebd-9c09-84a00a98e00a",
+								"type": "tableHeader",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Officia occaecat."
+											}
+										}
+									]
+								}
+							},
+							{
+								"key": "80167e3c-bb74-465c-9f50-6e16ed41fa5a",
+								"type": "tableHeader",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Quis."
+											}
+										}
+									]
+								}
+							}
+						]
+					},
+					{
+						"key": "d8f5c318-75e8-411b-867b-0c0fff376b17",
+						"type": "tableRow",
+						"content": [
+							{
+								"key": "59269cdd-bc86-4cbe-a071-1da07387bac0",
+								"type": "tableCell",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Enim laboris qui cupidatat velit."
+											}
+										}
+									]
+								}
+							},
+							{
+								"key": "d0d343e1-3b08-49bd-9613-9c829b088047",
+								"type": "tableCell",
+								"content": {
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Id minim tempor tempor fugiat consequat."
+											}
+										}
+									]
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

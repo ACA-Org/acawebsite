@@ -945,6 +945,7 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
   >;
 
 type TierOnePageDocumentDataSlicesSlice =
+  | RichTextBoxSlice
   | ImageCalloutSlice
   | CardContainerSlice
   | ButtonGroupSlice
@@ -1076,6 +1077,10 @@ export type TierOnePageDocument<Lang extends string = string> =
   >;
 
 type TierThreePageDocumentDataSlicesSlice =
+  | TableSlice
+  | SpeedBumpSlice
+  | AccordionSlice
+  | RichTextBoxSlice
   | ImageCalloutSlice
   | CardContainerSlice
   | ButtonGroupSlice;
@@ -1225,6 +1230,7 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
+  | RichTextBoxSlice
   | ImageCalloutSlice
   | CardContainerSlice
   | ButtonGroupSlice
@@ -1429,6 +1435,16 @@ export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * AccordionDescription field in *Accordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionDescription
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  accordionDescription: prismic.RichTextField;
 }
 
 /**
@@ -2348,6 +2364,51 @@ export type MenuItemSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *RichTextBox → Default → Primary*
+ */
+export interface RichTextBoxSliceDefaultPrimary {
+  /**
+   * TextContent field in *RichTextBox → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text_box.default.primary.textContent
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  textContent: prismic.RichTextField;
+}
+
+/**
+ * Default variation for RichTextBox Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextBoxSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RichTextBoxSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *RichTextBox*
+ */
+type RichTextBoxSliceVariation = RichTextBoxSliceDefault;
+
+/**
+ * RichTextBox Shared Slice
+ *
+ * - **API ID**: `rich_text_box`
+ * - **Description**: RichTextBox
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type RichTextBoxSlice = prismic.SharedSlice<
+  "rich_text_box",
+  RichTextBoxSliceVariation
+>;
+
+/**
  * Primary content in *SocialCarousel → Default → Primary*
  */
 export interface SocialCarouselSliceDefaultPrimary {
@@ -2599,6 +2660,48 @@ export type SpeedBumpSlice = prismic.SharedSlice<
   SpeedBumpSliceVariation
 >;
 
+/**
+ * Primary content in *Table → Default → Primary*
+ */
+export interface TableSliceDefaultPrimary {
+  /**
+   * Table field in *Table → Default → Primary*
+   *
+   * - **Field Type**: Table
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table.default.primary.tableData
+   * - **Documentation**: https://prismic.io/docs/field#table
+   */
+  tableData: prismic.TableField;
+}
+
+/**
+ * Default variation for Table Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TableSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Table*
+ */
+type TableSliceVariation = TableSliceDefault;
+
+/**
+ * Table Shared Slice
+ *
+ * - **API ID**: `table`
+ * - **Description**: Table
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableSlice = prismic.SharedSlice<"table", TableSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -2707,6 +2810,10 @@ declare module "@prismicio/client" {
       MenuItemSliceDefaultPrimary,
       MenuItemSliceVariation,
       MenuItemSliceDefault,
+      RichTextBoxSlice,
+      RichTextBoxSliceDefaultPrimary,
+      RichTextBoxSliceVariation,
+      RichTextBoxSliceDefault,
       SocialCarouselSlice,
       SocialCarouselSliceDefaultPrimary,
       SocialCarouselSliceVariation,
@@ -2717,6 +2824,10 @@ declare module "@prismicio/client" {
       SpeedBumpSliceVariation,
       SpeedBumpSliceDefault,
       SpeedBumpSliceVertical,
+      TableSlice,
+      TableSliceDefaultPrimary,
+      TableSliceVariation,
+      TableSliceDefault,
     };
   }
 }
