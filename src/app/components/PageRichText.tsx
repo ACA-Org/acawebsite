@@ -26,7 +26,7 @@ export default function PageRichText({
           <h5 className="heading-5 mt-4 mb-3">{children}</h5>
         ),
         heading6: ({ children }) => (
-          <h6 className="heading-6 mt-3 mb-2">{children}</h6>
+          <h6 className="heading-6 mt-3 mb-4">{children}</h6>
         ),
         paragraph: ({ children, text }) => {
           if (text === "-----")
@@ -40,6 +40,15 @@ export default function PageRichText({
         list: ({ children }) => (
           <ul className="mb-4 list-inside list-disc space-y-2">{children}</ul>
         ),
+        // image: ({ node: { alt } }) => {
+        //   // const { className, ...rest } = attributes;
+
+        //   return (
+        //     <div className="relative mb-4 flex w-full items-center justify-center">
+        //       <img className={`rounded-[12px]`} alt={alt || ""} />
+        //     </div>
+        //   );
+        // },
         listItem: ({ children }) => <li className="ml-4">{children}</li>,
         hyperlink: ({ node, children }) => {
           if (node.data.link_type === "Web") {

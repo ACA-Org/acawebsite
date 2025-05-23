@@ -73,8 +73,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           )}
         </div>
       </div>
-      <div className="pl-body my-12 flex flex-row gap-16 max-md:flex-col-reverse">
-        <div className="flex w-3/4 flex-col items-start gap-12 max-lg:w-2/3 max-md:w-full">
+      <div className="pl-body my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
+        <div className={"flex w-full flex-col items-start gap-12"}>
           <div>
             <PageRichText content={pageContent} />
           </div>

@@ -66,6 +66,18 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "table": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "accordion": {
+              "type": "SharedSlice"
+            },
+            "rich_text_box": {
+              "type": "SharedSlice"
+            },
             "image_callout": {
               "type": "SharedSlice"
             },

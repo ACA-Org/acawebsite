@@ -21,7 +21,7 @@ export type RightMenuData = RightMenuItem[];
 export async function getRightMenuData(
   uid: string,
   tier: "one" | "two" = "one"
-): Promise<RightMenuData> {
+): Promise<RightMenuData | null> {
   const client = createClient();
 
   if (tier === "one") {
@@ -83,7 +83,7 @@ export async function getRightMenuData(
       })
     );
 
-    return menuItems;
+    return menuItems?.length > 0 ? menuItems : null;
   }
   const tierThreePages = (await client.getAllByType("tierThreePage"))?.filter(
     (i) =>
@@ -95,5 +95,5 @@ export async function getRightMenuData(
     label: childPage.data.pageTitle || "",
     href: `${childPage.uid}`?.split("_").join("/"),
   }));
-  return menuItems;
+  return menuItems?.length > 0 ? menuItems : null;
 }
