@@ -945,6 +945,7 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
   >;
 
 type TierOnePageDocumentDataSlicesSlice =
+  | TileContainerSlice
   | RichTextBoxSlice
   | ImageCalloutSlice
   | CardContainerSlice
@@ -1077,6 +1078,7 @@ export type TierOnePageDocument<Lang extends string = string> =
   >;
 
 type TierThreePageDocumentDataSlicesSlice =
+  | TileContainerSlice
   | TableSlice
   | SpeedBumpSlice
   | AccordionSlice
@@ -1230,6 +1232,7 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
+  | TileContainerSlice
   | RichTextBoxSlice
   | ImageCalloutSlice
   | CardContainerSlice
@@ -1435,16 +1438,6 @@ export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
     prismic.FieldState,
     never
   >;
-
-  /**
-   * AccordionDescription field in *Accordion → Default → Primary → AccordionItems*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionDescription
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  accordionDescription: prismic.RichTextField;
 }
 
 /**
@@ -2702,6 +2695,124 @@ type TableSliceVariation = TableSliceDefault;
  */
 export type TableSlice = prismic.SharedSlice<"table", TableSliceVariation>;
 
+/**
+ * Item in *TileContainer → Default → Primary → Tiles*
+ */
+export interface TileContainerSliceDefaultPrimaryTilesItem {
+  /**
+   * TileImage field in *TileContainer → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tile_container.default.primary.tiles[].tileImage
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  tileImage: prismic.ImageField<never>;
+
+  /**
+   * TileHeading field in *TileContainer → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Title for tile item
+   * - **API ID Path**: tile_container.default.primary.tiles[].tileHeading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tileHeading: prismic.KeyTextField;
+
+  /**
+   * TileDesc field in *TileContainer → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Description for tile item
+   * - **API ID Path**: tile_container.default.primary.tiles[].tileDesc
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tileDesc: prismic.KeyTextField;
+
+  /**
+   * TileLink field in *TileContainer → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Optional Tile Link
+   * - **API ID Path**: tile_container.default.primary.tiles[].tileLink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  tileLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *TileContainer → Default → Primary*
+ */
+export interface TileContainerSliceDefaultPrimary {
+  /**
+   * TileSectionTitle field in *TileContainer → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Title for section
+   * - **API ID Path**: tile_container.default.primary.tileSectionTitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tileSectionTitle: prismic.KeyTextField;
+
+  /**
+   * TileSectionDesc field in *TileContainer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Optional description
+   * - **API ID Path**: tile_container.default.primary.tileSectionDesc
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  tileSectionDesc: prismic.RichTextField;
+
+  /**
+   * Tiles field in *TileContainer → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tile_container.default.primary.tiles[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tiles: prismic.GroupField<
+    Simplify<TileContainerSliceDefaultPrimaryTilesItem>
+  >;
+}
+
+/**
+ * Default variation for TileContainer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TileContainerSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TileContainerSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TileContainer*
+ */
+type TileContainerSliceVariation = TileContainerSliceDefault;
+
+/**
+ * TileContainer Shared Slice
+ *
+ * - **API ID**: `tile_container`
+ * - **Description**: TileContainer
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TileContainerSlice = prismic.SharedSlice<
+  "tile_container",
+  TileContainerSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -2828,6 +2939,11 @@ declare module "@prismicio/client" {
       TableSliceDefaultPrimary,
       TableSliceVariation,
       TableSliceDefault,
+      TileContainerSlice,
+      TileContainerSliceDefaultPrimaryTilesItem,
+      TileContainerSliceDefaultPrimary,
+      TileContainerSliceVariation,
+      TileContainerSliceDefault,
     };
   }
 }

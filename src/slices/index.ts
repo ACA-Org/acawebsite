@@ -17,4 +17,5 @@ export const components = {
   social_carousel: dynamic(() => import("./SocialCarousel")),
   speedBump: dynamic(() => import("./SpeedBump")),
   table: dynamic(() => import("./Table")),
+  tile_container: dynamic(() => import("./TileContainer")),
 };
