@@ -18,14 +18,22 @@ export const Primary: Story = {
       id: "123",
       slice_label: null,
       primary: {
+        accordionHeading: "This is for an optional heading above the Accordion",
+        accordionContent:
+          "This is for some optional description text below the Accordion Heading",
         accordionItems: [
           {
             accordionAction: {
               link_type: "Web",
               url: "",
             },
-            accordionDescription:
-              "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+            accordionDescription: [
+              {
+                type: "paragraph",
+                text: "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet...",
+                spans: [],
+              },
+            ],
             accordionTitle: "Accordion Title",
           },
           {
@@ -33,8 +41,13 @@ export const Primary: Story = {
               link_type: "Web",
               url: "",
             },
-            accordionDescription:
-              "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+            accordionDescription: [
+              {
+                type: "paragraph",
+                text: "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet...",
+                spans: [],
+              },
+            ],
             accordionTitle: "Accordion Title",
           },
           {
@@ -42,8 +55,13 @@ export const Primary: Story = {
               link_type: "Web",
               url: "",
             },
-            accordionDescription:
-              "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+            accordionDescription: [
+              {
+                type: "paragraph",
+                text: "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet...",
+                spans: [],
+              },
+            ],
             accordionTitle: "Accordion Title",
           },
           {
@@ -51,8 +69,13 @@ export const Primary: Story = {
               link_type: "Web",
               url: "",
             },
-            accordionDescription:
-              "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nulla vitae elit libero, a pharetra augue. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+            accordionDescription: [
+              {
+                type: "paragraph",
+                text: "Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet...",
+                spans: [],
+              },
+            ],
             accordionTitle: "Accordion Title",
           },
         ],

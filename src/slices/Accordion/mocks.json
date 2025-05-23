@@ -10,14 +10,6 @@
             "__TYPE__": "GroupItemContent",
             "value": [
               [
-                "accordionDescription",
-                {
-                  "__TYPE__": "FieldContent",
-                  "value": "average",
-                  "type": "Text"
-                }
-              ],
-              [
                 "accordionTitle",
                 {
                   "__TYPE__": "FieldContent",
@@ -28,18 +20,42 @@
               [
                 "accordionAction",
                 {
-                  "__TYPE__": "LinkContent",
                   "key": "34af924e-4c25-4da9-82ec-23346a15669c",
+                  "__TYPE__": "LinkContent",
                   "value": {
                     "__TYPE__": "ExternalLink",
                     "url": "http://twitter.com",
                     "text": "change"
                   }
                 }
+              ],
+              [
+                "accordionDescription",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Tempor do commodo in esse ea velit est cupidatat. Consequat veniam incididunt deserunt labore exercitation ex."
+                      }
+                    }
+                  ]
+                }
               ]
             ]
           }
         ]
+      },
+      "accordionHeading": {
+        "__TYPE__": "FieldContent",
+        "value": "crop",
+        "type": "Text"
+      },
+      "accordionContent": {
+        "__TYPE__": "FieldContent",
+        "value": "know",
+        "type": "Text"
       }
     },
     "items": []
