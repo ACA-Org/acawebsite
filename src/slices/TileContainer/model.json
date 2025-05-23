@@ -1,0 +1,77 @@
+{
+  "id": "tile_container",
+  "type": "SharedSlice",
+  "name": "TileContainer",
+  "description": "TileContainer",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "tileSectionTitle": {
+          "type": "Text",
+          "config": {
+            "label": "TileSectionTitle",
+            "placeholder": "Title for section"
+          }
+        },
+        "tileSectionDesc": {
+          "type": "StructuredText",
+          "config": {
+            "label": "TileSectionDesc",
+            "placeholder": "Optional description",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "tiles": {
+          "type": "Group",
+          "config": {
+            "label": "Tiles",
+            "repeat": true,
+            "fields": {
+              "tileImage": {
+                "type": "Image",
+                "config": {
+                  "label": "TileImage",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "tileHeading": {
+                "type": "Text",
+                "config": {
+                  "label": "TileHeading",
+                  "placeholder": "Title for tile item"
+                }
+              },
+              "tileDesc": {
+                "type": "Text",
+                "config": {
+                  "label": "TileDesc",
+                  "placeholder": "Description for tile item"
+                }
+              },
+              "tileLink": {
+                "type": "Link",
+                "config": {
+                  "label": "TileLink",
+                  "placeholder": "Optional Tile Link",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

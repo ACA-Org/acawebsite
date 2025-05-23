@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   return (
     <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
       {img.url && (
-        <div className="relative mt-16 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
+        <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
           <>
             <div className="absolute inset-0 z-10 h-full w-full">
               <PrismicNextImage

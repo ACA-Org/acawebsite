@@ -62,7 +62,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 field={img}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
             </div>
           </>
         </div>

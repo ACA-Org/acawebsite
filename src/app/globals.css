@@ -449,7 +449,7 @@
   animation: slide-out-left 0.15s ease-out;
 }
 
-nav:has(.align-center) > .left-0 {
+nav:has(.align-center)>.left-0 {
   right: auto;
   left: auto;
 }

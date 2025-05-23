@@ -27,7 +27,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
   } = slice;
 
   return (
-    <div className="mx-auto mb-12 w-full max-w-[1440px] px-4 md:px-8">
+    <div className="mx-auto mb-12 w-full max-w-[1440px]">
       <div
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}

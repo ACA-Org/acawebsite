@@ -1,0 +1,88 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"tileSectionTitle": {
+				"__TYPE__": "FieldContent",
+				"value": "molecular",
+				"type": "Text"
+			},
+			"tileSectionDesc": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Dolor voluptate reprehenderit sit anim quis exercitation ex amet ut do sint irure. Proident dolore ut officia ullamco anim aute tempor anim non et dolore ut aliqua Lorem."
+						}
+					}
+				]
+			},
+			"tiles": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"tileImage",
+								{
+									"__TYPE__": "ImageContent",
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+										"width": 6000,
+										"height": 4000
+									},
+									"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
+									"width": 6000,
+									"height": 4000,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "practice",
+									"thumbnails": {}
+								}
+							],
+							[
+								"tileHeading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "neighbor",
+									"type": "Text"
+								}
+							],
+							[
+								"tileDesc",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "lips",
+									"type": "Text"
+								}
+							],
+							[
+								"tileLink",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "2bbcd571-9f98-4f1d-883f-12821bdd6958",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://twitter.com",
+										"text": "record"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
