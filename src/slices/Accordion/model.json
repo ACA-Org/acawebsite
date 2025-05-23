@@ -12,24 +12,40 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "accordionHeading": {
+          "type": "Text",
+          "config": {
+            "label": "AccordionHeading",
+            "placeholder": "This is for an optional heading above the Accordion"
+          }
+        },
+        "accordionContent": {
+          "type": "Text",
+          "config": {
+            "label": "AccordionContent",
+            "placeholder": "This is for some optional description text below the Accordion Heading"
+          }
+        },
         "accordionItems": {
           "type": "Group",
           "config": {
             "label": "AccordionItems",
             "repeat": true,
             "fields": {
-              "accordionDescription": {
-                "type": "Text",
-                "config": {
-                  "label": "AccordionDescription",
-                  "placeholder": ""
-                }
-              },
               "accordionTitle": {
                 "type": "Text",
                 "config": {
                   "label": "AccordionTitle",
                   "placeholder": ""
+                }
+              },
+              "accordionDescription": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "AccordionDescription",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
                 }
               },
               "accordionAction": {

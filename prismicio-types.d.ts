@@ -1395,16 +1395,6 @@ export type AllDocumentTypes =
  */
 export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
   /**
-   * AccordionDescription field in *Accordion → Default → Primary → AccordionItems*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionDescription
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  accordionDescription: prismic.KeyTextField;
-
-  /**
    * AccordionTitle field in *Accordion → Default → Primary → AccordionItems*
    *
    * - **Field Type**: Text
@@ -1413,6 +1403,16 @@ export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   accordionTitle: prismic.KeyTextField;
+
+  /**
+   * AccordionDescription field in *Accordion → Default → Primary → AccordionItems*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.default.primary.accordionItems[].accordionDescription
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  accordionDescription: prismic.RichTextField;
 
   /**
    * AccordionAction field in *Accordion → Default → Primary → AccordionItems*
@@ -1435,6 +1435,26 @@ export interface AccordionSliceDefaultPrimaryAccordionItemsItem {
  * Primary content in *Accordion → Default → Primary*
  */
 export interface AccordionSliceDefaultPrimary {
+  /**
+   * AccordionHeading field in *Accordion → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: This is for an optional heading above the Accordion
+   * - **API ID Path**: accordion.default.primary.accordionHeading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  accordionHeading: prismic.KeyTextField;
+
+  /**
+   * AccordionContent field in *Accordion → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: This is for some optional description text below the Accordion Heading
+   * - **API ID Path**: accordion.default.primary.accordionContent
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  accordionContent: prismic.KeyTextField;
+
   /**
    * AccordionItems field in *Accordion → Default → Primary*
    *
