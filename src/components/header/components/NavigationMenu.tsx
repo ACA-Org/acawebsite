@@ -118,6 +118,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     </p>
                     <div className="group relative h-[113px] w-[200px] overflow-clip rounded-lg">
                       <PrismicNextImage
+                        alt=""
                         field={activeSlice?.primary.featuredMenuImage}
                         className="peer h-full w-full object-cover opacity-0 transition-opacity duration-300"
                         onLoad={(e) => {

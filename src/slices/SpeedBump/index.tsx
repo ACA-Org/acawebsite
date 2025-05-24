@@ -34,13 +34,16 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
         className={cn(
           "flex overflow-hidden rounded-xl p-8 max-lg:rounded-lg max-lg:p-4",
           variation === "vertical" && "w-fit p-6 pt-8",
-          theme === "light" ? "bg-blue-50" : "bg-blue-300"
+          theme === "light"
+            ? "border-blue-300/10% border bg-white"
+            : "bg-blue-50"
         )}
       >
-        <div className="flex h-full items-center gap-8 self-stretch max-md:flex-col max-md:items-start">
+        <div className="flex h-full w-full items-center gap-8 self-stretch max-md:flex-col max-md:items-start">
           {hero.url && (
             <figure className="relative h-full w-auto max-md:w-full">
               <PrismicNextImage
+                alt=""
                 className="h-full max-h-[210px] w-full rounded-md object-cover"
                 field={hero}
               />
@@ -55,7 +58,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                 : "flex-row items-center"
             )}
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-1 flex-col gap-4">
               <div className="flex flex-col gap-1">
                 {title && (
                   <h2

@@ -31,6 +31,7 @@ const LinkTile: FC<LinkTileProps> = (slice) => {
         <>
           <div className="absolute inset-0 h-full w-full">
             <PrismicNextImage
+              alt=""
               field={image}
               className="h-full w-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-0"
             />

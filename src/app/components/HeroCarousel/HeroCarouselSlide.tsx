@@ -23,6 +23,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
         <>
           <div className="absolute inset-0 h-full w-full">
             <PrismicNextImage
+              alt=""
               field={img}
               className="h-full w-full object-cover"
             />

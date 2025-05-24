@@ -16,7 +16,7 @@ export type TileContainerProps =
  */
 const TileContainer: FC<TileContainerProps> = ({ slice }) => {
   const {
-    primary: { tiles, tileSectionTitle, tileSectionDesc }
+    primary: { tiles, tileSectionTitle, tileSectionDesc },
   } = slice;
 
   return (
@@ -39,20 +39,23 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
         </div>
       )}
       {tiles.length > 0 && (
-        <div className="flex gap-6 flex-wrap">
+        <div className="flex flex-wrap gap-6">
           {tiles.map((tile, i) => (
             <React.Fragment key={i}>
               {tile.tileLink.text ? (
-                <div key={i} className="bg-none flex-1 flex items-end p-6 relative min-h-[250px] max-w-1/3 rounded-md overflow-clip">
-                  <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-[#0F2D52] to-transparent z-1" />
-                  <figure className="absolute top-0 left-0 -z-1 w-full h-full">
+                <div
+                  key={i}
+                  className="relative flex min-h-[250px] max-w-1/3 flex-1 items-end overflow-clip rounded-md bg-none p-6"
+                >
+                  <div className="absolute bottom-0 left-0 z-1 h-full w-full bg-gradient-to-t from-[#0F2D52] to-transparent" />
+                  <figure className="absolute top-0 left-0 -z-1 h-full w-full">
                     <PrismicNextImage
                       field={tile.tileImage}
                       alt=""
                       className="h-full w-full object-cover"
                     />
                   </figure>
-                  <div className="flex flex-col gap-2 text-white relative z-2">
+                  <div className="relative z-2 flex flex-col gap-2 text-white">
                     <span className="heading-4">{tile.tileHeading}</span>
                     <span>{tile.tileDesc}</span>
                     {tile.tileLink?.text && (
@@ -63,16 +66,16 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
                   </div>
                 </div>
               ) : (
-                <div className="flex-1 flex items-end p-6 relative min-h-[250px] max-w-1/3 rounded-md overflow-clip">
-                  <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-[#0F2D52] to-transparent z-1" />
-                  <figure className="absolute top-0 left-0 -z-1 w-full h-full">
+                <div className="relative flex min-h-[250px] max-w-1/3 flex-1 items-end overflow-clip rounded-md p-6">
+                  <div className="absolute bottom-0 left-0 z-1 h-full w-full bg-gradient-to-t from-[#0F2D52] to-transparent" />
+                  <figure className="absolute top-0 left-0 -z-1 h-full w-full">
                     <PrismicNextImage
                       field={tile.tileImage}
                       alt=""
                       className="h-full w-full object-cover"
                     />
                   </figure>
-                  <div className="flex flex-col gap-2 text-white relative z-2">
+                  <div className="relative z-2 flex flex-col gap-2 text-white">
                     <span className="heading-4">{tile.tileHeading}</span>
                     <span>{tile.tileDesc}</span>
                   </div>
@@ -81,9 +84,8 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
             </React.Fragment>
           ))}
         </div>
-      )
-      }
-    </section >
+      )}
+    </section>
   );
 };
 
