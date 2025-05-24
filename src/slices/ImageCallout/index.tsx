@@ -40,6 +40,7 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
         >
           <figure className="relative min-h-[305px] flex-1 overflow-clip rounded-lg max-md:w-full">
             <PrismicNextImage
+              alt=""
               field={imageCalloutImage}
               className="absolute h-full w-full object-cover"
             />

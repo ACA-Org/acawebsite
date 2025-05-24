@@ -37,25 +37,30 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
           {cards.map((card, i) => (
             <div
               key={i}
-              className="flex flex-col items-stretch gap-4 rounded-xl border border-blue-500/15 bg-white p-6 max-xl:p-4 max-lg:w-[calc(50%-16px)] max-md:w-full lg:flex-1"
+              className="flex flex-col items-stretch gap-4 self-stretch rounded-xl border border-blue-500/15 bg-white p-4 max-lg:w-[calc(50%-16px)] max-md:w-full lg:flex-1"
             >
               {card.cardImage?.url && (
                 <figure className="relative aspect-video overflow-clip rounded-md">
                   <PrismicNextImage
+                    alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"
                   />
                 </figure>
               )}
 
-              <div className="mt-2 flex flex-col gap-4">
-                {card.cardTitle && (
-                  <h3 className="heading-3">{card.cardTitle}</h3>
-                )}
+              <div className="mt-2 flex h-full flex-col justify-between gap-4">
+                {(card.cardTitle || card.cardDescription) && (
+                  <div className="flex flex-1 flex-col gap-4">
+                    {card.cardTitle && (
+                      <h3 className="heading-3">{card.cardTitle}</h3>
+                    )}
 
-                {card.cardDescription && (
-                  <div>
-                    <PrismicRichText field={card.cardDescription} />
+                    {card.cardDescription && (
+                      <div>
+                        <PrismicRichText field={card.cardDescription} />
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -78,6 +83,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
               {card.cardImage?.url && (
                 <figure className="relative min-h-[245px] w-full max-w-[445px] overflow-clip rounded-md max-md:max-w-none">
                   <PrismicNextImage
+                    alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"
                   />
