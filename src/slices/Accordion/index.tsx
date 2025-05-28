@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "./accordion";
 import PageRichText from "@/app/components/PageRichText";
+import { LinkButton } from "@/components/ui/button";
 
 /**
  * Props for `Accordion`.
@@ -39,7 +40,10 @@ const Accordion: FC<AccordionProps> = ({ slice }) => {
         className="w-full border-t border-b border-[rgba(207,207,207,1)]"
       >
         {accordionItems.map(
-          ({ accordionDescription, accordionTitle }, index) => (
+          (
+            { accordionDescription, accordionTitle, accordionAction },
+            index
+          ) => (
             <AccordionItem
               key={`${accordionTitle}-${index}`}
               value={`${accordionTitle}-${index}`}
@@ -47,6 +51,11 @@ const Accordion: FC<AccordionProps> = ({ slice }) => {
               <AccordionTrigger>{accordionTitle}</AccordionTrigger>
               <AccordionContent>
                 <PageRichText content={accordionDescription} />
+                {accordionAction.text && (
+                  <LinkButton field={accordionAction}>
+                    {accordionAction.text}
+                  </LinkButton>
+                )}
               </AccordionContent>
             </AccordionItem>
           )

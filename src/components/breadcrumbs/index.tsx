@@ -48,6 +48,7 @@ export function Breadcrumbs() {
 
     // For regular pages, find the page in our pages list
     const href = `/${segments.slice(0, index + 1).join("/")}`;
+
     const page = pages.find((p) => {
       const pagePath = pathMap.get(p.id);
       return pagePath === href;

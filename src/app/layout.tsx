@@ -6,6 +6,9 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
+import { getSearchData, PageData } from "./actions/getSearchData";
+import { HydrationBoundary } from "jotai-ssr";
+import { pageInfoAtom } from "./atoms/pageInfoAtom";
 // import { PrismicPreview } from "@prismicio/next";
 // import { repositoryName } from "@/prismicio";
 
@@ -21,6 +24,7 @@ export default async function RootLayout({
 }>) {
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
+  let pagesInfo: PageData[] | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -40,18 +44,34 @@ export default async function RootLayout({
     }
   };
 
-  await Promise.allSettled([fetchFooterInfo(), fetchHeaderInfo()]);
+  const fetchPagesInfo = async () => {
+    try {
+      const pageData = await getSearchData();
+
+      pagesInfo = pageData || null;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  await Promise.allSettled([
+    fetchFooterInfo(),
+    fetchHeaderInfo(),
+    fetchPagesInfo(),
+  ]);
 
   return (
     <html lang="en" className="w-screen overflow-x-clip">
       <body
         className={`${gillSans.variable} [font-family:GillSans] antialiased`}
       >
-        <CacheProvider>
-          {headerInfo && <Header data={headerInfo} />}
-        </CacheProvider>
-        <div className="mt-17">{children}</div>
-        {footerInfo && <Footer data={footerInfo} />}
+        <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pagesInfo || []]]}>
+          <CacheProvider>
+            {headerInfo && <Header data={headerInfo} />}
+          </CacheProvider>
+          <div className="mt-17">{children}</div>
+          {footerInfo && <Footer data={footerInfo} />}
+        </HydrationBoundary>
       </body>
       {/* <PrismicPreview repositoryName={repositoryName} /> */}
     </html>
