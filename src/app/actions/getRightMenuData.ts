@@ -30,6 +30,7 @@ export async function getRightMenuData(
       (i) =>
         i.data.parentPage &&
         !i.data.hideFromRightMenu &&
+        !i.data?.hidden &&
         (i.data.parentPage as FilledContentRelationshipField<"tierOnePage">)
           .uid === uid
     );
@@ -44,11 +45,13 @@ export async function getRightMenuData(
                                 uid
                                 pageTitle
                                 hideFromRightMenu
+                                hidden
                                 parentPage {
                                     ... on tierTwoPage {
                                         pageTitle
                                         uid
                                         hideFromRightMenu
+                                        hidden
                                     }
                                 }
                             }
@@ -63,6 +66,7 @@ export async function getRightMenuData(
           return (
             parentPage &&
             !i.data?.hideFromRightMenu &&
+            !i.data?.hidden &&
             parentPage.uid === page.uid
           );
         });

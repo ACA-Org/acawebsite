@@ -6,6 +6,7 @@ import {
   TierThreePageDocument,
   TierTwoPageDocument,
 } from "../../../prismicio-types";
+import { filter } from "@prismicio/client";
 
 export type TierOnePageData = TierOnePageDocument<string> | null;
 export type TierTwoPageData = TierTwoPageDocument<string> | null;
@@ -16,6 +17,8 @@ export async function getTierOnePageData(
 ): Promise<TierOnePageData> {
   const client = createClient();
   return client.getByUID("tierOnePage", uid, {
+    filters: [filter.not("my.tierOnePage.hidden", true)],
+
     fetchOptions: {
       next: {
         tags: [uid],
@@ -30,6 +33,8 @@ export async function getTierTwoPageData(
 ): Promise<TierTwoPageData> {
   const client = createClient();
   return client.getByUID("tierTwoPage", uid, {
+    filters: [filter.not("my.tierTwoPage.hidden", true)],
+
     fetchOptions: {
       next: {
         tags: [uid],
@@ -44,6 +49,8 @@ export async function getTierThreePageData(
 ): Promise<TierThreePageData> {
   const client = createClient();
   return client.getByUID("tierThreePage", uid, {
+    filters: [filter.not("my.tierThreePage.hidden", true)],
+
     fetchOptions: {
       next: {
         tags: [uid],

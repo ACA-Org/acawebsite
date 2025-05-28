@@ -1010,6 +1010,18 @@ interface TierOnePageDocumentData {
   pageTextContent: prismic.RichTextField;
 
   /**
+   * hidden field in *TierOnePage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierOnePage.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *TierOnePage*
    *
    * - **Field Type**: Slice Zone
@@ -1162,6 +1174,18 @@ interface TierThreePageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hideFromRightMenu: prismic.BooleanField;
+
+  /**
+   * hidden field in *TierThreePage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierThreePage.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
 
   /**
    * Slice Zone field in *TierThreePage*
@@ -1317,6 +1341,18 @@ interface TierTwoPageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hideFromRightMenu: prismic.BooleanField;
+
+  /**
+   * hidden field in *TierTwoPage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierTwoPage.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
 
   /**
    * Slice Zone field in *TierTwoPage*
