@@ -74,7 +74,9 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
               className="flex h-full !w-fit items-center justify-center !overflow-visible"
             >
               <div
-                className={"h-full overflow-visible transition-all duration-300"}
+                className={
+                  "h-full overflow-visible transition-all duration-300"
+                }
               >
                 <LinkTile
                   variation="default"
@@ -117,7 +119,6 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
           ))}
         </div>
       )}
-
 
       {link && (
         <LinkButton

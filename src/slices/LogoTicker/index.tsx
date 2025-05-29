@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { FC } from "react";
 import Marquee from "react-fast-marquee";
 import { Content } from "@prismicio/client";
@@ -26,11 +26,7 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="w-full overflow-hidden py-12"
     >
-      <Marquee
-        gradient={false}
-        speed={40}
-        pauseOnHover={true}
-      >
+      <Marquee gradient={false} speed={40} pauseOnHover={true}>
         {logos.map((logo, i) => (
           <div
             key={logo.logoItem?.id || logo.logoItem?.url || `logo-${i}`}

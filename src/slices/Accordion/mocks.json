@@ -1,63 +1,63 @@
 [
-	{
-		"__TYPE__": "SharedSliceContent",
-		"variation": "default",
-		"primary": {
-			"accordionItems": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"accordionTitle",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "warn",
-									"type": "Text"
-								}
-							],
-							[
-								"accordionAction",
-								{
-									"key": "34af924e-4c25-4da9-82ec-23346a15669c",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "http://twitter.com",
-										"text": "change"
-									}
-								}
-							],
-							[
-								"accordionDescription",
-								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "paragraph",
-											"content": {
-												"text": "Tempor do commodo in esse ea velit est cupidatat. Consequat veniam incididunt deserunt labore exercitation ex."
-											}
-										}
-									]
-								}
-							]
-						]
-					}
-				]
-			},
-			"accordionHeading": {
-				"__TYPE__": "FieldContent",
-				"value": "crop",
-				"type": "Text"
-			},
-			"accordionContent": {
-				"__TYPE__": "FieldContent",
-				"value": "know",
-				"type": "Text"
-			}
-		},
-		"items": []
-	}
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "accordionItems": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "accordionTitle",
+                {
+                  "__TYPE__": "FieldContent",
+                  "value": "warn",
+                  "type": "Text"
+                }
+              ],
+              [
+                "accordionAction",
+                {
+                  "key": "34af924e-4c25-4da9-82ec-23346a15669c",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com",
+                    "text": "change"
+                  }
+                }
+              ],
+              [
+                "accordionDescription",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Tempor do commodo in esse ea velit est cupidatat. Consequat veniam incididunt deserunt labore exercitation ex."
+                      }
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "accordionHeading": {
+        "__TYPE__": "FieldContent",
+        "value": "crop",
+        "type": "Text"
+      },
+      "accordionContent": {
+        "__TYPE__": "FieldContent",
+        "value": "know",
+        "type": "Text"
+      }
+    },
+    "items": []
+  }
 ]
