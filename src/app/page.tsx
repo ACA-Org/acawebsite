@@ -40,7 +40,7 @@ export default async function Home() {
         <div className="flex flex-col items-start justify-center gap-16 pb-16">
           <div className="flex w-full items-center gap-8 lg:pt-12">
             <div className="mx-auto w-full max-w-[1440px] px-4 pt-12 md:px-8 lg:pt-24">
-              <div className="flex items-center justify-between max-lg:flex-col-reverse max-lg:items-start max-lg:gap-8">
+              <div className="flex items-center justify-between gap-8 max-lg:flex-col-reverse max-lg:items-start lg:gap-16">
                 <div className="flex w-full flex-col gap-6 lg:w-1/2">
                   <h1 className="text-[52px] leading-[70px] text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
                     Strengthening Corrections,

@@ -25,7 +25,7 @@ const LinkTile: FC<LinkTileProps> = (slice) => {
     <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="group relative flex h-[350px] w-[340px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6 [background:linear-gradient(180deg,rgba(15,45,82,0.00)_0%,rgba(15,45,82,0.75)_100%),#005F96]"
+      className="group relative flex h-[350px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6"
     >
       {image && (
         <>
@@ -33,9 +33,9 @@ const LinkTile: FC<LinkTileProps> = (slice) => {
             <PrismicNextImage
               alt=""
               field={image}
-              className="h-full w-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-0"
+              className="h-full w-full object-cover transition-opacity duration-250 ease-in-out"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F] transition-opacity duration-300 ease-in-out group-hover:opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F] transition-all duration-300 ease-in-out group-hover:via-[rgba(15,15,15,0.6)] group-hover:to-[rgba(15,15,15,1)] max-md:via-[rgba(15,15,15,0.6)] max-md:to-[rgba(15,15,15,1)]" />
           </div>
         </>
       )}

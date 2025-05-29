@@ -12,6 +12,7 @@ export const components = {
   image_callout: dynamic(() => import("./ImageCallout")),
   link_card: dynamic(() => import("./LinkCard")),
   link_tile: dynamic(() => import("./LinkTile")),
+  logo_ticker: dynamic(() => import("./LogoTicker")),
   menu_item: dynamic(() => import("./MenuItem")),
   rich_text_box: dynamic(() => import("./RichTextBox")),
   social_carousel: dynamic(() => import("./SocialCarousel")),

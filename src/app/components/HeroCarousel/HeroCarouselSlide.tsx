@@ -18,7 +18,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
     heroCarouselBackground: img,
   } = props;
   return (
-    <div className="relative flex h-full min-h-[635px] w-full flex-col items-center justify-end overflow-clip rounded-2xl p-12 max-lg:p-6">
+    <div className="relative flex h-full w-full flex-col items-center justify-end overflow-clip rounded-2xl p-12 max-lg:min-h-[500px] max-lg:p-6 lg:min-h-[635px]">
       {img && (
         <>
           <div className="absolute inset-0 h-full w-full">
