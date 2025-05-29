@@ -92,6 +92,8 @@ export async function getRightMenuData(
   const tierThreePages = (await client.getAllByType("tierThreePage"))?.filter(
     (i) =>
       i.data.parentPage &&
+      !i.data.hidden &&
+      !i.data.hideFromRightMenu &&
       (i.data.parentPage as FilledContentRelationshipField<"tierTwoPage">)
         .uid === uid
   );

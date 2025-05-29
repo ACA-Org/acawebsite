@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./accordion";
-import PageRichText from "@/app/components/PageRichText";
+import RichText from "@/app/components/RichText";
 import { LinkButton } from "@/components/ui/button";
 
 /**
@@ -50,7 +50,7 @@ const Accordion: FC<AccordionProps> = ({ slice }) => {
             >
               <AccordionTrigger>{accordionTitle}</AccordionTrigger>
               <AccordionContent>
-                <PageRichText content={accordionDescription} />
+                <RichText content={accordionDescription} />
                 {accordionAction.text && (
                   <LinkButton field={accordionAction}>
                     {accordionAction.text}

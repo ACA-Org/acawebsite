@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { LinkButton } from "@/components/ui/button";
+import RichText from "@/app/components/RichText";
 
 /**
  * Props for `CardContainer`.
@@ -58,7 +59,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
 
                     {card.cardDescription && (
                       <div>
-                        <PrismicRichText field={card.cardDescription} />
+                        <RichText content={card.cardDescription} />
                       </div>
                     )}
                   </div>
@@ -97,7 +98,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
 
                 {card.cardDescription && (
                   <div>
-                    <PrismicRichText field={card.cardDescription} />
+                    <RichText content={card.cardDescription} />
                   </div>
                 )}
 

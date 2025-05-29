@@ -9,7 +9,7 @@ import {
   TierThreePageData,
 } from "@/app/actions/getTierPageData";
 import { components } from "@/slices";
-import PageRichText from "@/app/components/PageRichText";
+import RichText from "@/app/components/RichText";
 import { Metadata } from "next/types";
 import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
@@ -76,9 +76,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         </div>
       </div>
       <div className="pl-body mx-auto my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
-        <div className={"flex w-full flex-col items-start gap-12"}>
+        <div className={"flex w-full flex-col items-start gap-8"}>
           <div>
-            <PageRichText content={pageContent} />
+            <RichText content={pageContent} />
           </div>
 
           <SliceZone slices={slices} components={components} />

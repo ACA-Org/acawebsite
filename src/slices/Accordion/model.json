@@ -45,6 +45,9 @@
                   "label": "AccordionDescription",
                   "placeholder": "",
                   "allowTargetBlank": true,
+                  "labels": [
+                    "Block Quote"
+                  ],
                   "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
                 }
               },

@@ -3,7 +3,7 @@ import { ContactPageDocumentData } from "../../../prismicio-types";
 import { getContactPage } from "../actions/getContactPageData";
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
-import PageRichText from "../components/PageRichText";
+import RichText from "../components/RichText";
 import ContactForm from "@/slices/ContactForm";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
@@ -57,7 +57,7 @@ export default async function Page() {
         </div>
         <div>
           <div className="my-12 flex flex-row gap-16">
-            <div className="flex w-full flex-col items-start gap-12 max-md:gap-8">
+            <div className="flex w-full flex-col items-start gap-8 max-md:gap-8">
               <div className="flex flex-col gap-12">
                 <Breadcrumbs />
                 {title && (
@@ -67,7 +67,7 @@ export default async function Page() {
                 )}
               </div>
               <div>
-                <PageRichText content={pageContent} />
+                <RichText content={pageContent} />
               </div>
             </div>
             {rightSlices?.length > 0 && (

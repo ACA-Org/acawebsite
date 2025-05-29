@@ -1,7 +1,7 @@
 import { RichTextField } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
-export default function PageRichText({
+export default function RichText({
   content,
 }: {
   content: RichTextField | null | undefined;
@@ -28,7 +28,8 @@ export default function PageRichText({
         heading6: ({ children }) => (
           <h6 className="heading-6 mt-3 mb-4">{children}</h6>
         ),
-        paragraph: ({ children, text }) => {
+        paragraph: ({ children, text, node: { spans } }) => {
+          if (spans?.find((i) => i.type === "label")) return null;
           if (text === "-----")
             return <div className="my-6 h-[1px] w-full bg-gray-100" />;
           return (
@@ -40,6 +41,20 @@ export default function PageRichText({
         list: ({ children }) => (
           <ul className="mb-4 list-inside list-disc space-y-2">{children}</ul>
         ),
+        oList: ({ children }) => (
+          <ol className="mb-4 ml-3 list-inside list-decimal space-y-2">
+            {children}
+          </ol>
+        ),
+        label: ({ node, children }) => {
+          if (node.data.label === "Block Quote") {
+            return (
+              <span className="body-md mb-4 pl-4 leading-relaxed text-gray-100 italic">
+                {children}
+              </span>
+            );
+          }
+        },
         // image: ({ node: { alt } }) => {
         //   // const { className, ...rest } = attributes;
 

@@ -34,7 +34,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
       <div className="mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8">
         <div className="relative flex items-start justify-between gap-12 max-lg:flex-col">
           {/* Contact Info */}
-          <div className="flex w-full flex-col items-start gap-12 self-stretch border-blue-200 max-lg:border-b max-lg:pb-12 lg:max-w-1/3 lg:border-r">
+          <div className="flex w-full flex-col items-start gap-8 self-stretch border-blue-200 max-lg:border-b max-lg:pb-12 lg:max-w-1/3 lg:border-r">
             <div className="flex w-full flex-col items-start gap-[22px] self-stretch">
               <img
                 className="h-11 w-[114.78px] object-cover"

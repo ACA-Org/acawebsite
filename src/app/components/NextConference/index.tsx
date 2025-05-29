@@ -39,7 +39,7 @@ export const NextConference = (
     >
       <div id="conference-sentinel" className="absolute top-0 h-px w-full" />
       <div className="mx-auto w-full max-w-[1440px] px-4 py-24 md:px-8">
-        <div className="relative flex w-full flex-col items-start gap-12 self-stretch">
+        <div className="relative flex w-full flex-col items-start gap-8 self-stretch">
           <div className="relative flex w-full items-center justify-between gap-16 max-md:flex-col max-md:items-start">
             <div className="relative flex flex-1 grow flex-col items-start gap-4">
               <div className="relative flex w-full items-center gap-8 self-stretch px-0 pt-0 pb-4">

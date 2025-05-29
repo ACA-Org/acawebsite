@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import PageRichText from "@/app/components/PageRichText";
+import RichText from "@/app/components/RichText";
 
 /**
  * Props for `RichTextBox`.
@@ -18,7 +18,7 @@ const RichTextBox: FC<RichTextBoxProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <PageRichText content={textContent} />
+      <RichText content={textContent} />
     </section>
   );
 };

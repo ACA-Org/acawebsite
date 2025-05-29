@@ -10,7 +10,7 @@ import {
 import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import { components } from "@/slices";
-import PageRichText from "../components/PageRichText";
+import RichText from "../components/RichText";
 import { Metadata } from "next/types";
 import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
@@ -97,7 +97,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         >
           {pageContent && (
             <div>
-              <PageRichText content={pageContent} />
+              <RichText content={pageContent} />
             </div>
           )}
 

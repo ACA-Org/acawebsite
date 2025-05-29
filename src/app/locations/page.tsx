@@ -50,7 +50,7 @@ export default async function Page() {
           )}
         </div>
         <div className="my-12 flex flex-row gap-16">
-          <div className="flex w-full flex-col items-start gap-12 max-md:gap-8">
+          <div className="flex w-full flex-col items-start gap-8 max-md:gap-8">
             <div className="flex flex-col gap-12">
               <Breadcrumbs />
               {title && (

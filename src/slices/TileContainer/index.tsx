@@ -2,9 +2,10 @@
 
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import React from "react";
+import RichText from "@/app/components/RichText";
 
 /**
  * Props for `TileContainer`.
@@ -34,7 +35,7 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
 
           {tileSectionDesc && (
             <div>
-              <PrismicRichText field={tileSectionDesc} />
+              <RichText content={tileSectionDesc} />
             </div>
           )}
         </div>
