@@ -442,6 +442,7 @@ export interface HomepageDocumentDataIntroImageTileItem {
 }
 
 type HomepageDocumentDataSlicesSlice =
+  | LogoTickerSlice
   | SpeedBumpSlice
   | SocialCarouselSlice
   | CarouselSlice;
@@ -1256,6 +1257,7 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
+  | TableSlice
   | TileContainerSlice
   | RichTextBoxSlice
   | ImageCalloutSlice
@@ -2263,6 +2265,66 @@ export type LinkTileSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *LogoTicker → Default → Primary → Logos*
+ */
+export interface LogoTickerSliceDefaultPrimaryLogosItem {
+  /**
+   * LogoItem field in *LogoTicker → Default → Primary → Logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_ticker.default.primary.logos[].logoItem
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logoItem: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *LogoTicker → Default → Primary*
+ */
+export interface LogoTickerSliceDefaultPrimary {
+  /**
+   * Logos field in *LogoTicker → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_ticker.default.primary.logos[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  logos: prismic.GroupField<Simplify<LogoTickerSliceDefaultPrimaryLogosItem>>;
+}
+
+/**
+ * Default variation for LogoTicker Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoTickerSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LogoTickerSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *LogoTicker*
+ */
+type LogoTickerSliceVariation = LogoTickerSliceDefault;
+
+/**
+ * LogoTicker Shared Slice
+ *
+ * - **API ID**: `logo_ticker`
+ * - **Description**: LogoTicker
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LogoTickerSlice = prismic.SharedSlice<
+  "logo_ticker",
+  LogoTickerSliceVariation
+>;
+
+/**
  * Item in *MenuItem → Default → Primary → TierTwoMenuItems*
  */
 export interface MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem {
@@ -2952,6 +3014,11 @@ declare module "@prismicio/client" {
       LinkTileSliceDefaultPrimary,
       LinkTileSliceVariation,
       LinkTileSliceDefault,
+      LogoTickerSlice,
+      LogoTickerSliceDefaultPrimaryLogosItem,
+      LogoTickerSliceDefaultPrimary,
+      LogoTickerSliceVariation,
+      LogoTickerSliceDefault,
       MenuItemSlice,
       MenuItemSliceDefaultPrimaryTierTwoMenuItemsItem,
       MenuItemSliceDefaultPrimary,

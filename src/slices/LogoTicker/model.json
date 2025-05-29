@@ -1,0 +1,36 @@
+{
+  "id": "logo_ticker",
+  "type": "SharedSlice",
+  "name": "LogoTicker",
+  "description": "LogoTicker",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "logos": {
+          "type": "Group",
+          "config": {
+            "label": "Logos",
+            "repeat": true,
+            "fields": {
+              "logoItem": {
+                "type": "Image",
+                "config": {
+                  "label": "LogoItem",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
