@@ -81,7 +81,9 @@
           "label": "NextConferenceInfo",
           "select": "document",
           "repeat": false,
-          "customtypes": ["nextConferenceSection"]
+          "customtypes": [
+            "nextConferenceSection"
+          ]
         }
       },
       "introHeader": {
@@ -139,6 +141,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "carousel": {
+              "type": "SharedSlice"
+            },
             "logo_ticker": {
               "type": "SharedSlice"
             },
@@ -146,9 +151,6 @@
               "type": "SharedSlice"
             },
             "social_carousel": {
-              "type": "SharedSlice"
-            },
-            "carousel": {
               "type": "SharedSlice"
             }
           }

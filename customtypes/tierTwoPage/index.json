@@ -80,34 +80,34 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "table": {
-              "type": "SharedSlice"
-            },
-            "tile_container": {
-              "type": "SharedSlice"
-            },
-            "rich_text_box": {
-              "type": "SharedSlice"
-            },
-            "image_callout": {
-              "type": "SharedSlice"
-            },
-            "card_container": {
+            "accordion": {
               "type": "SharedSlice"
             },
             "button_group": {
               "type": "SharedSlice"
             },
-            "speedBump": {
+            "card_container": {
               "type": "SharedSlice"
             },
             "carousel": {
               "type": "SharedSlice"
             },
-            "accordion": {
+            "image_callout": {
               "type": "SharedSlice"
             },
             "link_tile": {
+              "type": "SharedSlice"
+            },
+            "rich_text_box": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "table": {
+              "type": "SharedSlice"
+            },
+            "tile_container": {
               "type": "SharedSlice"
             }
           }
@@ -150,10 +150,31 @@
             "accordion": {
               "type": "SharedSlice"
             },
-            "speedBump": {
+            "button_group": {
+              "type": "SharedSlice"
+            },
+            "card_container": {
               "type": "SharedSlice"
             },
             "carousel": {
+              "type": "SharedSlice"
+            },
+            "image_callout": {
+              "type": "SharedSlice"
+            },
+            "link_tile": {
+              "type": "SharedSlice"
+            },
+            "rich_text_box": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "table": {
+              "type": "SharedSlice"
+            },
+            "tile_container": {
               "type": "SharedSlice"
             }
           }

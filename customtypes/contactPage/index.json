@@ -71,13 +71,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "speedBump": {
-              "type": "SharedSlice"
-            },
             "accordion": {
               "type": "SharedSlice"
             },
             "link_card": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
               "type": "SharedSlice"
             }
           }

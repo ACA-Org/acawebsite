@@ -80,28 +80,34 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "tile_container": {
-              "type": "SharedSlice"
-            },
-            "table": {
-              "type": "SharedSlice"
-            },
-            "speedBump": {
-              "type": "SharedSlice"
-            },
             "accordion": {
               "type": "SharedSlice"
             },
-            "rich_text_box": {
-              "type": "SharedSlice"
-            },
-            "image_callout": {
+            "button_group": {
               "type": "SharedSlice"
             },
             "card_container": {
               "type": "SharedSlice"
             },
-            "button_group": {
+            "carousel": {
+              "type": "SharedSlice"
+            },
+            "image_callout": {
+              "type": "SharedSlice"
+            },
+            "link_tile": {
+              "type": "SharedSlice"
+            },
+            "rich_text_box": {
+              "type": "SharedSlice"
+            },
+            "speedBump": {
+              "type": "SharedSlice"
+            },
+            "table": {
+              "type": "SharedSlice"
+            },
+            "tile_container": {
               "type": "SharedSlice"
             }
           }
@@ -141,13 +147,34 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "accordion": {
+              "type": "SharedSlice"
+            },
+            "button_group": {
+              "type": "SharedSlice"
+            },
+            "card_container": {
+              "type": "SharedSlice"
+            },
             "carousel": {
+              "type": "SharedSlice"
+            },
+            "image_callout": {
+              "type": "SharedSlice"
+            },
+            "link_tile": {
+              "type": "SharedSlice"
+            },
+            "rich_text_box": {
               "type": "SharedSlice"
             },
             "speedBump": {
               "type": "SharedSlice"
             },
-            "accordion": {
+            "table": {
+              "type": "SharedSlice"
+            },
+            "tile_container": {
               "type": "SharedSlice"
             }
           }
