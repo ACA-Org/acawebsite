@@ -47,6 +47,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       pageTextContent: pageContent,
       pageTitle: title,
       pageImage: img,
+      pageSubTitle: subTitle,
       slices,
       slices2: postArticleSlices,
     },
@@ -82,9 +83,10 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               {title}
             </h1>
           )}
+          {subTitle && <span className="body-xl">{subTitle}</span>}
         </div>
       </div>
-      <div className="pl-body my-12 flex flex-row gap-16 max-md:flex-col-reverse">
+      <div className="pl-body mx-auto my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
         <div
           className={cn(
             "flex w-full flex-col items-start gap-12",

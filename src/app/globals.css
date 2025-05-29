@@ -453,3 +453,10 @@ nav:has(.align-center) > .left-0 {
   right: auto;
   left: auto;
 }
+
+@layer utilities {
+  .pl-body .speedbump {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

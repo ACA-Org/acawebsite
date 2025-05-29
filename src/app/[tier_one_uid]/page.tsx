@@ -49,6 +49,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       pageTextContent: pageContent,
       pageTitle: title,
       pageImage: img,
+      pageSubTitle: subTitle,
       slices,
       slices2: postArticleSlices,
     },
@@ -84,6 +85,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               {title}
             </h1>
           )}
+          {subTitle && <span className="body-xl">{subTitle}</span>}
         </div>
       </div>
       <div className="pl-body my-12 flex flex-row gap-16 max-md:flex-col-reverse">
