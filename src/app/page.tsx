@@ -9,6 +9,7 @@ import { getHomePageData } from "./actions/getHomePageData";
 import { LinkButton } from "@/components/ui/button";
 import { Metadata } from "next";
 import { asImageSrc } from "@prismicio/client";
+import { ACAFullLogoColor } from "@/logos/ACAFullLogoColor";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -56,7 +57,7 @@ export default async function Home() {
                   )}
                 </div>
 
-                {/* <ACAFullLogoColor className="h-auto w-full flex-1 max-lg:w-1/2" /> */}
+                <ACAFullLogoColor className="h-auto w-full flex-1 max-lg:w-1/2" />
               </div>
             </div>
           </div>

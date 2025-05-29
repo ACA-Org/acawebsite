@@ -30,11 +30,11 @@ const Carousel: FC<CarouselProps> = ({ slice }) => {
     },
   } = slice;
   return (
-    <div className="flex h-full w-full flex-col items-start gap-12 overflow-visible px-19 py-24 [background:linear-gradient(90deg,#0C2545_0%,#081B31_100%)]">
+    <div className="flex h-full w-full flex-col items-start gap-12 overflow-visible px-4 py-24 md:px-8 xl:px-0">
       {(title || subTitle) && (
         <div className="flex flex-1 flex-col items-start gap-6">
-          {tag && <p className="body-tag text-blue-50 uppercase">{tag}</p>}
-          {title && <h2 className="heading-2 text-gold-100">{title}</h2>}
+          {tag && <p className="body-tag text-gray-500 uppercase">{tag}</p>}
+          {title && <h2 className="heading-2 text-blue-300">{title}</h2>}
           {subTitle && <p className="body-sm text-white">{subTitle}</p>}
         </div>
       )}

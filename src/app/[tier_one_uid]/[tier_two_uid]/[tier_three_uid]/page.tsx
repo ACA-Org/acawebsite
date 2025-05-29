@@ -36,6 +36,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     data: {
       pageContent,
       pageTitle: title,
+      pageSubTitle: subTitle,
       pageImage: img,
       slices,
       slices2: postArticleSlices,
@@ -52,7 +53,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 field={img}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
             </div>
           </>
         </div>
@@ -72,9 +72,10 @@ export default async function Page({ params }: { params: Promise<Params> }) {
               {title}
             </h1>
           )}
+          {subTitle && <span className="body-xl font-light">{subTitle}</span>}
         </div>
       </div>
-      <div className="pl-body my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
+      <div className="pl-body mx-auto my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
         <div className={"flex w-full flex-col items-start gap-12"}>
           <div>
             <PageRichText content={pageContent} />
