@@ -106,9 +106,9 @@ export type AccreditedFacilitiesDocument<Lang extends string = string> =
 type ContactPageDocumentDataSlicesSlice = never;
 
 type ContactPageDocumentDataSlices2Slice =
-  | SpeedBumpSlice
   | AccordionSlice
-  | LinkCardSlice;
+  | LinkCardSlice
+  | SpeedBumpSlice;
 
 /**
  * Content for ContactPage documents
@@ -442,10 +442,10 @@ export interface HomepageDocumentDataIntroImageTileItem {
 }
 
 type HomepageDocumentDataSlicesSlice =
+  | CarouselSlice
   | LogoTickerSlice
   | SpeedBumpSlice
-  | SocialCarouselSlice
-  | CarouselSlice;
+  | SocialCarouselSlice;
 
 /**
  * Content for HomePage documents
@@ -946,21 +946,28 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
   >;
 
 type TierOnePageDocumentDataSlicesSlice =
-  | TileContainerSlice
-  | RichTextBoxSlice
-  | ImageCalloutSlice
-  | CardContainerSlice
-  | ButtonGroupSlice
   | AccordionSlice
-  | LinkTileSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
   | CarouselSlice
-  | SpeedBumpSlice;
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
 
 type TierOnePageDocumentDataSlices2Slice =
-  | SpeedBumpSlice
   | AccordionSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
   | CarouselSlice
-  | SocialCarouselSlice;
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
 
 /**
  * Content for TierOnePage documents
@@ -1091,19 +1098,28 @@ export type TierOnePageDocument<Lang extends string = string> =
   >;
 
 type TierThreePageDocumentDataSlicesSlice =
-  | TileContainerSlice
-  | TableSlice
-  | SpeedBumpSlice
   | AccordionSlice
-  | RichTextBoxSlice
-  | ImageCalloutSlice
+  | ButtonGroupSlice
   | CardContainerSlice
-  | ButtonGroupSlice;
+  | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
 
 type TierThreePageDocumentDataSlices2Slice =
+  | AccordionSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
   | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
   | SpeedBumpSlice
-  | AccordionSlice;
+  | TableSlice
+  | TileContainerSlice;
 
 /**
  * Content for TierThreePage documents
@@ -1257,21 +1273,28 @@ export type TierThreePageDocument<Lang extends string = string> =
   >;
 
 type TierTwoPageDocumentDataSlicesSlice =
-  | TableSlice
-  | TileContainerSlice
-  | RichTextBoxSlice
-  | ImageCalloutSlice
-  | CardContainerSlice
-  | ButtonGroupSlice
-  | SpeedBumpSlice
-  | CarouselSlice
   | AccordionSlice
-  | LinkTileSlice;
+  | ButtonGroupSlice
+  | CardContainerSlice
+  | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
 
 type TierTwoPageDocumentDataSlices2Slice =
   | AccordionSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
+  | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
   | SpeedBumpSlice
-  | CarouselSlice;
+  | TableSlice
+  | TileContainerSlice;
 
 /**
  * Content for TierTwoPage documents

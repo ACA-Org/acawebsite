@@ -17,6 +17,8 @@ export type TileContainerProps =
  * Component for "TileContainer" Slices.
  */
 const TileContainer: FC<TileContainerProps> = ({ slice }) => {
+  if (!slice.primary) return null;
+
   const {
     primary: { tiles, tileSectionTitle, tileSectionDesc },
   } = slice;
@@ -43,7 +45,6 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
       {tiles.length > 0 && (
         <div className="flex flex-wrap gap-6">
           {tiles.map(({ tileDesc, tileHeading, tileImage, tileLink }, i) => {
-            console.log({ tileLink });
             const Comp =
               tileLink?.link_type !== "Any" ? PrismicNextLink : "div";
             return (

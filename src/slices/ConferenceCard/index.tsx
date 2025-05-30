@@ -14,6 +14,8 @@ export type ConferenceCardProps =
  * Component for "ConferenceCard" Slices.
  */
 const ConferenceCard: FC<ConferenceCardProps> = (slice) => {
+  if (!slice.primary) return null;
+
   const {
     primary: {
       conferenceCardImage: image,

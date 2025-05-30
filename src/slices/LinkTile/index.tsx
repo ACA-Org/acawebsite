@@ -13,6 +13,8 @@ export type LinkTileProps = SliceComponentProps<Content.LinkTileSlice>["slice"];
  * Component for "LinkTile" Slices.
  */
 const LinkTile: FC<LinkTileProps> = (slice) => {
+  if (!slice.primary) return null;
+
   const {
     primary: {
       tileImage: image,
