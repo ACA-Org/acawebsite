@@ -40,7 +40,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="rounded-2xl border-none bg-blue-50 p-8">
+    <div className="rounded-2xl border border-blue-500/15 bg-white p-8">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="relative mb-8 flex w-full items-center gap-[41px]">
           <div className="flex flex-1 flex-col items-start gap-2">

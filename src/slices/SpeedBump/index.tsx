@@ -65,7 +65,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                     className={cn(
                       "heading-3 font-semibold",
                       variation === "vertical" && "text-center",
-                      theme === "light" ? "text-blue-300" : "text-white"
+                      theme === "light" ? "text-blue-300" : "text-gray-600"
                     )}
                   >
                     {title}
@@ -77,7 +77,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                   className={cn(
                     "body-md",
                     variation === "vertical" && "text-center",
-                    theme === "light" ? "text-gray-300" : "text-white"
+                    theme === "light" ? "text-gray-300" : "text-gray-600"
                   )}
                 >
                   {description}
@@ -94,8 +94,6 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                 {links.map((link, index) => (
                   <LinkButton
                     key={link.key}
-                    outlined={theme !== "light" || index % 2 === 1}
-                    variant={theme === "light" ? "primary" : "white"}
                     field={link}
                     className={cn(variation === "vertical" && "w-full")}
                   >

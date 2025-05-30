@@ -34,7 +34,7 @@ export const Search = () => {
 
               return asText(
                 (page?.data as any)?.pageContent ||
-                  (page?.data as any)?.pageTextContent
+                (page?.data as any)?.pageTextContent
               );
             },
           },
@@ -50,9 +50,9 @@ export const Search = () => {
     () =>
       query
         ? fuse.search(query).map((res) => ({
-            ...res.item,
-            matches: res.matches,
-          }))
+          ...res.item,
+          matches: res.matches,
+        }))
         : [],
     [query, fuse]
   );
@@ -95,6 +95,10 @@ export const Search = () => {
         <div className="text-center text-gray-500">No results found.</div>
       )}
 
+      {(query && results.length > 0) && (
+        <h2 className="heading-2 mb-6 text-blue-300">Results</h2>
+      )}
+
       <div className="space-y-4">
         {results.map((page) => {
           const contentMatches = (page as any).matches?.filter(
@@ -108,14 +112,14 @@ export const Search = () => {
           ) {
             contentString += asText(
               (page?.data as any)?.pageContent ||
-                (page?.data as any)?.pageTextContent
+              (page?.data as any)?.pageTextContent
             );
           }
 
           return (
             <div
               key={page.id}
-              className="rounded-lg border bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-sm border bg-white shadow-sm transition-shadow hover:shadow-md"
             >
               <LinkButton
                 field={{
@@ -127,7 +131,7 @@ export const Search = () => {
                   tags: [],
                   lang: "en-us",
                 }}
-                className="h-full w-full cursor-pointer justify-start bg-transparent text-black"
+                className="h-full w-full cursor-pointer justify-start bg-transparent text-black hover:text-white"
               >
                 <div className="flex flex-col gap-1">
                   <span className="font-medium">
