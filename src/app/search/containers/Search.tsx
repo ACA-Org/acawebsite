@@ -34,7 +34,7 @@ export const Search = () => {
 
               return asText(
                 (page?.data as any)?.pageContent ||
-                (page?.data as any)?.pageTextContent
+                  (page?.data as any)?.pageTextContent
               );
             },
           },
@@ -50,9 +50,9 @@ export const Search = () => {
     () =>
       query
         ? fuse.search(query).map((res) => ({
-          ...res.item,
-          matches: res.matches,
-        }))
+            ...res.item,
+            matches: res.matches,
+          }))
         : [],
     [query, fuse]
   );
@@ -95,7 +95,7 @@ export const Search = () => {
         <div className="text-center text-gray-500">No results found.</div>
       )}
 
-      {(query && results.length > 0) && (
+      {query && results.length > 0 && (
         <h2 className="heading-2 mb-6 text-blue-300">Results</h2>
       )}
 
@@ -112,7 +112,7 @@ export const Search = () => {
           ) {
             contentString += asText(
               (page?.data as any)?.pageContent ||
-              (page?.data as any)?.pageTextContent
+                (page?.data as any)?.pageTextContent
             );
           }
 

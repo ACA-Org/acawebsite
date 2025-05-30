@@ -93,7 +93,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
               >
                 {links.map((link, index) => (
                   <LinkButton
-                    key={link.key}
+                    key={`${link.key}+${index}`}
                     field={link}
                     className={cn(variation === "vertical" && "w-full")}
                   >
