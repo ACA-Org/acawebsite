@@ -37,7 +37,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   try {
     rightMenuData = await getRightMenuData(uid_2, "two");
-    console.log("rightMenuData", rightMenuData);
   } catch {
     console.error("error!");
   }

@@ -33,29 +33,54 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
           <div className="flex justify-center">
             <ul className="flex w-full items-center justify-center gap-8 p-2">
               {slices.map(
-                ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
-                  <li key={index} className="relative">
-                    <PrismicNextLink
-                      field={tierOneLink}
-                      onMouseEnter={() => setActiveItem(index)}
-                      onClick={() => {
-                        setActiveItem(null);
-                      }}
-                      className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
-                    >
-                      <span className="whitespace-nowrap">
-                        {tierOneLink.text}
-                      </span>
-                      {tierTwoMenuItems?.length > 0 && (
-                        <CaretDown
-                          className={cn(
-                            "h-auto w-2 stroke-blue-300 transition-transform group-hover/link:rotate-180 group-hover/link:stroke-blue-200"
-                          )}
-                        />
-                      )}
-                    </PrismicNextLink>
-                  </li>
-                )
+                ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => {
+                  if (tierOneLink.link_type !== "Document") {
+                    return (
+                      <li
+                        key={index}
+                        onMouseEnter={() => setActiveItem(index)}
+                        onClick={() => {
+                          setActiveItem(null);
+                        }}
+                        className="group/link body-sm relative flex gap-2 text-blue-300 hover:cursor-default hover:bg-transparent hover:text-blue-200"
+                      >
+                        <span className="whitespace-nowrap">
+                          {tierOneLink.text}
+                        </span>
+                        {tierTwoMenuItems?.length > 0 && (
+                          <CaretDown
+                            className={cn(
+                              "h-auto w-2 stroke-blue-300 transition-transform group-hover/link:rotate-180 group-hover/link:stroke-blue-200"
+                            )}
+                          />
+                        )}
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={index} className="relative">
+                      <PrismicNextLink
+                        field={tierOneLink}
+                        onMouseEnter={() => setActiveItem(index)}
+                        onClick={() => {
+                          setActiveItem(null);
+                        }}
+                        className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
+                      >
+                        <span className="whitespace-nowrap">
+                          {tierOneLink.text}
+                        </span>
+                        {tierTwoMenuItems?.length > 0 && (
+                          <CaretDown
+                            className={cn(
+                              "h-auto w-2 stroke-blue-300 transition-transform group-hover/link:rotate-180 group-hover/link:stroke-blue-200"
+                            )}
+                          />
+                        )}
+                      </PrismicNextLink>
+                    </li>
+                  );
+                }
               )}
             </ul>
           </div>
