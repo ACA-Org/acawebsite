@@ -117,39 +117,34 @@ export const Search = () => {
           }
 
           return (
-            <div
+            <LinkButton
+              field={{
+                url: page.url || undefined,
+                uid: page.uid || undefined,
+                link_type: "Document",
+                id: page.id,
+                type: "page",
+                tags: [],
+                lang: "en-us",
+              }}
               key={page.id}
-              className="rounded-sm border bg-white shadow-sm transition-shadow hover:shadow-md"
+              className="h-full w-full cursor-pointer justify-start rounded-lg border border-gray-100 bg-white p-4 text-black shadow-sm hover:bg-transparent"
             >
-              <LinkButton
-                field={{
-                  url: page.url || undefined,
-                  uid: page.uid || undefined,
-                  link_type: "Document",
-                  id: page.id,
-                  type: "page",
-                  tags: [],
-                  lang: "en-us",
-                }}
-                className="h-full w-full cursor-pointer justify-start bg-transparent text-black hover:text-white"
-              >
-                <div className="flex flex-col gap-1">
-                  <span className="font-medium">
-                    {page.data.pageTitle || ""}
-                  </span>
-                  {query && contentString && (
-                    <span
-                      className="text-muted-foreground line-clamp-2 text-sm"
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          getContentSnippet(contentString, contentMatches) ||
-                          "",
-                      }}
-                    />
-                  )}
-                </div>
-              </LinkButton>
-            </div>
+              <div className="flex flex-col gap-2">
+                <span className="heading-5 text-gray-700">
+                  {page.data.pageTitle || ""}
+                </span>
+                {query && contentString && (
+                  <span
+                    className="body-md line-clamp-2 text-gray-500"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        getContentSnippet(contentString, contentMatches) || "",
+                    }}
+                  />
+                )}
+              </div>
+            </LinkButton>
           );
         })}
       </div>
