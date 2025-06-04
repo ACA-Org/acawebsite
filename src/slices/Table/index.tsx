@@ -24,7 +24,7 @@ const Table: FC<TableProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="w-full overflow-x-auto"
     >
-      <div className="min-w-full rounded-lg border border-gray-200">
+      <div className="min-w-full overflow-clip rounded-lg border border-gray-200">
         <table className="min-w-full divide-y divide-gray-200">
           {head && (
             <thead className="bg-gray-50">
@@ -33,7 +33,7 @@ const Table: FC<TableProps> = ({ slice }) => {
                   <th
                     key={index}
                     scope="col"
-                    className="body-md px-6 py-4 text-left font-medium text-gray-300"
+                    className="body-md px-6 py-4 text-left font-medium text-blue-300"
                   >
                     <PrismicRichText field={header.cells[0].content} />
                   </th>
@@ -47,7 +47,7 @@ const Table: FC<TableProps> = ({ slice }) => {
                 {row.cells.map((cell, cellIndex) => (
                   <td
                     key={cellIndex}
-                    className="body-md px-6 py-4 whitespace-nowrap text-gray-100"
+                    className="body-md px-6 py-4 whitespace-nowrap text-gray-600"
                   >
                     <PrismicRichText field={cell.content} />
                   </td>
