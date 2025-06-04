@@ -33,23 +33,25 @@ export default function RichText({
           if (text === "-----")
             return <div className="my-6 h-[1px] w-full bg-gray-100" />;
           return (
-            <p className="body-md mb-4 leading-relaxed text-gray-100">
+            <p className="body-md mb-4 leading-relaxed text-gray-600">
               {children}
             </p>
           );
         },
         list: ({ children }) => (
-          <ul className="mb-4 list-inside list-disc space-y-2">{children}</ul>
+          <ul className="mb-4 list-inside list-disc space-y-2 text-gray-600">
+            {children}
+          </ul>
         ),
         oList: ({ children }) => (
-          <ol className="mb-4 ml-3 list-inside list-decimal space-y-2">
+          <ol className="mb-4 ml-3 list-inside list-decimal space-y-2 text-gray-600">
             {children}
           </ol>
         ),
         label: ({ node, children }) => {
           if (node.data.label === "Block Quote") {
             return (
-              <span className="body-md mb-4 pl-4 leading-relaxed text-gray-100 italic">
+              <span className="body-md mb-4 pl-4 leading-relaxed text-gray-600 italic">
                 {children}
               </span>
             );
@@ -64,7 +66,9 @@ export default function RichText({
         //     </div>
         //   );
         // },
-        listItem: ({ children }) => <li className="ml-4">{children}</li>,
+        listItem: ({ children }) => (
+          <li className="body-md ml-4 text-gray-600">{children}</li>
+        ),
         hyperlink: ({ node, children }) => {
           if (node.data.link_type === "Web") {
             return (
