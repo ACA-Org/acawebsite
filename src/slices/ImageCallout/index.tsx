@@ -50,7 +50,9 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
             {imageCalloutTitle && (
               <h3 className="heading-3">{imageCalloutTitle}</h3>
             )}
-            {imageCalloutDesc && <div>{imageCalloutDesc}</div>}
+            {imageCalloutDesc && (
+              <div className="body-md text-gray-600">{imageCalloutDesc}</div>
+            )}
             {imageCalloutLink.text && (
               <div className="max-md:w-full">
                 <LinkButton field={imageCalloutLink} className="max-md:w-full">

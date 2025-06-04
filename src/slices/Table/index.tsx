@@ -62,4 +62,3 @@ const Table: FC<TableProps> = ({ slice }) => {
 };
 
 export default Table;
-
