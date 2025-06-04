@@ -43,7 +43,7 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
         </div>
       )}
       {tiles.length > 0 && (
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-col flex-wrap gap-6 sm:flex-row">
           {tiles.map(({ tileDesc, tileHeading, tileImage, tileLink }, i) => {
             const Comp =
               tileLink?.link_type !== "Any" ? PrismicNextLink : "div";
@@ -51,7 +51,7 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
               <React.Fragment key={i}>
                 <Comp
                   key={i}
-                  className="relative flex min-h-[250px] max-w-1/3 flex-1 items-end overflow-clip rounded-md bg-none p-6"
+                  className="relative flex min-h-[250px] flex-1 items-end overflow-clip rounded-md bg-none p-6 sm:max-w-1/3"
                   field={tileLink}
                 >
                   <div className="absolute bottom-0 left-0 z-1 h-full w-full bg-gradient-to-t from-[#0F2D52] to-transparent" />

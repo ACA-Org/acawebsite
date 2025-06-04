@@ -43,9 +43,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
   } = pageData;
   return (
-    <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
+    <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-3 md:mb-28 md:px-8">
       {img.url && (
-        <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
+        <div className="relative mt-12 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 md:mt-16 md:gap-2.5 md:p-12">
           <>
             <div className="absolute inset-0 z-10 h-full w-full">
               <PrismicNextImage
@@ -59,11 +59,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       )}
       <div
         className={cn(
-          "mx-auto mt-12 w-full max-w-[1440px]",
-          !img.url && "mt-16"
+          "mx-auto mt-8 w-full max-w-[1440px] md:mt-12",
+          !img.url && "mt-12 md:mt-16"
         )}
       >
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-12">
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />
           </Suspense>
@@ -75,17 +75,19 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           {subTitle && <span className="body-xl font-light">{subTitle}</span>}
         </div>
       </div>
-      <div className="pl-body mx-auto my-12 flex w-full flex-row gap-16 max-md:flex-col-reverse">
-        <div className={"flex w-full flex-col items-start gap-8"}>
-          <div>
-            <RichText content={pageContent} />
-          </div>
+      <div className="pl-body mx-auto my-8 flex w-full flex-row gap-8 max-md:flex-col-reverse md:my-12 md:gap-16">
+        <div className={"flex w-full flex-col items-start gap-8 md:gap-12"}>
+          {pageContent && pageContent.length > 0 && (
+            <div>
+              <RichText content={pageContent} />
+            </div>
+          )}
 
           <SliceZone slices={slices} components={components} />
         </div>
       </div>
       {postArticleSlices?.length > 0 && (
-        <div className="pl-full">
+        <div className="pl-full flex flex-col items-start gap-8 max-md:w-full md:gap-12">
           <SliceZone slices={postArticleSlices} components={components} />
         </div>
       )}

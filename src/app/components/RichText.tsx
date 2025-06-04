@@ -57,15 +57,6 @@ export default function RichText({
             );
           }
         },
-        // image: ({ node: { alt } }) => {
-        //   // const { className, ...rest } = attributes;
-
-        //   return (
-        //     <div className="relative mb-4 flex w-full items-center justify-center">
-        //       <img className={`rounded-[12px]`} alt={alt || ""} />
-        //     </div>
-        //   );
-        // },
         listItem: ({ children }) => (
           <li className="body-md ml-4 text-gray-600">{children}</li>
         ),
@@ -75,6 +66,17 @@ export default function RichText({
               <a
                 href={node.data.url}
                 target={node.data.target}
+                className="text-blue-200 underline transition-colors duration-200 visited:text-blue-400 hover:text-blue-300"
+              >
+                {children}
+              </a>
+            );
+          } else if (node.data.link_type === "Media") {
+            return (
+              <a
+                href={node.data.url}
+                target={"_blank"}
+                referrerPolicy="no-referrer"
                 className="text-blue-200 underline transition-colors duration-200 visited:text-blue-400 hover:text-blue-300"
               >
                 {children}

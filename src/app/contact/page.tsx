@@ -40,7 +40,7 @@ export default async function Page() {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
+      <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-3 md:mb-28 md:px-8">
         <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-2xl p-12">
           {img && (
             <>
@@ -55,30 +55,28 @@ export default async function Page() {
             </>
           )}
         </div>
-        <div>
-          <div className="my-12 flex flex-row gap-16">
-            <div className="flex w-full flex-col items-start gap-8 max-md:gap-8">
-              <div className="flex flex-col gap-12">
-                <Breadcrumbs />
-                {title && (
-                  <h1 className="heading-1 z-20 font-semibold text-blue-300">
-                    {title}
-                  </h1>
-                )}
-              </div>
-              <div>
-                <RichText content={pageContent} />
-              </div>
+        <div className="mx-auto my-8 flex w-full flex-row gap-8 md:my-12 md:gap-16">
+          <div className="flex w-full flex-col items-start gap-8">
+            <div className="flex flex-col gap-8 md:gap-12">
+              <Breadcrumbs />
+              {title && (
+                <h1 className="heading-1 z-20 font-semibold text-blue-300">
+                  {title}
+                </h1>
+              )}
             </div>
-            {rightSlices?.length > 0 && (
-              <div className="flex max-w-[380px] flex-col gap-4">
-                <SliceZone slices={rightSlices} components={components} />
-              </div>
-            )}
+            <div className="flex flex-col gap-2">
+              <RichText content={pageContent} />
+            </div>
           </div>
-
-          <ContactForm />
+          {rightSlices?.length > 0 && (
+            <div className="flex max-w-[380px] flex-col gap-4">
+              <SliceZone slices={rightSlices} components={components} />
+            </div>
+          )}
         </div>
+
+        <ContactForm />
       </div>
     </div>
   );

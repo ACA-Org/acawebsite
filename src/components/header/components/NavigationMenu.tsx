@@ -230,6 +230,10 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     key={i}
                     field={item.tierTwoMenuLink}
                     className="block text-base text-gray-700"
+                    onClick={() => {
+                      setActiveMobileItem(null);
+                      setIsMobileOpen(false);
+                    }}
                   >
                     {item.tierTwoMenuLink.text}
                   </PrismicNextLink>

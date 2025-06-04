@@ -27,7 +27,7 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mb-10 w-full pt-6"
+      className="w-full pt-6 sm:mb-10"
     >
       <div className="mx-auto w-full max-w-[1440px]">
         <div

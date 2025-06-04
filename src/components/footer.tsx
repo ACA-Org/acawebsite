@@ -158,21 +158,23 @@ const Footer = ({ data }: { data: FooterProps }) => {
         </div>
       </div>
 
-      <div className="flex w-full items-center justify-between self-stretch bg-[#091B31] px-[76px] py-8">
-        <div className="inline-flex items-center gap-6">
-          {subFooterNavLinks?.map((link, index) => (
-            <TextLink
-              key={`sub-footer-${index}`}
-              className={index === 0 ? "mt-[-1.00px]" : ""}
-              field={link}
-            >
-              {link.text}
-            </TextLink>
-          ))}
-        </div>
+      <div className="w-full bg-[#091B31] px-4 py-8 md:px-19">
+        <div className="flex w-full max-w-[1440px] flex-col items-start gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between">
+          <div className="inline-flex flex-col items-center gap-6 sm:flex-row">
+            {subFooterNavLinks?.map((link, index) => (
+              <TextLink
+                key={`sub-footer-${index}`}
+                className={index === 0 ? "mt-[-1.00px]" : ""}
+                field={link}
+              >
+                {link.text}
+              </TextLink>
+            ))}
+          </div>
 
-        <div className="body-sm">
-          Copyright © American Correctional Association
+          <div className="body-sm">
+            Copyright © American Correctional Association
+          </div>
         </div>
       </div>
     </footer>

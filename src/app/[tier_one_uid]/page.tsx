@@ -21,10 +21,6 @@ import { cn } from "@/lib/utils";
 
 type Params = { tier_one_uid: string };
 
-// async function wait(ms: number) {
-//   return new Promise((resolve) => setTimeout(resolve, ms));
-// }
-
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_one_uid } = await params;
 
@@ -56,9 +52,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   } = pageData;
 
   return (
-    <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
+    <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-3 md:mb-28 md:px-8">
       {img.url && (
-        <div className="relative mt-16 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12">
+        <div className="relative mt-12 flex h-full min-h-[585px] w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 md:mt-16 md:gap-2.5 md:p-12">
           <>
             <div className="absolute inset-0 z-10 h-full w-full">
               <PrismicNextImage
@@ -72,11 +68,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       )}
       <div
         className={cn(
-          "mx-auto mt-12 w-full max-w-[1440px]",
-          !img.url && "mt-16"
+          "mx-auto mt-8 w-full max-w-[1440px] md:mt-12",
+          !img.url && "mt-12 md:mt-16"
         )}
       >
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-12">
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />
           </Suspense>
@@ -88,14 +84,14 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           {subTitle && <span className="body-xl">{subTitle}</span>}
         </div>
       </div>
-      <div className="pl-body my-12 flex flex-row gap-16 max-md:flex-col-reverse">
+      <div className="pl-body my-8 flex flex-row gap-8 max-md:flex-col-reverse md:my-12 md:gap-16">
         <div
           className={cn(
-            "flex flex-col items-start gap-12 max-md:w-full",
+            "flex flex-col items-start gap-8 max-md:w-full md:gap-12",
             rightMenuData && "w-3/4 max-lg:w-2/3"
           )}
         >
-          {pageContent && (
+          {pageContent && pageContent.length > 0 && (
             <div>
               <RichText content={pageContent} />
             </div>
@@ -114,7 +110,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         )}
       </div>
       {postArticleSlices?.length > 0 && (
-        <div className="pl-full">
+        <div className="pl-full flex flex-col items-start gap-8 max-md:w-full md:gap-12">
           <SliceZone slices={postArticleSlices} components={components} />
         </div>
       )}

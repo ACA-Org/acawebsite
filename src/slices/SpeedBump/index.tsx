@@ -27,7 +27,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
   } = slice;
 
   return (
-    <div className="speedbump mx-auto mb-12 w-full max-w-[1440px] px-4 md:px-8">
+    <div className="speedbump mx-auto w-full max-w-[1440px] px-4 sm:mb-10 md:px-8">
       <div
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
@@ -55,7 +55,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
               variation === "vertical" && "flex-col",
               position === "bottom"
                 ? "flex-col items-start"
-                : "flex-row items-center"
+                : "flex-col items-center sm:flex-row"
             )}
           >
             <div className="flex flex-1 flex-col gap-4">

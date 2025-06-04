@@ -40,7 +40,7 @@ function AccordionTrigger({
         )}
         {...props}
       >
-        <div className={cn("relative h-6 w-6")}>
+        <div className="relative h-6 w-6 flex-shrink-0">
           <div className="absolute inset-0 transform transition-transform duration-300 ease-in-out group-data-[state=closed]:rotate-0 group-data-[state=closed]:opacity-100 group-data-[state=open]:rotate-90 group-data-[state=open]:opacity-0">
             <Plus className="h-6 w-6 text-blue-200" />
           </div>
@@ -48,7 +48,7 @@ function AccordionTrigger({
             <Minus className="h-6 w-6 text-blue-100" />
           </div>
         </div>
-        {children}
+        <div className="min-w-0 flex-1">{children}</div>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
