@@ -42,9 +42,26 @@ export async function GET() {
 
     const data = await response.json();
 
+    interface LinkedInPost {
+      id: string;
+      commentary?: string;
+      createdAt?: number;
+      publishedAt?: number;
+      lastModifiedAt?: number;
+      author: string;
+      lifecycleState: string;
+      visibility: string;
+      isReshareDisabledByAuthor?: boolean;
+      distribution?: any;
+      content?: any;
+      lifecycleStateInfo?: any;
+      adContext?: any;
+      reshareContext?: any;
+    }
+
     // Transform the data to a more usable format
     const posts =
-      data.elements?.map((post) => ({
+      data.elements?.map((post: LinkedInPost) => ({
         id: post.id,
         commentary: post.commentary || "",
         createdAt: new Date(post.createdAt || 0).toISOString(),
@@ -79,7 +96,7 @@ export async function GET() {
 }
 
 // Additional endpoint to get a specific post by URN
-export async function POST(request) {
+export async function POST(request: any) {
   try {
     const { postUrn } = await request.json();
 
