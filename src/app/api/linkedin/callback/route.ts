@@ -42,4 +42,3 @@ export async function GET(req: NextRequest) {
     "✅ LinkedIn authorization successful. You may close this window."
   );
 }
-

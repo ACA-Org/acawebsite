@@ -30,6 +30,7 @@ export const NextConference = (
     conferenceStartDateTime,
     conferenceTitle: title,
     conferenceLocation: location,
+    viewDetailsLink: viewDetails,
     slices,
   } = props;
   return (
@@ -79,16 +80,15 @@ export const NextConference = (
                 </div>
               )}
 
-              <Button
-                variant="secondary"
-                outlined
-                className="hover:bg-gold-100 hover:outline-gold-100 relative flex h-13 w-full items-center justify-center gap-4 self-stretch rounded-none !rounded-b-xl !border !border-t-0 border-solid border-[#2e3d51] bg-transparent outline-transparent"
+              <LinkButton
+                className="hover:bg-gold-100 hover:outline-gold-100 relative flex h-13 w-full items-center justify-center gap-4 self-stretch rounded-none !rounded-b-xl !border !border-t-0 border-solid border-[#2e3d51] bg-transparent outline-transparent hover:text-[#0C2645]"
+                field={viewDetails}
               >
                 <span className="body-lg relative mt-[-0.50px] w-fit whitespace-nowrap">
                   View Details
                 </span>
                 <ArrowRightIcon className="relative h-[13.5px] w-[14.5px]" />
-              </Button>
+              </LinkButton>
             </div>
           </div>
 

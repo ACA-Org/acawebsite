@@ -831,6 +831,23 @@ interface NextConferenceSectionDocumentData {
   conferenceLocation: prismic.KeyTextField;
 
   /**
+   * ViewDetailsLink field in *NextConferenceSection*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: View Details Link should go to the next conference page
+   * - **API ID Path**: nextConferenceSection.viewDetailsLink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  viewDetailsLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Slice Zone field in *NextConferenceSection*
    *
    * - **Field Type**: Slice Zone
