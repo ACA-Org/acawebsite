@@ -120,21 +120,21 @@ const FilterInputs = React.memo(
           placeholder="Filter by name..."
           value={nameFilter}
           onChange={handleNameChange}
-          className="flex-1"
+          className="h-[47.5px] flex-1"
         />
         <div className="flex flex-1 gap-2">
           <Input
             placeholder="Enter ZIP code..."
             value={zipFilter}
             onChange={handleZipChange}
-            className="h-full flex-1"
+            className="h-[47.5px] flex-1"
           />
           <NativeSelect
             value={distanceFilter || ""}
             disabled={!zipFilter}
             defaultValue="10"
             onChange={handleDistanceChange}
-            className={"h-full flex-1"}
+            className={"h-[47.5px] flex-1"}
           >
             <option value="10">10 miles</option>
             <option value="25">25 miles</option>
@@ -387,6 +387,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     null
   );
   const [clusters, setClusters] = useState<any[]>([]);
+  const [mobileTab, setMobileTab] = useState<"map" | "list">("map");
 
   // Debounce the filter values
   const debouncedNameFilter = useDebounce(nameFilter, 1000);
@@ -590,8 +591,94 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   }
 
   return (
-    <div className="flex h-full overflow-hidden rounded-xl border border-solid border-[#aed2ff]">
-      <div className="relative flex-1">
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-solid border-[#aed2ff] sm:flex-row">
+      <div className="h-full w-full sm:hidden">
+        <div className="border-b border-[#aed2ff] bg-blue-50 p-4">
+          <FilterInputs
+            nameFilter={nameFilter}
+            setNameFilter={setNameFilter}
+            zipFilter={zipFilter}
+            setZipFilter={setZipFilter}
+            distanceFilter={distanceFilter}
+            setDistanceFilter={setDistanceFilter}
+          />
+        </div>
+        {/* Tabs */}
+        <div className="flex border-b border-[#aed2ff] bg-blue-50">
+          <button
+            className={`flex-1 py-2 text-center ${mobileTab === "map" ? "border-b-2 border-blue-300 bg-white font-bold text-blue-300" : "text-gray-400"}`}
+            onClick={() => setMobileTab("map")}
+          >
+            Map
+          </button>
+          <button
+            className={`flex-1 py-2 text-center ${mobileTab === "list" ? "border-b-2 border-blue-300 bg-white font-bold text-blue-300" : "text-gray-400"}`}
+            onClick={() => setMobileTab("list")}
+          >
+            List
+          </button>
+        </div>
+
+        <div className="h-full">
+          {mobileTab === "map" ? (
+            <div className="relative h-full">
+              <GoogleMap
+                mapContainerStyle={{ width: "100%", height: "100%" }}
+                zoom={4}
+                center={center}
+                options={mapOptions}
+                onLoad={onLoad}
+              >
+                {clusters.map((cluster, index) => {
+                  const [longitude, latitude] = cluster.geometry.coordinates;
+                  const { cluster: isCluster } = cluster.properties;
+
+                  if (isCluster) {
+                    return (
+                      <Marker
+                        key={`marker-${index}`}
+                        position={{ lat: latitude, lng: longitude }}
+                        onClick={() => {
+                          const expansionZoom = Math.min(
+                            supercluster.getClusterExpansionZoom(
+                              cluster.properties.cluster_id
+                            ),
+                            20
+                          );
+                          map?.panTo({ lat: latitude, lng: longitude });
+                          map?.setZoom(expansionZoom);
+                        }}
+                      />
+                    );
+                  }
+
+                  const facility = cluster.properties.facility;
+                  return (
+                    <Marker
+                      key={`marker-${index}`}
+                      position={{ lat: latitude, lng: longitude }}
+                      title={facility.companyName}
+                      onClick={() => setSelectedFacility(facility)}
+                    />
+                  );
+                })}
+              </GoogleMap>
+            </div>
+          ) : (
+            <div className="h-full overflow-auto">
+              <FacilityList
+                facilities={visibleFacilities}
+                selectedFacility={selectedFacility}
+                setSelectedFacility={setSelectedFacility}
+                map={map}
+                isLoading={isLoading}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="relative hidden flex-1 sm:block">
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           zoom={4}
@@ -635,7 +722,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </GoogleMap>
       </div>
 
-      <div className="flex w-[368px] flex-col border-l border-[#aed2ff] bg-blue-50">
+      <div className="hidden w-[368px] flex-col border-l border-[#aed2ff] bg-blue-50 sm:flex">
         <div className="border-b border-[#aed2ff] p-4">
           <FilterInputs
             nameFilter={nameFilter}
@@ -646,7 +733,6 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
             setDistanceFilter={setDistanceFilter}
           />
         </div>
-
         <div className="flex-1 overflow-hidden">
           <FacilityList
             facilities={visibleFacilities}
