@@ -37,7 +37,7 @@ export default async function Page() {
     <div className="flex w-full flex-col">
       <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-3 md:mb-28 md:px-8">
         <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-2xl p-12">
-          {img && (
+          {img.url && (
             <>
               <div className="absolute inset-0 z-10 h-full w-full">
                 <PrismicNextImage
@@ -45,12 +45,11 @@ export default async function Page() {
                   field={img}
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-10% to-[#0F0F0F]" />
               </div>
             </>
           )}
         </div>
-        <div className="mx-auto my-8 flex w-full flex-row gap-8 md:my-12 md:gap-16">
+        <div className="mx-auto my-8 flex w-full flex-col gap-8 md:my-12 md:gap-16">
           <div className="flex w-full flex-col items-start gap-8">
             <div className="flex flex-col gap-8 md:gap-12">
               <Breadcrumbs />
