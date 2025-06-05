@@ -117,6 +117,7 @@ const FilterInputs = React.memo(
     return (
       <div className="flex flex-col gap-2">
         <Input
+          id="locationName"
           placeholder="Filter by name..."
           value={nameFilter}
           onChange={handleNameChange}
@@ -124,6 +125,7 @@ const FilterInputs = React.memo(
         />
         <div className="flex flex-1 gap-2">
           <Input
+            id="locationZip"
             placeholder="Enter ZIP code..."
             value={zipFilter}
             onChange={handleZipChange}
@@ -135,6 +137,7 @@ const FilterInputs = React.memo(
             defaultValue="10"
             onChange={handleDistanceChange}
             className={"h-[47.5px] flex-1"}
+            id="locationDistance"
           >
             <option value="10">10 miles</option>
             <option value="25">25 miles</option>
@@ -720,7 +723,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </GoogleMap>
       </div>
 
-      <div className="hidden w-[368px] flex-col border-l border-[#aed2ff] bg-blue-50 sm:flex">
+      <div className="lgflex-col hidden w-[368px] border-l border-[#aed2ff] bg-blue-50 lg:flex">
         <div className="border-b border-[#aed2ff] p-4">
           <FilterInputs
             nameFilter={nameFilter}

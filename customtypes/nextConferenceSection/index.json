@@ -51,6 +51,17 @@
           "placeholder": ""
         }
       },
+      "viewDetailsLink": {
+        "type": "Link",
+        "config": {
+          "label": "ViewDetailsLink",
+          "placeholder": "View Details Link should go to the next conference page",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
