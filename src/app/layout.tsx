@@ -11,6 +11,7 @@ import { HydrationBoundary } from "jotai-ssr";
 import { pageInfoAtom } from "./atoms/pageInfoAtom";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -73,6 +74,7 @@ export default async function RootLayout({
           {footerInfo && <Footer data={footerInfo} />}
         </HydrationBoundary>
       </body>
+      <GoogleAnalytics gaId="G-ND0DBVWRNR" />
       <PrismicPreview repositoryName={repositoryName} />
     </html>
   );

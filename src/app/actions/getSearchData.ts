@@ -51,6 +51,7 @@ type SitemapEntry = {
   url: string;
   id: string;
   type: string;
+  lastModified: string;
 };
 
 export async function getSitemapUrls(): Promise<SitemapEntry[]> {
@@ -63,6 +64,7 @@ export async function getSitemapUrls(): Promise<SitemapEntry[]> {
           url: `/${page.uid}`,
           id: page.id,
           type: page.type,
+          lastModified: page.last_publication_date,
         };
       case "tierTwoPage":
         // @ts-ignore: parentPage may exist on data
@@ -72,6 +74,7 @@ export async function getSitemapUrls(): Promise<SitemapEntry[]> {
           url: `/${parentId}/${page.uid}`,
           id: page.id,
           type: page.type,
+          lastModified: page.last_publication_date,
         };
       case "tierThreePage":
         // @ts-ignore: tierTwoParent and parentPage may exist on data
@@ -89,6 +92,7 @@ export async function getSitemapUrls(): Promise<SitemapEntry[]> {
           url: `/${grandParentId}/${parentPageId}/${page.uid}`,
           id: page.id,
           type: page.type,
+          lastModified: page.last_publication_date,
         };
       default:
         // Skip contact, privacy, locations, etc.

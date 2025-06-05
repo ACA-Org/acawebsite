@@ -169,10 +169,9 @@ const FacilityList = React.memo(
     const rowVirtualizer = useVirtualizer({
       count: facilities.length,
       getScrollElement: () => parentRef.current,
-      estimateSize: () => 285, // Initial estimate, will be adjusted by measureElement
+      estimateSize: () => 285,
       overscan: 5,
       measureElement: (element) => {
-        // Get the actual height of the element including margins
         const style = window.getComputedStyle(element);
         const marginTop = parseFloat(style.marginTop);
         const marginBottom = parseFloat(style.marginBottom);
@@ -182,7 +181,6 @@ const FacilityList = React.memo(
       },
     });
 
-    // Scroll to facility when selectedFacility changes
     useEffect(() => {
       if (selectedFacility && parentRef.current) {
         const index = facilities.findIndex(
@@ -197,11 +195,30 @@ const FacilityList = React.memo(
     const handleViewLocation = useCallback(
       (facility: Location) => {
         if (map && facility.latitude && facility.longitude) {
-          map.panTo({
+          const position = {
             lat: Number(facility.latitude),
             lng: Number(facility.longitude),
-          });
+          };
+          map.panTo(position);
           map.setZoom(15);
+
+          // Update map bounds after a short delay to ensure the map has moved
+          setTimeout(() => {
+            const bounds = map.getBounds();
+            if (bounds) {
+              // Create a slightly larger bounds to ensure the marker is centered
+              const sw = bounds.getSouthWest();
+              const ne = bounds.getNorthEast();
+              const latDiff = (ne.lat() - sw.lat()) * 0.1;
+              const lngDiff = (ne.lng() - sw.lng()) * 0.1;
+
+              const newBounds = new google.maps.LatLngBounds(
+                { lat: sw.lat() - latDiff, lng: sw.lng() - lngDiff },
+                { lat: ne.lat() + latDiff, lng: ne.lng() + lngDiff }
+              );
+              map.fitBounds(newBounds);
+            }
+          }, 100);
         }
       },
       [map]
@@ -315,8 +332,7 @@ const ClusterMarkers = React.memo(
       <>
         {clusters.map((cluster) => {
           const [longitude, latitude] = cluster.geometry.coordinates;
-          const { cluster: isCluster, point_count: pointCount } =
-            cluster.properties;
+          const { cluster: isCluster } = cluster.properties;
 
           if (isCluster) {
             return (
@@ -332,19 +348,6 @@ const ClusterMarkers = React.memo(
                   );
                   map?.panTo({ lat: latitude, lng: longitude });
                   map?.setZoom(expansionZoom);
-                }}
-                icon={{
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: 10 + Math.min(pointCount, 20),
-                  fillColor: "#005f96",
-                  fillOpacity: 0.7,
-                  strokeColor: "#ffffff",
-                  strokeWeight: 2,
-                }}
-                label={{
-                  text: pointCount.toString(),
-                  color: "#ffffff",
-                  fontSize: "12px",
                 }}
               />
             );
@@ -372,7 +375,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
   });
 
-  const [map, setMap] = useState<google.maps.Map | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
   const [selectedFacility, setSelectedFacility] = useState<Location | null>(
     null
   );
@@ -475,10 +478,10 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   // Create Supercluster instance
   const supercluster = useMemo(() => {
     return new Supercluster({
-      radius: 100, // 50 mile radius
-      maxZoom: 100,
+      radius: 60, // Reduced from 100 to make clusters break up more easily
+      maxZoom: 20, // Reduced from 100 to match Google Maps max zoom
       minZoom: 0,
-      minPoints: 10,
+      minPoints: 2, // Reduced from 10 to allow smaller clusters
     });
   }, []);
 
@@ -496,14 +499,22 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
 
   // Memoize the bounds changed handler
   const handleBoundsChanged = useCallback(() => {
-    if (map) {
-      setMapBounds(map.getBounds() || null);
+    if (mapRef.current) {
+      setMapBounds(mapRef.current.getBounds() || null);
     }
-  }, [map]);
+  }, []);
+
+  // Ensure mapBounds is set as soon as the map is loaded
+  useEffect(() => {
+    if (mapRef.current && !mapBounds) {
+      const result = mapRef.current.getBounds();
+      setMapBounds(result || null);
+    }
+  }, [mapRef, mapBounds]);
 
   // Add bounds changed listener with debounce
   useEffect(() => {
-    if (!map) return;
+    if (!mapRef.current) return;
 
     let timeoutId: NodeJS.Timeout;
     const debouncedBoundsChanged = () => {
@@ -513,7 +524,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
       }, 150); // 150ms debounce
     };
 
-    const boundsChangedListener = map.addListener(
+    const boundsChangedListener = mapRef.current.addListener(
       "bounds_changed",
       debouncedBoundsChanged
     );
@@ -522,11 +533,11 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
       google.maps.event.removeListener(boundsChangedListener);
       clearTimeout(timeoutId);
     };
-  }, [map, handleBoundsChanged]);
+  }, [mapRef, handleBoundsChanged]);
 
   // Update clusters when map bounds or zoom changes - with optimization
   useEffect(() => {
-    if (!mapBounds || !map) return;
+    if (!mapBounds || !mapRef.current) return;
 
     const bounds: [number, number, number, number] = [
       mapBounds.getSouthWest().lng(),
@@ -535,19 +546,20 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
       mapBounds.getNorthEast().lat(),
     ];
 
-    const zoom = map.getZoom() || 0;
+    const zoom = mapRef.current.getZoom() || 0;
 
     // Only update clusters if zoom level has changed significantly or bounds have moved significantly
     const shouldUpdateClusters = () => {
-      const lastZoom = map.get("lastZoom") || 0;
-      const lastBounds = map.get("lastBounds");
+      const lastZoom = mapRef.current?.get("lastZoom") || 0;
+      const lastBounds = mapRef.current?.get("lastBounds");
 
       if (!lastBounds) return true;
 
       const zoomDiff = Math.abs(zoom - lastZoom);
       const boundsChanged = !lastBounds.equals(mapBounds);
 
-      return zoomDiff >= 1 || boundsChanged;
+      // Reduced zoom difference threshold for more frequent updates
+      return zoomDiff >= 0.5 || boundsChanged;
     };
 
     if (shouldUpdateClusters()) {
@@ -556,14 +568,43 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
       setClusters(clusters);
 
       // Store current zoom and bounds for next comparison
-      map.set("lastZoom", zoom);
-      map.set("lastBounds", mapBounds);
+      mapRef.current?.set("lastZoom", zoom);
+      mapRef.current?.set("lastBounds", mapBounds);
     }
-  }, [mapBounds, map, points, supercluster]);
+  }, [mapBounds, points, supercluster]);
 
   const onLoad = useCallback((map: google.maps.Map) => {
-    setMap(map);
-    setMapBounds(map.getBounds() || null);
+    mapRef.current = map;
+    // Add a small delay to ensure map is fully loaded
+    setTimeout(() => {
+      const bounds = map.getBounds();
+      if (bounds) {
+        setMapBounds(bounds);
+      }
+    }, 100);
+
+    // Add bounds changed listener
+    const boundsChangedListener = map.addListener("bounds_changed", () => {
+      const newBounds = map.getBounds();
+      if (newBounds) {
+        setMapBounds(newBounds);
+      }
+    });
+
+    // Store the listener for cleanup
+    map.set("boundsChangedListener", boundsChangedListener);
+  }, []);
+
+  // Cleanup listener when component unmounts
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        const listener = mapRef.current.get("boundsChangedListener");
+        if (listener) {
+          google.maps.event.removeListener(listener);
+        }
+      }
+    };
   }, []);
 
   // Memoize visible facilities
@@ -620,61 +661,45 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </div>
 
         <div className="h-full">
-          {mobileTab === "map" ? (
-            <div className="relative h-full">
-              <GoogleMap
-                mapContainerStyle={{ width: "100%", height: "100%" }}
-                zoom={4}
-                center={center}
-                options={mapOptions}
-                onLoad={onLoad}
-              >
-                {clusters.map((cluster, index) => {
-                  const [longitude, latitude] = cluster.geometry.coordinates;
-                  const { cluster: isCluster } = cluster.properties;
-
-                  if (isCluster) {
-                    return (
-                      <Marker
-                        key={`marker-${index}`}
-                        position={{ lat: latitude, lng: longitude }}
-                        onClick={() => {
-                          const expansionZoom = Math.min(
-                            supercluster.getClusterExpansionZoom(
-                              cluster.properties.cluster_id
-                            ),
-                            20
-                          );
-                          map?.panTo({ lat: latitude, lng: longitude });
-                          map?.setZoom(expansionZoom);
-                        }}
-                      />
-                    );
-                  }
-
-                  const facility = cluster.properties.facility;
-                  return (
-                    <Marker
-                      key={`marker-${index}`}
-                      position={{ lat: latitude, lng: longitude }}
-                      title={facility.companyName}
-                      onClick={() => setSelectedFacility(facility)}
-                    />
-                  );
-                })}
-              </GoogleMap>
-            </div>
-          ) : (
-            <div className="h-full overflow-auto">
-              <FacilityList
-                facilities={visibleFacilities}
-                selectedFacility={selectedFacility}
-                setSelectedFacility={setSelectedFacility}
-                map={map}
-                isLoading={isLoading}
+          {/* Always render both map and list, hide with CSS */}
+          <div
+            className={
+              mobileTab === "map" ? "relative h-full" : "hidden h-full"
+            }
+          >
+            <GoogleMap
+              mapContainerStyle={{ width: "100%", height: "100%" }}
+              zoom={4}
+              center={center}
+              options={mapOptions}
+              onLoad={onLoad}
+            >
+              <ClusterMarkers
+                clusters={clusters}
+                supercluster={supercluster}
+                map={mapRef.current}
+                setSelectedFacility={(facility) => {
+                  setSelectedFacility(facility);
+                  setMobileTab("list");
+                }}
               />
-            </div>
-          )}
+            </GoogleMap>
+          </div>
+          <div
+            className={
+              mobileTab === "list"
+                ? "h-full overflow-auto"
+                : "hidden h-full overflow-auto"
+            }
+          >
+            <FacilityList
+              facilities={visibleFacilities}
+              selectedFacility={selectedFacility}
+              setSelectedFacility={setSelectedFacility}
+              map={mapRef.current}
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </div>
 
@@ -686,39 +711,12 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
           options={mapOptions}
           onLoad={onLoad}
         >
-          {clusters.map((cluster, index) => {
-            const [longitude, latitude] = cluster.geometry.coordinates;
-            const { cluster: isCluster } = cluster.properties;
-
-            if (isCluster) {
-              return (
-                <Marker
-                  key={`marker-${index}`}
-                  position={{ lat: latitude, lng: longitude }}
-                  onClick={() => {
-                    const expansionZoom = Math.min(
-                      supercluster.getClusterExpansionZoom(
-                        cluster.properties.cluster_id
-                      ),
-                      20
-                    );
-                    map?.panTo({ lat: latitude, lng: longitude });
-                    map?.setZoom(expansionZoom);
-                  }}
-                />
-              );
-            }
-
-            const facility = cluster.properties.facility;
-            return (
-              <Marker
-                key={`marker-${index}`}
-                position={{ lat: latitude, lng: longitude }}
-                title={facility.companyName}
-                onClick={() => setSelectedFacility(facility)}
-              />
-            );
-          })}
+          <ClusterMarkers
+            clusters={clusters}
+            supercluster={supercluster}
+            map={mapRef.current}
+            setSelectedFacility={setSelectedFacility}
+          />
         </GoogleMap>
       </div>
 
@@ -738,7 +736,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
             facilities={visibleFacilities}
             selectedFacility={selectedFacility}
             setSelectedFacility={setSelectedFacility}
-            map={map}
+            map={mapRef.current}
             isLoading={isLoading}
           />
         </div>

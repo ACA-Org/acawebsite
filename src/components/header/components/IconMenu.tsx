@@ -13,7 +13,7 @@ const quickLinks = [
   {
     label: "Job Bank",
     value: "job_bank",
-    href: "/job-bank",
+    href: "/resources/job-bank",
     icon: SuitcaseIcon,
   },
   {
@@ -101,7 +101,20 @@ export const IconMenu = () => {
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
       >
-        <ExpandingIcon
+        {quickLinks.map((item) => (
+          <ExpandingIcon
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            menuId={item.value}
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            onClick={() => {
+              router.push(item.href);
+            }}
+          />
+        ))}
+        {/* <ExpandingIcon
           icon={SuitcaseIcon}
           label="Job Bank"
           menuId="job_bank"
@@ -141,7 +154,7 @@ export const IconMenu = () => {
           menuId="sign_in"
           activeItem={activeItem}
           setActiveItem={setActiveItem}
-        />
+        /> */}
       </div>
     </>
   );

@@ -55,3 +55,4 @@ export function ExpandingIcon({
     </div>
   );
 }
+
