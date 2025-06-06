@@ -21,6 +21,7 @@ import {
   RightMenuData,
 } from "@/app/actions/getRightMenuData";
 import { cn } from "@/lib/utils";
+import { BackButton } from "@/components/back-button";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
 
@@ -77,6 +78,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />
           </Suspense>
+          <BackButton />
           {title && (
             <h1 className="heading-1 z-20 font-semibold text-blue-300">
               {title}

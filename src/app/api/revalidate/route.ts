@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
         case "tierOnePage":
         case "tierTwoPage":
         case "tierThreePage":
+        case "tierFourPage":
           revalidateTag(i.uid);
           revalidated.push({
             type: i.type,

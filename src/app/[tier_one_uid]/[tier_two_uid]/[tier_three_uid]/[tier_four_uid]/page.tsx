@@ -14,6 +14,7 @@ import { createClient } from "@/prismicio";
 import { asImageSrc } from "@prismicio/client";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { Suspense } from "react";
+import { BackButton } from "@/components/back-button";
 
 type Params = {
   tier_one_uid: string;
@@ -48,6 +49,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           <Suspense fallback={<BreadcrumbsLoading />}>
             <Breadcrumbs />
           </Suspense>
+          <BackButton />
           {title && (
             <h1 className="heading-1 z-20 font-semibold text-blue-300">
               {title}

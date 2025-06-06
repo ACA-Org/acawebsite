@@ -85,7 +85,7 @@ export const RightMenu = ({
       <div
         role="button"
         onClick={() => router.back()}
-        className="group hidden cursor-pointer items-center gap-6 self-stretch p-4 sm:flex"
+        className="group hidden cursor-pointer items-center gap-6 self-stretch p-4 md:flex"
       >
         <ArrowLeft className="h-[14px] w-4 stroke-blue-200" />
         <span className="body-lg text-blue-200 group-hover:underline">
