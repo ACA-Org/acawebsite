@@ -962,6 +962,170 @@ export type PrivacyPolicyDocument<Lang extends string = string> =
     Lang
   >;
 
+type TierFourPageDocumentDataSlicesSlice =
+  | AccordionSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
+  | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
+
+type TierFourPageDocumentDataSlices2Slice =
+  | AccordionSlice
+  | ButtonGroupSlice
+  | CardContainerSlice
+  | CarouselSlice
+  | ImageCalloutSlice
+  | LinkTileSlice
+  | RichTextBoxSlice
+  | SpeedBumpSlice
+  | TableSlice
+  | TileContainerSlice;
+
+/**
+ * Content for TierFourPage documents
+ */
+interface TierFourPageDocumentData {
+  /**
+   * ParentPage field in *TierFourPage*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.parentPage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  parentPage: prismic.ContentRelationshipField<"tierThreePage">;
+
+  /**
+   * PageTitle field in *TierFourPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.pageTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageTitle: prismic.KeyTextField;
+
+  /**
+   * PageSubTitle field in *TierFourPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.pageSubTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  pageSubTitle: prismic.KeyTextField;
+
+  /**
+   * PageContent field in *TierFourPage*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.pageContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  pageContent: prismic.RichTextField;
+
+  /**
+   * Hide from Right Menu? field in *TierFourPage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierFourPage.hideFromRightMenu
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hideFromRightMenu: prismic.BooleanField;
+
+  /**
+   * hidden field in *TierFourPage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierFourPage.hidden
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hidden: prismic.BooleanField;
+
+  /**
+   * Slice Zone field in *TierFourPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TierFourPageDocumentDataSlicesSlice> /**
+   * Meta Title field in *TierFourPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: tierFourPage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *TierFourPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: tierFourPage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *TierFourPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never> /**
+   * Slice Zone field in *TierFourPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tierFourPage.slices2[]
+   * - **Tab**: PostContent
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices2: prismic.SliceZone<TierFourPageDocumentDataSlices2Slice>;
+}
+
+/**
+ * TierFourPage document from Prismic
+ *
+ * - **API ID**: `tierFourPage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TierFourPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<TierFourPageDocumentData>,
+    "tierFourPage",
+    Lang
+  >;
+
 type TierOnePageDocumentDataSlicesSlice =
   | AccordionSlice
   | ButtonGroupSlice
@@ -1473,6 +1637,7 @@ export type AllDocumentTypes =
   | LocationsPageDocument
   | NextConferenceSectionDocument
   | PrivacyPolicyDocument
+  | TierFourPageDocument
   | TierOnePageDocument
   | TierThreePageDocument
   | TierTwoPageDocument;
@@ -3001,6 +3166,10 @@ declare module "@prismicio/client" {
       PrivacyPolicyDocument,
       PrivacyPolicyDocumentData,
       PrivacyPolicyDocumentDataSlicesSlice,
+      TierFourPageDocument,
+      TierFourPageDocumentData,
+      TierFourPageDocumentDataSlicesSlice,
+      TierFourPageDocumentDataSlices2Slice,
       TierOnePageDocument,
       TierOnePageDocumentData,
       TierOnePageDocumentDataSlicesSlice,

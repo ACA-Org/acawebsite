@@ -2,6 +2,7 @@
 
 import { createClient } from "@/prismicio";
 import {
+  TierFourPageDocument,
   TierOnePageDocument,
   TierThreePageDocument,
   TierTwoPageDocument,
@@ -11,6 +12,7 @@ import { filter } from "@prismicio/client";
 export type TierOnePageData = TierOnePageDocument<string> | null;
 export type TierTwoPageData = TierTwoPageDocument<string> | null;
 export type TierThreePageData = TierThreePageDocument<string> | null;
+export type TierFourPageData = TierFourPageDocument<string> | null;
 
 export async function getTierOnePageData(
   uid: string
@@ -50,6 +52,22 @@ export async function getTierThreePageData(
   const client = createClient();
   return client.getByUID("tierThreePage", uid, {
     filters: [filter.not("my.tierThreePage.hidden", true)],
+
+    fetchOptions: {
+      next: {
+        tags: [uid],
+        revalidate: 60 * 60 * 24 * 30, // Revalidate every 30 days
+      },
+    },
+  });
+}
+
+export async function getTierFourPageData(
+  uid: string
+): Promise<TierFourPageData> {
+  const client = createClient();
+  return client.getByUID("tierFourPage", uid, {
+    filters: [filter.not("my.tierFourPage.hidden", true)],
 
     fetchOptions: {
       next: {

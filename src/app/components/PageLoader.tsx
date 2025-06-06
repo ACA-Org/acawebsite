@@ -5,12 +5,21 @@ import { RightMenuSkeleton } from "@/components/right-menu/RightMenuSkeleton";
 export default function PageLoader({ tier = 1 }: { tier?: number }) {
   return (
     <div className="mx-auto mb-28 flex w-full max-w-[1440px] flex-col px-4 md:px-8">
-      <Skeleton
-        style={{
-          minHeight: tier === 1 ? "585px" : tier === 2 ? "415px" : "300px",
-        }}
-        className="relative mt-16 flex h-full w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12"
-      />
+      {tier !== 4 && (
+        <Skeleton
+          style={{
+            minHeight:
+              tier === 1
+                ? "585px"
+                : tier === 2
+                  ? "415px"
+                  : tier === 3
+                    ? "300px"
+                    : "200px",
+          }}
+          className="relative mt-16 flex h-full w-full shrink-0 items-end gap-2.5 overflow-clip rounded-[12px] p-12"
+        />
+      )}
 
       <div className="mx-auto mt-12 w-full max-w-[1440px]">
         <div className="flex flex-col gap-12">

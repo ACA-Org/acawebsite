@@ -664,7 +664,6 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </div>
 
         <div className="h-full">
-          {/* Always render both map and list, hide with CSS */}
           <div
             className={
               mobileTab === "map" ? "relative h-full" : "hidden h-full"
@@ -723,7 +722,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
         </GoogleMap>
       </div>
 
-      <div className="lgflex-col hidden w-[368px] border-l border-[#aed2ff] bg-blue-50 lg:flex">
+      <div className="hidden w-[368px] border-l border-[#aed2ff] bg-blue-50 lg:flex lg:flex-col">
         <div className="border-b border-[#aed2ff] p-4">
           <FilterInputs
             nameFilter={nameFilter}

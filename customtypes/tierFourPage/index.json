@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "tierOnePage",
-  "label": "TierOnePage",
+  "id": "tierFourPage",
+  "label": "TierFourPage",
   "repeatable": true,
   "status": true,
   "json": {
@@ -12,12 +12,13 @@
           "label": "UID"
         }
       },
-      "pageImage": {
-        "type": "Image",
+      "parentPage": {
+        "type": "Link",
         "config": {
-          "label": "PageImage",
-          "constraint": {},
-          "thumbnails": []
+          "label": "ParentPage",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["tierThreePage"]
         }
       },
       "pageTitle": {
@@ -34,16 +35,23 @@
           "placeholder": ""
         }
       },
-      "pageTextContent": {
+      "pageContent": {
         "type": "StructuredText",
         "config": {
           "label": "PageContent",
           "placeholder": "",
           "allowTargetBlank": true,
-          "labels": [
-            "Block Quote"
-          ],
+          "labels": ["Block Quote"],
           "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "hideFromRightMenu": {
+        "type": "Boolean",
+        "config": {
+          "label": "Hide from Right Menu?",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
         }
       },
       "hidden": {
