@@ -79,8 +79,33 @@ export const pathMapAtom = atom<PathMap>((get) => {
             .parentPage as FilledContentRelationshipField
         )?.id
     );
-    if (parent) {
-      map.set(doc.id, `/${parent.uid}/${doc.uid}`);
+    const grandparent = parent
+      ? tierTwoDocs.find(
+          (d) =>
+            d.id ===
+            (
+              (parent as TierThreePageDocument).data
+                .parentPage as FilledContentRelationshipField
+            )?.id
+        )
+      : null;
+
+    const greatgrandparent = grandparent
+      ? tierOneDocs.find(
+          (d) =>
+            d.id ===
+            (
+              (grandparent as TierTwoPageDocument).data
+                .parentPage as FilledContentRelationshipField
+            )?.id
+        )
+      : null;
+
+    if (parent && grandparent && greatgrandparent) {
+      map.set(
+        doc.id,
+        `/${greatgrandparent.uid}/${grandparent.uid}/${parent.uid}/${doc.uid}`
+      );
     }
   }
 
