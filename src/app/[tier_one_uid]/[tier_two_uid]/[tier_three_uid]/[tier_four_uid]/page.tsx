@@ -19,14 +19,15 @@ type Params = {
   tier_one_uid: string;
   tier_two_uid: string;
   tier_three_uid: string;
+  tier_four_uid: string;
 };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
-  const { tier_three_uid: uid_3 } = await params;
+  const { tier_four_uid: uid_4 } = await params;
 
   let pageData: TierFourPageData = null;
 
-  pageData = await getTierFourPageData(uid_3).catch(() => notFound());
+  pageData = await getTierFourPageData(uid_4).catch(() => notFound());
 
   if (!pageData) return notFound();
 
@@ -80,10 +81,10 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { tier_three_uid } = await params;
+  const { tier_four_uid } = await params;
   const client = createClient();
   const page = await client
-    .getByUID("tierThreePage", tier_three_uid)
+    .getByUID("tierFourPage", tier_four_uid)
     .catch(() => notFound());
 
   return {
@@ -97,7 +98,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const client = createClient();
-  const pages = await client.getAllByType("tierOnePage");
+  const pages = await client.getAllByType("tierFourPage");
 
   return pages.map((page) => ({ uid: page.uid }));
 }
