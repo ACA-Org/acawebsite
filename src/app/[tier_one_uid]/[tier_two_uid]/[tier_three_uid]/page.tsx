@@ -16,6 +16,11 @@ import { asImageSrc } from "@prismicio/client";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { Suspense } from "react";
 import { cn } from "@/lib/utils";
+import {
+  getRightMenuData,
+  RightMenuData,
+} from "@/app/actions/getRightMenuData";
+import { RightMenu } from "@/components/right-menu";
 
 type Params = {
   tier_one_uid: string;
@@ -25,12 +30,19 @@ type Params = {
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_three_uid: uid_3 } = await params;
+  let rightMenuData: RightMenuData | null = null;
 
   let pageData: TierThreePageData = null;
 
   pageData = await getTierThreePageData(uid_3).catch(() => notFound());
 
   if (!pageData) return notFound();
+
+  try {
+    rightMenuData = await getRightMenuData(uid_3, "three");
+  } catch {
+    console.error("error!");
+  }
 
   const {
     data: {
@@ -76,15 +88,28 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         </div>
       </div>
       <div className="pl-body mx-auto my-8 flex w-full flex-row gap-8 max-md:flex-col-reverse md:my-12 md:gap-16">
-        <div className={"flex w-full flex-col items-start gap-8 md:gap-12"}>
+        <div
+          className={cn(
+            "flex flex-col items-start gap-8 max-md:w-full md:gap-12",
+            rightMenuData && "w-3/4 max-lg:w-2/3"
+          )}
+        >
           {pageContent && pageContent.length > 0 && (
             <div>
               <RichText content={pageContent} />
             </div>
           )}
-
           <SliceZone slices={slices} components={components} />
         </div>
+
+        {rightMenuData && (
+          <div className="ml-auto w-1/4 max-lg:w-1/3 max-md:w-full">
+            <RightMenu
+              items={rightMenuData}
+              rightMenuHeader="In This Section"
+            />
+          </div>
+        )}
       </div>
       {postArticleSlices?.length > 0 && (
         <div className="pl-full flex flex-col items-start gap-8 max-md:w-full md:gap-12">
