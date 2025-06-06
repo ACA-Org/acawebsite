@@ -11,22 +11,34 @@ export default function RichText({
       field={content}
       components={{
         heading1: ({ children }) => (
-          <h1 className="heading-1 mt-8 mb-6">{children}</h1>
+          <h1 className="heading-1 mt-8 mb-6 text-[52px] leading-[70px] text-blue-300 max-lg:mt-6 max-lg:mb-4 max-lg:text-[38px] max-lg:leading-[50px]">
+            {children}
+          </h1>
         ),
         heading2: ({ children }) => (
-          <h2 className="heading-2 mt-7 mb-5 text-blue-200">{children}</h2>
+          <h2 className="heading-2 mt-7 mb-5 text-[42px] leading-[56px] text-blue-200 max-lg:mt-6 max-lg:mb-4 max-lg:text-[32px] max-lg:leading-[42px]">
+            {children}
+          </h2>
         ),
         heading3: ({ children }) => (
-          <h3 className="heading-3 mt-6 mb-4">{children}</h3>
+          <h3 className="heading-3 mt-6 mb-4 text-[36px] leading-[48px] max-lg:mt-5 max-lg:mb-3 max-lg:text-[28px] max-lg:leading-[38px]">
+            {children}
+          </h3>
         ),
         heading4: ({ children }) => (
-          <h4 className="heading-4 mt-5 mb-3">{children}</h4>
+          <h4 className="heading-4 mt-5 mb-3 text-[30px] leading-[40px] max-lg:mt-4 max-lg:mb-2 max-lg:text-[24px] max-lg:leading-[32px]">
+            {children}
+          </h4>
         ),
         heading5: ({ children }) => (
-          <h5 className="heading-5 mt-4 mb-3">{children}</h5>
+          <h5 className="heading-5 mt-4 mb-3 text-[24px] leading-[32px] max-lg:mt-3 max-lg:mb-2 max-lg:text-[20px] max-lg:leading-[28px]">
+            {children}
+          </h5>
         ),
         heading6: ({ children }) => (
-          <h6 className="heading-6 mt-3 mb-4">{children}</h6>
+          <h6 className="heading-6 mt-3 mb-4 text-[20px] leading-[28px] max-lg:mt-2 max-lg:mb-3 max-lg:text-[18px] max-lg:leading-[24px]">
+            {children}
+          </h6>
         ),
         paragraph: ({ children, text, node: { spans } }) => {
           if (spans?.find((i) => i.type === "label")) return null;

@@ -32,13 +32,13 @@ const Header = ({
   }, [pathName]);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 right-0 left-0 z-[100] w-full border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] transition-all duration-300 ease-in-out",
-        isCollapsed ? "py-4" : "border-b py-8 max-lg:py-4"
-      )}
-    >
-      <div className="relative z-[101] flex w-full items-center justify-between bg-[#f9f9f9] px-9">
+    <header className={"fixed top-0 right-0 left-0 z-100 w-full"}>
+      <div
+        className={cn(
+          "relative z-100 flex w-full items-center justify-between border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] px-9 transition-all duration-300 ease-in-out",
+          isCollapsed ? "py-4" : "border-b py-8 max-lg:py-4"
+        )}
+      >
         <Link
           href="/"
           className="flex items-start justify-start text-left transition-all duration-300"
@@ -62,13 +62,13 @@ const Header = ({
           aria-label="Toggle menu"
         >
           <span
-            className={`absolute top-0 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "translate-y-2.5 rotate-45" : ""}`}
+            className={`absolute top-0 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "translate-y-2 rotate-45" : ""}`}
           ></span>
           <span
-            className={`absolute top-2.5 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "opacity-0" : ""}`}
+            className={`absolute top-2 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "translate-x-full opacity-0" : "translate-x-0"}`}
           ></span>
           <span
-            className={`absolute top-5 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "-translate-y-2.5 -rotate-45" : ""}`}
+            className={`absolute top-4 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
           ></span>
         </button>
       </div>

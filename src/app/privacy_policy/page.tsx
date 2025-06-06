@@ -21,7 +21,7 @@ export default async function Page() {
           <div className="flex flex-col gap-8 md:gap-12">
             <Breadcrumbs />
             {title && (
-              <h1 className="heading-1 z-20 font-semibold text-blue-300">
+              <h1 className="heading-1 z-20 text-[52px] leading-[70px] font-semibold text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
                 {title}
               </h1>
             )}

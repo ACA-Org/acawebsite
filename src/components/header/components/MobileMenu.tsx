@@ -27,7 +27,13 @@ export function MobileMenu({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      const header = document.querySelector("header");
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        header &&
+        !header.contains(event.target as Node)
+      ) {
         onClose();
       }
     };
@@ -94,7 +100,7 @@ export function MobileMenu({
                     {tierOneLink.link_type === "Document" ? (
                       <PrismicNextLink
                         field={tierOneLink}
-                        className="text-lg font-medium text-blue-300"
+                        className="body-md text-blue-300"
                         onClick={() => {
                           setOpen("");
                           onClose();
@@ -103,7 +109,7 @@ export function MobileMenu({
                         {tierOneLink.text}
                       </PrismicNextLink>
                     ) : (
-                      <span className="text-lg font-medium text-blue-300">
+                      <span className="body-md font-medium text-blue-300">
                         {tierOneLink.text}
                       </span>
                     )}

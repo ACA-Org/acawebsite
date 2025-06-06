@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
   } = pageData;
   return (
-    <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-3 md:mb-28 md:px-8">
+    <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-5 md:mb-28 md:px-8">
       {img.url && (
         <div className="relative mt-12 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 md:mt-16 md:gap-2.5 md:p-12">
           <>
@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
           </Suspense>
           <BackButton />
           {title && (
-            <h1 className="heading-1 z-20 font-semibold text-blue-300">
+            <h1 className="heading-1 z-20 text-[52px] leading-[70px] font-semibold text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
               {title}
             </h1>
           )}

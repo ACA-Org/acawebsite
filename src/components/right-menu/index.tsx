@@ -71,7 +71,7 @@ export const RightMenu = ({
           className="w-full border-b border-blue-500/12"
         >
           <AccordionItem value="section">
-            <AccordionTrigger className="h-[60px] w-full pt-[18px] pb-5 pl-5">
+            <AccordionTrigger className="h-[60px] w-full pt-[18px] pr-3 pb-5 pl-3 md:pl-5">
               <p className="body-xl font-semibold text-blue-300">
                 {rightMenuHeader || "In this section"}
               </p>
