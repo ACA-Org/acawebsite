@@ -5,6 +5,7 @@ import {
   ContactPageDocument,
   LocationsPageDocument,
   PrivacyPolicyDocument,
+  TierFourPageDocument,
   TierOnePageDocument,
   TierThreePageDocument,
   TierTwoPageDocument,
@@ -14,6 +15,7 @@ export type PageData =
   | TierOnePageDocument
   | TierTwoPageDocument
   | TierThreePageDocument
+  | TierFourPageDocument
   | ContactPageDocument
   | PrivacyPolicyDocument
   | LocationsPageDocument;
@@ -25,6 +27,7 @@ export async function getSearchData(): Promise<PageData[]> {
     tierOneDocs,
     tierTwoDocs,
     tierThreeDocs,
+    tierFourDocs,
     contactPage,
     locationsPage,
     privacyPolicy,
@@ -32,6 +35,7 @@ export async function getSearchData(): Promise<PageData[]> {
     client.getAllByType("tierOnePage"),
     client.getAllByType("tierTwoPage"),
     client.getAllByType("tierThreePage"),
+    client.getAllByType("tierFourPage"),
     client.getSingle("contactPage"),
     client.getSingle("locationsPage"),
     client.getSingle("privacyPolicy"),
@@ -41,6 +45,7 @@ export async function getSearchData(): Promise<PageData[]> {
     ...tierOneDocs.filter((i) => !i.data.hidden),
     ...tierTwoDocs.filter((i) => !i.data.hidden),
     ...tierThreeDocs.filter((i) => !i.data.hidden),
+    ...tierFourDocs.filter((i) => !i.data.hidden),
     contactPage,
     locationsPage,
     privacyPolicy,

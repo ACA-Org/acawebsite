@@ -7,6 +7,7 @@ import { FilledContentRelationshipField } from "@prismicio/client";
 import {
   TierTwoPageDocument,
   TierThreePageDocument,
+  TierFourPageDocument,
 } from "../../../prismicio-types";
 
 export const pathMapAtom = atom<PathMap>((get) => {
@@ -17,6 +18,7 @@ export const pathMapAtom = atom<PathMap>((get) => {
   const tierOneDocs = pages.filter((page) => page.type === "tierOnePage");
   const tierTwoDocs = pages.filter((page) => page.type === "tierTwoPage");
   const tierThreeDocs = pages.filter((page) => page.type === "tierThreePage");
+  const tierFourDocs = pages.filter((page) => page.type === "tierFourPage");
   const contactPage = pages.find((page) => page.type === "contactPage");
   const locationsPage = pages.find((page) => page.type === "locationsPage");
   const privacyPolicy = pages.find((page) => page.type === "privacyPolicy");
@@ -64,6 +66,21 @@ export const pathMapAtom = atom<PathMap>((get) => {
 
     if (parent && grandparent) {
       map.set(doc.id, `/${grandparent.uid}/${parent.uid}/${doc.uid}`);
+    }
+  }
+
+  // Map tier four pages
+  for (const doc of tierFourDocs) {
+    const parent = tierThreeDocs.find(
+      (d) =>
+        d.id ===
+        (
+          (doc as TierFourPageDocument).data
+            .parentPage as FilledContentRelationshipField
+        )?.id
+    );
+    if (parent) {
+      map.set(doc.id, `/${parent.uid}/${doc.uid}`);
     }
   }
 
