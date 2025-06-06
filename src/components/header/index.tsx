@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu } from "./components/NavigationMenu";
 import { ACALogoColor } from "@/logos/ACALogoColor";
 import { usePathname } from "next/navigation";
+import { MobileMenu } from "./components/MobileMenu";
 
 const Header = ({
   data,
@@ -18,6 +19,7 @@ const Header = ({
 }) => {
   const pathName = usePathname();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +34,11 @@ const Header = ({
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 left-0 z-100 w-full border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] transition-all duration-300 ease-in-out",
+        "fixed top-0 right-0 left-0 z-[100] w-full border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] transition-all duration-300 ease-in-out",
         isCollapsed ? "py-4" : "border-b py-8 max-lg:py-4"
       )}
     >
-      <div className="relative flex w-full items-center justify-between px-9">
+      <div className="relative z-[101] flex w-full items-center justify-between bg-[#f9f9f9] px-9">
         <Link
           href="/"
           className="flex items-start justify-start text-left transition-all duration-300"
@@ -54,7 +56,29 @@ const Header = ({
         <NavigationMenu slices={data.slices} />
 
         <IconMenu />
+        <button
+          className="relative h-6 w-6 lg:hidden"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          aria-label="Toggle menu"
+        >
+          <span
+            className={`absolute top-0 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "translate-y-2.5 rotate-45" : ""}`}
+          ></span>
+          <span
+            className={`absolute top-2.5 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "opacity-0" : ""}`}
+          ></span>
+          <span
+            className={`absolute top-5 left-0 block h-0.5 w-6 transform bg-black transition-all duration-300 ${isMobileOpen ? "-translate-y-2.5 -rotate-45" : ""}`}
+          ></span>
+        </button>
       </div>
+
+      <MobileMenu
+        slices={data.slices}
+        isOpen={isMobileOpen}
+        onClose={() => setIsMobileOpen(false)}
+        isCollapsed={isCollapsed}
+      />
     </header>
   );
 };

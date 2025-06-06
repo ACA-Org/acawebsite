@@ -3,6 +3,7 @@ import { RightMenuItem } from "@/app/actions/getRightMenuData";
 import { usePathname } from "next/navigation";
 import { labelFormatter } from "@/lib/strting";
 import { PrismicNextLink } from "@prismicio/next";
+
 const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
   const { href, label, children } = link;
   const pathName = usePathname();

@@ -21,7 +21,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
     memberNavLinks,
     subFooterNavLinks,
   } = data;
-  // Organization information
+
   const organizationInfo = {
     name: "American Correctional Association",
     tagline: "Advance. Connect. Achieve.",
@@ -33,7 +33,6 @@ const Footer = ({ data }: { data: FooterProps }) => {
     <footer className="flex w-full flex-col items-center overflow-clip text-white [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
       <div className="mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8">
         <div className="relative flex items-start justify-between gap-12 max-lg:flex-col">
-          {/* Contact Info */}
           <div className="flex w-full flex-col items-start gap-8 self-stretch border-blue-200 max-lg:border-b max-lg:pb-12 lg:max-w-1/3 lg:border-r">
             <div className="flex w-full flex-col items-start gap-[22px] self-stretch">
               <img
@@ -78,9 +77,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
             </div>
           </div>
 
-          {/* Columns */}
           <div className="flex flex-1 gap-12 max-lg:w-full max-md:flex-col">
-            {/* Helpful Links */}
             <div className="flex flex-1 flex-col items-start gap-4">
               <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
                 Helpful Links
@@ -99,7 +96,6 @@ const Footer = ({ data }: { data: FooterProps }) => {
               </div>
             </div>
 
-            {/* Member Links */}
             <div className="flex flex-1 flex-col items-start gap-4">
               <div className="heading-5 mt-[-1.00px] w-fit text-blue-50">
                 Members

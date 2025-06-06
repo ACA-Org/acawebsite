@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import { ArrowRight } from "@/icons/ArrowRight";
 import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
@@ -15,8 +15,6 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [activeMobileItem, setActiveMobileItem] = useState<number | null>(null);
 
   useEffect(() => {
     if (activeItem === null) return setActiveSlice(null);
@@ -174,74 +172,6 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
             )}
           </div>
         </div>
-      </div>
-
-      {/* Mobile Nav */}
-
-      <button
-        className="mt-2 lg:hidden"
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
-        aria-label="Toggle menu"
-      >
-        <span className="mb-1 block h-0.5 w-6 bg-black"></span>
-        <span className="mb-1 block h-0.5 w-6 bg-black"></span>
-        <span className="block h-0.5 w-6 bg-black"></span>
-      </button>
-
-      <div className="relative -z-1">
-        <div
-          className={cn(
-            "fixed top-0 right-0 left-0 -z-1 overflow-hidden bg-white shadow-lg transition-transform duration-300 lg:hidden",
-            isMobileOpen ? "translate-y-[64px]" : "-translate-y-full"
-          )}
-        >
-          <ul className="flex flex-col space-y-4 p-6">
-            {slices.map(
-              ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => (
-                <li key={index}>
-                  <button
-                    className="flex w-full items-center justify-between text-left text-lg font-medium text-blue-300"
-                    onClick={() => setActiveMobileItem(index)}
-                  >
-                    {tierOneLink.text}
-                    {tierTwoMenuItems?.length > 0 && (
-                      <CaretDown className="h-auto w-3 -rotate-90 stroke-blue-300" />
-                    )}
-                  </button>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
-
-        {activeMobileItem !== null && (
-          <div className="fixed inset-0 top-[64px] z-50 translate-x-0 transform bg-white transition-transform duration-300 lg:hidden">
-            <div className="flex flex-col gap-4 p-6">
-              <button
-                onClick={() => setActiveMobileItem(null)}
-                className="mb-4 flex gap-3 text-sm text-blue-300"
-              >
-                <CaretDown className="h-auto w-3 rotate-90 items-center stroke-blue-300" />
-                <span className="mt-[2px]">Back to menu</span>
-              </button>
-              {slices[activeMobileItem]?.primary.tierTwoMenuItems?.map(
-                (item, i) => (
-                  <PrismicNextLink
-                    key={i}
-                    field={item.tierTwoMenuLink}
-                    className="block text-base text-gray-700"
-                    onClick={() => {
-                      setActiveMobileItem(null);
-                      setIsMobileOpen(false);
-                    }}
-                  >
-                    {item.tierTwoMenuLink.text}
-                  </PrismicNextLink>
-                )
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </nav>
   );

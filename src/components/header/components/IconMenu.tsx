@@ -114,47 +114,6 @@ export const IconMenu = () => {
             }}
           />
         ))}
-        {/* <ExpandingIcon
-          icon={SuitcaseIcon}
-          label="Job Bank"
-          menuId="job_bank"
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-        />
-        <ExpandingIcon
-          icon={MailIcon}
-          label="Contact Us"
-          menuId="contact_us"
-          onClick={() => {
-            router.push("/contact");
-          }}
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-        />
-        <ExpandingIcon
-          icon={SearchIcon}
-          label="Search"
-          menuId="search"
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-          onClick={() => {
-            router.push("/search");
-          }}
-        />
-        <ExpandingIcon
-          icon={ShoppingCart}
-          label="Marketplace"
-          menuId="marketplace"
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-        />
-        <ExpandingIcon
-          icon={UserIcon}
-          label="Sign In"
-          menuId="sign_in"
-          activeItem={activeItem}
-          setActiveItem={setActiveItem}
-        /> */}
       </div>
     </>
   );

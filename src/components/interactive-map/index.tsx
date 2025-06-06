@@ -647,7 +647,6 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
             setDistanceFilter={setDistanceFilter}
           />
         </div>
-        {/* Tabs */}
         <div className="flex border-b border-[#aed2ff] bg-blue-50">
           <button
             className={`flex-1 py-2 text-center ${mobileTab === "map" ? "border-b-2 border-blue-300 bg-white font-bold text-blue-300" : "text-gray-400"}`}
