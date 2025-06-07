@@ -8,6 +8,9 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/right-menu/RightMenuAccordion/accordion";
+import { linkResolver } from "@/lib/linkResolver";
+import { useAtomValue } from "jotai";
+import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -24,6 +27,7 @@ export function MobileMenu({
 }: MobileMenuProps) {
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pages = useAtomValue(pageInfoAtom);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -100,6 +104,7 @@ export function MobileMenu({
                     {tierOneLink.link_type === "Document" ? (
                       <PrismicNextLink
                         field={tierOneLink}
+                        linkResolver={(doc) => linkResolver(doc, pages)}
                         className="body-md text-blue-300"
                         onClick={() => {
                           setOpen("");
@@ -122,6 +127,7 @@ export function MobileMenu({
                           <PrismicNextLink
                             key={i}
                             field={item.tierTwoMenuLink}
+                            linkResolver={(doc) => linkResolver(doc, pages)}
                             className="block py-3 text-base text-gray-700"
                             onClick={() => {
                               setOpen("");

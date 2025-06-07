@@ -3,10 +3,14 @@ import { RightMenuItem } from "@/app/actions/getRightMenuData";
 import { usePathname } from "next/navigation";
 import { labelFormatter } from "@/lib/strting";
 import { PrismicNextLink } from "@prismicio/next";
+import { linkResolver } from "@/lib/linkResolver";
+import { useAtomValue } from "jotai";
+import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 
 const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
   const { href, label, children } = link;
   const pathName = usePathname();
+  const pages = useAtomValue(pageInfoAtom);
 
   return (
     <AccordionItem value={label}>
@@ -15,6 +19,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
         <PrismicNextLink
           href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
           className="body-sm flex items-center border-t border-blue-500/12 bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
+          linkResolver={(doc) => linkResolver(doc, pages)}
         >
           Overview
         </PrismicNextLink>
@@ -23,6 +28,7 @@ const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
             href={
               pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href
             }
+            linkResolver={(doc) => linkResolver(doc, pages)}
             className="body-sm flex items-center bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
             key={index}
           >

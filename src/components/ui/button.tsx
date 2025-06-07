@@ -1,7 +1,12 @@
+"use client";
+
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { PrismicNextLink } from "@prismicio/next";
+import { linkResolver } from "@/lib/linkResolver";
+import { useAtomValue } from "jotai";
+import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 
 const buttonVariants = cva(
   "cursor-pointer inline-flex items-center justify-center gap-2 rounded-[4px] body-lg transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:outline-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:outline-destructive px-7 py-4 has-[>svg]:px-3 min-w-0 text-center",
@@ -74,8 +79,10 @@ export type LinkButtonProps = React.ComponentProps<typeof PrismicNextLink> &
 
 const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   ({ className, variant, outlined, ...props }, ref) => {
+    const pages = useAtomValue(pageInfoAtom);
     return (
       <PrismicNextLink
+        linkResolver={(doc) => linkResolver(doc, pages)}
         className={cn(buttonVariants({ variant, outlined, className }))}
         ref={ref}
         {...props}
@@ -88,9 +95,12 @@ LinkButton.displayName = "LinkButton";
 
 const TextLink = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
   ({ className, ...props }, ref) => {
+    const pages = useAtomValue(pageInfoAtom);
+
     return (
       <PrismicNextLink
         {...props}
+        linkResolver={(doc) => linkResolver(doc, pages)}
         className={cn(
           "body-md hover:text-gold-100 cursor-pointer self-stretch transition-colors",
           className

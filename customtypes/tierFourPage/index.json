@@ -18,7 +18,9 @@
           "label": "ParentPage",
           "select": "document",
           "repeat": false,
-          "customtypes": ["tierThreePage"]
+          "customtypes": [
+            "tierThreePage"
+          ]
         }
       },
       "pageTitle": {
@@ -41,7 +43,10 @@
           "label": "PageContent",
           "placeholder": "",
           "allowTargetBlank": true,
-          "labels": ["Block Quote"],
+          "labels": [
+            "Block Quote",
+            "Horizontal Rule"
+          ],
           "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },

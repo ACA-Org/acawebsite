@@ -14,43 +14,43 @@ export const repositoryName =
  * {@link https://prismic.io/docs/route-resolver#route-resolver}
  */
 // TODO: Update the routes array to match your project's route structure.
-const routes: prismic.ClientConfig["routes"] = [
-  {
-    type: "homepage",
-    path: "/",
-  },
-  {
-    type: "tierOnePage",
-    path: "/:uid",
-  },
-  {
-    type: "tierTwoPage",
-    resolvers: {
-      parentPage: "parentPage",
-    },
-    path: "/:parentPage/:uid",
-  },
-  {
-    type: "tierThreePage",
-    resolvers: {
-      parentPage: "parentPage",
-      grandparentPage: "parentPage.parentPage",
-    },
-    path: "/:grandparentPage/:parentPage/:uid",
-  },
-  {
-    type: "contactPage",
-    path: "/contact",
-  },
-  {
-    type: "locationsPage",
-    path: "/locations",
-  },
-  {
-    type: "privacyPolicy",
-    path: "/privacy_policy",
-  },
-];
+// const routes: prismic.ClientConfig["routes"] = [
+//   {
+//     type: "homepage",
+//     path: "/",
+//   },
+//   {
+//     type: "tierOnePage",
+//     path: "/:uid",
+//   },
+//   {
+//     type: "tierTwoPage",
+//     resolvers: {
+//       parentPage: "parentPage",
+//     },
+//     path: "/:parentPage/:uid",
+//   },
+//   {
+//     type: "tierThreePage",
+//     resolvers: {
+//       parentPage: "parentPage",
+//       grandparentPage: "parentPage.parentPage",
+//     },
+//     path: "/:grandparentPage/:parentPage/:uid",
+//   },
+//   {
+//     type: "contactPage",
+//     path: "/contact",
+//   },
+//   {
+//     type: "locationsPage",
+//     path: "/locations",
+//   },
+//   {
+//     type: "privacyPolicy",
+//     path: "/privacy_policy",
+//   },
+// ];
 
 /**
  * Creates a Prismic client for the project's repository. The client is used to
@@ -60,7 +60,7 @@ const routes: prismic.ClientConfig["routes"] = [
  */
 export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
   const client = prismic.createClient(repositoryName, {
-    routes,
+    // routes,
     fetchOptions:
       process.env.NODE_ENV === "production"
         ? { next: { tags: ["prismic"] }, cache: "force-cache" }

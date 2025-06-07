@@ -67,6 +67,8 @@ export default function RichText({
                 {children}
               </span>
             );
+          } else if (node.data.label === "Horizontal Rule") {
+            return <hr className="my-6 h-[1px] w-full bg-gray-100" />;
           }
         },
         listItem: ({ children }) => (
