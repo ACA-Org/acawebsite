@@ -123,26 +123,29 @@ export const Search = () => {
                 uid: page.uid || undefined,
                 link_type: "Document",
                 id: page.id,
-                type: "page",
+                type: page.type,
                 tags: [],
                 lang: "en-us",
               }}
               key={page.id}
               className="h-full w-full cursor-pointer justify-start rounded-lg border border-gray-100 bg-white p-4 text-black shadow-sm hover:bg-transparent"
             >
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <span className="heading-5 text-gray-700">
                   {page.data.pageTitle || ""}
                 </span>
-                {query && contentString && (
-                  <span
-                    className="body-md line-clamp-2 text-gray-500"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        getContentSnippet(contentString, contentMatches) || "",
-                    }}
-                  />
-                )}
+                {query &&
+                  contentString &&
+                  getContentSnippet(contentString, contentMatches) && (
+                    <span
+                      className="body-md line-clamp-2 text-gray-500"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          getContentSnippet(contentString, contentMatches) ||
+                          "",
+                      }}
+                    />
+                  )}
               </div>
             </LinkButton>
           );
