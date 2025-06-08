@@ -56,16 +56,14 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   return (
     <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-5 md:mb-28 md:px-8">
       {img.url && (
-        <div className="relative mt-12 flex h-full min-h-[415px] w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 md:mt-16 md:gap-2.5 md:p-12">
-          <>
-            <div className="absolute inset-0 z-10 h-full w-full">
-              <PrismicNextImage
-                alt=""
-                field={img}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </>
+        <div className="relative mt-12 flex w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-16 md:gap-2.5 md:p-12 lg:min-h-[415px]">
+          <div className="absolute inset-0 z-10 h-full w-full">
+            <PrismicNextImage
+              alt=""
+              field={img}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       )}
       <div
