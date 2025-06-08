@@ -12,6 +12,7 @@ import { pageInfoAtom } from "./atoms/pageInfoAtom";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ViewTransitions } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -62,20 +63,22 @@ export default async function RootLayout({
   ]);
 
   return (
-    <html lang="en" className="w-screen overflow-x-clip">
-      <body
-        className={`${gillSans.variable} [font-family:GillSans] antialiased`}
-      >
-        <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pagesInfo || []]]}>
-          <CacheProvider>
-            {headerInfo && <Header data={headerInfo} />}
-          </CacheProvider>
-          <div className="mt-17">{children}</div>
-          {footerInfo && <Footer data={footerInfo} />}
-        </HydrationBoundary>
-      </body>
-      <GoogleAnalytics gaId="G-ND0DBVWRNR" />
-      <PrismicPreview repositoryName={repositoryName} />
-    </html>
+    <ViewTransitions>
+      <html lang="en" className="w-screen overflow-x-clip">
+        <body
+          className={`${gillSans.variable} [font-family:GillSans] antialiased`}
+        >
+          <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pagesInfo || []]]}>
+            <CacheProvider>
+              {headerInfo && <Header data={headerInfo} />}
+            </CacheProvider>
+            <div className="mt-17">{children}</div>
+            {footerInfo && <Footer data={footerInfo} />}
+          </HydrationBoundary>
+        </body>
+        <GoogleAnalytics gaId="G-ND0DBVWRNR" />
+        <PrismicPreview repositoryName={repositoryName} />
+      </html>
+    </ViewTransitions>
   );
 }

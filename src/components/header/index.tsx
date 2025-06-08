@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { IconMenu } from "./components/IconMenu";
 import { MenuItemProps } from "@/slices/MenuItem";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { NavigationMenu } from "./components/NavigationMenu";
 import { ACALogoColor } from "@/logos/ACALogoColor";
 import { usePathname } from "next/navigation";
 import { MobileMenu } from "./components/MobileMenu";
+import { TransitionLink } from "../ui/button";
 
 const Header = ({
   data,
@@ -39,7 +39,7 @@ const Header = ({
           isCollapsed ? "py-4" : "border-b py-8 max-lg:py-4"
         )}
       >
-        <Link
+        <TransitionLink
           href="/"
           className="flex items-start justify-start text-left transition-all duration-300"
         >
@@ -51,7 +51,7 @@ const Header = ({
                 : "h-[43px] w-[114.78px] max-lg:w-[68px]"
             )}
           />
-        </Link>
+        </TransitionLink>
 
         <NavigationMenu slices={data.slices} />
 

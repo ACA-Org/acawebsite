@@ -2,38 +2,32 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
 import { RightMenuItem } from "@/app/actions/getRightMenuData";
 import { usePathname } from "next/navigation";
 import { labelFormatter } from "@/lib/strting";
-import { PrismicNextLink } from "@prismicio/next";
-import { linkResolver } from "@/lib/linkResolver";
-import { useAtomValue } from "jotai";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { TransitionLink } from "@/components/ui/button";
 
 const RightMenuAccordion = ({ link }: { link: RightMenuItem }) => {
   const { href, label, children } = link;
   const pathName = usePathname();
-  const pages = useAtomValue(pageInfoAtom);
 
   return (
     <AccordionItem value={label}>
       <AccordionTrigger>{label}</AccordionTrigger>
       <AccordionContent className="flex flex-col gap-0 divide-y divide-blue-500/12">
-        <PrismicNextLink
+        <TransitionLink
           href={pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href}
           className="body-sm flex items-center border-t border-blue-500/12 bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
-          linkResolver={(doc) => linkResolver(doc, pages)}
         >
           Overview
-        </PrismicNextLink>
+        </TransitionLink>
         {children?.map(({ label, href }, index) => (
-          <PrismicNextLink
+          <TransitionLink
             href={
               pathName?.charAt(-1) === "/" ? pathName : `${pathName}/` + href
             }
-            linkResolver={(doc) => linkResolver(doc, pages)}
             className="body-sm flex items-center bg-blue-50 pt-[14px] pb-[16px] pl-10 text-gray-300 hover:text-black hover:underline"
             key={index}
           >
             {labelFormatter(label)}
-          </PrismicNextLink>
+          </TransitionLink>
         ))}
       </AccordionContent>
     </AccordionItem>

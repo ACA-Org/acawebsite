@@ -1,12 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { labelFormatter } from "@/lib/strting";
 import { usePathname } from "next/navigation";
 import { useAtomValue } from "jotai";
 import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { TransitionLink } from "../ui/button";
 
 export function Breadcrumbs() {
   const pathname = usePathname();
@@ -73,12 +73,12 @@ export function Breadcrumbs() {
     <nav aria-label="Breadcrumb" className="hidden py-2 lg:block">
       <ol className="flex items-center space-x-2">
         <li className="flex gap-2">
-          <Link
+          <TransitionLink
             href="/"
             className="text-muted-foreground hover:text-foreground flex items-center transition-colors"
           >
             <span className="body-sm">Home</span>
-          </Link>
+          </TransitionLink>
           <ChevronRight className="text-muted-foreground h-4 w-4" />
         </li>
         {items.map((item, index) => {
@@ -96,14 +96,14 @@ export function Breadcrumbs() {
 
           return (
             <li key={item.href} className="flex items-center space-x-2">
-              <Link
+              <TransitionLink
                 href={item.href}
                 className={
                   "body-sm hover:text-foreground text-muted-foreground transition-colors"
                 }
               >
                 {labelFormatter(item.label)}
-              </Link>
+              </TransitionLink>
 
               <ChevronRight className="text-muted-foreground h-4 w-4" />
             </li>

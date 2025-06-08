@@ -4,8 +4,8 @@ import { useAtomValue } from "jotai";
 import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { TransitionLink } from "../ui/button";
 
 export function BackButton() {
   const pathname = usePathname();
@@ -27,12 +27,12 @@ export function BackButton() {
   if (!parentPage) return null;
 
   return (
-    <Link
+    <TransitionLink
       href={parentPath}
       className="flex items-center gap-2 text-blue-300 transition-colors hover:text-blue-400 md:hidden"
     >
       <ChevronLeft className="h-5 w-5" />
-      <span>Back to {parentPage.data.pageTitle}</span>
-    </Link>
+      <p>Go to {parentPage.data.pageTitle}</p>
+    </TransitionLink>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
-import { PrismicNextLink } from "@prismicio/next";
 import { cn } from "@/lib/utils";
 import {
   AccordionItem,
@@ -8,9 +7,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/right-menu/RightMenuAccordion/accordion";
-import { linkResolver } from "@/lib/linkResolver";
-import { useAtomValue } from "jotai";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { TransitionLink } from "@/components/ui/button";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -27,7 +24,6 @@ export function MobileMenu({
 }: MobileMenuProps) {
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
-  const pages = useAtomValue(pageInfoAtom);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -102,9 +98,8 @@ export function MobileMenu({
                 >
                   <AccordionTrigger className="flex w-full items-center justify-between px-6 py-4 text-left">
                     {tierOneLink.link_type === "Document" ? (
-                      <PrismicNextLink
+                      <TransitionLink
                         field={tierOneLink}
-                        linkResolver={(doc) => linkResolver(doc, pages)}
                         className="body-md text-blue-300"
                         onClick={() => {
                           setOpen("");
@@ -112,7 +107,7 @@ export function MobileMenu({
                         }}
                       >
                         {tierOneLink.text}
-                      </PrismicNextLink>
+                      </TransitionLink>
                     ) : (
                       <span className="body-md font-medium text-blue-300">
                         {tierOneLink.text}
@@ -124,10 +119,9 @@ export function MobileMenu({
                     <AccordionContent className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden">
                       <div className="bg-gray-50/50 px-6 py-2">
                         {tierTwoMenuItems.map((item, i) => (
-                          <PrismicNextLink
+                          <TransitionLink
                             key={i}
                             field={item.tierTwoMenuLink}
-                            linkResolver={(doc) => linkResolver(doc, pages)}
                             className="block py-3 text-base text-gray-700"
                             onClick={() => {
                               setOpen("");
@@ -135,7 +129,7 @@ export function MobileMenu({
                             }}
                           >
                             {item.tierTwoMenuLink.text}
-                          </PrismicNextLink>
+                          </TransitionLink>
                         ))}
                       </div>
                     </AccordionContent>

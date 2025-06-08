@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
-import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { ArrowRight } from "@/icons/ArrowRight";
 import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
 import SVG from "react-inlinesvg";
-import { linkResolver } from "@/lib/linkResolver";
-import { useAtomValue } from "jotai";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { TransitionLink } from "@/components/ui/button";
 
 export interface NavigationMenuProps {
   className?: string;
@@ -18,7 +16,6 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
-  const pages = useAtomValue(pageInfoAtom);
 
   useEffect(() => {
     if (activeItem === null) return setActiveSlice(null);
@@ -61,13 +58,12 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   }
                   return (
                     <li key={index} className="relative">
-                      <PrismicNextLink
+                      <TransitionLink
                         field={tierOneLink}
                         onMouseEnter={() => setActiveItem(index)}
                         onClick={() => {
                           setActiveItem(null);
                         }}
-                        linkResolver={(doc) => linkResolver(doc, pages)}
                         className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
                       >
                         <span className="whitespace-nowrap">
@@ -80,7 +76,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                             )}
                           />
                         )}
-                      </PrismicNextLink>
+                      </TransitionLink>
                     </li>
                   );
                 }
@@ -102,13 +98,12 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
               >
                 <div className="grid w-max grid-cols-2 gap-8">
                   {activeSlice?.primary.tierTwoMenuItems.map((i, index) => (
-                    <PrismicNextLink
+                    <TransitionLink
                       key={`${i.tierTwoMenuLink.text}-${index}`}
                       field={i.tierTwoMenuLink}
                       onClick={() => {
                         setActiveItem(null);
                       }}
-                      linkResolver={(doc) => linkResolver(doc, pages)}
                       className="group col-span-1 w-max"
                     >
                       <span className="flex h-9 w-max items-center gap-3 pr-3">
@@ -130,17 +125,16 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                           <p className="text-xs">{i.tierTwoMenuDesc}</p>
                         </div>
                       </span>
-                    </PrismicNextLink>
+                    </TransitionLink>
                   ))}
                 </div>
 
                 {activeSlice?.primary.featuredMenuLink.text && (
-                  <PrismicNextLink
+                  <TransitionLink
                     field={activeSlice?.primary.featuredMenuLink}
                     onClick={() => {
                       setActiveItem(null);
                     }}
-                    linkResolver={(doc) => linkResolver(doc, pages)}
                     className="group/link flex flex-col items-start gap-4 pl-8"
                   >
                     <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
@@ -173,7 +167,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         />
                       </div>
                     </div>
-                  </PrismicNextLink>
+                  </TransitionLink>
                 )}
               </div>
             )}
