@@ -31,6 +31,10 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pathName]);
 
+  useEffect(() => {
+    console.log({ isMobileOpen });
+  }, [isMobileOpen]);
+
   return (
     <header className={"fixed top-0 right-0 left-0 z-100 w-full"}>
       <div

@@ -84,6 +84,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
     const { push } = useTransitionRouter();
 
     const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+      onClick?.(e);
       const { field } = props;
       if (!field) return;
 
@@ -93,9 +94,8 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
 
       if (resolvedHref) {
         e.preventDefault();
-        push(resolvedHref);
+        return push(resolvedHref);
       }
-      onClick?.(e);
     };
 
     return (
