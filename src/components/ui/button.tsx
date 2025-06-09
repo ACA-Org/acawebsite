@@ -95,7 +95,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
       } else if (field) {
         resolvedHref = linkResolver
           ? linkResolver(field as any, pages)
-          : asLink(field); // Fallback to Prismic's default if no resolver provided
+          : asLink(field);
       }
 
       if (resolvedHref) {
