@@ -15,7 +15,7 @@ interface HeroCarouselProps {
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
   return (
     <div className="w-full">
-      <div className="mx-auto w-full max-w-[1440px] overflow-visible px-4 md:px-8">
+      <div className="mx-auto w-full max-w-[1440px] overflow-clip px-4 md:overflow-visible md:px-8">
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={0}
@@ -28,6 +28,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
             disableOnInteraction: false,
           }}
           className="relative h-full w-full !overflow-visible"
+          loopAdditionalSlides={1}
         >
           {slides.map((slide, index) => (
             <SwiperSlide
