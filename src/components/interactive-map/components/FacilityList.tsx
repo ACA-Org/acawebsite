@@ -224,4 +224,3 @@ export const FacilityList = React.memo(
 );
 
 FacilityList.displayName = "FacilityList";
-

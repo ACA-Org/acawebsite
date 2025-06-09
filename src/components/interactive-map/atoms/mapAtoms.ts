@@ -47,4 +47,3 @@ export const mobileTabAtom = atom<"map" | "list">("map");
 export const zipCoordinatesAtom = atom<{ lat: number; lng: number } | null>(
   null
 );
-

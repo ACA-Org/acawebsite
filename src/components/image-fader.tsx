@@ -39,7 +39,7 @@ const ImageFader: FC<ImageFaderProps> = ({
   }, [images?.length]);
 
   return (
-    <div className="relative col-span-1 h-[235px] w-full overflow-hidden rounded-lg bg-black">
+    <div className="relative col-span-1 w-full overflow-hidden rounded-lg bg-black max-md:aspect-video md:h-[235px]">
       {images.map((img, index) => (
         <PrismicNextImage
           key={index}

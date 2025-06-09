@@ -65,4 +65,3 @@ export const ClusterMarkers = React.memo(
 );
 
 ClusterMarkers.displayName = "ClusterMarkers";
-
