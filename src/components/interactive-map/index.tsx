@@ -139,12 +139,15 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
     ]
   );
 
-  // Convert facilities to GeoJSON points
+  // Convert facilities to GeoJSON points, filtering out low accuracy scores
   const points = useMemo(() => {
     if (!facilitiesWithPositions.length) {
       return [];
     }
-    const geoJsonPoints = facilitiesToGeoJSON(facilitiesWithPositions);
+    const highAccuracyFacilities = facilitiesWithPositions.filter(
+      (f) => Number(f.accuracyScore) >= 0.6
+    );
+    const geoJsonPoints = facilitiesToGeoJSON(highAccuracyFacilities);
     return geoJsonPoints;
   }, [facilitiesWithPositions]);
 
