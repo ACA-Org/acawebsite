@@ -85,12 +85,18 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
 
     const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
       onClick?.(e);
-      const { field } = props;
-      if (!field) return;
 
-      const resolvedHref = linkResolver
-        ? linkResolver(field as any, pages)
-        : asLink(field); // Fallback to Prismic's default if no resolver provided
+      // Prefer explicit href if present, otherwise resolve from field
+      const { href, field } = props;
+      let resolvedHref: string | null | undefined;
+
+      if (href) {
+        resolvedHref = typeof href === "string" ? href : undefined;
+      } else if (field) {
+        resolvedHref = linkResolver
+          ? linkResolver(field as any, pages)
+          : asLink(field); // Fallback to Prismic's default if no resolver provided
+      }
 
       if (resolvedHref) {
         e.preventDefault();
