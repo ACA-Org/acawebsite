@@ -2,7 +2,7 @@
 
 import { RightMenuData } from "@/app/actions/getRightMenuData";
 import { ArrowLeft } from "@/icons/ArrowLeft";
-import { useRouter } from "next/navigation";
+import { useTransitionRouter as useRouter } from "next-view-transitions";
 import RightMenuLinks from "./RightMenuLinks";
 import RightMenuAccordion from "./RightMenuAccordion";
 import {

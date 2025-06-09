@@ -5,7 +5,7 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
 import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
-import { useRouter } from "next/navigation";
+import { useTransitionRouter as useRouter } from "next-view-transitions";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
 
