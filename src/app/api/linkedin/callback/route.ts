@@ -1,6 +1,5 @@
 // app/api/linkedin/callback/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs/promises";
 
 export async function GET(req: NextRequest) {
   const code = req.nextUrl.searchParams.get("code");
@@ -29,16 +28,4 @@ export async function GET(req: NextRequest) {
   if (!res.ok) {
     return NextResponse.json(data, { status: res.status });
   }
-
-  const tokenData = {
-    access_token: data.access_token,
-    refresh_token: data.refresh_token || null,
-    expires_at: Date.now() + data.expires_in * 1000,
-  };
-
-  await fs.writeFile("linkedin_token.json", JSON.stringify(tokenData, null, 2));
-
-  return new NextResponse(
-    "✅ LinkedIn authorization successful. You may close this window."
-  );
 }

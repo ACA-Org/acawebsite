@@ -8,6 +8,11 @@ import {
   AccordionContent,
 } from "@/components/right-menu/RightMenuAccordion/accordion";
 import { TransitionLink } from "@/components/ui/button";
+import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
+import { MailIcon } from "@/icons/MailIcon";
+import { SearchIcon } from "@/icons/SearchIcon";
+import { ShoppingCart } from "@/icons/ShoppingCart";
+import { UserIcon } from "@/icons/UserIcon";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -15,6 +20,29 @@ interface MobileMenuProps {
   onClose: () => void;
   isCollapsed: boolean;
 }
+
+const quickLinks = [
+  {
+    label: "Job Bank",
+    value: "job_bank",
+    href: "/resources/job-bank",
+    icon: SuitcaseIcon,
+  },
+  {
+    label: "Contact Us",
+    value: "contact_us",
+    href: "/contact",
+    icon: MailIcon,
+  },
+  { label: "Search", value: "search", href: "/search", icon: SearchIcon },
+  {
+    label: "Marketplace",
+    value: "marketplace",
+    href: "/marketplace",
+    icon: ShoppingCart,
+  },
+  { label: "Sign In", value: "sign_in", href: "/sign-in", icon: UserIcon },
+];
 
 export function MobileMenu({
   slices,
@@ -139,6 +167,25 @@ export function MobileMenu({
             )}
           </div>
         </Accordion>
+
+        {/* Quick Links Section */}
+        <div className="border-t border-gray-100/50 bg-gray-50/50 px-6 py-4">
+          <div className="flex flex-col space-y-3">
+            {quickLinks.map((item) => (
+              <TransitionLink
+                key={item.label}
+                href={item.href}
+                className="text-base text-gray-700 transition-colors hover:text-blue-500"
+                onClick={() => {
+                  setOpen("");
+                  onClose();
+                }}
+              >
+                {item.label}
+              </TransitionLink>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

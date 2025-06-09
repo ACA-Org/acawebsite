@@ -57,7 +57,7 @@ const Header = ({
 
         <IconMenu />
         <button
-          className="relative h-6 w-6 lg:hidden"
+          className="relative h-4 w-6 lg:hidden"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label="Toggle menu"
         >
