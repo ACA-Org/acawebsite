@@ -229,4 +229,3 @@ export const MobileMap = React.memo(
 );
 
 MobileMap.displayName = "MobileMap";
-

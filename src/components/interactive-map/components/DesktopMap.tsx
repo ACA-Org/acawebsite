@@ -95,4 +95,3 @@ export const DesktopMap = React.memo(
 );
 
 DesktopMap.displayName = "DesktopMap";
-

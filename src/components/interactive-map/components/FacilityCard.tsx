@@ -58,4 +58,3 @@ export const FacilityCard = React.memo(
 );
 
 FacilityCard.displayName = "FacilityCard";
-
