@@ -73,6 +73,7 @@ export default async function Home() {
         introHeader={page?.introHeader}
         introDescription={page?.introDescription}
       />
+
       <div className="flex flex-col">
         <SliceZone
           slices={page?.slices}

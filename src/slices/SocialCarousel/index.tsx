@@ -3,7 +3,7 @@
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { SlideControls } from "@/components/slide-controls";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -14,6 +14,7 @@ import { LinkedIn } from "@/icons/LinkedIn";
 import { Instagram } from "@/icons/Instagram";
 import { Facebook } from "@/icons/Facebook";
 import Link from "next/link";
+import { LinkedInPost } from "@/app/api/linkedin/posts/route";
 
 /**
  * Props for `SocialCarousel`.
@@ -33,6 +34,27 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
       socialCarouselTitle: title,
     },
   } = slice;
+
+  const [posts, setPosts] = useState<LinkedInPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch("/api/linkedin/posts");
+        const result = await response.json();
+        if (result.success && result.data) {
+          setPosts(result.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch LinkedIn posts:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   return (
     <div className="mx-auto w-full max-w-[1440px] p-4 md:px-8">
@@ -95,28 +117,43 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
             data-slice-type={slice.slice_type}
             data-slice-variation={slice.variation}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((slide, index) => (
-              <SwiperSlide
-                key={index}
-                className="flex h-full !w-fit items-center justify-center !overflow-visible"
-              >
-                <div
-                  className={
-                    "aspect-square h-[300px] overflow-visible rounded-xl bg-white shadow-2xl transition-all duration-300"
-                  }
-                >
-                  <p className="text-muted-foreground flex h-full items-center justify-center text-9xl">
-                    {slide}
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))}
+            {isLoading
+              ? Array.from({ length: 10 }).map((_, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className="flex h-full !w-fit items-center justify-center !overflow-visible"
+                  >
+                    <div className="aspect-square h-[300px] animate-pulse overflow-visible rounded-xl bg-white shadow-2xl transition-all duration-300" />
+                  </SwiperSlide>
+                ))
+              : // Posts
+                posts.map((post) => (
+                  <SwiperSlide
+                    key={post.id}
+                    className="flex h-full !w-fit items-center justify-center !overflow-visible"
+                  >
+                    <Link
+                      href={post.postUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full w-auto"
+                    >
+                      <div className="hover:shadow-3xl h-[300px] overflow-hidden rounded-xl bg-white shadow-2xl transition-all duration-300">
+                        <img
+                          src={post.images[0] || "/aca_square.png"}
+                          alt={`Post by ${post.author}`}
+                          className="h-full w-auto object-contain"
+                        />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
             <SlideControls variant="primary" className="right-8 bottom-8" />
           </Swiper>
         </div>
 
         <div className="flex w-full items-center justify-between">
-          {link && (
+          {link.text && (
             <LinkButton
               variant="primary"
               outlined
