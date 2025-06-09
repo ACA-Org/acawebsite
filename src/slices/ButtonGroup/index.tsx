@@ -19,7 +19,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex w-full flex-row items-start justify-start gap-4"
+      className="flex w-full flex-row flex-wrap items-start justify-start gap-4"
     >
       {actions.slice(0, 2).map((action, index) => (
         <LinkButton
