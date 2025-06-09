@@ -1,7 +1,7 @@
 "use client";
 
 import { Location } from "@/app/locations/data/types";
-import { useLoadScript } from "@react-google-maps/api";
+import { useLoadScript, Libraries } from "@react-google-maps/api";
 import React, { useCallback, useMemo, useEffect, useRef } from "react";
 import { MobileMap } from "./components/MobileMap";
 import { DesktopMap } from "./components/DesktopMap";
@@ -31,9 +31,11 @@ interface MapProps {
 }
 
 export default function Map({ facilities, isLoading = false }: MapProps) {
+  const libraries: Libraries = useMemo(() => ["places"], []);
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
-    libraries: ["places"],
+    libraries,
   });
 
   // Initialize map reference

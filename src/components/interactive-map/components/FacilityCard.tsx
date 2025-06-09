@@ -1,6 +1,6 @@
 import React from "react";
 import { Location } from "@/app/locations/data/types";
-import { MapPinIcon } from "lucide-react";
+import { MapPinIcon, XIcon } from "lucide-react";
 import { Button } from "../../ui/button";
 
 interface FacilityCardProps {
@@ -10,12 +10,12 @@ interface FacilityCardProps {
 }
 
 export const FacilityCard = React.memo(
-  ({ facility, onClose, onViewLocation }: FacilityCardProps) => {
+  ({ facility, onClose }: FacilityCardProps) => {
     return (
       <div className="absolute right-4 bottom-4 left-4 z-10">
-        <div className="flex h-fit cursor-pointer flex-col rounded-lg border border-solid border-[#005f9626] bg-white p-4 shadow-[0px_8px_24px_#00000014] transition-all">
+        <div className="relative flex h-fit cursor-pointer flex-col rounded-lg border border-solid border-[#005f9626] bg-white p-4 shadow-[0px_8px_24px_#00000014] transition-all">
           <div className="mb-4">
-            <h2 className="font-heading-4 text-[24px] text-blue-300">
+            <h2 className="font-heading-4 mr-10 text-[24px] text-blue-300">
               {facility.companyName}
             </h2>
             <p className="mt-1 text-sm text-gray-500">
@@ -41,18 +41,15 @@ export const FacilityCard = React.memo(
                 Visit Website
               </a>
             )}
+          </div>
 
-            <div className="flex gap-2">
-              <Button
-                className="flex-1"
-                onClick={() => onViewLocation(facility)}
-              >
-                View Location
-              </Button>
-              <Button variant="secondary" className="flex-1" onClick={onClose}>
-                Close
-              </Button>
-            </div>
+          <div className="absolute top-4 right-4">
+            <Button
+              className="h-7 w-7 bg-transparent !p-0 hover:bg-transparent"
+              onClick={onClose}
+            >
+              <XIcon className="aspect-square h-7 w-7 text-blue-300" />
+            </Button>
           </div>
         </div>
       </div>
