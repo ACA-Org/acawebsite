@@ -29,7 +29,11 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
       <Marquee gradient={false} speed={40} pauseOnHover={true}>
         {logos.map((logo, i) => (
           <div
-            key={logo.logoItem?.id || logo.logoItem?.url || `logo-${i}`}
+            key={
+              logo.logoItem?.id + `${i}` ||
+              logo.logoItem?.url + `${i}` ||
+              `logo-${i}`
+            }
             className="mx-4 flex-shrink-0"
           >
             <PrismicNextImage
