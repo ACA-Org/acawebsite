@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 const CACHE_DURATION = 24 * 60 * 60 * 1000;
 import * as cheerio from "cheerio";
-import { writeFileSync } from "fs";
 
 export interface LinkedInPost {
   id: string;
@@ -51,9 +50,6 @@ async function scrapeLinkedInPosts(): Promise<LinkedInPost[]> {
     }
 
     const html = await response.text();
-
-    // Write the HTML to a local file for debugging/inspection
-    writeFileSync("./linkedin_output.html", html, "utf8");
 
     const $ = cheerio.load(html);
     const posts: LinkedInPost[] = [];
