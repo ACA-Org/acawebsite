@@ -51,6 +51,14 @@ async function scrapeLinkedInPosts(): Promise<LinkedInPost[]> {
 
     const html = await response.text();
 
+    const { status, statusText } = response;
+
+    console.log({
+      status,
+      statusText,
+      html: html.slice(0, 100) + "..." + html.slice(-100),
+    });
+
     const $ = cheerio.load(html);
     const posts: LinkedInPost[] = [];
 
