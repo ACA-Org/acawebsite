@@ -58,6 +58,7 @@ export async function POST(req: NextRequest) {
           });
           break;
         case "homepage":
+        case "nextConferenceSection":
           revalidateTag("homepage");
           revalidated.push({
             type: "homepage",
