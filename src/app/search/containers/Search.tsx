@@ -87,7 +87,7 @@ export const Search = () => {
           placeholder="Search pages..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="h-12"
+          className="h-[56px]"
         />
       </div>
 
@@ -128,7 +128,7 @@ export const Search = () => {
                 lang: "en-us",
               }}
               key={page.id}
-              className="h-full w-full cursor-pointer justify-start rounded-lg border border-gray-100 bg-white p-4 text-black shadow-sm hover:bg-transparent"
+              className="h-full w-full cursor-pointer justify-start rounded-lg border border-blue-300/15 bg-white p-4 text-black hover:border-blue-300/50 hover:bg-transparent hover:shadow-sm"
             >
               <div className="flex flex-col items-start gap-2">
                 <span className="heading-5 text-gray-700">

@@ -36,7 +36,7 @@ const Header = ({
       <div
         className={cn(
           "relative z-100 flex w-full items-center justify-between border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] px-9 transition-all duration-300 ease-in-out",
-          isCollapsed ? "py-4" : "border-b py-8 max-lg:py-4"
+          isCollapsed ? "py-4" : "border-b-0 py-8 max-lg:py-4"
         )}
       >
         <TransitionLink
@@ -47,8 +47,8 @@ const Header = ({
             className={cn(
               "object-cover transition-all duration-500",
               isCollapsed
-                ? "h-[26px] w-[68px]"
-                : "h-[43px] w-[114.78px] max-lg:w-[68px]"
+                ? "h-auto w-[68px]"
+                : "h-auto w-[150px] max-lg:w-[68px]"
             )}
           />
         </TransitionLink>
