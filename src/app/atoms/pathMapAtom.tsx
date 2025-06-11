@@ -112,7 +112,7 @@ export const pathMapAtom = atom<PathMap>((get) => {
   // Map special pages
   if (contactPage) map.set(contactPage.id, `/contact`);
   if (locationsPage) map.set(locationsPage.id, `/locations`);
-  if (privacyPolicy) map.set(privacyPolicy.id, `/privacy-policy`);
+  if (privacyPolicy) map.set(privacyPolicy.id, `/privacy_policy`);
 
   return map;
 });

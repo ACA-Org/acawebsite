@@ -52,7 +52,7 @@ export function linkResolver(
     case "locationsPage":
       return "/locations";
     case "privacyPolicy":
-      return "/privacy-policy";
+      return "/privacy_policy";
     default:
       return "/";
   }

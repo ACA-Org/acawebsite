@@ -39,9 +39,9 @@ export function Breadcrumbs() {
         label: "Locations",
       };
     }
-    if (segment === "privacy-policy") {
+    if (segment === "privacy_policy") {
       return {
-        href: "/privacy-policy",
+        href: "/privacy_policy",
         label: "Privacy Policy",
       };
     }

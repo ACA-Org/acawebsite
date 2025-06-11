@@ -57,7 +57,7 @@ export async function getPathMap(): Promise<Map<string, string>> {
 
   map.set(contactPage.id, `/contact`);
   map.set(locationsPage.id, `/locations`);
-  map.set(privacyPolicy.id, `/privacy-policy`);
+  map.set(privacyPolicy.id, `/privacy_policy`);
 
   return map;
 }

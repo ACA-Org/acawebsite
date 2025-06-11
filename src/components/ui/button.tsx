@@ -84,6 +84,12 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
     const { push } = useTransitionRouter();
 
     const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+      if (props.field?.link_type === "Media") {
+        e.preventDefault();
+        window.open(props.field.url, "_blank");
+        return;
+      }
+
       onClick?.(e);
 
       // Prefer explicit href if present, otherwise resolve from field
