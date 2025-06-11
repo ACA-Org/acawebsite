@@ -4,105 +4,6 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-/**
- * Item in *AccreditedFacilities → AccreditedFacility*
- */
-export interface AccreditedFacilitiesDocumentDataAccreditedFacilityItem {
-  /**
-   * Company Name field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyName
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  companyName: prismic.KeyTextField;
-
-  /**
-   * Company Address field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyAddress
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  companyAddress: prismic.KeyTextField;
-
-  /**
-   * Company Code Id field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyCodeId
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  companyCodeId: prismic.KeyTextField;
-
-  /**
-   * Company Website field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyWebsite
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  companyWebsite: prismic.KeyTextField;
-
-  /**
-   * Facility Type field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].facilityType
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  facilityType: prismic.KeyTextField;
-
-  /**
-   * Company Location field in *AccreditedFacilities → AccreditedFacility*
-   *
-   * - **Field Type**: GeoPoint
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[].companyLocation
-   * - **Documentation**: https://prismic.io/docs/field#geopoint
-   */
-  companyLocation: prismic.GeoPointField;
-}
-
-/**
- * Content for AccreditedFacilities documents
- */
-interface AccreditedFacilitiesDocumentData {
-  /**
-   * AccreditedFacility field in *AccreditedFacilities*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: accreditedFacilities.accreditedFacility[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  accreditedFacility: prismic.GroupField<
-    Simplify<AccreditedFacilitiesDocumentDataAccreditedFacilityItem>
-  >;
-}
-
-/**
- * AccreditedFacilities document from Prismic
- *
- * - **API ID**: `accreditedFacilities`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type AccreditedFacilitiesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<AccreditedFacilitiesDocumentData>,
-    "accreditedFacilities",
-    Lang
-  >;
-
 type ContactPageDocumentDataSlicesSlice = never;
 
 type ContactPageDocumentDataSlices2Slice =
@@ -1629,7 +1530,6 @@ export type TierTwoPageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
-  | AccreditedFacilitiesDocument
   | ContactPageDocument
   | FooterDocument
   | HeaderDocument
@@ -3137,9 +3037,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      AccreditedFacilitiesDocument,
-      AccreditedFacilitiesDocumentData,
-      AccreditedFacilitiesDocumentDataAccreditedFacilityItem,
       ContactPageDocument,
       ContactPageDocumentData,
       ContactPageDocumentDataSlicesSlice,
