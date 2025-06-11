@@ -3,6 +3,10 @@ import { revalidateTag } from "next/cache";
 import { PrismicWebhookPayload } from "./types";
 import { createClient } from "@/prismicio";
 
+type DirectRevalidatePayload = {
+  tags: string[];
+};
+
 export async function POST(req: NextRequest) {
   const revalidated: any[] = [];
   const authHeader = req.headers.get("authorization");
@@ -14,8 +18,26 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const data = (await req.json()) as PrismicWebhookPayload;
+  const body = await req.json();
 
+  if ("tags" in body && Array.isArray(body.tags)) {
+    const payload = body as DirectRevalidatePayload;
+    payload.tags.forEach((tag) => {
+      revalidateTag(tag);
+      revalidated.push({
+        tag,
+        revalidatedAt: new Date().toISOString(),
+      });
+    });
+
+    return NextResponse.json({
+      revalidated: true,
+      now: Date.now(),
+      data: revalidated,
+    });
+  }
+
+  const data = body as PrismicWebhookPayload;
   const client = createClient();
 
   const result = await client.getByIDs(data.documents);
