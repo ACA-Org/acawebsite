@@ -1,10 +1,10 @@
 import * as React from "react";
 import { LucideIcon } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants, LinkButton } from "@/components/ui/button";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-type ExpandingIconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
     icon:
       | LucideIcon
@@ -27,13 +27,14 @@ export function ExpandingIcon({
 
   return (
     <div className="relative">
-      <Button
+      <LinkButton
         className={cn(
           "relative z-10 flex h-8 items-center overflow-hidden rounded-full bg-transparent px-0 transition-all duration-300 ease-in-out",
           isActive && "bg-blue-300 px-2 hover:bg-blue-300"
         )}
         onMouseEnter={() => setActiveItem(menuId)}
         {...props}
+        href={props.href || ""}
       >
         <Icon
           className={cn(
@@ -51,7 +52,7 @@ export function ExpandingIcon({
         >
           {label}
         </span>
-      </Button>
+      </LinkButton>
     </div>
   );
 }

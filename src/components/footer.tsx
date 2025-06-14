@@ -30,7 +30,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
   };
 
   return (
-    <footer className="flex w-full flex-col items-center overflow-clip text-white [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
+    <footer className="flex w-full flex-col items-center justify-center overflow-clip text-white [background:linear-gradient(90deg,#0F2D52_0%,#0C2545_100%)]">
       <div className="mx-auto w-full max-w-[1440px] px-4 py-16 md:px-8">
         <div className="relative flex items-start justify-between gap-12 max-lg:flex-col">
           <div className="flex w-full flex-col items-start gap-8 self-stretch border-blue-200 max-lg:border-b max-lg:pb-12 lg:max-w-1/3 lg:border-r">
@@ -154,7 +154,7 @@ const Footer = ({ data }: { data: FooterProps }) => {
         </div>
       </div>
 
-      <div className="w-full bg-[#091B31] px-4 py-8 md:px-19">
+      <div className="flex w-full justify-center bg-[#091B31] px-4 py-8 md:px-19">
         <div className="flex w-full max-w-[1440px] flex-col items-start gap-6 self-stretch sm:flex-row sm:items-center sm:justify-between">
           <div className="inline-flex flex-col items-center gap-6 sm:flex-row">
             {subFooterNavLinks?.map((link, index) => (

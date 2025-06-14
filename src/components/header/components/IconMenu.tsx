@@ -109,9 +109,7 @@ export const IconMenu = () => {
             menuId={item.value}
             activeItem={activeItem}
             setActiveItem={setActiveItem}
-            onClick={() => {
-              router.push(item.href);
-            }}
+            href={item.href}
           />
         ))}
       </div>
