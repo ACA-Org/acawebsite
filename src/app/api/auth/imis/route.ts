@@ -1,6 +1,6 @@
 // pages/api/imis-sso.ts
 import { NextRequest, NextResponse } from "next/server";
-import { getTokenFromRefresh } from "./utils"; // you'll write this
+import { getTokenFromRefresh } from "./utils";
 
 export async function POST(request: NextRequest) {
   console.log("[IMIS Auth] Received POST request", {
@@ -30,15 +30,11 @@ export async function POST(request: NextRequest) {
     const tokenData = await getTokenFromRefresh(refresh_token);
     console.log("[IMIS Auth] Successfully obtained new token");
 
-    // Create a response with redirect
-    const redirectUrl = new URL("/api/auth/callback/credentials", request.url);
+    // Redirect to a client-side page that will handle the sign in
+    const redirectUrl = new URL("/auth/complete-signin", request.url);
     redirectUrl.searchParams.set("token", tokenData.access_token);
 
-    console.log("[IMIS Auth] Redirecting to callback URL:", {
-      callbackUrl: redirectUrl.pathname,
-      hasToken: !!tokenData.access_token,
-    });
-
+    console.log("[IMIS Auth] Redirecting to sign-in completion page");
     return NextResponse.redirect(redirectUrl);
   } catch (err) {
     console.error("[IMIS Auth] Authentication error:", {
