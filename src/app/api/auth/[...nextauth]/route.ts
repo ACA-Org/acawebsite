@@ -1,80 +1,86 @@
 import NextAuth from "next-auth";
 import type { AuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { fetchIMISUserProfile } from "../imis/utils";
 
-// Extend the built-in session type
 declare module "next-auth" {
   interface Session {
+    accessToken?: string;
+    user: {
+      id: string;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+    };
+  }
+
+  interface User {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
     accessToken?: string;
   }
 }
 
-// Extend the built-in JWT type
 declare module "next-auth/jwt" {
   interface JWT {
     accessToken?: string;
     refreshToken?: string;
     accessTokenExpires?: number;
+    userId?: string;
   }
 }
 
 const authOptions: AuthOptions = {
   providers: [
-    {
+    CredentialsProvider({
       id: "imis",
       name: "iMIS",
-      type: "oauth",
-      clientId: process.env.OAUTH_CLIENT_ID!,
-      clientSecret: process.env.OAUTH_SECRET!,
-      authorization: {
-        url: process.env.OAUTH_AUTHORIZATION_URL!,
-        params: {
-          response_type: "code",
-          scope: "openid profile email",
-        },
+      credentials: {
+        token: { label: "Token", type: "text" },
       },
-      token: {
-        url: process.env.OAUTH_TOKEN_URL!,
-        params: {
-          grant_type: "refresh_token",
-        },
+      async authorize(credentials) {
+        try {
+          const token = credentials?.token;
+          if (!token) return null;
+
+          const user = await fetchIMISUserProfile(token);
+
+          return {
+            id: user.id,
+            name: user.full_name,
+            email: user.email,
+            accessToken: token,
+          };
+        } catch (error) {
+          console.error("IMIS authorize error:", error);
+          return null;
+        }
       },
-      userinfo: {
-        url: process.env.OAUTH_USERINFO_URL!,
-      },
-      profile(profile) {
-        return {
-          id: profile.sub || profile.id,
-          name: profile.name,
-          email: profile.email,
-          image: profile.picture,
-        };
-      },
-      // iMIS specific settings
-      httpOptions: {
-        timeout: 10000,
-      },
-      // Enable refresh token rotation
-      allowDangerousEmailAccountLinking: true,
-    },
+    }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
-      // Initial sign in
-      if (account) {
-        return {
-          ...token,
-          accessToken: account.access_token,
-          refreshToken: account.refresh_token,
-          accessTokenExpires: account.expires_at! * 1000,
-        };
+    async jwt({ token, user }) {
+      if (user) {
+        token.accessToken = user.accessToken;
+        token.userId = user.id;
       }
       return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken;
+      if (token) {
+        session.accessToken = token.accessToken;
+        session.user.id = token.userId as string;
+      }
       return session;
     },
   },
+  pages: {
+    signIn: "/auth/signin",
+    error: "/auth/error",
+  },
+  debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);
