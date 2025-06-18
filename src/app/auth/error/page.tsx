@@ -32,6 +32,7 @@ export default function AuthError() {
           </div>
           <div className="mt-8 flex justify-center">
             <Link
+              prefetch={false}
               href="/auth/signin"
               className="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
             >

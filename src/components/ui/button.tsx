@@ -116,6 +116,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
         className={className}
         ref={ref}
         onClick={handleClick}
+        prefetch={false}
         {...props}
       />
     );

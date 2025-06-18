@@ -10,7 +10,7 @@ export default function SignIn() {
   useEffect(() => {
     // Redirect to IMIS login page
     const imisLoginUrl = process.env.NEXT_PUBLIC_IMIS_LOGIN_URL;
-    const redirectUrl = `${window.location.origin}/api/auth/imis`;
+    const redirectUrl = `${window.location.origin}/api/imis`;
 
     window.location.href = `${imisLoginUrl}?redirect_uri=${encodeURIComponent(redirectUrl)}`;
   }, []);

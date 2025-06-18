@@ -1,40 +1,77 @@
-"use client";
-
-import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 
-export default function CompleteSignIn() {
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+export default async function CompleteSignIn({
+  searchParams,
+}: {
+  searchParams: Promise<{ token: string }>;
+}) {
+  console.log("CompleteSignIn: Starting sign-in completion process");
 
-  useEffect(() => {
-    const completeSignIn = async () => {
-      if (!token) {
-        console.error("No token provided");
-        window.location.href = "/auth/error?error=NoToken";
-        return;
-      }
+  let token;
+  try {
+    token = (await searchParams).token;
+    console.log(
+      "CompleteSignIn: Successfully extracted token from search params"
+    );
+  } catch (error) {
+    console.error(
+      "CompleteSignIn: Error extracting token from search params:",
+      error
+    );
+    redirect("/auth/error?error=TokenExtractionFailed");
+    return;
+  }
 
-      try {
-        const result = await signIn("imis", {
-          token,
-          redirect: true,
-          callbackUrl: "/", // or wherever you want to redirect after successful login
-        });
+  if (!token) {
+    console.error("CompleteSignIn: No token provided in search params");
+    window.location.href = "/auth/error?error=NoToken";
+    return;
+  }
 
-        if (result?.error) {
-          console.error("Sign in error:", result.error);
-          window.location.href = `/auth/error?error=${encodeURIComponent(result.error)}`;
-        }
-      } catch (error) {
-        console.error("Error during sign in:", error);
-        window.location.href = "/auth/error?error=SignInFailed";
-      }
-    };
+  console.log("CompleteSignIn: Attempting to sign in with iMIS provider");
 
-    completeSignIn();
-  }, [token]);
+  try {
+    console.log(
+      "CompleteSignIn: Initiating sign-in with token length:",
+      token.length
+    );
+    const result = await signIn("imis", {
+      token,
+      redirect: true,
+      callbackUrl: "/", // or wherever you want to redirect after successful login
+    });
+
+    if (result?.error) {
+      console.error("CompleteSignIn: Sign-in failed with error:", result.error);
+      console.error(
+        "CompleteSignIn: Full result object:",
+        JSON.stringify(result, null, 2)
+      );
+      redirect(`/auth/error?error=${encodeURIComponent(result.error)}`);
+      return;
+    }
+
+    console.log("CompleteSignIn: Sign-in successful, awaiting redirect");
+  } catch (error) {
+    console.error(
+      "CompleteSignIn: Unexpected error during sign-in process:",
+      error
+    );
+    if (error instanceof Error) {
+      console.error("CompleteSignIn: Error details:", {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      });
+    }
+    redirect("/auth/error?error=SignInFailed");
+    return;
+  }
+
+  console.log(
+    "CompleteSignIn: Rendering loading state while redirect processes"
+  );
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50">
@@ -51,3 +88,4 @@ export default function CompleteSignIn() {
     </div>
   );
 }
+

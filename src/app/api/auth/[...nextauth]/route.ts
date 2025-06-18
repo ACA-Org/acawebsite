@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { fetchIMISUserProfile } from "../imis/utils";
+import { fetchIMISUserProfile } from "../../imis/utils";
 
 declare module "next-auth" {
   interface Session {
@@ -41,11 +41,23 @@ const authOptions: AuthOptions = {
         token: { label: "Token", type: "text" },
       },
       async authorize(credentials) {
+        console.log("[Auth] Starting authorization process");
         try {
           const token = credentials?.token;
-          if (!token) return null;
+          console.log("[Auth] Token present:", !!token);
 
+          if (!token) {
+            console.log("[Auth] No token provided, authorization failed");
+            return null;
+          }
+
+          console.log("[Auth] Fetching IMIS user profile");
           const user = await fetchIMISUserProfile(token);
+          console.log("[Auth] Successfully fetched user profile:", {
+            userId: user.id,
+            hasEmail: !!user.email,
+            hasName: !!user.full_name,
+          });
 
           return {
             id: user.id,
@@ -54,7 +66,14 @@ const authOptions: AuthOptions = {
             accessToken: token,
           };
         } catch (error) {
-          console.error("IMIS authorize error:", error);
+          console.error("[Auth] IMIS authorize error:", error);
+          if (error instanceof Error) {
+            console.error("[Auth] Error details:", {
+              name: error.name,
+              message: error.message,
+              stack: error.stack,
+            });
+          }
           return null;
         }
       },

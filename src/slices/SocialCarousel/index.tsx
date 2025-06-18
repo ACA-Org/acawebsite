@@ -73,6 +73,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
 
             <div className="flex gap-2">
               <Link
+                prefetch={false}
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.facebook.com/AmericanCorrectionalAssociation"
@@ -80,6 +81,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 <Facebook className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
               <Link
+                prefetch={false}
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.instagram.com/amercorrectionalassoc"
@@ -87,6 +89,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 <Instagram className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
               <Link
+                prefetch={false}
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.linkedin.com/company/american-correctional-association/mycompany/?viewAsMember=true"
@@ -94,6 +97,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 <LinkedIn className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
               <Link
+                prefetch={false}
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://twitter.com/ACAinfo"
