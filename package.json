@@ -6,6 +6,7 @@
     "build": "next build",
     "build-storybook": "storybook build",
     "dev": "next dev --turbopack",
+    "https": "next dev --turbopack --experimental-https",
     "format": "prettier --write .",
     "lint": "next lint",
     "preinstall": "npx only-allow pnpm",

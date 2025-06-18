@@ -3,11 +3,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { getTokenFromRefresh } from "./utils"; // you'll write this
 
 export async function POST(request: NextRequest) {
-  console.log("[IMIS Auth] Received POST request");
+  console.log("[IMIS Auth] Received POST request", {
+    headers: Object.fromEntries(request.headers),
+    url: request.url,
+    method: request.method,
+    body: await request.text(),
+  });
 
   try {
     console.log("[IMIS Auth] Parsing request body...");
     const data = await request.json();
+    console.log("[IMIS Auth] Parsed request data:", {
+      ...data,
+      refresh_token: data.refresh_token ? "[REDACTED]" : undefined,
+    });
     const { refresh_token } = data;
 
     if (!refresh_token) {
