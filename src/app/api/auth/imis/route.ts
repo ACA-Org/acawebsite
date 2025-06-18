@@ -7,7 +7,6 @@ export async function POST(request: NextRequest) {
     headers: Object.fromEntries(request.headers),
     url: request.url,
     method: request.method,
-    body: await request.text(),
   });
 
   try {
