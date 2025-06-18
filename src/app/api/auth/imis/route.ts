@@ -12,12 +12,12 @@ export async function POST(request: NextRequest) {
 
   try {
     console.log("[IMIS Auth] Parsing request body...");
-    const data = await request.json();
+    const body = await request.text();
+    const params = new URLSearchParams(body);
+    const refresh_token = params.get("refresh_token");
     console.log("[IMIS Auth] Parsed request data:", {
-      ...data,
-      refresh_token: data.refresh_token ? "[REDACTED]" : undefined,
+      refresh_token: refresh_token ? "[REDACTED]" : undefined,
     });
-    const { refresh_token } = data;
 
     if (!refresh_token) {
       console.warn("[IMIS Auth] Missing refresh_token in request body");
