@@ -42,6 +42,7 @@ const Header = ({
         <TransitionLink
           href="/"
           className="flex items-start justify-start text-left transition-all duration-300"
+          aria-label="American Correctional Association - Return to Homepage"
         >
           <ACALogoColor
             className={cn(

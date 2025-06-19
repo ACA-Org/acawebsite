@@ -77,6 +77,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.facebook.com/AmericanCorrectionalAssociation"
+                aria-label="Visit ACA on Facebook"
               >
                 <Facebook className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
@@ -85,6 +86,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.instagram.com/amercorrectionalassoc"
+                aria-label="Visit ACA on Instagram"
               >
                 <Instagram className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
@@ -93,6 +95,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://www.linkedin.com/company/american-correctional-association/mycompany/?viewAsMember=true"
+                aria-label="Visit ACA on LinkedIn"
               >
                 <LinkedIn className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>
@@ -101,6 +104,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                 rel="noreferrer noopener"
                 target="_blank"
                 href="https://twitter.com/ACAinfo"
+                aria-label="Visit ACA on X (formerly Twitter)"
               >
                 <X className="hover:fill-gold-100 h-7 w-auto cursor-pointer fill-blue-300 transition-colors" />
               </Link>

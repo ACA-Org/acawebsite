@@ -1,0 +1,11 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow sensitive routes
+Disallow: /api/
+Disallow: /auth/
+Disallow: /slice-simulator/
+
+# Sitemap location
+Sitemap: https://www.aca.org/sitemap.xml
