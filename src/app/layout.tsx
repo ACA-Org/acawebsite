@@ -15,6 +15,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { userAtom } from "./atoms/userAtom";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -59,19 +60,20 @@ export default async function RootLayout({
     }
   };
 
-  const getUserSession = async () => {
-    const userSession = await getServerSession(authOptions);
-    session = userSession;
+  const fetchUserSession = async () => {
+    try {
+      session = await getServerSession(authOptions);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   await Promise.allSettled([
     fetchFooterInfo(),
     fetchHeaderInfo(),
     fetchPagesInfo(),
-    getUserSession(),
+    fetchUserSession(),
   ]);
-
-  console.log(session);
 
   return (
     <ViewTransitions>
@@ -79,7 +81,12 @@ export default async function RootLayout({
         <body
           className={`${gillSans.variable} [font-family:GillSans] antialiased`}
         >
-          <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pagesInfo || []]]}>
+          <HydrationBoundary
+            hydrateAtoms={[
+              [pageInfoAtom, pagesInfo || []],
+              [userAtom, (session as any as Session)?.user],
+            ]}
+          >
             <CacheProvider>
               {headerInfo && <Header data={headerInfo} />}
             </CacheProvider>

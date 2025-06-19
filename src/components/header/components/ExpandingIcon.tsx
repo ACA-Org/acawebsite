@@ -3,7 +3,9 @@ import { LucideIcon } from "lucide-react";
 import { buttonVariants, LinkButton, Button } from "@/components/ui/button";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { userAtom } from "@/app/atoms/userAtom";
+import { useAtomValue } from "jotai";
 
 type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
@@ -24,10 +26,10 @@ export function ExpandingIcon({
   setActiveItem,
   ...props
 }: ExpandingIconButtonProps) {
-  const session = useSession();
+  const user = useAtomValue(userAtom);
   const isActive = menuId === activeItem;
 
-  if (menuId === "sign_in" && session?.data?.user?.id) {
+  if (menuId === "sign_in" && user?.id) {
     return (
       <div className="relative">
         <Button
