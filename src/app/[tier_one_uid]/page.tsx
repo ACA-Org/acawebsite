@@ -7,7 +7,7 @@ import {
   getTierOnePageData,
   TierOnePageData,
 } from "../actions/getTierPageData";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import { components } from "@/slices";
 import RichText from "../components/RichText";
@@ -20,7 +20,7 @@ import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 import { cn } from "@/lib/utils";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { serverGetImisLoginUrl } from "../actions/redirect";
+import Unauthenticated from "../components/Unauthenticated";
 
 type Params = { tier_one_uid: string };
 
@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
-      return redirect(await serverGetImisLoginUrl());
+      return <Unauthenticated />;
     }
   }
 

@@ -1,13 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { useImisLoginUrl } from "@/lib/redirect";
+import { Button } from "@/components/ui/button";
+import { useSignIn } from "@/app/hooks/useSignIn";
 
 export default function AuthError() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
-  const imisLoginUrl = useImisLoginUrl();
+  const { signIn } = useSignIn();
 
   const getErrorMessage = (errorCode: string | null) => {
     switch (errorCode) {
@@ -33,13 +33,12 @@ export default function AuthError() {
             <p className="text-center text-red-600">{getErrorMessage(error)}</p>
           </div>
           <div className="mt-8 flex justify-center">
-            <Link
-              prefetch={false}
-              href={imisLoginUrl}
+            <Button
+              onClick={() => signIn()}
               className="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
             >
               Try Again
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

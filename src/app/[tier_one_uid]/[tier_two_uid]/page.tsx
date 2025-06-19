@@ -3,7 +3,7 @@
 import { RightMenu } from "@/components/right-menu";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SliceZone } from "@prismicio/react";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import {
   getTierTwoPageData,
@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import { BackButton } from "@/components/back-button";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-import { serverGetImisLoginUrl } from "@/app/actions/redirect";
+import Unauthenticated from "@/app/components/Unauthenticated";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
 
@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email) {
-      return redirect(await serverGetImisLoginUrl());
+      return <Unauthenticated />;
     }
   }
 

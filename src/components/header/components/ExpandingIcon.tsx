@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react";
 import { userAtom } from "@/app/atoms/userAtom";
 import { useAtomValue } from "jotai";
-import { useImisLoginUrl } from "@/lib/redirect";
+import { useSignIn } from "@/app/hooks/useSignIn";
 
 type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
@@ -29,40 +29,71 @@ export function ExpandingIcon({
 }: ExpandingIconButtonProps) {
   const user = useAtomValue(userAtom);
   const isActive = menuId === activeItem;
-  const imisLoginUrl = useImisLoginUrl();
+  const { signIn } = useSignIn();
 
-  if (menuId === "sign_in" && user?.id) {
-    return (
-      <div className="relative">
-        <Button
-          className={cn(
-            "relative z-10 flex h-8 items-center overflow-hidden rounded-full bg-transparent px-0 transition-all duration-300 ease-in-out",
-            isActive && "bg-blue-300 px-2 hover:bg-blue-300"
-          )}
-          onClick={() => signOut()}
-          onMouseEnter={() => setActiveItem(menuId)}
-        >
-          <Icon
+  if (menuId === "sign_in") {
+    if (user?.id) {
+      return (
+        <div className="relative">
+          <Button
             className={cn(
-              "aspect-square h-5 stroke-gray-300 transition-colors duration-300 ease-in-out",
-              isActive && "stroke-white"
+              "relative z-10 flex h-8 items-center overflow-hidden rounded-full bg-transparent px-0 transition-all duration-300 ease-in-out",
+              isActive && "bg-blue-300 px-2 hover:bg-blue-300"
             )}
-          />
-          <span
-            className={cn(
-              "origin-right overflow-hidden text-sm font-medium whitespace-nowrap text-white transition-all duration-500 ease-in-out",
-              isActive
-                ? "ml-1 max-w-[150px] scale-100 opacity-100"
-                : "ml-0 max-w-0 scale-95 opacity-0"
-            )}
+            onClick={() => signOut()}
+            onMouseEnter={() => setActiveItem(menuId)}
           >
-            Sign Out
-          </span>
-        </Button>
-      </div>
-    );
+            <Icon
+              className={cn(
+                "aspect-square h-5 stroke-gray-300 transition-colors duration-300 ease-in-out",
+                isActive && "stroke-white"
+              )}
+            />
+            <span
+              className={cn(
+                "origin-right overflow-hidden text-sm font-medium whitespace-nowrap text-white transition-all duration-500 ease-in-out",
+                isActive
+                  ? "ml-1 max-w-[150px] scale-100 opacity-100"
+                  : "ml-0 max-w-0 scale-95 opacity-0"
+              )}
+            >
+              Sign Out
+            </span>
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="relative">
+          <Button
+            className={cn(
+              "relative z-10 flex h-8 items-center overflow-hidden rounded-full bg-transparent px-0 transition-all duration-300 ease-in-out",
+              isActive && "bg-blue-300 px-2 hover:bg-blue-300"
+            )}
+            onClick={() => signIn()}
+            onMouseEnter={() => setActiveItem(menuId)}
+          >
+            <Icon
+              className={cn(
+                "aspect-square h-5 stroke-gray-300 transition-colors duration-300 ease-in-out",
+                isActive && "stroke-white"
+              )}
+            />
+            <span
+              className={cn(
+                "origin-right overflow-hidden text-sm font-medium whitespace-nowrap text-white transition-all duration-500 ease-in-out",
+                isActive
+                  ? "ml-1 max-w-[150px] scale-100 opacity-100"
+                  : "ml-0 max-w-0 scale-95 opacity-0"
+              )}
+            >
+              Sign Out
+            </span>
+          </Button>
+        </div>
+      );
+    }
   }
-
   return (
     <div className="relative">
       <LinkButton
@@ -72,7 +103,7 @@ export function ExpandingIcon({
         )}
         onMouseEnter={() => setActiveItem(menuId)}
         {...props}
-        href={menuId === "sign_in" ? imisLoginUrl : props.href || ""}
+        href={props.href || ""}
       >
         <Icon
           className={cn(

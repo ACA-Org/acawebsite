@@ -2,12 +2,27 @@
 
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CompleteSignIn() {
   const searchParams = useSearchParams();
+  const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    // Get the redirect URL from cookie
+    const cookies = document.cookie.split(";");
+    const redirectCookie = cookies.find((cookie) =>
+      cookie.trim().startsWith("redirectUrl=")
+    );
+    let savedRedirectUrl = null;
+
+    if (redirectCookie) {
+      savedRedirectUrl = decodeURIComponent(redirectCookie.split("=")[1]);
+      // Clear the cookie
+      document.cookie = "redirectUrl=;max-age=0;path=/";
+      setRedirectUrl(savedRedirectUrl);
+    }
+
     (async () => {
       let token;
       let userName;
@@ -34,7 +49,7 @@ export default function CompleteSignIn() {
           token,
           userName: userName || undefined,
           redirect: true,
-          callbackUrl: "/", // or wherever you want to redirect after successful login
+          callbackUrl: savedRedirectUrl || "/", // Use saved URL or default to home
         });
 
         if (result?.error) {
@@ -74,6 +89,11 @@ export default function CompleteSignIn() {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Completing sign in...
           </h2>
+          {redirectUrl && (
+            <p className="mt-2 text-center text-sm text-gray-600">
+              You will be redirected to: {redirectUrl}
+            </p>
+          )}
           <div className="mt-8 flex justify-center">
             <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-900"></div>
           </div>
