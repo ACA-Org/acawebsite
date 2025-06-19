@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 export default function CompleteSignIn() {
   const searchParams = useSearchParams();
-  console.log("CompleteSignIn: Starting sign-in completion process");
 
   useEffect(() => {
     (async () => {
@@ -15,9 +14,6 @@ export default function CompleteSignIn() {
       try {
         token = searchParams.get("token");
         userName = searchParams.get("userName");
-        console.log(
-          "CompleteSignIn: Successfully extracted token and userName from search params"
-        );
       } catch (error) {
         console.error(
           "CompleteSignIn: Error extracting token from search params:",
@@ -33,13 +29,7 @@ export default function CompleteSignIn() {
         return;
       }
 
-      console.log("CompleteSignIn: Attempting to sign in with iMIS provider");
-
       try {
-        console.log(
-          "CompleteSignIn: Initiating sign-in with token length:",
-          token.length
-        );
         const result = await signIn("imis", {
           token,
           userName: userName || undefined,
@@ -59,8 +49,6 @@ export default function CompleteSignIn() {
           window.location.href = `/auth/error?error=${encodeURIComponent(result.error)}`;
           return;
         }
-
-        console.log("CompleteSignIn: Sign-in successful, awaiting redirect");
       } catch (error) {
         console.error(
           "CompleteSignIn: Unexpected error during sign-in process:",
@@ -78,10 +66,6 @@ export default function CompleteSignIn() {
       }
     })();
   }, [searchParams]);
-
-  console.log(
-    "CompleteSignIn: Rendering loading state while redirect processes"
-  );
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50">

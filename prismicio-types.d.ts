@@ -1112,6 +1112,18 @@ interface TierOnePageDocumentData {
   hidden: prismic.BooleanField;
 
   /**
+   * Requires Authentication field in *TierOnePage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierOnePage.requiresAuth
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  requiresAuth: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *TierOnePage*
    *
    * - **Field Type**: Slice Zone

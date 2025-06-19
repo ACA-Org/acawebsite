@@ -12,31 +12,19 @@ export const authOptions: AuthOptions = {
         userName: { label: "UserName", type: "text" },
       },
       async authorize(credentials) {
-        console.log("[Auth] Starting authorization process");
         try {
           const token = credentials?.token;
           const userName = credentials?.userName;
-          console.log("[Auth] Token present:", !!token);
-          console.log("[Auth] UserName present:", !!userName);
 
           if (!token) {
-            console.log("[Auth] No token provided, authorization failed");
             return null;
           }
 
           if (!userName) {
-            console.log("[Auth] No userName provided, authorization failed");
             return null;
           }
 
-          console.log("[Auth] Fetching IMIS user profile");
           const user = await fetchIMISUserProfile(token, userName);
-          console.log("[Auth] Successfully fetched user profile:", {
-            userId: user.Items?.$values[0]?.Party?.PartyId,
-            hasEmail: !!user.Items?.$values[0]?.Party?.Email,
-            hasName: !!user.Items?.$values[0]?.Party?.Name,
-            userName: userName,
-          });
 
           return {
             id: user.Items?.$values[0]?.Party?.PartyId,
@@ -85,3 +73,4 @@ export const authOptions: AuthOptions = {
   },
   debug: process.env.NODE_ENV === "development",
 };
+

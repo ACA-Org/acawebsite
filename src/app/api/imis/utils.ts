@@ -65,14 +65,11 @@ export interface Status {
 export async function getTokenFromRefresh(
   refresh_token: string
 ): Promise<ImisTokenResponse> {
-  console.log("[getTokenFromRefresh] Starting token refresh...");
-
   if (!process.env.IMIS_CLIENT_ID || !process.env.IMIS_CLIENT_SECRET) {
     console.error("[getTokenFromRefresh] Missing environment variables");
     throw new Error("Missing IMIS client credentials in environment variables");
   }
 
-  console.log("[getTokenFromRefresh] Attempting to fetch new token...");
   try {
     const res = await fetch("https://aca.org/token", {
       method: "POST",
@@ -98,10 +95,6 @@ export async function getTokenFromRefresh(
     }
 
     const result = (await res.json()) as ImisTokenResponse;
-    console.log("[getTokenFromRefresh] Successfully refreshed token", {
-      userName: result.userName,
-      expires: result[".expires"],
-    });
     return result;
   } catch (error) {
     console.error("[getTokenFromRefresh] Unexpected error:", error);
