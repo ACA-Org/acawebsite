@@ -13,6 +13,8 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
+import { getServerSession, Session } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +29,7 @@ export default async function RootLayout({
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
   let pagesInfo: PageData[] | null = null;
+  let session: Session | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -56,11 +59,19 @@ export default async function RootLayout({
     }
   };
 
+  const getUserSession = async () => {
+    const userSession = await getServerSession(authOptions);
+    session = userSession;
+  };
+
   await Promise.allSettled([
     fetchFooterInfo(),
     fetchHeaderInfo(),
     fetchPagesInfo(),
+    getUserSession(),
   ]);
+
+  console.log(session);
 
   return (
     <ViewTransitions>
