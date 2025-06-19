@@ -114,6 +114,8 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  console.log(revalidated);
+
   return NextResponse.json({
     revalidated: true,
     now: Date.now(),
