@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { revalidateTag } from "next/cache";
 import { PrismicWebhookPayload } from "./types";
 import { createClient } from "@/prismicio";
+import { getParentPageUids } from "@/app/actions/getParentPageUids";
 
 type DirectRevalidatePayload = {
   tags: string[];
@@ -45,12 +46,32 @@ export async function POST(req: NextRequest) {
   if (result.total_results_size > 0) {
     const { results } = result;
 
-    results.forEach((i) => {
+    for (const i of results) {
       switch (i.type) {
-        case "tierOnePage":
         case "tierTwoPage":
         case "tierThreePage":
-        case "tierFourPage":
+        case "tierFourPage": {
+          // Revalidate the current page
+          revalidateTag(i.uid);
+          revalidated.push({
+            type: i.type,
+            uid: i.uid,
+            revalidatedAt: new Date().toISOString(),
+          });
+
+          // Get and revalidate all parent pages
+          const parentUids = await getParentPageUids(i.uid, i.type);
+          for (const parentUid of parentUids) {
+            revalidateTag(parentUid);
+            revalidated.push({
+              type: "parent",
+              uid: parentUid,
+              revalidatedAt: new Date().toISOString(),
+            });
+          }
+          break;
+        }
+        case "tierOnePage":
           revalidateTag(i.uid);
           revalidated.push({
             type: i.type,
@@ -88,10 +109,9 @@ export async function POST(req: NextRequest) {
           });
           break;
         default:
-          // Ignore other types
           return;
       }
-    });
+    }
   }
 
   return NextResponse.json({
