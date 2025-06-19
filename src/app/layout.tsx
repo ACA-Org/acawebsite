@@ -14,7 +14,7 @@ import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
 import { getServerSession, Session } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Create Next App",
