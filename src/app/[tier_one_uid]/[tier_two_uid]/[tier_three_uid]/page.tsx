@@ -24,6 +24,7 @@ import { RightMenu } from "@/components/right-menu";
 import { BackButton } from "@/components/back-button";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { serverGetImisLoginUrl } from "@/app/actions/redirect";
 
 type Params = {
   tier_one_uid: string;
@@ -34,7 +35,6 @@ type Params = {
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_three_uid: uid_3 } = await params;
   let rightMenuData: RightMenuData | null = null;
-  const session = await getServerSession(authOptions);
 
   let pageData: TierThreePageData = null;
 
@@ -54,8 +54,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
   } = pageData;
 
-  if (requiresAuth && !session?.user?.email) {
-    return redirect("/auth/signin");
+  if (requiresAuth) {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) {
+      return redirect(await serverGetImisLoginUrl());
+    }
   }
 
   try {

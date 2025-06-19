@@ -24,12 +24,12 @@ import { cn } from "@/lib/utils";
 import { BackButton } from "@/components/back-button";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { serverGetImisLoginUrl } from "@/app/actions/redirect";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_two_uid: uid_2 } = await params;
-  const session = await getServerSession(authOptions);
 
   let rightMenuData: RightMenuData | null = null;
 
@@ -51,8 +51,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
   } = pageData;
 
-  if (requiresAuth && !session?.user?.email) {
-    return redirect("/auth/signin");
+  if (requiresAuth) {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) {
+      return redirect(await serverGetImisLoginUrl());
+    }
   }
 
   try {

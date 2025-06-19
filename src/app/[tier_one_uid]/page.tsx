@@ -26,7 +26,6 @@ type Params = { tier_one_uid: string };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_one_uid } = await params;
-  const session = await getServerSession(authOptions);
 
   let rightMenuData: RightMenuData | null = null;
   let pageData: TierOnePageData = null;
@@ -50,8 +49,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     },
   } = pageData;
 
-  if (requiresAuth && !session?.user?.email) {
-    return redirect(await serverGetImisLoginUrl());
+  if (requiresAuth) {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) {
+      return redirect(await serverGetImisLoginUrl());
+    }
   }
 
   try {
