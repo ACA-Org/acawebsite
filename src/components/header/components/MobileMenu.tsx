@@ -16,6 +16,7 @@ import { UserIcon } from "@/icons/UserIcon";
 import { useAtomValue } from "jotai";
 import { userAtom } from "@/app/atoms/userAtom";
 import { signOut } from "next-auth/react";
+import { useSignIn } from "@/app/hooks/useSignIn";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -43,13 +44,14 @@ const quickLinks = [
     href: "/marketplace",
     icon: ShoppingCart,
   },
-  { label: "Sign In", value: "sign_in", href: "/auth/sigin", icon: UserIcon },
+  { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
 ];
 
 export function MobileMenu({ slices, isOpen, onClose }: MobileMenuProps) {
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
   const user = useAtomValue(userAtom);
+  const { signIn } = useSignIn();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -162,14 +164,24 @@ export function MobileMenu({ slices, isOpen, onClose }: MobileMenuProps) {
         <div className="border-t border-gray-100/50 bg-gray-50/50 px-6 py-4">
           <div className="flex flex-col space-y-3">
             {quickLinks.map((item) =>
-              item.value === "sign_in" && user?.id ? (
-                <button
-                  className="w-fit cursor-pointer text-base text-gray-700 transition-colors hover:text-blue-500"
-                  key={item.label}
-                  onClick={() => signOut()}
-                >
-                  Sign Out
-                </button>
+              item.value === "sign_in" ? (
+                user?.id ? (
+                  <button
+                    className="w-fit cursor-pointer text-base text-gray-700 transition-colors hover:text-blue-500"
+                    key={item.label}
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </button>
+                ) : (
+                  <button
+                    className="w-fit cursor-pointer text-base text-gray-700 transition-colors hover:text-blue-500"
+                    key={item.label}
+                    onClick={() => signIn()}
+                  >
+                    Sign In
+                  </button>
+                )
               ) : (
                 <TransitionLink
                   key={item.label}
