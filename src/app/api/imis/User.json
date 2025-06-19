@@ -1,0 +1,45 @@
+{
+    "$type": "Asi.Soa.Core.DataContracts.PagedResult`1[[Asi.Soa.Membership.DataContracts.UserData, Asi.Contracts]], Asi.Contracts",
+    "Items": {
+        "$type": "System.Collections.Generic.List`1[[Asi.Soa.Membership.DataContracts.UserData, Asi.Contracts]], mscorlib",
+        "$values": [
+            {
+                "$type": "Asi.Soa.Membership.DataContracts.UserData, Asi.Contracts",
+                "EffectiveDate": "2025-03-03T00:00:00",
+                "ExpirationDate": "2050-06-18T00:00:00",
+                "IsDisable": false,
+                "Roles": null,
+                "IsAnonymous": false,
+                "UserId": "10825304",
+                "UserName": "AUSTIN@AMELEN.DEV",
+                "Party": {
+                    "$type": "Asi.Soa.Membership.DataContracts.PartySummaryData, Asi.Contracts",
+                    "CityName": "",
+                    "CountryName": "",
+                    "CountrySubEntityName": "",
+                    "Email": "Austin@amelen.dev",
+                    "Phone": "",
+                    "PartyId": "10825304",
+                    "Id": "10825304",
+                    "UniformId": "bb9eca02-bea7-4aff-a431-15e0226bdffd",
+                    "Status": {
+                        "$type": "Asi.Soa.Membership.DataContracts.PartyStatusData, Asi.Contracts",
+                        "PartyStatusId": "A",
+                        "Name": "Active",
+                        "Description": "Active"
+                    },
+                    "Name": "Austin Melendez",
+                    "Sort": "MELENDEZ, AUSTIN",
+                    "IsMarkedForDelete": false
+                }
+            }
+        ]
+    },
+    "Offset": 0,
+    "Limit": 100,
+    "Count": 1,
+    "TotalCount": 1,
+    "NextPageLink": null,
+    "HasNext": false,
+    "NextOffset": 0
+}

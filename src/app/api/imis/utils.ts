@@ -10,11 +10,56 @@ export interface ImisTokenResponse {
   TenantId: string;
 }
 
-export interface ImisUserProfile {
-  id: string;
-  full_name: string;
-  email: string;
-  [key: string]: any;
+export interface ImisUserResponse {
+  $type: string;
+  Items: Items;
+  Offset: number;
+  Limit: number;
+  Count: number;
+  TotalCount: number;
+  NextPageLink: null;
+  HasNext: boolean;
+  NextOffset: number;
+}
+
+export interface Items {
+  $type: string;
+  $values: Value[];
+}
+
+export interface Value {
+  $type: string;
+  EffectiveDate: Date;
+  ExpirationDate: Date;
+  IsDisable: boolean;
+  Roles: null;
+  IsAnonymous: boolean;
+  UserId: string;
+  UserName: string;
+  Party: Party;
+}
+
+export interface Party {
+  $type: string;
+  CityName: string;
+  CountryName: string;
+  CountrySubEntityName: string;
+  Email: string;
+  Phone: string;
+  PartyId: string;
+  Id: string;
+  UniformId: string;
+  Status: Status;
+  Name: string;
+  Sort: string;
+  IsMarkedForDelete: boolean;
+}
+
+export interface Status {
+  $type: string;
+  PartyStatusId: string;
+  Name: string;
+  Description: string;
 }
 
 export async function getTokenFromRefresh(
@@ -65,13 +110,17 @@ export async function getTokenFromRefresh(
 }
 
 export async function fetchIMISUserProfile(
-  access_token: string
-): Promise<ImisUserProfile> {
-  const res = await fetch("https://aca.org/api/User", {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  });
+  access_token: string,
+  userName: string
+): Promise<ImisUserResponse> {
+  const res = await fetch(
+    `https://aca.org/api/User?UserName=${encodeURIComponent(userName)}`,
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
 
   if (!res.ok) {
     const error = await res.text();

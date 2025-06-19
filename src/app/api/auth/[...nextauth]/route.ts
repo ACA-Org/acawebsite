@@ -57,19 +57,24 @@ const authOptions: AuthOptions = {
             return null;
           }
 
+          if (!userName) {
+            console.log("[Auth] No userName provided, authorization failed");
+            return null;
+          }
+
           console.log("[Auth] Fetching IMIS user profile");
-          const user = await fetchIMISUserProfile(token);
+          const user = await fetchIMISUserProfile(token, userName);
           console.log("[Auth] Successfully fetched user profile:", {
-            userId: user.id,
-            hasEmail: !!user.email,
-            hasName: !!user.full_name,
+            userId: user.Items?.$values[0]?.Party?.PartyId,
+            hasEmail: !!user.Items?.$values[0]?.Party?.Email,
+            hasName: !!user.Items?.$values[0]?.Party?.Name,
             userName: userName,
           });
 
           return {
-            id: user.id,
-            name: user.full_name,
-            email: user.email,
+            id: user.Items?.$values[0]?.Party?.PartyId,
+            name: user.Items?.$values[0]?.Party?.Name,
+            email: user.Items?.$values[0]?.Party?.Email,
             accessToken: token,
             userName: userName,
           };
