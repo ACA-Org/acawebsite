@@ -3,7 +3,7 @@
 import { RightMenu } from "@/components/right-menu";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SliceZone } from "@prismicio/react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import {
   getTierTwoPageData,
@@ -22,11 +22,14 @@ import {
 } from "@/app/actions/getRightMenuData";
 import { cn } from "@/lib/utils";
 import { BackButton } from "@/components/back-button";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_two_uid: uid_2 } = await params;
+  const session = await getServerSession(authOptions);
 
   let rightMenuData: RightMenuData | null = null;
 
@@ -36,12 +39,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   if (!pageData) return notFound();
 
-  try {
-    rightMenuData = await getRightMenuData(uid_2, "two");
-  } catch {
-    console.error("error!");
-  }
-
   const {
     data: {
       pageTextContent: pageContent,
@@ -50,8 +47,19 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       pageSubTitle: subTitle,
       slices,
       slices2: postArticleSlices,
+      requiresAuth,
     },
   } = pageData;
+
+  if (requiresAuth && !session?.user?.email) {
+    return redirect("/auth/signin");
+  }
+
+  try {
+    rightMenuData = await getRightMenuData(uid_2, "two");
+  } catch {
+    console.error("error!");
+  }
 
   return (
     <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-5 md:mb-28 md:px-8">

@@ -960,6 +960,18 @@ interface TierFourPageDocumentData {
   hidden: prismic.BooleanField;
 
   /**
+   * Requires Authentication  field in *TierFourPage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierFourPage.requiresAuth
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  requiresAuth: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *TierFourPage*
    *
    * - **Field Type**: Slice Zone
@@ -1275,6 +1287,18 @@ interface TierThreePageDocumentData {
   pageContent: prismic.RichTextField;
 
   /**
+   * Requires Authentication  field in *TierThreePage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierThreePage.requiresAuth
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  requiresAuth: prismic.BooleanField;
+
+  /**
    * Hide from Right Menu? field in *TierThreePage*
    *
    * - **Field Type**: Boolean
@@ -1448,6 +1472,18 @@ interface TierTwoPageDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   pageTextContent: prismic.RichTextField;
+
+  /**
+   * Requires Authentication  field in *TierTwoPage*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: tierTwoPage.requiresAuth
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  requiresAuth: prismic.BooleanField;
 
   /**
    * Hide from Right Menu? field in *TierTwoPage*

@@ -77,7 +77,6 @@ const Header = ({
         slices={data.slices}
         isOpen={isMobileOpen}
         onClose={() => setIsMobileOpen(false)}
-        isCollapsed={isCollapsed}
       />
     </header>
   );

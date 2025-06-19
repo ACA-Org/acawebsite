@@ -13,12 +13,14 @@ import { MailIcon } from "@/icons/MailIcon";
 import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
 import { UserIcon } from "@/icons/UserIcon";
+import { useAtomValue } from "jotai";
+import { userAtom } from "@/app/atoms/userAtom";
+import { signOut } from "next-auth/react";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
   isOpen: boolean;
   onClose: () => void;
-  isCollapsed: boolean;
 }
 
 const quickLinks = [
@@ -41,17 +43,13 @@ const quickLinks = [
     href: "/marketplace",
     icon: ShoppingCart,
   },
-  { label: "Sign In", value: "sign_in", href: "/sign-in", icon: UserIcon },
+  { label: "Sign In", value: "sign_in", href: "/auth/sigin", icon: UserIcon },
 ];
 
-export function MobileMenu({
-  slices,
-  isOpen,
-  onClose,
-  isCollapsed,
-}: MobileMenuProps) {
+export function MobileMenu({ slices, isOpen, onClose }: MobileMenuProps) {
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
+  const user = useAtomValue(userAtom);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -90,24 +88,16 @@ export function MobileMenu({
   return (
     <>
       {isOpen && (
-        <div
-          className="fixed inset-0 z-[98] bg-black/50 transition-opacity duration-300"
-          style={{
-            top: isCollapsed ? "59px" : "76px",
-          }}
-        />
+        <div className="fixed inset-0 top-[56px] z-[98] bg-black/50 transition-opacity duration-300" />
       )}
       <div
         ref={menuRef}
         className={cn(
-          "border-top fixed right-0 left-0 z-[99] border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
+          "border-top fixed top-[56px] right-0 left-0 z-[99] border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
           isOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
         )}
-        style={{
-          top: isCollapsed ? "59px" : "76px",
-        }}
       >
         <Accordion
           type="single"
@@ -171,19 +161,29 @@ export function MobileMenu({
         {/* Quick Links Section */}
         <div className="border-t border-gray-100/50 bg-gray-50/50 px-6 py-4">
           <div className="flex flex-col space-y-3">
-            {quickLinks.map((item) => (
-              <TransitionLink
-                key={item.label}
-                href={item.href}
-                className="text-base text-gray-700 transition-colors hover:text-blue-500"
-                onClick={() => {
-                  setOpen("");
-                  onClose();
-                }}
-              >
-                {item.label}
-              </TransitionLink>
-            ))}
+            {quickLinks.map((item) =>
+              item.value === "sign_in" && user?.id ? (
+                <button
+                  className="w-fit cursor-pointer text-base text-gray-700 transition-colors hover:text-blue-500"
+                  key={item.label}
+                  onClick={() => signOut()}
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <TransitionLink
+                  key={item.label}
+                  href={item.href}
+                  className="text-base text-gray-700 transition-colors hover:text-blue-500"
+                  onClick={() => {
+                    setOpen("");
+                    onClose();
+                  }}
+                >
+                  {item.label}
+                </TransitionLink>
+              )
+            )}
           </div>
         </div>
       </div>

@@ -13,9 +13,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
-import { getServerSession, Session } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { userAtom } from "./atoms/userAtom";
+import SessionProvider from "./providers/SessionProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,7 +28,6 @@ export default async function RootLayout({
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
   let pagesInfo: PageData[] | null = null;
-  let session: Session | null = null;
 
   const fetchFooterInfo = async () => {
     try {
@@ -60,19 +57,10 @@ export default async function RootLayout({
     }
   };
 
-  const fetchUserSession = async () => {
-    try {
-      session = await getServerSession(authOptions);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   await Promise.allSettled([
     fetchFooterInfo(),
     fetchHeaderInfo(),
     fetchPagesInfo(),
-    fetchUserSession(),
   ]);
 
   return (
@@ -81,18 +69,15 @@ export default async function RootLayout({
         <body
           className={`${gillSans.variable} [font-family:GillSans] antialiased`}
         >
-          <HydrationBoundary
-            hydrateAtoms={[
-              [pageInfoAtom, pagesInfo || []],
-              [userAtom, (session as any as Session)?.user],
-            ]}
-          >
-            <CacheProvider>
-              {headerInfo && <Header data={headerInfo} />}
-            </CacheProvider>
-            <div className="mt-17">{children}</div>
-            {footerInfo && <Footer data={footerInfo} />}
-          </HydrationBoundary>
+          <SessionProvider>
+            <HydrationBoundary hydrateAtoms={[[pageInfoAtom, pagesInfo || []]]}>
+              <CacheProvider>
+                {headerInfo && <Header data={headerInfo} />}
+              </CacheProvider>
+              <div className="mt-17">{children}</div>
+              {footerInfo && <Footer data={footerInfo} />}
+            </HydrationBoundary>
+          </SessionProvider>
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />

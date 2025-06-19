@@ -7,7 +7,7 @@ import {
   getTierOnePageData,
   TierOnePageData,
 } from "../actions/getTierPageData";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { PrismicNextImage } from "@prismicio/next";
 import { components } from "@/slices";
 import RichText from "../components/RichText";
@@ -18,11 +18,14 @@ import { Suspense } from "react";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 import { cn } from "@/lib/utils";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
 type Params = { tier_one_uid: string };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_one_uid } = await params;
+  const session = await getServerSession(authOptions);
 
   let rightMenuData: RightMenuData | null = null;
   let pageData: TierOnePageData = null;
@@ -34,12 +37,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   if (!pageData) return notFound();
 
-  try {
-    rightMenuData = await getRightMenuData(tier_one_uid);
-  } catch (err) {
-    console.error(err);
-  }
-
   const {
     data: {
       pageTextContent: pageContent,
@@ -48,8 +45,19 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       pageSubTitle: subTitle,
       slices,
       slices2: postArticleSlices,
+      requiresAuth,
     },
   } = pageData;
+
+  if (requiresAuth && !session?.user?.email) {
+    return redirect("/auth/signin");
+  }
+
+  try {
+    rightMenuData = await getRightMenuData(tier_one_uid);
+  } catch (err) {
+    console.error(err);
+  }
 
   return (
     <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-5 md:mb-28 md:px-8">

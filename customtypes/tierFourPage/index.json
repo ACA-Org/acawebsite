@@ -18,9 +18,7 @@
           "label": "ParentPage",
           "select": "document",
           "repeat": false,
-          "customtypes": [
-            "tierThreePage"
-          ]
+          "customtypes": ["tierThreePage"]
         }
       },
       "pageTitle": {
@@ -43,10 +41,7 @@
           "label": "PageContent",
           "placeholder": "",
           "allowTargetBlank": true,
-          "labels": [
-            "Block Quote",
-            "Horizontal Rule"
-          ],
+          "labels": ["Block Quote", "Horizontal Rule"],
           "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
@@ -63,6 +58,15 @@
         "type": "Boolean",
         "config": {
           "label": "hidden",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
+      "requiresAuth": {
+        "type": "Boolean",
+        "config": {
+          "label": "Requires Authentication ",
           "placeholder_false": "false",
           "placeholder_true": "true",
           "default_value": false
