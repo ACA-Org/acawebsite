@@ -2,10 +2,12 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useImisLoginUrl } from "@/lib/redirect";
 
 export default function AuthError() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const imisLoginUrl = useImisLoginUrl();
 
   const getErrorMessage = (errorCode: string | null) => {
     switch (errorCode) {
@@ -33,7 +35,7 @@ export default function AuthError() {
           <div className="mt-8 flex justify-center">
             <Link
               prefetch={false}
-              href="/auth/signin"
+              href={imisLoginUrl}
               className="rounded-md bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
             >
               Try Again

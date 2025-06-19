@@ -20,6 +20,7 @@ import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
 import { cn } from "@/lib/utils";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
+import { serverGetImisLoginUrl } from "../actions/redirect";
 
 type Params = { tier_one_uid: string };
 
@@ -50,7 +51,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   } = pageData;
 
   if (requiresAuth && !session?.user?.email) {
-    return redirect("/auth/signin");
+    return redirect(await serverGetImisLoginUrl());
   }
 
   try {

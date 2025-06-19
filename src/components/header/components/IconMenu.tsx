@@ -5,9 +5,13 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
 import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
-import { useTransitionRouter as useRouter } from "next-view-transitions";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
+import { useImisLoginUrl } from "@/lib/redirect";
+import { useAtomValue } from "jotai";
+import { userAtom } from "@/app/atoms/userAtom";
+import { signOut } from "next-auth/react";
+import { TextLink } from "@/components/ui/button";
 
 const quickLinks = [
   {
@@ -29,14 +33,20 @@ const quickLinks = [
     href: "/marketplace",
     icon: ShoppingCart,
   },
-  { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
+  {
+    label: "Sign In",
+    value: "sign_in",
+    href: "",
+    icon: UserIcon,
+  },
 ];
 
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
-  const router = useRouter();
+  const imisLoginUrl = useImisLoginUrl();
+  const user = useAtomValue(userAtom);
 
   useEffect(() => {
     return () => {
@@ -79,19 +89,47 @@ export const IconMenu = () => {
 
         {isOpen && (
           <div className="absolute right-4 left-4 z-10 mt-2 overflow-clip rounded-md bg-white shadow-lg">
-            {quickLinks.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => {
-                  setIsOpen(false);
-                  router.push(item.href);
-                }}
-                className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
-              >
-                <item.icon className="h-auto w-4 stroke-blue-300" />
-                <span className="mt-[2px]">{item.label}</span>
-              </button>
-            ))}
+            {quickLinks.map((item) =>
+              item.value === "sign_in" ? (
+                user?.id ? (
+                  <button
+                    key={item.label}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
+                    onClick={() => {
+                      setIsOpen(false);
+                      signOut();
+                    }}
+                  >
+                    <UserIcon className="h-auto w-4 stroke-blue-300" />
+                    <span className="mt-[2px]">{item.label}</span>
+                  </button>
+                ) : (
+                  <TextLink
+                    key={item.label}
+                    href={imisLoginUrl}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    <UserIcon className="h-auto w-4 stroke-blue-300" />
+                    <span className="mt-[2px]">{item.label}</span>
+                  </TextLink>
+                )
+              ) : (
+                <TextLink
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
+                >
+                  <item.icon className="h-auto w-4 stroke-blue-300" />
+                  <span className="mt-[2px]">{item.label}</span>
+                </TextLink>
+              )
+            )}
           </div>
         )}
       </div>

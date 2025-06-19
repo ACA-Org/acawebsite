@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react";
 import { userAtom } from "@/app/atoms/userAtom";
 import { useAtomValue } from "jotai";
+import { useImisLoginUrl } from "@/lib/redirect";
 
 type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
@@ -28,6 +29,7 @@ export function ExpandingIcon({
 }: ExpandingIconButtonProps) {
   const user = useAtomValue(userAtom);
   const isActive = menuId === activeItem;
+  const imisLoginUrl = useImisLoginUrl();
 
   if (menuId === "sign_in" && user?.id) {
     return (
@@ -70,7 +72,7 @@ export function ExpandingIcon({
         )}
         onMouseEnter={() => setActiveItem(menuId)}
         {...props}
-        href={props.href || ""}
+        href={menuId === "sign_in" ? imisLoginUrl : props.href || ""}
       >
         <Icon
           className={cn(
