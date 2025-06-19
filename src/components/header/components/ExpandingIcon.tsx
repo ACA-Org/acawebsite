@@ -87,7 +87,7 @@ export function ExpandingIcon({
                   : "ml-0 max-w-0 scale-95 opacity-0"
               )}
             >
-              Sign Out
+              Sign In
             </span>
           </Button>
         </div>
