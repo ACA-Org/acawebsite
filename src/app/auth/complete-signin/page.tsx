@@ -9,7 +9,6 @@ export default function CompleteSignIn() {
   const [redirectUrl, setRedirectUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get the redirect URL from cookie
     const cookies = document.cookie.split(";");
     const redirectCookie = cookies.find((cookie) =>
       cookie.trim().startsWith("redirectUrl=")
@@ -18,7 +17,7 @@ export default function CompleteSignIn() {
 
     if (redirectCookie) {
       savedRedirectUrl = decodeURIComponent(redirectCookie.split("=")[1]);
-      // Clear the cookie
+
       document.cookie = "redirectUrl=;max-age=0;path=/";
       setRedirectUrl(savedRedirectUrl);
     }
@@ -83,20 +82,18 @@ export default function CompleteSignIn() {
   }, [searchParams]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md space-y-8 p-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Completing sign in...
-          </h2>
-          {redirectUrl && (
-            <p className="mt-2 text-center text-sm text-gray-600">
-              You will be redirected to: {redirectUrl}
-            </p>
-          )}
-          <div className="mt-8 flex justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-900"></div>
-          </div>
+    <div className="flex min-h-[50vh] flex-col items-center justify-center gap-8 px-4">
+      <div className="space-y-4 text-center">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Completing sign in...
+        </h2>
+        {redirectUrl && (
+          <p className="mt-2 text-center text-sm text-gray-600">
+            You will be redirected back to where you were
+          </p>
+        )}
+        <div className="mt-8 flex justify-center">
+          <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-gray-900"></div>
         </div>
       </div>
     </div>

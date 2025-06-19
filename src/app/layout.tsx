@@ -13,7 +13,6 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
-import SessionProvider from "./providers/SessionProvider";
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { userAtom } from "./atoms/userAtom";
@@ -108,20 +107,18 @@ export default async function RootLayout({
         <body
           className={`${gillSans.variable} [font-family:GillSans] antialiased`}
         >
-          <SessionProvider>
-            <HydrationBoundary
-              hydrateAtoms={[
-                [pageInfoAtom, pagesInfo || []],
-                [userAtom, userInfo],
-              ]}
-            >
-              <CacheProvider>
-                {headerInfo && <Header data={headerInfo} />}
-              </CacheProvider>
-              <div className="mt-17">{children}</div>
-              {footerInfo && <Footer data={footerInfo} />}
-            </HydrationBoundary>
-          </SessionProvider>
+          <HydrationBoundary
+            hydrateAtoms={[
+              [pageInfoAtom, pagesInfo || []],
+              [userAtom, userInfo],
+            ]}
+          >
+            <CacheProvider>
+              {headerInfo && <Header data={headerInfo} />}
+            </CacheProvider>
+            <div className="mt-17">{children}</div>
+            {footerInfo && <Footer data={footerInfo} />}
+          </HydrationBoundary>
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />
