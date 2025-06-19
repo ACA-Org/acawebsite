@@ -29,7 +29,7 @@ const quickLinks = [
     href: "/marketplace",
     icon: ShoppingCart,
   },
-  { label: "Sign In", value: "sign_in", href: "/sign-in", icon: UserIcon },
+  { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
 ];
 
 export const IconMenu = () => {
