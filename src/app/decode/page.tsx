@@ -15,8 +15,6 @@ export default async function Decode() {
     secret: "4TQnjZb3TKud82M95K0jhvHQBDjom60rJL7aJV4RNZU=",
   });
 
-  console.log({ decoded, val });
-
-  return <div>{JSON.stringify(decoded)}</div>;
+  return <div>{JSON.stringify(decoded, null, 2)}</div>;
 }
 

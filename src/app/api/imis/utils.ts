@@ -67,7 +67,7 @@ export async function getTokenFromRefresh(
 export async function fetchIMISUserProfile(
   access_token: string
 ): Promise<ImisUserProfile> {
-  const res = await fetch("https://aca.org/api/user", {
+  const res = await fetch("https://aca.org/api/User", {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },

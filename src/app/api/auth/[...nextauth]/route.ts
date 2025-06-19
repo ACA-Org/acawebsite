@@ -11,6 +11,7 @@ declare module "next-auth" {
       name?: string | null;
       email?: string | null;
       image?: string | null;
+      userName?: string | null;
     };
   }
 
@@ -20,6 +21,7 @@ declare module "next-auth" {
     email?: string | null;
     image?: string | null;
     accessToken?: string;
+    userName?: string | null;
   }
 }
 
@@ -29,6 +31,7 @@ declare module "next-auth/jwt" {
     refreshToken?: string;
     accessTokenExpires?: number;
     userId?: string;
+    userName?: string | null;
   }
 }
 
@@ -39,12 +42,15 @@ const authOptions: AuthOptions = {
       name: "iMIS",
       credentials: {
         token: { label: "Token", type: "text" },
+        userName: { label: "UserName", type: "text" },
       },
       async authorize(credentials) {
         console.log("[Auth] Starting authorization process");
         try {
           const token = credentials?.token;
+          const userName = credentials?.userName;
           console.log("[Auth] Token present:", !!token);
+          console.log("[Auth] UserName present:", !!userName);
 
           if (!token) {
             console.log("[Auth] No token provided, authorization failed");
@@ -57,6 +63,7 @@ const authOptions: AuthOptions = {
             userId: user.id,
             hasEmail: !!user.email,
             hasName: !!user.full_name,
+            userName: userName,
           });
 
           return {
@@ -64,6 +71,7 @@ const authOptions: AuthOptions = {
             name: user.full_name,
             email: user.email,
             accessToken: token,
+            userName: userName,
           };
         } catch (error) {
           console.error("[Auth] IMIS authorize error:", error);
@@ -85,6 +93,7 @@ const authOptions: AuthOptions = {
         token.accessToken = user.accessToken;
         token.userId = user.id;
         token.email = user.email;
+        token.userName = user.userName;
       }
       return token;
     },
@@ -93,6 +102,7 @@ const authOptions: AuthOptions = {
         session.accessToken = token.accessToken;
         session.user.id = token.userId as string;
         session.user.email = token.email as string;
+        session.user.userName = token.userName as string;
       }
       return session;
     },

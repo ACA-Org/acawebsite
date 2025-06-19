@@ -11,10 +11,12 @@ export default function CompleteSignIn() {
   useEffect(() => {
     (async () => {
       let token;
+      let userName;
       try {
         token = searchParams.get("token");
+        userName = searchParams.get("userName");
         console.log(
-          "CompleteSignIn: Successfully extracted token from search params"
+          "CompleteSignIn: Successfully extracted token and userName from search params"
         );
       } catch (error) {
         console.error(
@@ -40,6 +42,7 @@ export default function CompleteSignIn() {
         );
         const result = await signIn("imis", {
           token,
+          userName: userName || undefined,
           redirect: true,
           callbackUrl: "/", // or wherever you want to redirect after successful login
         });

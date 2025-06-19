@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
     // Redirect to a client-side page that will handle the sign in
     const redirectUrl = new URL("/auth/complete-signin", request.url);
     redirectUrl.searchParams.set("token", tokenData.access_token);
+    redirectUrl.searchParams.set("userName", tokenData.userName);
 
     console.log("[IMIS Auth] Redirecting to sign-in completion page");
     return NextResponse.redirect(redirectUrl, {
