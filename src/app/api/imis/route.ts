@@ -35,7 +35,9 @@ export async function POST(request: NextRequest) {
     redirectUrl.searchParams.set("token", tokenData.access_token);
 
     console.log("[IMIS Auth] Redirecting to sign-in completion page");
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.redirect(redirectUrl, {
+      status: 303,
+    });
   } catch (err) {
     console.error("[IMIS Auth] Authentication error:", {
       error: err instanceof Error ? err.message : "Unknown error",
