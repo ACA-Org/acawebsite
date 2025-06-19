@@ -1,5 +1,3 @@
-"use server";
-
 import { RightMenu } from "@/components/right-menu";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SliceZone } from "@prismicio/react";
@@ -27,6 +25,8 @@ import { getServerSession } from "next-auth";
 import Unauthenticated from "@/app/components/Unauthenticated";
 
 type Params = { tier_one_uid: string; tier_two_uid: string };
+
+export const dynamic = "force-dynamic";
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_two_uid: uid_2 } = await params;

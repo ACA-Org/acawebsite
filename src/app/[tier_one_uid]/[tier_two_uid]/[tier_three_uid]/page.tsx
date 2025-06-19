@@ -1,5 +1,3 @@
-"use server";
-
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
@@ -31,6 +29,8 @@ type Params = {
   tier_two_uid: string;
   tier_three_uid: string;
 };
+
+export const dynamic = "force-dynamic";
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_three_uid: uid_3 } = await params;
