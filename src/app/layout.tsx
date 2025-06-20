@@ -62,14 +62,17 @@ export default async function RootLayout({
   let userInfo: User | null = null;
 
   const fetchFooterInfo = async () => {
+    console.time("fetchFooterInfo");
     try {
       footerInfo = await getFooterData();
     } catch (err) {
       console.error(err);
     }
+    console.timeEnd("fetchFooterInfo");
   };
 
   const fetchHeaderInfo = async () => {
+    console.time("fetchHeaderInfo");
     try {
       const result = await getHeaderData();
 
@@ -77,9 +80,11 @@ export default async function RootLayout({
     } catch (err) {
       console.error(err);
     }
+    console.timeEnd("fetchHeaderInfo");
   };
 
   const fetchPagesInfo = async () => {
+    console.time("fetchPagesInfo");
     try {
       const pageData = await getSearchData();
 
@@ -87,11 +92,14 @@ export default async function RootLayout({
     } catch (err) {
       console.error(err);
     }
+    console.timeEnd("fetchPagesInfo");
   };
 
   const fetchUserInfo = async () => {
+    console.time("fetchUserInfo");
     const session = await getServerSession(authOptions);
     userInfo = session?.user || null;
+    console.timeEnd("fetchUserInfo");
   };
 
   await Promise.allSettled([

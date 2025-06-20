@@ -39,7 +39,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
                 <div
                   className={`h-full w-full transition-all duration-800 ${isActive ? "scale-100 opacity-100 grayscale-0" : "scale-95 opacity-40 grayscale"} `}
                 >
-                  <HeroCarouselSlide {...slide} />
+                  <HeroCarouselSlide {...slide} index={index} />
                 </div>
               )}
             </SwiperSlide>

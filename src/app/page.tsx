@@ -36,7 +36,7 @@ export default async function Home() {
 
   return (
     <main>
-      <section className="">
+      <section>
         <div className="flex flex-col items-start justify-center gap-16 pb-16">
           <div className="flex w-full items-center gap-8 lg:pt-12">
             <div className="mx-auto w-full max-w-[1440px] px-4 pt-12 md:px-8 lg:pt-24">
@@ -45,10 +45,12 @@ export default async function Home() {
                   <h1 className="text-[52px] leading-[70px] text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
                     Strengthening Corrections,
                     <br />
-                    <span className="text-blue-200">Enhancing Communities</span>
+                    <span className="text-[52px] text-blue-200">
+                      Enhancing Communities
+                    </span>
                   </h1>
                   {page.heroSubTitle && (
-                    <p className="body-md text-gray-100">{page.heroSubTitle}</p>
+                    <p className="body-md text-gray-600">{page.heroSubTitle}</p>
                   )}
                   {page.heroAction && (
                     <LinkButton className="w-fit" field={page.heroAction}>

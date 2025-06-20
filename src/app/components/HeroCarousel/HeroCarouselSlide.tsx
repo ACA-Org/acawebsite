@@ -8,7 +8,7 @@ import {
 import { PrismicNextImage } from "@prismicio/next";
 
 export type HeroCarouselSlideProps =
-  Simplify<HomepageDocumentDataHeroCarouselDataItem>;
+  Simplify<HomepageDocumentDataHeroCarouselDataItem> & { index?: number };
 
 const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
   const {
@@ -23,9 +23,10 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
         <>
           <div className="absolute inset-0 h-full w-full">
             <PrismicNextImage
-              alt=""
               field={img}
               className="h-full w-full object-cover"
+              priority={props.index === 0}
+              loading={props.index === 0 ? "eager" : "lazy"}
             />
             <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F]" />
           </div>
