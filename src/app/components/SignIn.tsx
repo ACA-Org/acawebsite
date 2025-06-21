@@ -28,7 +28,7 @@ export function AuthButton({
         field={{
           link_type: "Web",
           url: "",
-          text: signInText,
+          text: signOutText,
         }}
         document={undefined}
         onClick={(e) => {
@@ -37,9 +37,7 @@ export function AuthButton({
           props.onClick?.(e);
         }}
         href={undefined}
-      >
-        {signOutText}
-      </LinkButton>
+      />
     );
   }
 
@@ -74,7 +72,7 @@ export function AuthTextLink({
         field={{
           link_type: "Web",
           url: "",
-          text: signInText,
+          text: signOutText,
         }}
         document={undefined}
         onClick={(e) => {
@@ -83,9 +81,7 @@ export function AuthTextLink({
           props.onClick?.(e);
         }}
         href={undefined}
-      >
-        {signOutText}
-      </TransitionLink>
+      />
     );
   }
 
