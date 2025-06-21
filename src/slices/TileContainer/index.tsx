@@ -3,9 +3,10 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextLink } from "@prismicio/next";
 import React from "react";
 import RichText from "@/app/components/RichText";
+import { DynamicImage } from "@/components/image";
 
 /**
  * Props for `TileContainer`.
@@ -56,7 +57,7 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
                 >
                   <div className="absolute bottom-0 left-0 z-1 h-full w-full bg-gradient-to-t from-[#0F2D52] to-transparent" />
                   <figure className="absolute top-0 left-0 -z-1 h-full w-full">
-                    <PrismicNextImage
+                    <DynamicImage
                       field={tileImage}
                       alt=""
                       className="h-full w-full object-cover"

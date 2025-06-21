@@ -43,27 +43,30 @@ export const FilterInputs = React.memo(
 
     return (
       <div className="flex flex-col gap-2">
-        <Input
-          id="locationName"
-          placeholder="Filter by name..."
-          value={nameFilter}
-          onChange={handleNameChange}
-          className="h-[47.5px] flex-1"
-        />
+        <div className="h-12">
+          <Input
+            id="locationName"
+            placeholder="Filter by name..."
+            value={nameFilter}
+            onChange={handleNameChange}
+            className="h-full flex-1"
+          />
+        </div>
+
         <div className="flex flex-1 gap-2">
           <Input
             id="locationZip"
             placeholder="Enter ZIP code..."
             value={zipFilter}
             onChange={handleZipChange}
-            className="h-[47.5px] flex-1"
+            className="h-12 flex-1"
           />
           <NativeSelect
             value={distanceFilter || ""}
             disabled={!zipFilter}
             defaultValue="10"
             onChange={handleDistanceChange}
-            className={"h-[47.5px] flex-1"}
+            className={"h-12 flex-1"}
             id="locationDistance"
           >
             <option value="10">10 miles</option>

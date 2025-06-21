@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactPageDocumentData } from "../../../prismicio-types";
 import { getContactPage } from "../actions/getContactPageData";
 import { notFound } from "next/navigation";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import RichText from "../components/RichText";
 import ContactForm from "@/slices/ContactForm";
 import { SliceZone } from "@prismicio/react";
@@ -45,7 +45,7 @@ export default async function Page() {
           {img && (
             <>
               <div className="absolute inset-0 z-10 h-full w-full">
-                <PrismicNextImage
+                <DynamicImage
                   alt=""
                   field={img}
                   className="h-full w-full object-cover"

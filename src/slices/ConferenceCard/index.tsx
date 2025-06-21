@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import { LinkButton } from "@/components/ui/button";
 
 /**
@@ -33,7 +33,7 @@ const ConferenceCard: FC<ConferenceCardProps> = (slice) => {
       {image && (
         <>
           <div className="absolute inset-0 h-full w-full">
-            <PrismicNextImage
+            <DynamicImage
               alt=""
               field={image}
               className="h-full w-full object-cover transition-opacity duration-250 ease-in-out group-hover:opacity-40 max-md:opacity-40"

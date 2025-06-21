@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import React, { useEffect, useState } from "react";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import {
   HomepageDocumentDataIntroImageTileItem,
   Simplify,
@@ -41,7 +41,7 @@ const ImageFader: FC<ImageFaderProps> = ({
   return (
     <div className="relative col-span-1 w-full overflow-hidden rounded-lg bg-black max-md:aspect-video md:h-[235px]">
       {images.map((img, index) => (
-        <PrismicNextImage
+        <DynamicImage
           key={index}
           field={img}
           alt=""

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import { ArrowRight } from "@/icons/ArrowRight";
 import { Link2 } from "lucide-react";
 import { CaretDown } from "@/icons/CaretDown";
@@ -141,7 +141,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                       {activeSlice?.primary.featuredMenuLink.text}
                     </p>
                     <div className="group relative h-[113px] w-[200px] overflow-clip rounded-lg">
-                      <PrismicNextImage
+                      <DynamicImage
                         alt=""
                         field={activeSlice?.primary.featuredMenuImage}
                         className="peer h-full w-full object-cover opacity-0 transition-opacity duration-300"

@@ -9,7 +9,6 @@ type DirectRevalidatePayload = {
 };
 
 export async function POST(req: NextRequest) {
-  console.log("[Revalidate] Received revalidation request");
   const revalidated: any[] = [];
   const authHeader = req.headers.get("authorization");
 
@@ -23,17 +22,12 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  console.log("[Revalidate] Authentication successful");
   const body = await req.json();
 
   if ("tags" in body && Array.isArray(body.tags)) {
     const payload = body as DirectRevalidatePayload;
-    console.log(
-      `[Revalidate] Processing direct tag revalidation request for ${payload.tags.length} tags`
-    );
 
     payload.tags.forEach((tag) => {
-      console.log(`[Revalidate] Revalidating tag: ${tag}`);
       revalidateTag(tag);
       revalidated.push({
         tag,
@@ -41,9 +35,6 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    console.log(
-      `[Revalidate] Successfully revalidated ${revalidated.length} tags`
-    );
     return NextResponse.json({
       revalidated: true,
       now: Date.now(),
@@ -51,31 +42,19 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  console.log("[Revalidate] Processing Prismic webhook payload");
   const data = body as PrismicWebhookPayload;
   const client = createClient();
 
-  console.log(
-    `[Revalidate] Fetching documents from Prismic: ${data.documents.join(", ")}`
-  );
   const result = await client.getByIDs(data.documents);
 
   if (result.total_results_size > 0) {
     const { results } = result;
-    console.log(`[Revalidate] Found ${results.length} documents to process`);
 
     for (const i of results) {
-      console.log(
-        `[Revalidate] Processing document type: ${i.type}, uid: ${i.uid}`
-      );
-
       switch (i.type) {
         case "tierTwoPage":
         case "tierThreePage":
         case "tierFourPage": {
-          console.log(
-            `[Revalidate] Processing tier page: ${i.type}, uid: ${i.uid}`
-          );
           // Revalidate the current page
           revalidateTag(i.uid);
           revalidated.push({
@@ -85,14 +64,10 @@ export async function POST(req: NextRequest) {
           });
 
           // Get and revalidate all parent pages
-          console.log(`[Revalidate] Fetching parent pages for ${i.uid}`);
+
           const parentUids = await getParentPageUids(i.uid, i.type);
-          console.log(
-            `[Revalidate] Found ${parentUids.length} parent pages to revalidate`
-          );
 
           for (const parentUid of parentUids) {
-            console.log(`[Revalidate] Revalidating parent page: ${parentUid}`);
             revalidateTag(parentUid);
             revalidated.push({
               type: "parent",
@@ -103,7 +78,6 @@ export async function POST(req: NextRequest) {
           break;
         }
         case "tierOnePage":
-          console.log(`[Revalidate] Revalidating tier one page: ${i.uid}`);
           revalidateTag(i.uid);
           revalidated.push({
             type: i.type,
@@ -112,7 +86,6 @@ export async function POST(req: NextRequest) {
           });
           break;
         case "contactPage":
-          console.log("[Revalidate] Revalidating contact page");
           revalidateTag("contactPage");
           revalidated.push({
             type: "contactPage",
@@ -120,7 +93,6 @@ export async function POST(req: NextRequest) {
           });
           break;
         case "footer":
-          console.log("[Revalidate] Revalidating footer");
           revalidateTag("footer");
           revalidated.push({
             type: "footer",
@@ -128,7 +100,6 @@ export async function POST(req: NextRequest) {
           });
           break;
         case "header":
-          console.log("[Revalidate] Revalidating header");
           revalidateTag("header");
           revalidated.push({
             type: "header",
@@ -137,7 +108,6 @@ export async function POST(req: NextRequest) {
           break;
         case "homepage":
         case "nextConferenceSection":
-          console.log("[Revalidate] Revalidating homepage");
           revalidateTag("homepage");
           revalidated.push({
             type: "homepage",

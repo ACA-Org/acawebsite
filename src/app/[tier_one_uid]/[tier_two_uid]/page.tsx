@@ -2,7 +2,7 @@ import { RightMenu } from "@/components/right-menu";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SliceZone } from "@prismicio/react";
 import { notFound } from "next/navigation";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import {
   getTierTwoPageData,
   TierTwoPageData,
@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       {img.url && (
         <div className="relative mt-12 flex w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-16 md:gap-2.5 md:p-12 lg:min-h-[415px]">
           <div className="absolute inset-0 z-10 h-full w-full">
-            <PrismicNextImage
+            <DynamicImage
               alt=""
               field={img}
               className="h-full w-full object-cover"

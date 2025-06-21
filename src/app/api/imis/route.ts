@@ -17,7 +17,6 @@ export async function POST(request: NextRequest) {
 
     const tokenData = await getTokenFromRefresh(refresh_token);
 
-    // Redirect to a client-side page that will handle the sign in
     const redirectUrl = new URL("/auth/complete-signin", request.url);
     redirectUrl.searchParams.set("token", tokenData.access_token);
     redirectUrl.searchParams.set("userName", tokenData.userName);

@@ -15,6 +15,6 @@ export const useSignIn = () => {
     window.location.href = imisLoginUrl;
   };
 
-  return { signIn };
+  return { signIn, imisLoginUrl };
 };
 

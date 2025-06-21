@@ -1,11 +1,10 @@
 "use client";
 
-import { useSignIn } from "@/app/hooks/useSignIn";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { AuthButton } from "./SignIn";
 
 export default function Unauthenticated() {
-  const { signIn } = useSignIn();
   const router = useRouter();
 
   return (
@@ -22,9 +21,7 @@ export default function Unauthenticated() {
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row">
-        <Button variant="primary" onClick={() => signIn()}>
-          Sign In
-        </Button>
+        <AuthButton />
         <Button variant="primary" outlined onClick={() => router.back()}>
           Go Back
         </Button>

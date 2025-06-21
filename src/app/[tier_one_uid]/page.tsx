@@ -6,7 +6,6 @@ import {
   TierOnePageData,
 } from "../actions/getTierPageData";
 import { notFound } from "next/navigation";
-import { PrismicNextImage } from "@prismicio/next";
 import { components } from "@/slices";
 import RichText from "../components/RichText";
 import { Metadata } from "next/types";
@@ -19,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Unauthenticated from "../components/Unauthenticated";
+import { DynamicImage } from "@/components/image";
 
 type Params = { tier_one_uid: string };
 
@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       {img.url && (
         <div className="relative mt-12 flex h-full w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-16 md:gap-2.5 md:p-12 lg:min-h-[585px]">
           <div className="absolute inset-0 z-10 h-full w-full">
-            <PrismicNextImage
+            <DynamicImage
               alt=""
               field={img}
               className="h-full w-full object-cover"

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import { LinkButton } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +39,7 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
           )}
         >
           <figure className="relative min-h-[305px] flex-1 overflow-clip rounded-lg max-md:w-full">
-            <PrismicNextImage
+            <DynamicImage
               alt=""
               field={imageCalloutImage}
               className="absolute h-full w-full object-cover"

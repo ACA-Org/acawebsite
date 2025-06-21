@@ -5,7 +5,7 @@ import {
   Simplify,
 } from "../../../../prismicio-types";
 
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 
 export type HeroCarouselSlideProps =
   Simplify<HomepageDocumentDataHeroCarouselDataItem> & { index?: number };
@@ -22,7 +22,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
       {img && (
         <>
           <div className="absolute inset-0 h-full w-full">
-            <PrismicNextImage
+            <DynamicImage
               field={img}
               className="h-full w-full object-cover"
               priority={props.index === 0}

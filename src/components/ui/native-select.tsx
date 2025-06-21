@@ -31,7 +31,11 @@ const NativeSelect = forwardRef(
           autoComplete={autoComplete}
           name={name}
           id={id || name}
-          className={cn(...inputStyles, "appearance-none", className)}
+          className={cn(
+            ...inputStyles,
+            "appearance-none leading-normal",
+            className
+          )}
           value={value}
           ref={ref}
           {...rest}

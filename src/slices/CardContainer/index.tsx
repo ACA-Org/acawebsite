@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import { LinkButton } from "@/components/ui/button";
 import RichText from "@/app/components/RichText";
 
@@ -42,7 +42,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
             >
               {card.cardImage?.url && (
                 <figure className="relative aspect-video overflow-clip rounded-md">
-                  <PrismicNextImage
+                  <DynamicImage
                     alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"
@@ -83,7 +83,7 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
             >
               {card.cardImage?.url && (
                 <figure className="relative min-h-[245px] w-full max-w-[445px] overflow-clip rounded-md max-md:max-w-none">
-                  <PrismicNextImage
+                  <DynamicImage
                     alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"

@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LocationsPageDocumentData } from "../../../prismicio-types";
 import { notFound } from "next/navigation";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import Map from "@/components/interactive-map";
 import { Metadata } from "next/types";
 import { asImageSrc } from "@prismicio/client";
@@ -10,6 +10,7 @@ import { Suspense } from "react";
 import data from "./data/facilities";
 import { getLocationsPageData } from "../actions/getLocationsPageData";
 import RichText from "../components/RichText";
+import { MapLoader } from "@/components/interactive-map/components/loaders";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -40,7 +41,7 @@ export default async function Page() {
           {img.url && (
             <>
               <div className="absolute inset-0 z-10 h-full w-full">
-                <PrismicNextImage
+                <DynamicImage
                   alt=""
                   field={img}
                   className="h-full w-full object-cover"
@@ -59,12 +60,14 @@ export default async function Page() {
                 </h1>
               )}
             </div>
-            <div className="flex flex-col gap-2">
-              <RichText content={pageContent} />
-            </div>
+            {pageContent?.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <RichText content={pageContent} />
+              </div>
+            )}
           </div>
           <div className="h-[700px] w-full">
-            <Suspense fallback={<Map facilities={[]} isLoading={true} />}>
+            <Suspense fallback={<MapLoader />}>
               <Map facilities={data} />
             </Suspense>
           </div>

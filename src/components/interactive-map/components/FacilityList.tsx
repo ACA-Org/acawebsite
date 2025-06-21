@@ -19,7 +19,6 @@ export const FacilityList = React.memo(
     selectedFacility,
     setSelectedFacility,
     map,
-    isLoading,
   }: FacilityListProps) => {
     const parentRef = useRef<HTMLDivElement>(null);
     const [visibleFacilities, setVisibleFacilities] = React.useState<
@@ -130,14 +129,6 @@ export const FacilityList = React.memo(
       },
       [map]
     );
-
-    if (isLoading) {
-      return (
-        <div className="p-4 text-center text-gray-500">
-          Loading facilities...
-        </div>
-      );
-    }
 
     return (
       <div ref={parentRef} className="h-full overflow-auto">

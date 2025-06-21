@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { LinkButton } from "@/components/ui/button";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 import { cn } from "@/lib/utils";
 
 /**
@@ -42,7 +42,7 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
         <div className="flex h-full w-full items-center gap-8 self-stretch max-md:flex-col max-md:items-start">
           {hero.url && (
             <figure className="relative h-full w-auto max-md:w-full">
-              <PrismicNextImage
+              <DynamicImage
                 alt=""
                 className="h-full max-h-[210px] w-full rounded-md object-cover"
                 field={hero}

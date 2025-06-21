@@ -7,11 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
 import { CaretDown } from "@/icons/CaretDown";
 import { cn } from "@/lib/utils";
-import { useAtomValue } from "jotai";
-import { userAtom } from "@/app/atoms/userAtom";
-import { signOut } from "next-auth/react";
 import { TextLink } from "@/components/ui/button";
-import { useSignIn } from "@/app/hooks/useSignIn";
+import { AuthTextLink } from "@/app/components/SignIn";
 
 const quickLinks = [
   {
@@ -45,8 +42,6 @@ export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
-  const user = useAtomValue(userAtom);
-  const { signIn } = useSignIn();
 
   useEffect(() => {
     return () => {
@@ -91,31 +86,16 @@ export const IconMenu = () => {
           <div className="absolute right-4 left-4 z-10 mt-2 overflow-clip rounded-md bg-white shadow-lg">
             {quickLinks.map((item) =>
               item.value === "sign_in" ? (
-                user?.id ? (
-                  <button
-                    key={item.label}
-                    className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
-                    onClick={() => {
-                      setIsOpen(false);
-                      signOut();
-                    }}
-                  >
-                    <UserIcon className="h-auto w-4 stroke-blue-300" />
-                    <span className="mt-[2px]">{item.label}</span>
-                  </button>
-                ) : (
-                  <button
-                    key={item.label}
-                    className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
-                    onClick={() => {
-                      signIn();
-                      setIsOpen(false);
-                    }}
-                  >
-                    <UserIcon className="h-auto w-4 stroke-blue-300" />
-                    <span className="mt-[2px]">{item.label}</span>
-                  </button>
-                )
+                <AuthTextLink
+                  key={item.label}
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-500"
+                >
+                  <item.icon className="h-auto w-4 stroke-blue-300" />
+                  <span className="mt-[2px]">{item.label}</span>
+                </AuthTextLink>
               ) : (
                 <TextLink
                   key={item.label}

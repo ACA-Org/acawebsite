@@ -24,6 +24,7 @@ import {
   mobileTabAtom,
   zipCoordinatesAtom,
 } from "./atoms/mapAtoms";
+import { MapLoader } from "./components/loaders";
 
 interface MapProps {
   facilities: Location[];
@@ -270,7 +271,7 @@ export default function Map({ facilities, isLoading = false }: MapProps) {
   }
 
   if (!isLoaded) {
-    return <div>Loading maps...</div>;
+    return <MapLoader />;
   }
 
   return (

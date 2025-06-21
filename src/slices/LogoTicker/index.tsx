@@ -3,7 +3,7 @@ import { FC } from "react";
 import Marquee from "react-fast-marquee";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { DynamicImage } from "@/components/image";
 
 /**
  * Props for `LogoTicker`.
@@ -36,7 +36,7 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
             }
             className="mx-4 flex-shrink-0"
           >
-            <PrismicNextImage
+            <DynamicImage
               field={logo.logoItem}
               alt=""
               className="max-h-[100px] w-auto"
