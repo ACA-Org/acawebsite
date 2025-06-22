@@ -24,11 +24,11 @@ export default async function OpenGraphImage({
   const pageData = await getTierOnePageData(tier_one_uid).catch(() => null);
 
   const gillSansBold = await readFile(
-    join(process.cwd(), "src/app/fonts/GillSans/gs-bold.otf")
+    join(process.cwd(), "assets/fonts/GillSans/gs-bold.otf")
   );
 
   const gillSansMed = await readFile(
-    join(process.cwd(), "src/app/fonts/GillSans/gs-medium.otf")
+    join(process.cwd(), "assets/fonts/GillSans/gs-medium.otf")
   );
 
   return new ImageResponse(

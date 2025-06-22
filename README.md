@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ACA Website
 
-## Getting Started
+Welcome to the ACA Website project! This is a modern web application built with Next.js 14, featuring a dynamic user interface and content management through Prismic CMS.
 
-First, run the development server:
+## 🚀 Getting Started
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before you begin, make sure you have the following installed on your computer:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [pnpm](https://pnpm.io/) (recommended) or npm
+- A code editor (we recommend [VS Code](https://code.visualstudio.com/))
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Setting Up Your Development Environment
 
-## Learn More
+1. Clone this repository to your local machine:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone [your-repository-url]
+   cd acawebsite
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Install the project dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   pnpm install
+   ```
 
-## Deploy on Vercel
+3. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   pnpm dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Open your browser and visit [http://localhost:3000](http://localhost:3000)
+   The website should now be running locally! 🎉
+
+## 📁 Project Structure
+
+Here's a quick overview of the main folders and their purposes:
+
+- `/src/app` - The main application pages and routing
+- `/src/components` - Reusable UI components
+- `/src/slices` - Prismic CMS slice components
+- `/public` - Static assets like images and icons
+- `/customtypes` - Prismic custom type definitions
+
+## 🛠️ Key Features
+
+- **Modern React & Next.js** - Built with the latest Next.js 14 features
+- **Type Safety** - Full TypeScript support
+- **Content Management** - Integrated with Prismic CMS
+- **Interactive Maps** - Location-based facility search
+- **Authentication** - User authentication system
+- **Responsive Design** - Mobile-friendly interface
+- **Rich Text Components** - Dynamic content rendering
+- **Social Media Integration** - LinkedIn and other social platforms
+
+## 🌱 Development Workflow
+
+1. Make sure you're on the main branch and up to date:
+
+   ```bash
+   git checkout main
+   git pull
+   ```
+
+2. Create a new branch for your feature:
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. Make your changes and test them locally using `pnpm dev`
+
+4. Commit your changes with meaningful messages:
+   ```bash
+   git add .
+   git commit -m "Add: description of your changes"
+   ```
+
+## 🔍 Useful Resources
+
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features
+- [Prismic CMS Documentation](https://prismic.io/docs) - Learn about content management
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Learn about styling
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/) - Learn TypeScript
+
+## 🤝 Need Help?
+
+If you're stuck or have questions:
+
+1. Check the documentation linked above
+2. Review the code comments and type definitions
+3. Reach out to the team for support
+
+Happy coding! 🚀
