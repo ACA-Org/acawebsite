@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Params } from "./page";
 import { getTierOnePageData } from "../actions/getTierPageData";
+import { asImageSrc } from "@prismicio/client";
 
 // Image metadata
 export const alt = "American Correctional Association";
@@ -22,6 +23,35 @@ export default async function OpenGraphImage({
   const { tier_one_uid } = await params;
 
   const pageData = await getTierOnePageData(tier_one_uid).catch(() => null);
+
+  if (pageData?.data.pageImage) {
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <img
+            src={asImageSrc(pageData.data.pageImage) ?? ""}
+            alt={
+              pageData.data.pageImage.alt ??
+              "ACA - American Correctional Association"
+            }
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+      ),
+      {
+        ...size,
+      }
+    );
+  }
 
   const gillSansBold = await readFile(
     join(process.cwd(), "assets/fonts/GillSans/gs-bold.otf")
