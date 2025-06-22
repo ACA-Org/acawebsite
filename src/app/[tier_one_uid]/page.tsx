@@ -10,7 +10,6 @@ import { components } from "@/slices";
 import RichText from "../components/RichText";
 import { Metadata } from "next/types";
 import { createClient } from "@/prismicio";
-import { asImageSrc } from "@prismicio/client";
 import { Suspense } from "react";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
@@ -173,9 +172,6 @@ export async function generateMetadata({
   // For public pages, include full metadata
   return {
     ...baseMetadata,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
-    },
   };
 }
 
