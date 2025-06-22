@@ -20,7 +20,7 @@ import { getServerSession } from "next-auth";
 import Unauthenticated from "../components/Unauthenticated";
 import { DynamicImage } from "@/components/image";
 
-type Params = { tier_one_uid: string };
+export type Params = { tier_one_uid: string };
 
 export const dynamic = "force-dynamic";
 
