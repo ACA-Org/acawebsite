@@ -25,12 +25,12 @@ export const metadata: Metadata = {
   title: "ACA - American Correctional Association",
   description:
     "For more than 152 years, the American Correctional Association has championed the cause of corrections and correctional effectiveness.",
-  metadataBase: new URL("https://aca.org"),
+  metadataBase: new URL("https://acawebsite.vercel.app"),
   openGraph: {
     title: "ACA - American Correctional Association",
     description:
       "For more than 152 years, the American Correctional Association has championed the cause of corrections and correctional effectiveness.",
-    url: "https://aca.org",
+    url: "https://acawebsite.vercel.app",
     type: "website",
     images: [
       {
