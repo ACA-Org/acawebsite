@@ -21,34 +21,25 @@ export function AuthButton({
   const user = useAtomValue(userAtom);
   const { imisLoginUrl } = useSignIn();
 
-  if (user) {
-    return (
-      <LinkButton
-        {...props}
-        field={{
-          link_type: "Web",
-          url: "",
-          text: signOutText,
-        }}
-        document={undefined}
-        onClick={(e) => {
-          e.preventDefault();
-          signOut();
-          props.onClick?.(e);
-        }}
-        href={undefined}
-      />
-    );
-  }
-
   return (
     <LinkButton
       {...props}
       document={undefined}
-      field={{
-        link_type: "Web",
-        url: imisLoginUrl,
-        text: signInText,
+      field={
+        user?.id
+          ? undefined
+          : {
+              link_type: "Web",
+              url: imisLoginUrl,
+              text: signInText,
+            }
+      }
+      onClick={(e) => {
+        if (user?.id) {
+          e.preventDefault();
+          signOut();
+        }
+        props.onClick?.(e);
       }}
     />
   );
@@ -65,34 +56,25 @@ export function AuthTextLink({
   const user = useAtomValue(userAtom);
   const { imisLoginUrl } = useSignIn();
 
-  if (user) {
-    return (
-      <TransitionLink
-        {...props}
-        field={{
-          link_type: "Web",
-          url: "",
-          text: signOutText,
-        }}
-        document={undefined}
-        onClick={(e) => {
-          e.preventDefault();
-          signOut();
-          props.onClick?.(e);
-        }}
-        href={undefined}
-      />
-    );
-  }
-
   return (
     <TransitionLink
       {...props}
       document={undefined}
-      field={{
-        link_type: "Web",
-        url: imisLoginUrl,
-        text: signInText,
+      field={
+        user?.id
+          ? undefined
+          : {
+              link_type: "Web",
+              url: imisLoginUrl,
+              text: signInText,
+            }
+      }
+      onClick={(e) => {
+        if (user?.id) {
+          e.preventDefault();
+          signOut();
+        }
+        props.onClick?.(e);
       }}
     />
   );

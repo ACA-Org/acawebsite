@@ -4,6 +4,8 @@ import { buttonVariants, LinkButton } from "@/components/ui/button";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { AuthButton } from "@/app/components/SignIn";
+import { useAtomValue } from "jotai";
+import { userAtom } from "@/app/atoms/userAtom";
 
 type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
@@ -25,6 +27,7 @@ export function ExpandingIcon({
   ...props
 }: ExpandingIconButtonProps) {
   const isActive = menuId === activeItem;
+  const user = useAtomValue(userAtom);
 
   if (menuId === "sign_in") {
     return (
@@ -50,7 +53,7 @@ export function ExpandingIcon({
                 : "ml-0 max-w-0 scale-95 opacity-0"
             )}
           >
-            {label}
+            {user?.id ? "Sign Out" : "Sign In"}
           </span>
         </AuthButton>
       </div>
