@@ -13,7 +13,7 @@ import { useAtomValue } from "jotai";
 export function AuthButton({
   signInText = "Sign In",
   ...props
-}: Omit<TransitionLinkProps, "href" | "field"> & {
+}: Omit<TransitionLinkProps, "href" | "field" | "document"> & {
   signInText?: string;
 }) {
   const user = useAtomValue(userAtom);
@@ -22,10 +22,13 @@ export function AuthButton({
   return (
     <LinkButton
       {...props}
-      document={undefined}
       field={
         user?.id
-          ? undefined
+          ? {
+              link_type: "Web",
+              url: "",
+              text: "",
+            }
           : {
               link_type: "Web",
               url: imisLoginUrl,
@@ -46,7 +49,7 @@ export function AuthButton({
 export function AuthTextLink({
   signInText = "Sign In",
   ...props
-}: Omit<TransitionLinkProps, "href"> & {
+}: Omit<TransitionLinkProps, "href" | "document" | "field"> & {
   signInText?: string;
 }) {
   const user = useAtomValue(userAtom);
@@ -55,10 +58,13 @@ export function AuthTextLink({
   return (
     <TransitionLink
       {...props}
-      document={undefined}
       field={
         user?.id
-          ? undefined
+          ? {
+              link_type: "Web",
+              url: "",
+              text: "",
+            }
           : {
               link_type: "Web",
               url: imisLoginUrl,
