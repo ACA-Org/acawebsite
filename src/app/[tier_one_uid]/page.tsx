@@ -139,9 +139,40 @@ export async function generateMetadata({
     .getByUID("tierOnePage", tier_one_uid)
     .catch(() => notFound());
 
-  return {
+  const {
+    data: { requiresAuth },
+  } = page;
+
+  // Base metadata
+  const baseMetadata: Metadata = {
     title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
+  };
+
+  // If page requires authentication, implement SEO restrictions
+  if (requiresAuth) {
+    return {
+      ...baseMetadata,
+      // Prevent search engines from indexing authenticated content
+      robots: {
+        index: false,
+        follow: false,
+        nocache: true,
+        nosnippet: true,
+        noimageindex: true,
+      },
+      // Remove Open Graph data for protected content
+      openGraph: undefined,
+      // Optional: Modify description to indicate authentication required
+      description: page.data.meta_description
+        ? `${page.data.meta_description} (Authentication required)`
+        : "This content requires authentication to view.",
+    };
+  }
+
+  // For public pages, include full metadata
+  return {
+    ...baseMetadata,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
     },
@@ -152,5 +183,7 @@ export async function generateStaticParams() {
   const client = createClient();
   const pages = await client.getAllByType("tierOnePage");
 
-  return pages.map((page) => ({ uid: page.uid }));
+  // Only generate static params for public pages
+  const publicPages = pages.filter((page) => !page.data.requiresAuth);
+  return publicPages.map((page) => ({ uid: page.uid }));
 }
