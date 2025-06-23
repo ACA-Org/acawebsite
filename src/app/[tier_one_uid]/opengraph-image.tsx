@@ -58,6 +58,33 @@ export default async function OpenGraphImage({
     join(process.cwd(), "public/fonts/GillSans/gs-bold.otf")
   );
 
+  // Log items in the current working directory
+  try {
+    const cwd = process.cwd();
+    const fs = await import("node:fs/promises");
+
+    const cwdItems = await fs.readdir(cwd);
+    console.log("Items in cwd:", cwdItems);
+
+    // Check and log items in ./public
+    try {
+      const publicItems = await fs.readdir(join(cwd, "public"));
+      console.log("Items in ./public:", publicItems);
+    } catch (e) {
+      console.log("No ./public directory or unable to read ./public");
+    }
+
+    // Check and log items in ./assets
+    try {
+      const assetsItems = await fs.readdir(join(cwd, "assets"));
+      console.log("Items in ./assets:", assetsItems);
+    } catch (e) {
+      console.log("No ./assets directory or unable to read ./assets");
+    }
+  } catch (err) {
+    console.error("Error reading directories:", err);
+  }
+
   const gillSansMed = await readFile(
     join(process.cwd(), "public/fonts/GillSans/gs-medium.otf")
   );
