@@ -1,9 +1,9 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { Params } from "@/lib/utils";
-import { getTierOnePageData } from "../actions/getTierPageData";
 import { asImageSrc } from "@prismicio/client";
+import { Params } from "@/lib/utils";
+import { getTierThreePageData } from "@/app/actions/getTierPageData";
 
 // Image metadata
 export const alt = "American Correctional Association";
@@ -20,9 +20,9 @@ export default async function OpenGraphImage({
 }: {
   params: Promise<Params>;
 }) {
-  const { tier_one_uid } = await params;
+  const { tier_three_uid } = await params;
 
-  const pageData = await getTierOnePageData(tier_one_uid).catch(() => null);
+  const pageData = await getTierThreePageData(tier_three_uid).catch(() => null);
 
   if (pageData?.data.meta_image?.url) {
     return new ImageResponse(

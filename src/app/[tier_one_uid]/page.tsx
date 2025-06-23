@@ -13,13 +13,11 @@ import { createClient } from "@/prismicio";
 import { Suspense } from "react";
 import BreadcrumbsLoading from "@/components/breadcrumbs/loading";
 import { getRightMenuData, RightMenuData } from "../actions/getRightMenuData";
-import { cn } from "@/lib/utils";
+import { cn, Params } from "@/lib/utils";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Unauthenticated from "../components/Unauthenticated";
 import { DynamicImage } from "@/components/image";
-
-export type Params = { tier_one_uid: string };
 
 export const dynamic = "force-dynamic";
 

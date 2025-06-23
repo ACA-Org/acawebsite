@@ -18,13 +18,11 @@ import {
   getRightMenuData,
   RightMenuData,
 } from "@/app/actions/getRightMenuData";
-import { cn } from "@/lib/utils";
+import { cn, Params } from "@/lib/utils";
 import { BackButton } from "@/components/back-button";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Unauthenticated from "@/app/components/Unauthenticated";
-
-type Params = { tier_one_uid: string; tier_two_uid: string };
 
 export const dynamic = "force-dynamic";
 
