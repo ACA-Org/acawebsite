@@ -54,13 +54,9 @@ export default async function OpenGraphImage({
     );
   }
 
-  const gillSansBold = await readFile(
-    join(process.cwd(), "public/fonts/GillSans/gs-bold.otf")
-  );
-
-  const gillSansMed = await readFile(
-    join(process.cwd(), "public/fonts/GillSans/gs-medium.otf")
-  );
+  const gillSansBold = await fetch(
+    "https://acawebsite.vercel.app/gs-bold.otf"
+  ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -122,12 +118,6 @@ export default async function OpenGraphImage({
           data: gillSansBold,
           style: "normal",
           weight: 700,
-        },
-        {
-          name: "Gill Sans",
-          data: gillSansMed,
-          style: "normal",
-          weight: 600,
         },
       ],
       ...size,

@@ -54,9 +54,9 @@ export default async function OpenGraphImage({
     );
   }
 
-  const gillSansBold = await readFile(
-    join(process.cwd(), "public", "gs-bold.otf")
-  );
+  const gillSansBold = await fetch(
+    "https://acawebsite.vercel.app/gs-bold.otf"
+  ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
