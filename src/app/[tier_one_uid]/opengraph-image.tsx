@@ -54,39 +54,8 @@ export default async function OpenGraphImage({
     );
   }
 
-  // Log items in the current working directory
-  try {
-    const cwd = process.cwd();
-    const fs = await import("node:fs/promises");
-
-    const cwdItems = await fs.readdir(cwd);
-    console.log("Items in cwd:", cwdItems);
-
-    // Check and log items in ./public
-    try {
-      const publicItems = await fs.readdir(join(cwd, "public"));
-      console.log("Items in ./public:", publicItems);
-    } catch {
-      console.log("No ./public directory or unable to read ./public");
-    }
-
-    // Check and log items in ./assets
-    try {
-      const assetsItems = await fs.readdir(join(cwd, "assets"));
-      console.log("Items in ./assets:", assetsItems);
-    } catch {
-      console.log("No ./assets directory or unable to read ./assets");
-    }
-  } catch (err) {
-    console.error("Error reading directories:", err);
-  }
-
   const gillSansBold = await readFile(
-    join(process.cwd(), "public/fonts/GillSans/gs-bold.otf")
-  );
-
-  const gillSansMed = await readFile(
-    join(process.cwd(), "public/fonts/GillSans/gs-medium.otf")
+    join(process.cwd(), "public", "gs-bold.otf")
   );
 
   return new ImageResponse(
@@ -97,14 +66,14 @@ export default async function OpenGraphImage({
           width: "100%",
           display: "flex",
           position: "relative",
-          background: "linear-gradient(90deg, #142E53 0%, #005F96 100%)",
+          background: "linear-gradient(90deg, #142E53 0%, #0E376C 100%)",
         }}
       >
         <div
           style={{
             display: "flex",
             position: "absolute",
-            top: "105px",
+            top: "122px",
             left: "95px",
           }}
         >
@@ -132,7 +101,8 @@ export default async function OpenGraphImage({
             color: "white",
             lineHeight: 1.2,
             zIndex: 20,
-            transform: "translateY(-50%)",
+            transform: "translateY(-75%)",
+            width: "75%",
           }}
         >
           {pageData?.data.meta_title ||
@@ -150,12 +120,6 @@ export default async function OpenGraphImage({
           style: "normal",
           weight: 700,
         },
-        {
-          name: "Gill Sans",
-          data: gillSansMed,
-          style: "normal",
-          weight: 600,
-        },
       ],
       ...size,
     }
@@ -164,8 +128,8 @@ export default async function OpenGraphImage({
 
 const ACALogo = () => (
   <svg
-    width="475"
-    height="170"
+    width="425"
+    height="154"
     viewBox="0 0 210 76"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
