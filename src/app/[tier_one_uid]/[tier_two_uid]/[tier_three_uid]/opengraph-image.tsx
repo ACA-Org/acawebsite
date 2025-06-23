@@ -1,6 +1,4 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { asImageSrc } from "@prismicio/client";
 import { Params } from "@/lib/utils";
 import { getTierThreePageData } from "@/app/actions/getTierPageData";
