@@ -1,84 +1,48 @@
 "use client";
 
-import {
-  TransitionLinkProps,
-  TransitionLink,
-  LinkButton,
-} from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { useSignIn } from "../hooks/useSignIn";
 import { signOut } from "next-auth/react";
 import { userAtom } from "../atoms/userAtom";
 import { useAtomValue } from "jotai";
 
-export function AuthButton({
-  signInText = "Sign In",
-  ...props
-}: Omit<TransitionLinkProps, "href" | "field" | "document"> & {
-  signInText?: string;
-}) {
+export function AuthButton(props: ButtonProps) {
   const user = useAtomValue(userAtom);
-  const { imisLoginUrl } = useSignIn();
+  const { signIn } = useSignIn();
 
   return (
-    <LinkButton
+    <Button
       {...props}
-      field={
-        user?.id
-          ? {
-              link_type: "Web",
-              url: "",
-              text: "",
-            }
-          : {
-              link_type: "Web",
-              url: imisLoginUrl,
-              text: signInText,
-            }
-      }
-      onClick={(e) => {
+      type="button"
+      onClick={() => {
         if (user?.id) {
-          e.preventDefault();
           signOut();
+        } else {
+          signIn();
         }
-        props.onClick?.(e);
       }}
     />
   );
 }
 
-export function AuthTextLink({
-  signInText = "Sign In",
-  ...props
-}: Omit<TransitionLinkProps, "href" | "document" | "field"> & {
-  signInText?: string;
-}) {
+export function AuthTextLink(props: React.HTMLAttributes<HTMLSpanElement>) {
   const user = useAtomValue(userAtom);
-  const { imisLoginUrl } = useSignIn();
+  const { signIn } = useSignIn();
 
   return (
-    <TransitionLink
+    <span
       {...props}
-      field={
-        user?.id
-          ? {
-              link_type: "Web",
-              url: "",
-              text: "",
-            }
-          : {
-              link_type: "Web",
-              url: imisLoginUrl,
-              text: signInText,
-            }
-      }
-      onClick={(e) => {
+      role="button"
+      onClick={() => {
         if (user?.id) {
-          e.preventDefault();
           signOut();
+        } else {
+          signIn();
         }
-        props.onClick?.(e);
       }}
-    />
+    >
+      {props?.children || (user?.id ? "Sign Out" : "Sign In")}
+    </span>
   );
 }
 
