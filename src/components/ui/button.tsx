@@ -90,12 +90,17 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
       if (props.field?.link_type === "Media") {
         e.preventDefault();
         window.open(props.field.url, "_blank");
-        return;
+        return onClick?.(e);
+      }
+
+      if (props.field?.link_type === "Web") {
+        e.preventDefault();
+        window.open(props.field.url, "_blank");
+        return onClick?.(e);
       }
 
       onClick?.(e);
 
-      // Prefer explicit href if present, otherwise resolve from field
       const { href, field } = props;
       let resolvedHref: string | null | undefined;
 
