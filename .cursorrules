@@ -1,0 +1,48 @@
+# Cursor Rules for React + NextJS + Tailwind v4
+
+## Project Context
+
+This project uses React with NextJS, Tailwind CSS v4.
+
+Ensure PNPM is the main package manager used
+
+## Code Style & Architecture
+
+### React Patterns
+
+- Use functional components with hooks (useState, useEffect, useCallback, useMemo)
+- Prefer composition over inheritance
+- Create custom hooks for reusable logic
+- Use TypeScript for type safety
+- Implement proper error boundaries
+- Use React.memo for performance optimization when appropriate
+
+### File Structure
+
+- Components in `/src/components/` with proper folder organization
+- Custom hooks in `/src/hooks/`
+- Utilities in `/src/lib/`
+- Types in `/src/types/`
+- Use index.ts files for clean imports
+
+### Naming Conventions
+
+- Components: PascalCase (e.g., `UserProfile.tsx`)
+- Files: kebab-case for non-components (e.g., `user-utils.ts`)
+- Variables/functions: camelCase
+- Constants: UPPER_SNAKE_CASE
+- CSS classes: Follow Tailwind conventions
+
+## UI/UX Guidelines
+
+### Design Philosophy
+
+- Follow the design system specifications exactly
+- Maintain consistency across all components
+- Prioritize accessibility and responsive design
+
+### Component Preferences
+
+1. **First Priority**: Use existing custom components
+2. **Second Resort**: Create custom components following the design system
+

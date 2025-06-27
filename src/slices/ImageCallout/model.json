@@ -44,6 +44,33 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "imageAnchor": {
+          "type": "Select",
+          "config": {
+            "label": "ImageAnchor",
+            "placeholder": "",
+            "options": [
+              "center",
+              "top",
+              "left",
+              "right",
+              "bottom"
+            ],
+            "default_value": "center"
+          }
+        },
+        "imageFit": {
+          "type": "Select",
+          "config": {
+            "label": "ImageFit",
+            "placeholder": "",
+            "options": [
+              "cover",
+              "contain"
+            ],
+            "default_value": "cover"
+          }
         }
       },
       "items": {}
@@ -87,6 +114,32 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "imageAnchor": {
+          "type": "Select",
+          "config": {
+            "label": "ImageAnchor",
+            "placeholder": "",
+            "options": [
+              "center",
+              "top",
+              "left",
+              "right",
+              "bottom"
+            ]
+          }
+        },
+        "imageFit": {
+          "type": "Select",
+          "config": {
+            "label": "ImageFit",
+            "placeholder": "",
+            "options": [
+              "cover",
+              "contain"
+            ],
+            "default_value": "cover"
           }
         }
       },

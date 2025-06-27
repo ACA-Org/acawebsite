@@ -2167,6 +2167,31 @@ export interface ImageCalloutSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * ImageAnchor field in *ImageCallout → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: center
+   * - **API ID Path**: image_callout.default.primary.imageAnchor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  imageAnchor: prismic.SelectField<
+    "center" | "top" | "left" | "right" | "bottom",
+    "filled"
+  >;
+
+  /**
+   * ImageFit field in *ImageCallout → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: cover
+   * - **API ID Path**: image_callout.default.primary.imageFit
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  imageFit: prismic.SelectField<"cover" | "contain", "filled">;
 }
 
 /**
@@ -2231,6 +2256,29 @@ export interface ImageCalloutSliceTextLeftPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * ImageAnchor field in *ImageCallout → TextLeft → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_callout.textLeft.primary.imageAnchor
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  imageAnchor: prismic.SelectField<
+    "center" | "top" | "left" | "right" | "bottom"
+  >;
+
+  /**
+   * ImageFit field in *ImageCallout → TextLeft → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: cover
+   * - **API ID Path**: image_callout.textLeft.primary.imageFit
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  imageFit: prismic.SelectField<"cover" | "contain", "filled">;
 }
 
 /**
