@@ -29,7 +29,16 @@ export default async function Home() {
 
   const [page, conferenceInfo] = await Promise.all([
     getHomePageData().catch(() => null),
-    client.getSingle("nextConferenceSection").catch(() => null),
+    client
+      .getSingle("nextConferenceSection", {
+        fetchOptions: {
+          next: {
+            tags: ["homepage"],
+            revalidate: 60 * 60 * 24 * 30, // Revalidate every 30 days
+          },
+        },
+      })
+      .catch(() => null),
   ]);
 
   if (!page) return notFound();
