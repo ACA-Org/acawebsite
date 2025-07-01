@@ -52,11 +52,15 @@ export default async function Home() {
               <div className="flex items-center justify-between gap-8 max-lg:flex-col-reverse max-lg:items-start lg:gap-16">
                 <div className="flex w-full flex-col gap-6 lg:w-1/2">
                   <h1 className="text-[52px] leading-[70px] text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
-                    Strengthening Corrections,
-                    <br />
-                    <span className="text-[52px] text-blue-200">
-                      Enhancing Communities
-                    </span>
+                    {page.heroTopTitle || "Strengthening Corrections,"}
+                    {page.heroBottomTitle && (
+                      <>
+                        <br />
+                        <span className="text-[52px] text-blue-200 max-lg:text-[38px] max-lg:leading-[50px]">
+                          {page.heroBottomTitle}
+                        </span>
+                      </>
+                    )}
                   </h1>
                   {page.heroSubTitle && (
                     <p className="body-md text-gray-600">{page.heroSubTitle}</p>

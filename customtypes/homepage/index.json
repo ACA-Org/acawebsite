@@ -6,13 +6,18 @@
   "status": true,
   "json": {
     "Main": {
-      "heroTitle": {
-        "type": "StructuredText",
+      "heroTopTitle": {
+        "type": "Text",
         "config": {
-          "label": "HeroTitle",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading1,heading2,heading3,heading4,heading5,heading6"
+          "label": "HeroTopTitle",
+          "placeholder": ""
+        }
+      },
+      "heroBottomTitle": {
+        "type": "Text",
+        "config": {
+          "label": "HeroBottomTitle",
+          "placeholder": ""
         }
       },
       "heroSubTitle": {
@@ -81,9 +86,7 @@
           "label": "NextConferenceInfo",
           "select": "document",
           "repeat": false,
-          "customtypes": [
-            "nextConferenceSection"
-          ]
+          "customtypes": ["nextConferenceSection"]
         }
       },
       "introHeader": {

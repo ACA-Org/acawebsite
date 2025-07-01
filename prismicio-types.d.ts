@@ -353,15 +353,26 @@ type HomepageDocumentDataSlicesSlice =
  */
 interface HomepageDocumentData {
   /**
-   * HeroTitle field in *HomePage*
+   * HeroTopTitle field in *HomePage*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.heroTitle
+   * - **API ID Path**: homepage.heroTopTitle
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  heroTitle: prismic.RichTextField;
+  heroTopTitle: prismic.KeyTextField;
+
+  /**
+   * HeroBottomTitle field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.heroBottomTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heroBottomTitle: prismic.KeyTextField;
 
   /**
    * HeroSubTitle field in *HomePage*
