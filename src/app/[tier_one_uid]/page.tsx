@@ -18,6 +18,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Unauthenticated from "../components/Unauthenticated";
 import { DynamicImage } from "@/components/image";
+import { asImageSrc } from "@prismicio/client";
 
 export const dynamic = "force-dynamic";
 
@@ -144,6 +145,15 @@ export async function generateMetadata({
   const baseMetadata: Metadata = {
     title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
+    openGraph: {
+      images: [
+        {
+          url:
+            asImageSrc(page.data.meta_image) ??
+            "https://images.prismic.io/acawebsite/Z_vG-uvxEdbNO-jG_aca-og.png?auto=format,compress",
+        },
+      ],
+    },
   };
 
   // If page requires authentication, implement SEO restrictions

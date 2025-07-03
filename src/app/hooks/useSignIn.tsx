@@ -12,7 +12,9 @@ export const useSignIn = () => {
     // Store current page URL in a cookie that expires in 5 minutes
     const currentPage = window.location.href;
     document.cookie = `redirectUrl=${encodeURIComponent(currentPage)};max-age=300;path=/`;
-    window.location.href = imisLoginUrl;
+    const loginUrl = new URL(imisLoginUrl);
+    loginUrl.searchParams.set("ReturnUrl", currentPage);
+    window.location.href = loginUrl.toString();
   };
 
   return { signIn, imisLoginUrl };

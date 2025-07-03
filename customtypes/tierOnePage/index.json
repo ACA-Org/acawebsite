@@ -16,7 +16,10 @@
         "type": "Image",
         "config": {
           "label": "PageImage",
-          "constraint": {},
+          "constraint": {
+            "width": 1440,
+            "height": 585
+          },
           "thumbnails": []
         }
       },

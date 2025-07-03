@@ -89,9 +89,49 @@ export async function generateMetadata({
     .getByUID("tierFourPage", tier_four_uid)
     .catch(() => notFound());
 
-  return {
+  const {
+    data: { requiresAuth },
+  } = page;
+
+  // Base metadata
+  const baseMetadata: Metadata = {
     title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
     description: page.data.meta_description,
+    openGraph: {
+      images: [
+        {
+          url:
+            asImageSrc(page.data.meta_image) ??
+            "https://images.prismic.io/acawebsite/Z_vG-uvxEdbNO-jG_aca-og.png?auto=format,compress",
+        },
+      ],
+    },
+  };
+
+  // If page requires authentication, implement SEO restrictions
+  if (requiresAuth) {
+    return {
+      ...baseMetadata,
+      // Prevent search engines from indexing authenticated content
+      robots: {
+        index: false,
+        follow: false,
+        nocache: true,
+        nosnippet: true,
+        noimageindex: true,
+      },
+      // Remove Open Graph data for protected content
+      openGraph: undefined,
+      // Optional: Modify description to indicate authentication required
+      description: page.data.meta_description
+        ? `${page.data.meta_description} (Authentication required)`
+        : "This content requires authentication to view.",
+    };
+  }
+
+  // For public pages, include full metadata
+  return {
+    ...baseMetadata,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
     },

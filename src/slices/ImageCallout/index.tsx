@@ -41,32 +41,14 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
           )}
         >
           <figure
-            className={cn("relative overflow-clip rounded-lg max-md:w-full", {
-              "flex-1": imageFit !== "contain",
-              "min-h-[305px]": imageFit !== "contain", // Only apply min-height when not contain
-              "w-full": imageFit === "contain",
-              "flex-shrink-0": imageFit === "contain",
-              "max-w-[600px]": imageFit === "contain",
-              "max-h-[250px]": imageFit === "contain", // Limit height when contain to prevent exceeding text
-            })}
+            className={cn(
+              "relative aspect-video overflow-clip rounded-lg max-md:w-full md:h-[300px]"
+            )}
           >
             <DynamicImage
               alt=""
               field={imageCalloutImage}
-              className={cn(
-                imageFit === "contain"
-                  ? "h-full w-full"
-                  : "absolute h-full w-full",
-                {
-                  "object-cover": !imageFit || imageFit === "cover",
-                  "object-contain": imageFit === "contain",
-                  "object-center": !imageAnchor || imageAnchor === "center",
-                  "object-left": imageAnchor === "left",
-                  "object-right": imageAnchor === "right",
-                  "object-top": imageAnchor === "top",
-                  "object-bottom": imageAnchor === "bottom",
-                }
-              )}
+              className={cn("aspect-video h-full w-full object-cover")}
             />
           </figure>
 

@@ -28,7 +28,9 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}
             />
-            <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F]" />
+            {(desc || title) && (
+              <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F]" />
+            )}
           </div>
         </>
       )}
