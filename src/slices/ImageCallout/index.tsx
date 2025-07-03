@@ -20,8 +20,6 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
       imageCalloutTitle,
       imageCalloutDesc,
       imageCalloutLink,
-      imageAnchor,
-      imageFit,
     },
   } = slice;
 
@@ -42,7 +40,7 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
         >
           <figure
             className={cn(
-              "relative aspect-video overflow-clip rounded-lg max-md:w-full md:h-[300px]"
+              "relative aspect-video shrink overflow-clip rounded-lg max-md:w-full md:h-[300px] md:max-w-1/2"
             )}
           >
             <DynamicImage
