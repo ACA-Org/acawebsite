@@ -21,7 +21,9 @@ export function AuthButton(props: ButtonProps) {
           signIn();
         }
       }}
-    />
+    >
+      {props?.children || (user?.id ? "Sign Out" : "Sign In")}
+    </Button>
   );
 }
 
