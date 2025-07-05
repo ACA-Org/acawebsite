@@ -1,2 +1,2 @@
-pnpm lint || echo "Lint errors ignored"
-pnpm build || echo "Build errors ignored"
+pnpm lint
+pnpm build

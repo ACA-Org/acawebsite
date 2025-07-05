@@ -1,0 +1,109 @@
+{
+  "format": "page",
+  "id": "newsletterPage",
+  "label": "NewsletterPage",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "pageTitle": {
+        "type": "Text",
+        "config": {
+          "label": "Page Title",
+          "placeholder": ""
+        }
+      },
+      "pageContent": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Page Content",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "newsletterCards": {
+        "type": "Group",
+        "config": {
+          "label": "Newsletter Cards",
+          "repeat": true,
+          "fields": {
+            "newsletterTitle": {
+              "type": "Text",
+              "config": {
+                "label": "Newsletter Title",
+                "placeholder": ""
+              }
+            },
+            "newsletterDesc": {
+              "type": "Text",
+              "config": {
+                "label": "Newsletter Description",
+                "placeholder": ""
+              }
+            },
+            "newsetterFile": {
+              "type": "Link",
+              "config": {
+                "label": "Newsetter File",
+                "placeholder": "",
+                "select": "media",
+                "allowText": true
+              }
+            },
+            "newsletterDate": {
+              "type": "Date",
+              "config": {
+                "label": "Newsletter Date",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "requiresAuth": {
+        "type": "Boolean",
+        "config": {
+          "label": "Requires Authentication ",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": true
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}

@@ -9,28 +9,28 @@
       "heroTopTitle": {
         "type": "Text",
         "config": {
-          "label": "HeroTopTitle",
+          "label": "Hero Top Title",
           "placeholder": ""
         }
       },
       "heroBottomTitle": {
         "type": "Text",
         "config": {
-          "label": "HeroBottomTitle",
+          "label": "Hero Bottom Title",
           "placeholder": ""
         }
       },
       "heroSubTitle": {
         "type": "Text",
         "config": {
-          "label": "HeroSubTitle",
+          "label": "Hero Subtitle",
           "placeholder": ""
         }
       },
       "heroAction": {
         "type": "Link",
         "config": {
-          "label": "HeroAction",
+          "label": "Hero Action",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,
@@ -41,13 +41,13 @@
       "heroCarouselData": {
         "type": "Group",
         "config": {
-          "label": "HeroCarouselData",
+          "label": "Hero Carousel",
           "repeat": true,
           "fields": {
             "heroCarouselBackground": {
               "type": "Image",
               "config": {
-                "label": "HeroCarouselBackground",
+                "label": "Card Background",
                 "constraint": {},
                 "thumbnails": []
               }
@@ -55,21 +55,21 @@
             "heroCarouselTitle": {
               "type": "Text",
               "config": {
-                "label": "HeroCarouselTitle",
+                "label": "Card Title",
                 "placeholder": "Slide Title (H2)"
               }
             },
             "heroCarouselDescription": {
               "type": "Text",
               "config": {
-                "label": "HeroCarouselDescription",
+                "label": "Card Description",
                 "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut..."
               }
             },
             "heroCarouselLink": {
               "type": "Link",
               "config": {
-                "label": "HeroCarouselLink",
+                "label": "Card Link",
                 "placeholder": "Slide Link",
                 "select": null,
                 "allowTargetBlank": true,
@@ -83,7 +83,7 @@
       "nextConferenceInfo": {
         "type": "Link",
         "config": {
-          "label": "NextConferenceInfo",
+          "label": "Next Conference Info",
           "select": "document",
           "repeat": false,
           "customtypes": ["nextConferenceSection"]
@@ -92,21 +92,21 @@
       "introHeader": {
         "type": "Text",
         "config": {
-          "label": "IntroHeader",
+          "label": "Intro Header",
           "placeholder": "Our Mission: Excellence in Corrections"
         }
       },
       "introDescription": {
         "type": "Text",
         "config": {
-          "label": "IntroDescription",
+          "label": "Intro Description",
           "placeholder": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium..."
         }
       },
       "introAction": {
         "type": "Link",
         "config": {
-          "label": "IntroAction",
+          "label": "Intro Action",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,
@@ -117,13 +117,13 @@
       "introImageTile": {
         "type": "Group",
         "config": {
-          "label": "IntroImageTile",
+          "label": "Intro Image Tile",
           "repeat": true,
           "fields": {
             "introImage1": {
               "type": "Image",
               "config": {
-                "label": "IntroImage1",
+                "label": "Intro Image 1",
                 "constraint": {},
                 "thumbnails": []
               }
@@ -131,7 +131,7 @@
             "introImage2": {
               "type": "Image",
               "config": {
-                "label": "introImage2",
+                "label": "Intro Image 2",
                 "constraint": {},
                 "thumbnails": []
               }

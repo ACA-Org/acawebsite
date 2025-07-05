@@ -9,13 +9,13 @@
       "footerAddress": {
         "type": "Group",
         "config": {
-          "label": "FooterAddress",
+          "label": "Footer Address",
           "repeat": true,
           "fields": {
             "footerAddressLine": {
               "type": "Text",
               "config": {
-                "label": "FooterAddressLine",
+                "label": "Address Line",
                 "placeholder": ""
               }
             }
@@ -25,13 +25,13 @@
       "footerContactInfo": {
         "type": "Group",
         "config": {
-          "label": "FooterContact",
+          "label": "Footer Contact",
           "repeat": true,
           "fields": {
             "footerContactLine": {
               "type": "Text",
               "config": {
-                "label": "FooterContactLine",
+                "label": "Contact Line",
                 "placeholder": ""
               }
             }
@@ -41,18 +41,7 @@
       "helpfulNavLinks": {
         "type": "Link",
         "config": {
-          "label": "HelpfulNavLinks",
-          "placeholder": "",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": true
-        }
-      },
-      "subFooterNavLinks": {
-        "type": "Link",
-        "config": {
-          "label": "SubFooterNavLinks",
+          "label": "Helpful Nav Links",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,
@@ -63,7 +52,18 @@
       "memberNavLinks": {
         "type": "Link",
         "config": {
-          "label": "MemberNavLinks",
+          "label": "Member Nav Links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "subFooterNavLinks": {
+        "type": "Link",
+        "config": {
+          "label": "Sub-Footer Nav Links",
           "placeholder": "",
           "select": null,
           "allowTargetBlank": true,

@@ -15,7 +15,7 @@
       "parentPage": {
         "type": "Link",
         "config": {
-          "label": "ParentPage",
+          "label": "Parent Page",
           "select": "document",
           "repeat": false,
           "customtypes": ["tierTwoPage"]
@@ -24,7 +24,7 @@
       "pageImage": {
         "type": "Image",
         "config": {
-          "label": "PageImage",
+          "label": "Page Image",
           "constraint": {},
           "thumbnails": []
         }
@@ -32,21 +32,21 @@
       "pageTitle": {
         "type": "Text",
         "config": {
-          "label": "PageTitle",
+          "label": "Page Title",
           "placeholder": ""
         }
       },
       "pageSubTitle": {
         "type": "Text",
         "config": {
-          "label": "PageSubTitle",
+          "label": "Page Subtitle",
           "placeholder": ""
         }
       },
       "pageContent": {
         "type": "StructuredText",
         "config": {
-          "label": "PageContent",
+          "label": "Page Content",
           "placeholder": "",
           "allowTargetBlank": true,
           "labels": ["Block Quote", "Horizontal Rule"],
@@ -74,7 +74,7 @@
       "hidden": {
         "type": "Boolean",
         "config": {
-          "label": "hidden",
+          "label": "Hide from Site?",
           "placeholder_false": "false",
           "placeholder_true": "true",
           "default_value": false

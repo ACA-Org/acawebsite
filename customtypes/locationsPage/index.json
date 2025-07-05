@@ -6,43 +6,35 @@
   "status": true,
   "json": {
     "Main": {
+      "pageImage": {
+        "type": "Image",
+        "config": {
+          "label": "Page Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "pageTitle": {
         "type": "Text",
         "config": {
-          "label": "PageTitle",
+          "label": "Page Title",
           "placeholder": ""
         }
       },
       "pageSubTitle": {
         "type": "Text",
         "config": {
-          "label": "PageSubTitle",
+          "label": "Page Subtitle",
           "placeholder": ""
         }
       },
       "pageContent": {
         "type": "StructuredText",
         "config": {
-          "label": "PageContent",
+          "label": "Page Content",
           "placeholder": "",
           "allowTargetBlank": true,
           "multi": "paragraph,preformatted,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-        }
-      },
-      "pageImage": {
-        "type": "Image",
-        "config": {
-          "label": "PageImage",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
-      "locations": {
-        "type": "Group",
-        "config": {
-          "label": "Locations",
-          "repeat": true,
-          "fields": {}
         }
       },
       "slices": {
