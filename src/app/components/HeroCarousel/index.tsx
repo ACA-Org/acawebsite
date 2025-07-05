@@ -23,9 +23,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
           centeredSlides={true}
           loop={true}
           pagination={false}
+          allowTouchMove={false}
           autoplay={{
             delay: 6000,
-            disableOnInteraction: false,
+            disableOnInteraction: true,
           }}
           className="relative h-full w-full !overflow-visible"
           loopAdditionalSlides={1}

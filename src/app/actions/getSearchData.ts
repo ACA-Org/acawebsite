@@ -62,7 +62,13 @@ type SitemapEntry = {
 export async function getSitemapUrls(): Promise<SitemapEntry[]> {
   const pages = await getSearchData();
 
-  return pages.flatMap((page) => {
+  // Filter out pages with hidden or requiresAuth properties
+  const filteredPages = pages.filter((page) => {
+    const pageData = page.data as any;
+    return !pageData.hidden && !pageData.requiresAuth;
+  });
+
+  return filteredPages.flatMap((page) => {
     switch (page.type) {
       case "tierOnePage":
         return {
@@ -99,8 +105,28 @@ export async function getSitemapUrls(): Promise<SitemapEntry[]> {
           type: page.type,
           lastModified: page.last_publication_date,
         };
+      case "contactPage":
+        return {
+          url: "/contact",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "locationsPage":
+        return {
+          url: "/locations",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "privacyPolicy":
+        return {
+          url: "/privacy_policy",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
       default:
-        // Skip contact, privacy, locations, etc.
         return [];
     }
   });
