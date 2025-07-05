@@ -1,5 +1,6 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Search } from "./containers/Search";
+import { Metadata } from "next";
 
 export default async function Page() {
   return (
@@ -22,4 +23,17 @@ export default async function Page() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "ACA - Search",
+    openGraph: {
+      images: [
+        {
+          url: "https://images.prismic.io/acawebsite/Z_vG-uvxEdbNO-jG_aca-og.png?auto=format,compress",
+        },
+      ],
+    },
+  };
 }
