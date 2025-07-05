@@ -95,7 +95,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
 
       if (props.field?.link_type === "Web") {
         e.preventDefault();
-        window.open(props.field.url, "_blank");
+        window.open(props.field.url, props.field.target);
         return onClick?.(e);
       }
 
