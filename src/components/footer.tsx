@@ -10,6 +10,7 @@ import { X } from "@/icons/X";
 import { FooterDocumentData, Simplify } from "../../prismicio-types";
 import { TextLink } from "./ui/button";
 import Link from "next/link";
+import { AuthTextLink } from "@/app/components/SignIn";
 
 export type FooterProps = Simplify<FooterDocumentData>;
 
@@ -102,12 +103,13 @@ const Footer = ({ data }: { data: FooterProps }) => {
               </div>
 
               <div className="flex w-full flex-col items-start gap-2 self-stretch">
+                <AuthTextLink
+                  className={
+                    "body-md hover:text-gold-100 mt-[-1.00px] cursor-pointer self-stretch transition-colors"
+                  }
+                />
                 {memberNavLinks?.map((link, index) => (
-                  <TextLink
-                    key={`member-${index}`}
-                    className={index === 0 ? "mt-[-1.00px]" : ""}
-                    field={link}
-                  >
+                  <TextLink key={`member-${index}`} field={link}>
                     {link.text}
                   </TextLink>
                 ))}
