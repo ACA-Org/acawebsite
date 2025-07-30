@@ -47,4 +47,3 @@ export function AuthTextLink(props: React.HTMLAttributes<HTMLSpanElement>) {
     </span>
   );
 }
-

@@ -35,4 +35,3 @@ export const NewsletterGrid: React.FC<NewsletterGridProps> = ({
     </div>
   );
 };
-

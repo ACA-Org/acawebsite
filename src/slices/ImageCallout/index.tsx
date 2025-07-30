@@ -72,4 +72,3 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
 };
 
 export default ImageCallout;
-

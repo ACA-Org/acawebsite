@@ -6,6 +6,14 @@
   "status": true,
   "json": {
     "Main": {
+      "newsletterBanner": {
+        "type": "Image",
+        "config": {
+          "label": "Newsletter Banner",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "pageTitle": {
         "type": "Text",
         "config": {
@@ -28,6 +36,14 @@
           "label": "Newsletter Cards",
           "repeat": true,
           "fields": {
+            "newsletterImage": {
+              "type": "Image",
+              "config": {
+                "label": "Newsletter Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
             "newsletterTitle": {
               "type": "Text",
               "config": {
@@ -42,6 +58,13 @@
                 "placeholder": ""
               }
             },
+            "newsletterDate": {
+              "type": "Date",
+              "config": {
+                "label": "Newsletter Date",
+                "placeholder": ""
+              }
+            },
             "newsetterFile": {
               "type": "Link",
               "config": {
@@ -51,11 +74,15 @@
                 "allowText": true
               }
             },
-            "newsletterDate": {
-              "type": "Date",
+            "newsletterLink": {
+              "type": "Link",
               "config": {
-                "label": "Newsletter Date",
-                "placeholder": ""
+                "label": "Newsletter Link",
+                "placeholder": "Add a link to the corresponding Newsletter page, if one exists",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
               }
             }
           }
