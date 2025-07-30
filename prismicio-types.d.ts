@@ -711,6 +711,130 @@ export type LocationsPageDocument<Lang extends string = string> =
     Lang
   >;
 
+type NewsletterDetailDocumentDataSlicesSlice =
+  | SpeedBumpSlice
+  | ImageCalloutSlice
+  | ConferenceCardSlice
+  | CardContainerSlice
+  | TileContainerSlice
+  | LinkTileSlice
+  | LogoTickerSlice
+  | MenuItemSlice
+  | AccordionSlice
+  | ContactFormSlice
+  | LinkCardSlice
+  | TableSlice
+  | RichTextBoxSlice
+  | ButtonGroupSlice;
+
+/**
+ * Content for NewsletterDetail documents
+ */
+interface NewsletterDetailDocumentData {
+  /**
+   * News Banner field in *NewsletterDetail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterDetail.newsBanner
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  newsBanner: prismic.ImageField<never>;
+
+  /**
+   * News Title field in *NewsletterDetail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterDetail.newsTitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  newsTitle: prismic.KeyTextField;
+
+  /**
+   * News Content field in *NewsletterDetail*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterDetail.newsContent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  newsContent: prismic.RichTextField;
+
+  /**
+   * Requires Authentication field in *NewsletterDetail*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: newsletterDetail.requiresAuth
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  requiresAuth: prismic.BooleanField;
+
+  /**
+   * Slice Zone field in *NewsletterDetail*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterDetail.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<NewsletterDetailDocumentDataSlicesSlice> /**
+   * Meta Title field in *NewsletterDetail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: newsletterDetail.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *NewsletterDetail*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: newsletterDetail.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *NewsletterDetail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterDetail.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * NewsletterDetail document from Prismic
+ *
+ * - **API ID**: `newsletterDetail`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NewsletterDetailDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<NewsletterDetailDocumentData>,
+    "newsletterDetail",
+    Lang
+  >;
+
 /**
  * Item in *NewsletterPage → Newsletter Cards*
  */
@@ -1835,6 +1959,7 @@ export type AllDocumentTypes =
   | HeaderDocument
   | HomepageDocument
   | LocationsPageDocument
+  | NewsletterDetailDocument
   | NewsletterPageDocument
   | NextConferenceSectionDocument
   | PrivacyPolicyDocument
@@ -3405,6 +3530,9 @@ declare module "@prismicio/client" {
       LocationsPageDocument,
       LocationsPageDocumentData,
       LocationsPageDocumentDataSlicesSlice,
+      NewsletterDetailDocument,
+      NewsletterDetailDocumentData,
+      NewsletterDetailDocumentDataSlicesSlice,
       NewsletterPageDocument,
       NewsletterPageDocumentData,
       NewsletterPageDocumentDataNewsletterCardsItem,

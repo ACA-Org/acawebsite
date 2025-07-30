@@ -18,6 +18,7 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
     newsletterDesc,
     newsletterTitle,
     newsletterImage,
+    newsletterLink,
   } = props;
 
   return (
@@ -47,6 +48,10 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
 
         {newsetterFile?.text && (
           <LinkButton field={newsetterFile}>{newsetterFile.text}</LinkButton>
+        )}
+
+        {newsletterLink && (
+          <LinkButton field={newsletterLink}>{newsletterLink.text}</LinkButton>
         )}
       </div>
     </div>
