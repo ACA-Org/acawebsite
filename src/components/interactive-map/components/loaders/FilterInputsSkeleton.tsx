@@ -16,4 +16,3 @@ export const FilterInputsSkeleton = React.memo(() => {
 });
 
 FilterInputsSkeleton.displayName = "FilterInputsSkeleton";
-

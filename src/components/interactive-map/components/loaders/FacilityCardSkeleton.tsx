@@ -29,4 +29,3 @@ export const FacilityCardSkeleton = React.memo(() => {
 });
 
 FacilityCardSkeleton.displayName = "FacilityCardSkeleton";
-

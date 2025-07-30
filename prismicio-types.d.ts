@@ -28,8 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & // Group
-  {
+  } & {
+    // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & // Other fields
-  {
+  } & {
+    // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -716,6 +716,16 @@ export type LocationsPageDocument<Lang extends string = string> =
  */
 export interface NewsletterPageDocumentDataNewsletterCardsItem {
   /**
+   * Newsletter Image field in *NewsletterPage → Newsletter Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterPage.newsletterCards[].newsletterImage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  newsletterImage: prismic.ImageField<never>;
+
+  /**
    * Newsletter Title field in *NewsletterPage → Newsletter Cards*
    *
    * - **Field Type**: Text
@@ -736,6 +746,16 @@ export interface NewsletterPageDocumentDataNewsletterCardsItem {
   newsletterDesc: prismic.KeyTextField;
 
   /**
+   * Newsletter Date field in *NewsletterPage → Newsletter Cards*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterPage.newsletterCards[].newsletterDate
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  newsletterDate: prismic.DateField;
+
+  /**
    * Newsetter File field in *NewsletterPage → Newsletter Cards*
    *
    * - **Field Type**: Link to Media
@@ -746,14 +766,20 @@ export interface NewsletterPageDocumentDataNewsletterCardsItem {
   newsetterFile: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
-   * Newsletter Date field in *NewsletterPage → Newsletter Cards*
+   * Newsletter Link field in *NewsletterPage → Newsletter Cards*
    *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: newsletterPage.newsletterCards[].newsletterDate
-   * - **Documentation**: https://prismic.io/docs/fields/date
+   * - **Field Type**: Link
+   * - **Placeholder**: Add a link to the corresponding Newsletter page, if one exists
+   * - **API ID Path**: newsletterPage.newsletterCards[].newsletterLink
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  newsletterDate: prismic.DateField;
+  newsletterLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 type NewsletterPageDocumentDataSlicesSlice = never;
@@ -762,6 +788,17 @@ type NewsletterPageDocumentDataSlicesSlice = never;
  * Content for NewsletterPage documents
  */
 interface NewsletterPageDocumentData {
+  /**
+   * Newsletter Banner field in *NewsletterPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletterPage.newsletterBanner
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  newsletterBanner: prismic.ImageField<never>;
+
   /**
    * Page Title field in *NewsletterPage*
    *

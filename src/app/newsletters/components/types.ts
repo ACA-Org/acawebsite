@@ -5,4 +5,3 @@ import {
 
 export type Newsletter =
   Simplify<NewsletterPageDocumentDataNewsletterCardsItem>;
-

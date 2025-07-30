@@ -50,13 +50,7 @@
           "config": {
             "label": "ImageAnchor",
             "placeholder": "",
-            "options": [
-              "center",
-              "top",
-              "left",
-              "right",
-              "bottom"
-            ],
+            "options": ["center", "top", "left", "right", "bottom"],
             "default_value": "center"
           }
         },
@@ -65,10 +59,7 @@
           "config": {
             "label": "ImageFit",
             "placeholder": "",
-            "options": [
-              "cover",
-              "contain"
-            ],
+            "options": ["cover", "contain"],
             "default_value": "cover"
           }
         }
@@ -121,13 +112,7 @@
           "config": {
             "label": "ImageAnchor",
             "placeholder": "",
-            "options": [
-              "center",
-              "top",
-              "left",
-              "right",
-              "bottom"
-            ]
+            "options": ["center", "top", "left", "right", "bottom"]
           }
         },
         "imageFit": {
@@ -135,10 +120,7 @@
           "config": {
             "label": "ImageFit",
             "placeholder": "",
-            "options": [
-              "cover",
-              "contain"
-            ],
+            "options": ["cover", "contain"],
             "default_value": "cover"
           }
         }
