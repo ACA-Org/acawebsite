@@ -5,6 +5,7 @@ export function linkResolver(
   doc: FilledContentRelationshipField,
   pages: PageData[]
 ): string {
+  // console.log(doc);
   switch (doc.type) {
     case "tierOnePage":
       return `/${doc.uid}`;
@@ -47,6 +48,8 @@ export function linkResolver(
       if (!greatGrandParentId) return "/";
       return `/${greatGrandParentId}/${grandParentId}/${parentId}/${doc.uid}`;
     }
+    case "newsletterDetail":
+      return `/newsletters/${doc.uid}`;
     case "contactPage":
       return "/contact";
     case "locationsPage":
