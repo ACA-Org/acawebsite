@@ -68,7 +68,7 @@
             "newsetterFile": {
               "type": "Link",
               "config": {
-                "label": "Newsetter File",
+                "label": "Newsletter File",
                 "placeholder": "",
                 "select": "media",
                 "allowText": true

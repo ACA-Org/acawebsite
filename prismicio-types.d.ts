@@ -28,8 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & {
-    // Group
+  } & // Group
+  {
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & {
-    // Other fields
+  } & // Other fields
+  {
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -880,7 +880,7 @@ export interface NewsletterPageDocumentDataNewsletterCardsItem {
   newsletterDate: prismic.DateField;
 
   /**
-   * Newsetter File field in *NewsletterPage → Newsletter Cards*
+   * Newsletter File field in *NewsletterPage → Newsletter Cards*
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*

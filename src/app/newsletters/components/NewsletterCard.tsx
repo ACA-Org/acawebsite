@@ -46,13 +46,13 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
           </div>
         )}
 
-        {newsetterFile?.text && (
-          <LinkButton field={newsetterFile}>{newsetterFile.text}</LinkButton>
-        )}
+        {}
 
-        {newsletterLink && (
+        {newsletterLink.text ? (
           <LinkButton field={newsletterLink}>{newsletterLink.text}</LinkButton>
-        )}
+        ) : newsetterFile?.text ? (
+          <LinkButton field={newsetterFile}>{newsetterFile.text}</LinkButton>
+        ) : null}
       </div>
     </div>
   );
