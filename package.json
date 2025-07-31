@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build-storybook": "storybook build",
     "dev": "next dev --turbopack",
     "https": "next dev --turbopack --experimental-https",
     "format": "prettier --write .",
@@ -12,13 +11,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "slicemachine": "start-slicemachine",
-    "start": "next start",
-    "storybook": "storybook dev -p 6006"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
+    "start": "next start"
   },
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.4.1",
@@ -64,16 +57,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.5",
     "@eslint/eslintrc": "^3",
     "@slicemachine/adapter-next": "^0.3.80",
-    "@storybook/addon-essentials": "^8.6.4",
-    "@storybook/addon-interactions": "^8.6.4",
-    "@storybook/addon-onboarding": "^8.6.4",
-    "@storybook/blocks": "^8.6.4",
-    "@storybook/nextjs": "^8.6.4",
-    "@storybook/react": "^8.6.4",
-    "@storybook/test": "^8.6.4",
     "@tailwindcss/postcss": "^4",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20",
@@ -87,13 +72,11 @@
     "eslint-config-next": "15.2.1",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
-    "eslint-plugin-storybook": "^0.11.4",
     "fs-extra": "^11.3.0",
     "husky": "^9.1.7",
     "postcss": "^8.5.4",
     "prettier": "^3.5.3",
     "slice-machine-ui": "^2.17.1",
-    "storybook": "^8.6.4",
     "tailwindcss": "^4",
     "turndown": "^7.2.0",
     "typescript": "5.3.3"

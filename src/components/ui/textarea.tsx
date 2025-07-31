@@ -16,7 +16,7 @@ function Textarea({
         "placeholder:text-muted-foreground dark:bg-input/30 flex w-full min-w-0 rounded-sm border bg-transparent px-4 py-3 text-lg transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
         "focus-visible:ring-ring/50 focus-visible:border-blue-100 focus-visible:ring-[3px]",
         "aria-invalid:border-red-500 aria-invalid:ring-red-500/20 dark:aria-invalid:ring-red-500/40",
-        "flex items-center gap-2 self-stretch border border-solid bg-white px-4 py-3",
+        "font-open-sans flex items-center gap-2 self-stretch border border-solid bg-white px-4 py-3",
         hasError && "border-red-500",
         className
       )}

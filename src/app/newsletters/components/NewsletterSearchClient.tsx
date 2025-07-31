@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 import { NewsletterGrid } from "./NewsletterGrid";
 import type { Newsletter } from "./types";
+import { Input } from "@/components/ui/input";
 
 interface Props {
   newsletters: Newsletter[];
@@ -40,7 +41,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
           <h3 className="heading-3">Filter Newsletters</h3>
           <div className="flex flex-col gap-2">
             <label htmlFor="newsletterKeyword">Keyword</label>
-            <input
+            <Input
               type="text"
               placeholder="Search newsletters..."
               value={searchTerm}
@@ -54,7 +55,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
           <div className="flex flex-col gap-8">
             <div className="flex flex-1 flex-col gap-2">
               <label htmlFor="newsletterStartDate">Start Date:</label>
-              <input
+              <Input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
@@ -65,7 +66,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
             </div>
             <div className="flex flex-1 flex-col gap-2">
               <label htmlFor="newsletterEndDate">End Date:</label>
-              <input
+              <Input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}

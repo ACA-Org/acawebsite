@@ -11,8 +11,6 @@ export async function getNewsletterDetailPageData(
 ): Promise<NewsletterDetailPageData> {
   const client = createClient();
   return client.getByUID("newsletterDetail", uid, {
-    // filters: [filter.not("my.tierOnePage.hidden", true)],
-
     fetchOptions: {
       next: {
         tags: [uid],

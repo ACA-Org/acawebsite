@@ -106,6 +106,21 @@ export async function POST(req: NextRequest) {
             revalidatedAt: new Date().toISOString(),
           });
           break;
+        case "newsletterPage":
+          revalidateTag("newsletterPage");
+          revalidated.push({
+            type: "newsletterPage",
+            revalidatedAt: new Date().toISOString(),
+          });
+          break;
+        case "newsletterDetail":
+          revalidateTag(i.uid);
+          revalidated.push({
+            type: "newsletterDetail",
+            uid: i.uid,
+            revalidatedAt: new Date().toISOString(),
+          });
+          break;
         case "homepage":
         case "nextConferenceSection":
           revalidateTag("homepage");

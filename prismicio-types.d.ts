@@ -343,7 +343,7 @@ export interface HomepageDocumentDataHeroCarouselDataItem {
    * - **API ID Path**: homepage.heroCarouselData[].heroCarouselBackground
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  heroCarouselBackground: prismic.ImageField<never>;
+  heroCarouselBackground: prismic.ImageField<"mobile">;
 
   /**
    * Card Title field in *HomePage → Hero Carousel*

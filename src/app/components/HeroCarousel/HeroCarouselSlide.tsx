@@ -24,10 +24,18 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
           <div className="absolute inset-0 h-full w-full">
             <DynamicImage
               field={img}
-              className="h-full w-full object-cover"
+              className="hidden h-full w-full object-cover sm:flex"
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}
             />
+
+            <DynamicImage
+              field={img.mobile}
+              className="flex h-full w-full object-cover sm:hidden"
+              priority={props.index === 0}
+              loading={props.index === 0 ? "eager" : "lazy"}
+            />
+
             {(desc || title) && (
               <div className="absolute inset-0 bg-gradient-to-bl from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F]" />
             )}

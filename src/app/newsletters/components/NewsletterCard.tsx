@@ -5,7 +5,9 @@ import { DynamicImage } from "@/components/image";
 
 export const NewsletterCard: FC<Newsletter> = (props) => {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
+    // Ensure date is interpreted in local timezone by appending T12:00:00
+    const localDate = new Date(dateString + "T12:00:00");
+    return localDate.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -20,6 +22,8 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
     newsletterImage,
     newsletterLink,
   } = props;
+
+  console.log(props);
 
   return (
     <div className="flex flex-col items-stretch gap-4 self-stretch rounded-xl border border-blue-500/15 bg-white p-4 max-lg:w-[calc(50%-16px)] max-md:w-full lg:flex-1">
