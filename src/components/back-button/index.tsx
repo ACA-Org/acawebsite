@@ -6,6 +6,7 @@ import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 import { usePathname } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { TransitionLink } from "../ui/button";
+import { getPageTitle } from "@/lib/searchUtils";
 
 export function BackButton() {
   const pathname = usePathname();
@@ -32,7 +33,7 @@ export function BackButton() {
       className="flex items-center gap-2 text-blue-300 transition-colors hover:text-blue-400 md:hidden"
     >
       <ChevronLeft className="h-5 w-5" />
-      <p>Go to {parentPage.data.pageTitle}</p>
+      <p>Go to {getPageTitle(parentPage)}</p>
     </TransitionLink>
   );
 }

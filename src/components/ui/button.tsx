@@ -120,7 +120,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
 
     return (
       <PrismicNextLink
-        linkResolver={(doc) => linkResolver(doc, pages)}
+        linkResolver={(doc) => linkResolver(doc as any, pages)}
         className={className}
         ref={ref}
         onClick={handleClick}

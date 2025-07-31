@@ -1,11 +1,12 @@
-import { FilledContentRelationshipField } from "@prismicio/client";
-import { PageData } from "@/app/actions/getSearchData";
+import { AllDocumentTypes } from "../../prismicio-types";
 
-export function linkResolver(
-  doc: FilledContentRelationshipField,
-  pages: PageData[]
-): string {
-  // console.log(doc);
+type DocType = {
+  type: AllDocumentTypes["type"];
+  uid: string;
+  [key: string]: any;
+};
+
+export function linkResolver(doc: DocType, pages: AllDocumentTypes[]): string {
   switch (doc.type) {
     case "tierOnePage":
       return `/${doc.uid}`;
@@ -50,12 +51,16 @@ export function linkResolver(
     }
     case "newsletterDetail":
       return `/newsletters/${doc.uid}`;
+    case "newsletterPage":
+      return `/newsletters`;
     case "contactPage":
       return "/contact";
     case "locationsPage":
       return "/locations";
     case "privacyPolicy":
       return "/privacy_policy";
+    case "homepage":
+      return "/";
     default:
       return "/";
   }

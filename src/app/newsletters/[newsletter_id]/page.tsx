@@ -32,8 +32,6 @@ export default async function NewsletterDetail({
 
   const { newsBanner, newsTitle, newsContent, requiresAuth } = pageData.data;
 
-  console.log(pageData);
-
   if (requiresAuth) {
     const session = await getServerSession(authOptions);
     if (!session?.user?.email) return <Unauthenticated />;

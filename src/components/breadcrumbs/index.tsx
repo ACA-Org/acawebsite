@@ -7,6 +7,7 @@ import { useAtomValue } from "jotai";
 import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 import { TransitionLink } from "../ui/button";
+import { getPageTitle } from "@/lib/searchUtils";
 
 export function Breadcrumbs() {
   const pathname = usePathname();
@@ -55,7 +56,7 @@ export function Breadcrumbs() {
     });
 
     const label =
-      page?.data?.pageTitle ||
+      (page ? getPageTitle(page) : null) ||
       segment
         .split("_")
         .join("-")

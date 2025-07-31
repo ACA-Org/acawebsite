@@ -3,16 +3,16 @@
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import Fuse from "fuse.js";
-import { asText } from "@prismicio/richtext";
 import { useAtomValue } from "jotai";
 
 import { LinkButton } from "@/components/ui/button";
 import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
-
-type FuseMatch = {
-  indices: [number, number][];
-  key: string;
-};
+import {
+  FuseMatch,
+  SearchResult,
+  getPageContent,
+  getPageTitle,
+} from "@/lib/searchUtils";
 
 export const Search = () => {
   const pages = useAtomValue(pageInfoAtom);
@@ -22,21 +22,13 @@ export const Search = () => {
     () =>
       new Fuse(pages, {
         keys: [
-          { name: "title", getFn: (page) => page.data.pageTitle || "" },
+          {
+            name: "title",
+            getFn: (page) => getPageTitle(page),
+          },
           {
             name: "content",
-            getFn: (page) => {
-              if (
-                !(page?.data as any)?.pageContent &&
-                !(page?.data as any)?.pageTextContent
-              )
-                return "";
-
-              return asText(
-                (page?.data as any)?.pageContent ||
-                  (page?.data as any)?.pageTextContent
-              );
-            },
+            getFn: (page) => getPageContent(page),
           },
         ],
         threshold: 0.5,
@@ -46,7 +38,7 @@ export const Search = () => {
     [pages]
   );
 
-  const results = useMemo(
+  const results: SearchResult[] = useMemo(
     () =>
       query
         ? fuse.search(query).map((res) => ({
@@ -58,7 +50,7 @@ export const Search = () => {
   );
 
   const getContentSnippet = useMemo(
-    () => (content: string, matches: FuseMatch[] | undefined) => {
+    () => (content: string, matches: readonly FuseMatch[] | undefined) => {
       if (!matches || !query) return null;
 
       const match = matches.find((m) => m.key === "content");
@@ -101,20 +93,10 @@ export const Search = () => {
 
       <div className="space-y-4">
         {results.map((page) => {
-          const contentMatches = (page as any).matches?.filter(
-            (m: FuseMatch) => m.key === "content"
+          const contentMatches = page.matches?.filter(
+            (m) => m.key === "content"
           );
-          let contentString = "";
-
-          if (
-            (page?.data as any)?.pageContent ||
-            (page?.data as any)?.pageTextContent
-          ) {
-            contentString += asText(
-              (page?.data as any)?.pageContent ||
-                (page?.data as any)?.pageTextContent
-            );
-          }
+          const contentString = getPageContent(page);
 
           return (
             <LinkButton
@@ -132,7 +114,7 @@ export const Search = () => {
             >
               <div className="flex flex-col items-start gap-2">
                 <span className="heading-5 text-gray-700">
-                  {page.data.pageTitle || ""}
+                  {getPageTitle(page)}
                 </span>
                 {query &&
                   contentString &&

@@ -2,23 +2,17 @@
 
 import { createClient } from "@/prismicio";
 import {
-  ContactPageDocument,
-  LocationsPageDocument,
-  PrivacyPolicyDocument,
-  TierFourPageDocument,
+  AllDocumentTypes,
   TierOnePageDocument,
-  TierThreePageDocument,
-  TierTwoPageDocument,
+  HeaderDocument,
+  FooterDocument,
+  NextConferenceSectionDocument,
 } from "../../../prismicio-types";
 
-export type PageData =
-  | TierOnePageDocument
-  | TierTwoPageDocument
-  | TierThreePageDocument
-  | TierFourPageDocument
-  | ContactPageDocument
-  | PrivacyPolicyDocument
-  | LocationsPageDocument;
+export type PageData = Exclude<
+  AllDocumentTypes,
+  HeaderDocument | FooterDocument | NextConferenceSectionDocument
+>;
 
 export async function getSearchData(): Promise<PageData[]> {
   const client = createClient();
@@ -31,6 +25,9 @@ export async function getSearchData(): Promise<PageData[]> {
     contactPage,
     locationsPage,
     privacyPolicy,
+    homepage,
+    newsletterPage,
+    newsletters,
   ] = await Promise.all([
     client.getAllByType("tierOnePage"),
     client.getAllByType("tierTwoPage"),
@@ -39,13 +36,19 @@ export async function getSearchData(): Promise<PageData[]> {
     client.getSingle("contactPage"),
     client.getSingle("locationsPage"),
     client.getSingle("privacyPolicy"),
+    client.getSingle("homepage"),
+    client.getSingle("newsletterPage"),
+    client.getAllByType("newsletterDetail"),
   ]);
 
   return [
-    ...tierOneDocs.filter((i) => !i.data.hidden),
-    ...tierTwoDocs.filter((i) => !i.data.hidden),
-    ...tierThreeDocs.filter((i) => !i.data.hidden),
-    ...tierFourDocs.filter((i) => !i.data.hidden),
+    ...tierOneDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
+    ...tierTwoDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
+    ...tierThreeDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
+    ...tierFourDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
+    ...newsletters.filter((i) => !i.data.requiresAuth),
+    homepage,
+    newsletterPage,
     contactPage,
     locationsPage,
     privacyPolicy,
@@ -126,6 +129,49 @@ export async function getSitemapUrls(): Promise<SitemapEntry[]> {
           type: page.type,
           lastModified: page.last_publication_date,
         };
+      case "homepage":
+        return {
+          url: `/`,
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "newsletterPage":
+        return {
+          url: `/newsletter`,
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "newsletterDetail":
+        return {
+          url: `/newsletter/${page.uid}`,
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "contactPage":
+        return {
+          url: "/contact",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "locationsPage":
+        return {
+          url: "/locations",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+      case "privacyPolicy":
+        return {
+          url: "/privacy_policy",
+          id: page.id,
+          type: page.type,
+          lastModified: page.last_publication_date,
+        };
+
       default:
         return [];
     }
