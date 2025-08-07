@@ -30,7 +30,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
             />
 
             <DynamicImage
-              field={img.mobile}
+              field={img.mobile?.url ? img.mobile : img}
               className="flex h-full w-full object-cover sm:hidden"
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}

@@ -46,7 +46,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
               placeholder="Search newsletters..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded border p-2"
+              className="h-12 w-full rounded border"
               id="newsletterKeyword"
               name="newsletterKeyword"
             />
@@ -59,7 +59,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full rounded border p-2"
+                className="block h-12 w-full rounded border"
                 id="newsletterStartDate"
                 name="newsletterStartDate"
               />
@@ -70,7 +70,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full rounded border p-2"
+                className="block h-12 w-full rounded border"
                 id="newsletterEndDate"
                 name="newsletterEndDate"
               />
