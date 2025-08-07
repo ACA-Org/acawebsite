@@ -1,7 +1,6 @@
 "use client";
 
 import { ComponentProps, useState, useEffect } from "react";
-import { Skeleton } from "./ui/skeleton";
 import { cn } from "@/lib/utils";
 import { PrismicNextImage } from "@prismicio/next";
 
@@ -11,12 +10,7 @@ export type DynamicImageProps = ComponentProps<typeof PrismicNextImage> & {
 };
 
 export const DynamicImage = (props: DynamicImageProps) => {
-  const {
-    priority = false,
-    loadingLabel = "Loading image",
-    ...imageProps
-  } = props;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { priority = false, ...imageProps } = props;
   const [hasError, setHasError] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -33,13 +27,6 @@ export const DynamicImage = (props: DynamicImageProps) => {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  const handleLoad = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    setIsLoaded(true);
-    if (imageProps.onLoad) {
-      imageProps.onLoad(event);
-    }
-  };
-
   const handleError = (
     event: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
@@ -49,7 +36,6 @@ export const DynamicImage = (props: DynamicImageProps) => {
     }
   };
 
-  // If there's an error, show error state
   if (hasError) {
     return (
       <div
@@ -74,28 +60,12 @@ export const DynamicImage = (props: DynamicImageProps) => {
     : "transition-opacity duration-300";
 
   return (
-    <>
-      {!isLoaded && (
-        <Skeleton
-          className="absolute inset-0 h-full w-full"
-          role="img"
-          aria-label={loadingLabel}
-          aria-busy="true"
-        />
-      )}
-      <PrismicNextImage
-        {...imageProps}
-        loading={priority ? "eager" : imageProps.loading || "lazy"}
-        decoding="async"
-        onLoad={handleLoad}
-        onError={handleError}
-        className={cn(
-          transitionClass,
-          !isLoaded ? "opacity-0" : "opacity-100",
-          imageProps.className
-        )}
-        aria-hidden={!isLoaded}
-      />
-    </>
+    <PrismicNextImage
+      {...imageProps}
+      loading={priority ? "eager" : imageProps.loading || "lazy"}
+      decoding="async"
+      onError={handleError}
+      className={cn(transitionClass, imageProps.className)}
+    />
   );
 };
