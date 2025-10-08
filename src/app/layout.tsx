@@ -116,7 +116,7 @@ export default async function RootLayout({
             <CacheProvider>
               {headerInfo && <Header data={headerInfo} />}
             </CacheProvider>
-            <div className="mt-17">{children}</div>
+            <div className="mt-17 md:mt-24">{children}</div>
             {footerInfo && <Footer data={footerInfo} />}
           </HydrationBoundary>
         </body>

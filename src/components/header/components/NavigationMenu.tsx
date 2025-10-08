@@ -23,11 +23,8 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   }, [activeItem, slices]);
 
   return (
-    <nav
-      onMouseLeave={() => setActiveItem(null)}
-      className="relative z-40 xl:absolute xl:top-1/2 xl:left-1/2 xl:-translate-1/2 xl:p-8"
-    >
-      <div className={cn(className, "hidden lg:block")}>
+    <nav onMouseLeave={() => setActiveItem(null)} className="relative z-40">
+      <div className={cn(className, "hidden xl:block")}>
         <div className="relative">
           <div className="flex justify-center">
             <ul className="flex w-full items-center justify-center gap-8 p-2">
@@ -41,7 +38,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         onClick={() => {
                           setActiveItem(null);
                         }}
-                        className="group/link body-sm relative flex gap-2 text-blue-300 hover:cursor-default hover:bg-transparent hover:text-blue-200"
+                        className="group/link body-md relative flex gap-2 text-blue-300 hover:cursor-default hover:bg-transparent hover:text-blue-200"
                       >
                         <span className="whitespace-nowrap">
                           {tierOneLink.text}
@@ -64,7 +61,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         onClick={() => {
                           setActiveItem(null);
                         }}
-                        className="group/link body-sm flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
+                        className="group/link body-md flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
                       >
                         <span className="whitespace-nowrap">
                           {tierOneLink.text}
@@ -85,7 +82,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
           </div>
 
           <div
-            className={`absolute top-full left-1/2 mt-2 w-fit -translate-x-1/2 rounded-lg bg-white shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${
+            className={`absolute top-full right-0 mt-2 w-fit rounded-lg bg-white shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${
               activeSlice
                 ? "animate-slide-down-fade pointer-events-auto translate-y-0 opacity-100"
                 : "animate-slide-up-fade pointer-events-none -translate-y-2 opacity-0"

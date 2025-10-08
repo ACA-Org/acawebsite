@@ -25,6 +25,17 @@
                   "constraint": {},
                   "thumbnails": []
                 }
+              },
+              "logoLink": {
+                "type": "Link",
+                "config": {
+                  "label": "Logo Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
               }
             }
           }

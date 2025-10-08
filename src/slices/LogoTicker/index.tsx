@@ -2,7 +2,7 @@
 import { FC } from "react";
 import Marquee from "react-fast-marquee";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicLink, SliceComponentProps } from "@prismicio/react";
 import { DynamicImage } from "@/components/image";
 
 /**
@@ -28,20 +28,41 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
     >
       <Marquee gradient={false} speed={40} pauseOnHover={true}>
         {logos.map((logo, i) => (
-          <div
-            key={
-              logo.logoItem?.id + `${i}` ||
-              logo.logoItem?.url + `${i}` ||
-              `logo-${i}`
-            }
-            className="mx-4 flex-shrink-0"
-          >
-            <DynamicImage
-              field={logo.logoItem}
-              alt=""
-              className="max-h-[100px] w-auto"
-            />
-          </div>
+          <>
+            {logo.logoLink.text ? (
+              <PrismicLink
+                field={logo.logoLink}
+                key={
+                  logo.logoItem?.id + `${i}` ||
+                  logo.logoItem?.url + `${i}` ||
+                  `logo-${i}`
+                }
+              >
+                <div className="mx-4 flex-shrink-0">
+                  <DynamicImage
+                    field={logo.logoItem}
+                    alt=""
+                    className="max-h-[100px] w-auto"
+                  />
+                </div>
+              </PrismicLink>
+            ) : (
+              <div
+                key={
+                  logo.logoItem?.id + `${i}` ||
+                  logo.logoItem?.url + `${i}` ||
+                  `logo-${i}`
+                }
+                className="mx-4 flex-shrink-0"
+              >
+                <DynamicImage
+                  field={logo.logoItem}
+                  alt=""
+                  className="max-h-[100px] w-auto"
+                />
+              </div>
+            )}
+          </>
         ))}
       </Marquee>
     </section>

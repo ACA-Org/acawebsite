@@ -53,7 +53,7 @@ export const RightMenu = ({
   );
 
   return (
-    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
+    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll rounded-lg border border-blue-300/10 bg-blue-50">
       <div className="hidden md:block">
         {rightMenuHeader && (
           <div className="h-[60px] w-full border-b border-blue-100 pt-[18px] pb-5 pl-5">

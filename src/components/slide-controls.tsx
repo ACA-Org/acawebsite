@@ -12,29 +12,61 @@ export const SlideControls = ({
 }) => {
   const swiper = useSwiper();
   return (
-    <div
-      className={cn("absolute flex flex-row items-start gap-4", className)}
-      role="group"
-      aria-label="Carousel Navigation"
-    >
-      <Button
-        variant={variant}
-        outlined
-        onClick={() => swiper.slidePrev()}
-        className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
-        aria-label="Previous slide"
+    <>
+      <div
+        className={cn(
+          "absolute hidden flex-row justify-end gap-4 max-lg:relative lg:flex lg:items-start",
+          className
+        )}
+        role="group"
+        aria-label="Carousel Navigation"
       >
-        <ArrowLeft className="size-6" />
-      </Button>
-      <Button
-        variant={variant}
-        outlined
-        onClick={() => swiper.slideNext()}
-        className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
-        aria-label="Next slide"
+        <Button
+          variant={variant}
+          outlined
+          onClick={() => swiper.slidePrev()}
+          className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+          aria-label="Previous slide"
+        >
+          <ArrowLeft className="size-6" />
+        </Button>
+        <Button
+          variant={variant}
+          outlined
+          onClick={() => swiper.slideNext()}
+          className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+          aria-label="Next slide"
+        >
+          <ArrowRight className="size-6" />
+        </Button>
+      </div>
+      <div
+        className={cn(
+          "absolute flex flex-row justify-end gap-4 max-lg:relative lg:hidden lg:items-start",
+          className
+        )}
+        role="group"
+        aria-label="Carousel Navigation"
       >
-        <ArrowRight className="size-6" />
-      </Button>
-    </div>
+        <Button
+          variant="primary"
+          outlined
+          onClick={() => swiper.slidePrev()}
+          className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+          aria-label="Previous slide"
+        >
+          <ArrowLeft className="size-6" />
+        </Button>
+        <Button
+          variant="primary"
+          outlined
+          onClick={() => swiper.slideNext()}
+          className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+          aria-label="Next slide"
+        >
+          <ArrowRight className="size-6" />
+        </Button>
+      </div>
+    </>
   );
 };

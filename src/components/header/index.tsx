@@ -9,6 +9,9 @@ import { ACALogoColor } from "@/logos/ACALogoColor";
 import { usePathname } from "next/navigation";
 import { MobileMenu } from "./components/MobileMenu";
 import { TransitionLink } from "../ui/button";
+import Image from "next/image";
+
+import ACAFullLogo from "../../../public/aca-logo-full-color.png";
 
 const Header = ({
   data,
@@ -35,8 +38,10 @@ const Header = ({
     <header className={"fixed top-0 right-0 left-0 z-100 w-full"}>
       <div
         className={cn(
-          "relative z-100 flex w-full items-center justify-between border-b border-b-[rgba(0,95,150,0.08)] bg-[#f9f9f9] px-9 transition-all duration-300 ease-in-out",
-          isCollapsed ? "py-4" : "border-b-0 py-8 max-lg:py-4"
+          "relative z-100 flex w-full justify-between border-b border-b-[rgba(0,95,150,0.08)] bg-white px-9 transition-all duration-300 ease-in-out",
+          isCollapsed
+            ? "items-center py-4"
+            : "border-b-0 py-8 max-lg:py-4 max-md:items-center"
         )}
       >
         <TransitionLink
@@ -47,9 +52,17 @@ const Header = ({
           <ACALogoColor
             className={cn(
               "object-cover transition-all duration-500",
-              isCollapsed
-                ? "h-auto w-[68px]"
-                : "h-auto w-[150px] max-lg:w-[68px]"
+              isCollapsed ? "h-auto w-[68px]" : "h-auto w-[68px] md:hidden"
+            )}
+          />
+          <Image
+            src={ACAFullLogo.src}
+            alt="ACA, Founded 1870. American Correctional Association. Advance. Connect. Achieve."
+            width={300}
+            height={200}
+            className={cn(
+              "transition-all duration-500",
+              isCollapsed ? "hidden" : "hidden md:block"
             )}
           />
         </TransitionLink>
@@ -58,7 +71,7 @@ const Header = ({
 
         <IconMenu />
         <button
-          className="relative h-4 w-6 lg:hidden"
+          className="relative h-4 w-6 xl:hidden"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label="Toggle menu"
         >
