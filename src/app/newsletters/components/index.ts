@@ -1,2 +1,2 @@
-export { NewsletterCard } from "./NewsletterCard";
 export { NewsletterGrid } from "./NewsletterGrid";
+export { NewsletterCard } from "./NewsletterCard";
