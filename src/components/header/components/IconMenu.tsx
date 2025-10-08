@@ -1,8 +1,8 @@
 import { ExpandingIcon } from "./ExpandingIcon";
-import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
-import { MailIcon } from "@/icons/MailIcon";
+// import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
+// import { MailIcon } from "@/icons/MailIcon";
 import { SearchIcon } from "@/icons/SearchIcon";
-import { ShoppingCart } from "@/icons/ShoppingCart";
+// import { ShoppingCart } from "@/icons/ShoppingCart";
 import { useEffect, useRef, useState } from "react";
 import { UserIcon } from "@/icons/UserIcon";
 import { CaretDown } from "@/icons/CaretDown";
@@ -11,25 +11,25 @@ import { TextLink } from "@/components/ui/button";
 import { AuthTextLink } from "@/app/components/SignIn";
 
 const quickLinks = [
-  {
-    label: "Job Bank",
-    value: "job_bank",
-    href: "/resources/job-bank",
-    icon: SuitcaseIcon,
-  },
-  {
-    label: "Contact Us",
-    value: "contact_us",
-    href: "/contact",
-    icon: MailIcon,
-  },
+  // {
+  //   label: "Job Bank",
+  //   value: "job_bank",
+  //   href: "/resources/job-bank",
+  //   icon: SuitcaseIcon,
+  // },
+  // {
+  //   label: "Contact Us",
+  //   value: "contact_us",
+  //   href: "/contact",
+  //   icon: MailIcon,
+  // },
   { label: "Search", value: "search", href: "/search", icon: SearchIcon },
-  {
-    label: "Marketplace",
-    value: "marketplace",
-    href: "/marketplace",
-    icon: ShoppingCart,
-  },
+  // {
+  //   label: "Marketplace",
+  //   value: "marketplace",
+  //   href: "/marketplace",
+  //   icon: ShoppingCart,
+  // },
   {
     label: "Sign In",
     value: "sign_in",
@@ -69,7 +69,7 @@ export const IconMenu = () => {
 
   return (
     <>
-      <div className="relative w-full max-w-[200px] max-lg:hidden xl:hidden">
+      <div className="relative hidden w-full max-w-[200px]">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="flex w-full items-center justify-between rounded-md bg-white px-4 py-2 text-sm hover:bg-blue-50"
@@ -115,7 +115,7 @@ export const IconMenu = () => {
       </div>
 
       <div
-        className="hidden items-center justify-end xl:flex"
+        className="hidden justify-end xl:flex"
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
       >

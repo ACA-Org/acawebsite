@@ -28,8 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & // Group
-  {
+  } & {
+    // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & // Other fields
-  {
+  } & {
+    // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -417,6 +417,17 @@ type HomepageDocumentDataSlicesSlice =
  * Content for HomePage documents
  */
 interface HomepageDocumentData {
+  /**
+   * Hero Eyebrow Text field in *HomePage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.heroEyebrowText
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heroEyebrowText: prismic.KeyTextField;
+
   /**
    * Hero Top Title field in *HomePage*
    *
@@ -2856,6 +2867,22 @@ export interface LogoTickerSliceDefaultPrimaryLogosItem {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   logoItem: prismic.ImageField<never>;
+
+  /**
+   * Logo Link field in *LogoTicker → Default → Primary → Logos*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo_ticker.default.primary.logos[].logoLink
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  logoLink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**

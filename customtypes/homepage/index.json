@@ -6,6 +6,13 @@
   "status": true,
   "json": {
     "Main": {
+      "heroEyebrowText": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Eyebrow Text",
+          "placeholder": ""
+        }
+      },
       "heroTopTitle": {
         "type": "Text",
         "config": {

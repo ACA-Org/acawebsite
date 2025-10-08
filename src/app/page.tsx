@@ -51,11 +51,14 @@ export default async function Home() {
             <div className="mx-auto w-full max-w-[1440px] px-4 pt-12 md:px-8 lg:pt-24">
               <div className="flex items-center justify-between gap-8 max-lg:flex-col-reverse max-lg:items-start lg:gap-16">
                 <div className="flex w-full flex-col gap-6 lg:w-1/2">
+                  <span className="mt-12 text-[20px] font-medium tracking-wider text-blue-300 uppercase">
+                    {page.heroEyebrowText}
+                  </span>
                   <h1 className="text-[52px] leading-[70px] text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
-                    {page.heroTopTitle || "Strengthening Corrections,"}
+                    {page.heroTopTitle}
                     {page.heroBottomTitle && (
                       <>
-                        <br />
+                        {page.heroTopTitle && <br />}
                         <span className="text-[52px] text-blue-200 max-lg:text-[38px] max-lg:leading-[50px]">
                           {page.heroBottomTitle}
                         </span>

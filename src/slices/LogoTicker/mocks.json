@@ -34,6 +34,18 @@
                   "__TYPE__": "ImageContent",
                   "thumbnails": {}
                 }
+              ],
+              [
+                "logoLink",
+                {
+                  "__TYPE__": "LinkContent",
+                  "key": "35ff4ec3-2d3d-4f12-87b8-44dd8aa98ca3",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "http://twitter.com",
+                    "text": "nails"
+                  }
+                }
               ]
             ]
           }
