@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 import { AuthButton } from "./SignIn";
+import { useRouter } from "next/navigation";
 
 export default function Unauthenticated() {
   const router = useRouter();
