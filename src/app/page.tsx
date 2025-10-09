@@ -54,7 +54,7 @@ export default async function Home() {
                   <span className="mt-12 text-[20px] font-medium tracking-wider text-blue-300 uppercase">
                     {page.heroEyebrowText}
                   </span>
-                  <h1 className="text-[52px] leading-[70px] text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
+                  <h1 className="text-[56px] leading-[70px] font-medium text-blue-300 max-lg:text-[38px] max-lg:leading-[50px]">
                     {page.heroTopTitle}
                     {page.heroBottomTitle && (
                       <>
