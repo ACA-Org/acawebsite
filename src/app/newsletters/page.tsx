@@ -13,6 +13,7 @@ import { DynamicImage } from "@/components/image";
 import type { ImageField } from "@prismicio/client";
 
 export default async function NewsletterSearchPage() {
+  return notFound();
   const data = await getNewsletterPageInfo();
 
   const {
