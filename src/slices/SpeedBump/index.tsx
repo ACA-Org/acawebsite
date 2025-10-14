@@ -43,7 +43,6 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
           {hero.url && (
             <figure className="relative h-full w-auto max-md:w-full">
               <DynamicImage
-                alt=""
                 className="h-full max-h-[210px] w-full rounded-md object-cover"
                 field={hero}
               />

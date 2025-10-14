@@ -43,7 +43,6 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
               {card.cardImage?.url && (
                 <figure className="relative aspect-video overflow-clip rounded-md">
                   <DynamicImage
-                    alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"
                   />
@@ -84,7 +83,6 @@ const CardContainer: FC<CardContainerProps> = ({ slice }) => {
               {card.cardImage?.url && (
                 <figure className="relative min-h-[245px] w-full max-w-[445px] overflow-clip rounded-md max-md:max-w-none">
                   <DynamicImage
-                    alt=""
                     field={card.cardImage}
                     className="absolute h-full w-full object-cover"
                   />

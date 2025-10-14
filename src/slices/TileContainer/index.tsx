@@ -59,7 +59,6 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
                   <figure className="absolute top-0 left-0 -z-1 h-full w-full">
                     <DynamicImage
                       field={tileImage}
-                      alt=""
                       className="h-full w-full object-cover"
                     />
                   </figure>

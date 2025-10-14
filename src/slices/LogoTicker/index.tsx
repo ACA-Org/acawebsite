@@ -41,7 +41,6 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
                 <div className="mx-4 flex-shrink-0">
                   <DynamicImage
                     field={logo.logoItem}
-                    alt=""
                     className="max-h-[100px] w-auto"
                   />
                 </div>
@@ -57,7 +56,6 @@ const LogoTicker: FC<LogoTickerProps> = ({ slice }) => {
               >
                 <DynamicImage
                   field={logo.logoItem}
-                  alt=""
                   className="max-h-[100px] w-auto"
                 />
               </div>

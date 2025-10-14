@@ -48,7 +48,6 @@ export default async function NewsletterDetail({
                   <div className="relative mt-8 flex w-full shrink-0 items-end overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-8 lg:min-h-[415px]">
                     <div className="absolute inset-0 z-10 h-full w-full">
                       <DynamicImage
-                        alt=""
                         field={newsBanner}
                         className="h-full w-full object-cover"
                       />

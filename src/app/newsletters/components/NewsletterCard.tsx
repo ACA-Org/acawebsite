@@ -29,7 +29,6 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
         {newsletterImage?.url && (
           <figure className="relative min-h-[145px] w-full overflow-clip rounded-md">
             <DynamicImage
-              alt=""
               field={newsletterImage}
               className="absolute h-full w-full object-cover"
             />

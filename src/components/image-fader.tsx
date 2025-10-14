@@ -44,7 +44,6 @@ const ImageFader: FC<ImageFaderProps> = ({
         <DynamicImage
           key={index}
           field={img}
-          alt=""
           priority
           fill
           sizes="(max-width: 768px) 100vw, 50vw"

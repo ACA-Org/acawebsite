@@ -44,7 +44,6 @@ const ImageCallout: FC<ImageCalloutProps> = ({ slice }) => {
             )}
           >
             <DynamicImage
-              alt=""
               field={imageCalloutImage}
               className={cn("aspect-video h-full w-full object-cover")}
             />

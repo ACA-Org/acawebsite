@@ -42,7 +42,6 @@ export default async function Page() {
             <>
               <div className="absolute inset-0 z-10 h-full w-full">
                 <DynamicImage
-                  alt=""
                   field={img}
                   className="h-full w-full object-cover"
                 />

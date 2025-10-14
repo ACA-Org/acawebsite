@@ -66,11 +66,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       {img.url && (
         <div className="relative mt-12 flex h-full w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-16 md:gap-2.5 md:p-12 lg:min-h-[585px]">
           <div className="absolute inset-0 z-10 h-full w-full">
-            <DynamicImage
-              alt=""
-              field={img}
-              className="h-full w-full object-cover"
-            />
+            <DynamicImage field={img} className="h-full w-full object-cover" />
           </div>
         </div>
       )}
