@@ -23,8 +23,6 @@ export const NewsletterCard: FC<Newsletter> = (props) => {
     newsletterLink,
   } = props;
 
-  console.log(props);
-
   return (
     <div className="flex flex-col items-stretch gap-4 self-stretch rounded-xl border border-blue-500/15 bg-white p-4 max-lg:w-[calc(50%-16px)] max-md:w-full lg:flex-1">
       <div className="flex h-full flex-col justify-between gap-4">

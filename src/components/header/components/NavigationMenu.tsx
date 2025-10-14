@@ -16,18 +16,60 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
+  const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const animationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (activeItem === null) return setActiveSlice(null);
+    if (activeItem === null) {
+      // Delay clearing activeSlice to allow exit animation to complete
+      animationTimeoutRef.current = setTimeout(() => {
+        setActiveSlice(null);
+      }, 200); // Match the duration-200 transition
+      return;
+    }
+
+    // Clear any pending animation timeout when opening a new item
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+      animationTimeoutRef.current = null;
+    }
+
     setActiveSlice(slices[activeItem]);
   }, [activeItem, slices]);
 
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveItem(null);
+    }, 150);
+  };
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
   return (
-    <nav onMouseLeave={() => setActiveItem(null)} className="relative z-40">
+    <nav onMouseLeave={handleMouseLeave} className="relative z-40">
       <div className={cn(className, "hidden xl:block")}>
         <div className="relative">
           <div className="flex justify-center">
-            <ul className="flex w-full items-center justify-center gap-8 p-2">
+            <ul
+              className="flex w-full items-center justify-center gap-8 p-2"
+              onMouseEnter={handleMouseEnter}
+            >
               {slices.map(
                 ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => {
                   if (tierOneLink.link_type !== "Document") {
@@ -82,8 +124,10 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
           </div>
 
           <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             className={`absolute top-full right-0 mt-2 w-fit rounded-lg bg-white shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${
-              activeSlice
+              activeItem !== null
                 ? "animate-slide-down-fade pointer-events-auto translate-y-0 opacity-100"
                 : "animate-slide-up-fade pointer-events-none -translate-y-2 opacity-0"
             }`}

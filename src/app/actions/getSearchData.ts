@@ -4,6 +4,15 @@ import { createClient } from "@/prismicio";
 import {
   AllDocumentTypes,
   TierOnePageDocument,
+  TierTwoPageDocument,
+  TierThreePageDocument,
+  TierFourPageDocument,
+  NewsletterDetailDocument,
+  ContactPageDocument,
+  LocationsPageDocument,
+  PrivacyPolicyDocument,
+  HomepageDocument,
+  NewsletterPageDocument,
   HeaderDocument,
   FooterDocument,
   NextConferenceSectionDocument,
@@ -17,18 +26,20 @@ export type PageData = Exclude<
 export async function getSearchData(): Promise<PageData[]> {
   const client = createClient();
 
-  const [
-    tierOneDocs,
-    tierTwoDocs,
-    tierThreeDocs,
-    tierFourDocs,
-    contactPage,
-    locationsPage,
-    privacyPolicy,
-    homepage,
-    newsletterPage,
-    newsletters,
-  ] = await Promise.all([
+  // const requests = [
+  //   "tierOnePage",
+  //   "tierTwoPage",
+  //   "tierThreePage",
+  //   "tierFourPage",
+  //   "contactPage",
+  //   "locationsPage",
+  //   "privacyPolicy",
+  //   "homepage",
+  //   "newsletterPage",
+  //   "newsletterDetail",
+  // ] as const;
+
+  const settled = await Promise.allSettled([
     client.getAllByType("tierOnePage"),
     client.getAllByType("tierTwoPage"),
     client.getAllByType("tierThreePage"),
@@ -41,18 +52,49 @@ export async function getSearchData(): Promise<PageData[]> {
     client.getAllByType("newsletterDetail"),
   ]);
 
+  const unwrapArray = <T>(res: PromiseSettledResult<T[]>) =>
+    res.status === "fulfilled" && Array.isArray(res.value)
+      ? res.value
+      : ([] as T[]);
+  const unwrapSingle = <T>(res: PromiseSettledResult<T>) =>
+    res.status === "fulfilled" ? res.value : null;
+
+  const [
+    tierOneDocs,
+    tierTwoDocs,
+    tierThreeDocs,
+    tierFourDocs,
+    contactPage,
+    locationsPage,
+    privacyPolicy,
+    homepage,
+    newsletterPage,
+    newsletters,
+  ] = [
+    unwrapArray(settled[0] as PromiseSettledResult<TierOnePageDocument[]>),
+    unwrapArray(settled[1] as PromiseSettledResult<TierTwoPageDocument[]>),
+    unwrapArray(settled[2] as PromiseSettledResult<TierThreePageDocument[]>),
+    unwrapArray(settled[3] as PromiseSettledResult<TierFourPageDocument[]>),
+    unwrapSingle(settled[4] as PromiseSettledResult<ContactPageDocument>),
+    unwrapSingle(settled[5] as PromiseSettledResult<LocationsPageDocument>),
+    unwrapSingle(settled[6] as PromiseSettledResult<PrivacyPolicyDocument>),
+    unwrapSingle(settled[7] as PromiseSettledResult<HomepageDocument>),
+    unwrapSingle(settled[8] as PromiseSettledResult<NewsletterPageDocument>),
+    unwrapArray(settled[9] as PromiseSettledResult<NewsletterDetailDocument[]>),
+  ];
+
   return [
     ...tierOneDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
     ...tierTwoDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
     ...tierThreeDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
     ...tierFourDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
     ...newsletters.filter((i) => !i.data.requiresAuth),
-    homepage,
-    newsletterPage,
-    contactPage,
-    locationsPage,
-    privacyPolicy,
-  ];
+    ...(homepage ? [homepage] : []),
+    ...(newsletterPage ? [newsletterPage] : []),
+    ...(contactPage ? [contactPage] : []),
+    ...(locationsPage ? [locationsPage] : []),
+    ...(privacyPolicy ? [privacyPolicy] : []),
+  ] as PageData[];
 }
 
 type SitemapEntry = {
@@ -65,7 +107,6 @@ type SitemapEntry = {
 export async function getSitemapUrls(): Promise<SitemapEntry[]> {
   const pages = await getSearchData();
 
-  // Filter out pages with hidden or requiresAuth properties
   const filteredPages = pages.filter((page) => {
     const pageData = page.data as any;
     return !pageData.hidden && !pageData.requiresAuth;

@@ -84,6 +84,7 @@ export type TransitionLinkProps = React.ComponentProps<typeof PrismicNextLink>;
 const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
   ({ className, onClick, ...props }, ref) => {
     const pages = useAtomValue(pageInfoAtom);
+
     const { push } = useTransitionRouter();
 
     const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {

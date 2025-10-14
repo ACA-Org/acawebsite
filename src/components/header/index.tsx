@@ -46,25 +46,30 @@ const Header = ({
       >
         <TransitionLink
           href="/"
-          className="flex items-start justify-start text-left transition-all duration-300"
+          className="relative flex items-start justify-start text-left transition-all duration-300"
           aria-label="American Correctional Association - Return to Homepage"
         >
-          <ACALogoColor
-            className={cn(
-              "object-cover transition-all duration-500",
-              isCollapsed ? "h-auto w-[68px]" : "h-auto w-[68px] md:hidden"
-            )}
-          />
-          <Image
-            src={ACAFullLogo.src}
-            alt="ACA, Founded 1870. American Correctional Association. Advance. Connect. Achieve."
-            width={300}
-            height={200}
-            className={cn(
-              "transition-all duration-500",
-              isCollapsed ? "hidden" : "hidden md:block"
-            )}
-          />
+          <div className="relative">
+            <ACALogoColor
+              className={cn(
+                "object-cover transition-opacity duration-500",
+                isCollapsed ? "opacity-100" : "opacity-100 md:opacity-0",
+                "h-auto w-[68px]"
+              )}
+            />
+            <Image
+              src={ACAFullLogo.src}
+              alt="ACA, Founded 1870. American Correctional Association. Advance. Connect. Achieve."
+              width={300}
+              height={200}
+              className={cn(
+                "absolute top-0 left-0 transition-opacity duration-500",
+                isCollapsed
+                  ? "pointer-events-none opacity-0"
+                  : "pointer-events-auto opacity-0 md:opacity-100"
+              )}
+            />
+          </div>
         </TransitionLink>
 
         <NavigationMenu slices={data.slices} />
@@ -97,3 +102,4 @@ const Header = ({
 };
 
 export default Header;
+
