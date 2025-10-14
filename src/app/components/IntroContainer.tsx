@@ -17,7 +17,7 @@ const IntroContainer = (props: IntroContainerProps) => {
   const { introAction, introDescription, introHeader, introImages } = props;
 
   return (
-    <div className="mx-auto w-full max-w-[1440px] px-4 py-24 md:px-8">
+    <div className="mx-auto w-full max-w-[1440px] px-4 py-12 md:px-8">
       <div className="flex items-center justify-between gap-16 bg-[#F9F9F9] max-lg:flex-col-reverse">
         <div className="flex flex-col items-start gap-6">
           {introHeader && (

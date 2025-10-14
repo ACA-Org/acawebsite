@@ -28,7 +28,7 @@ const ConferenceCard: FC<ConferenceCardProps> = (slice) => {
     <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="group relative flex h-[350px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6"
+      className={`group relative flex h-[350px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6`}
     >
       {image && (
         <>

@@ -66,9 +66,13 @@ export const ConferenceCarousel = ({
         </Swiper>
       ) : (
         <div className="flex gap-6 max-md:flex-col">
-          {slices.map((slice, index) => (
-            <ConferenceCard {...slice} key={index} />
-          ))}
+          <div className="flex gap-6 max-lg:flex-col">
+            {slices.map((slice, index) => (
+              <div className="flex-1" key={index}>
+                <ConferenceCard {...slice} />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>

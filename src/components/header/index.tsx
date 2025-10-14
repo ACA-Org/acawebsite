@@ -53,8 +53,10 @@ const Header = ({
             <ACALogoColor
               className={cn(
                 "object-cover transition-opacity duration-500",
-                isCollapsed ? "opacity-100" : "opacity-100 md:opacity-0",
-                "h-auto w-[68px]"
+                isCollapsed
+                  ? "w-[68px] opacity-100"
+                  : "opacity-100 md:opacity-0",
+                "h-auto w-[120px]"
               )}
             />
             <Image
@@ -102,4 +104,3 @@ const Header = ({
 };
 
 export default Header;
-
