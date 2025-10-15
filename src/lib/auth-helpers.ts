@@ -37,4 +37,3 @@ export async function isLocationsAdmin(): Promise<boolean> {
 export async function getCurrentSession() {
   return await getServerSession(authOptions);
 }
-

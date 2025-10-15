@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export const RightMenuSkeleton = () => {
   return (
-    <div className="sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
+    <div className="no-scrollbar sticky top-24 max-h-[calc(100dvh-6rem)] overflow-scroll">
       <div className="h-[60px] w-full border-b border-blue-100 pt-[18px] pb-5 pl-5">
         <p className="body-xl font-semibold text-blue-300">In This Section</p>
       </div>
