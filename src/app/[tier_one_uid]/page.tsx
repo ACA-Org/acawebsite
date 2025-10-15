@@ -178,12 +178,3 @@ export async function generateMetadata({
     ...baseMetadata,
   };
 }
-
-export async function generateStaticParams() {
-  const client = createClient();
-  const pages = await client.getAllByType("tierOnePage");
-
-  // Only generate static params for public pages
-  const publicPages = pages.filter((page) => !page.data.requiresAuth);
-  return publicPages.map((page) => ({ uid: page.uid }));
-}

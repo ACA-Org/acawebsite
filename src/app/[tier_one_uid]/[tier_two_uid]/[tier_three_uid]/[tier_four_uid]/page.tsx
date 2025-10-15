@@ -137,10 +137,3 @@ export async function generateMetadata({
     },
   };
 }
-
-export async function generateStaticParams() {
-  const client = createClient();
-  const pages = await client.getAllByType("tierFourPage");
-
-  return pages.map((page) => ({ uid: page.uid }));
-}

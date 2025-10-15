@@ -182,12 +182,3 @@ export async function generateMetadata({
     },
   };
 }
-
-export async function generateStaticParams() {
-  const client = createClient();
-  const pages = await client.getAllByType("tierTwoPage");
-
-  // Only generate static params for public pages
-  const publicPages = pages.filter((page) => !page.data.requiresAuth);
-  return publicPages.map((page) => ({ uid: page.uid }));
-}
