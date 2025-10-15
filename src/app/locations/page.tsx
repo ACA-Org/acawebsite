@@ -40,18 +40,16 @@ export default async function Page() {
   return (
     <div className="flex w-full flex-col">
       <div className="mx-auto mb-12 flex w-full max-w-[1440px] flex-col px-5 md:mb-28 md:px-8">
-        <div className="relative mt-16 flex h-full min-h-[300px] w-full shrink-0 items-end gap-2.5 overflow-clip rounded-2xl p-12">
-          {img.url && (
-            <>
-              <div className="absolute inset-0 z-10 h-full w-full">
-                <DynamicImage
-                  field={img}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </>
-          )}
-        </div>
+        {img.url && (
+          <div className="relative mt-12 flex h-full w-full shrink-0 items-end gap-2 overflow-clip rounded-[12px] p-8 max-lg:aspect-video md:mt-16 md:gap-2.5 md:p-12 lg:min-h-[300px]">
+            <div className="absolute inset-0 z-10 h-full w-full">
+              <DynamicImage
+                field={img}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        )}
         <div className="mx-auto my-8 flex w-full flex-col gap-8 md:my-12 md:gap-16">
           <div className="flex w-full flex-col items-start gap-8">
             <div className="flex flex-col gap-8 md:gap-12">
