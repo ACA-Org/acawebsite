@@ -70,8 +70,13 @@ export async function getTokenFromRefresh(
     throw new Error("Missing IMIS client credentials in environment variables");
   }
 
+  if (!process.env.OAUTH_TOKEN_URL) {
+    console.error("[getTokenFromRefresh] Missing environment variables");
+    throw new Error("Missing OAUTH_TOKEN_URL in environment variables");
+  }
+
   try {
-    const res = await fetch("https://aca.org/token", {
+    const res = await fetch(process.env.OAUTH_TOKEN_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -107,7 +112,7 @@ export async function fetchIMISUserProfile(
   userName: string
 ): Promise<ImisUserResponse> {
   const res = await fetch(
-    `https://aca.org/api/User?UserName=${encodeURIComponent(userName)}`,
+    `${process.env.OAUTH_USERINFO_URL}User?UserName=${encodeURIComponent(userName)}`,
     {
       headers: {
         Authorization: `Bearer ${access_token}`,
