@@ -7,10 +7,10 @@ import { Metadata } from "next/types";
 import { asImageSrc } from "@prismicio/client";
 import { createClient } from "@/prismicio";
 import { Suspense } from "react";
-import data from "./data/facilities";
 import { getLocationsPageData } from "../actions/getLocationsPageData";
 import RichText from "../components/RichText";
 import { MapLoader } from "@/components/interactive-map/components/loaders";
+import { getCachedLocations } from "@/lib/mongodb";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -33,6 +33,9 @@ export default async function Page() {
   if (!pageData) return notFound();
 
   const { pageTitle: title, pageImage: img, pageContent } = pageData;
+
+  // Fetch locations from MongoDB with caching
+  const locations = await getCachedLocations();
 
   return (
     <div className="flex w-full flex-col">
@@ -67,7 +70,7 @@ export default async function Page() {
           </div>
           <div className="h-[700px] w-full">
             <Suspense fallback={<MapLoader />}>
-              <Map facilities={data} />
+              <Map facilities={locations} />
             </Suspense>
           </div>
         </div>

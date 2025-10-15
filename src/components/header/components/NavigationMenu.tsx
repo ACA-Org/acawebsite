@@ -123,16 +123,17 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
             </ul>
           </div>
 
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            className={`absolute top-full right-0 mt-2 w-fit rounded-lg bg-white shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)] transition-all duration-200 ${
-              activeItem !== null
-                ? "animate-slide-down-fade pointer-events-auto translate-y-0 opacity-100"
-                : "animate-slide-up-fade pointer-events-none -translate-y-2 opacity-0"
-            }`}
-          >
-            {activeSlice && (
+          {activeSlice && (
+            <div
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className={cn(
+                "absolute top-full right-0 mt-2 w-fit rounded-lg opacity-0 transition-all duration-200",
+                activeItem !== null
+                  ? "animate-slide-down-fade pointer-events-auto visible translate-y-0 bg-white opacity-100 shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)]"
+                  : "animate-slide-up-fade pointer-events-none invisible -translate-y-2"
+              )}
+            >
               <div
                 key={activeSlice.id}
                 className="animate-slide-in-right align-right inline-flex w-max items-start gap-8 p-12"
@@ -210,8 +211,8 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                   </TransitionLink>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>

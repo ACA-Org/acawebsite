@@ -38,10 +38,10 @@ const Header = ({
     <header className={"fixed top-0 right-0 left-0 z-100 w-full"}>
       <div
         className={cn(
-          "relative z-100 flex w-full justify-between border-b border-b-[rgba(0,95,150,0.08)] bg-white px-9 transition-all duration-300 ease-in-out",
+          "relative z-100 flex w-full justify-between border-b bg-white px-9 transition-all duration-300 ease-in-out",
           isCollapsed
-            ? "items-center py-4"
-            : "border-b-0 py-8 max-lg:py-4 max-md:items-center"
+            ? "items-center border-b-[rgba(0,95,150,0.08)] py-4"
+            : "border-b-transparent py-8 max-lg:py-4 max-md:items-center"
         )}
       >
         <TransitionLink
@@ -104,3 +104,4 @@ const Header = ({
 };
 
 export default Header;
+

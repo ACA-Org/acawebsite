@@ -3,10 +3,10 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextLink } from "@prismicio/next";
 import React from "react";
 import RichText from "@/app/components/RichText";
 import { DynamicImage } from "@/components/image";
+import { TransitionLink } from "@/components/ui/button";
 
 /**
  * Props for `TileContainer`.
@@ -46,8 +46,7 @@ const TileContainer: FC<TileContainerProps> = ({ slice }) => {
       {tiles.length > 0 && (
         <div className="flex flex-col flex-wrap gap-6 sm:flex-row">
           {tiles.map(({ tileDesc, tileHeading, tileImage, tileLink }, i) => {
-            const Comp =
-              tileLink?.link_type !== "Any" ? PrismicNextLink : "div";
+            const Comp = tileLink?.link_type !== "Any" ? TransitionLink : "div";
             return (
               <React.Fragment key={i}>
                 <Comp
