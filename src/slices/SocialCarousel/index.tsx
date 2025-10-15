@@ -2,19 +2,19 @@
 
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { SlideControls } from "@/components/slide-controls";
-import React, { FC, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { FC, useEffect, useRef, useState } from "react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { LinkButton } from "@/components/ui/button";
+import { Button, LinkButton } from "@/components/ui/button";
 import { X } from "@/icons/X";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { Instagram } from "@/icons/Instagram";
 import { Facebook } from "@/icons/Facebook";
 import Link from "next/link";
 import { LinkedInPost } from "@/app/api/linkedin/posts/route";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 /**
  * Props for `SocialCarousel`.
@@ -37,6 +37,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
 
   const [posts, setPosts] = useState<LinkedInPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const swiperRef = useRef<SwiperRef>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -119,6 +120,7 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
             style={{
               position: "static",
             }}
+            ref={swiperRef}
             spaceBetween={20}
             slidesPerView="auto"
             className="flex h-full w-full flex-col !overflow-visible"
@@ -159,23 +161,40 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
           </Swiper>
         </div>
 
-        <SlideControls
-          variant="primary"
-          className="right-4 bottom-4 max-lg:absolute"
-        />
-
-        {link.text && (
-          <div className="flex w-full items-center justify-between">
-            <LinkButton
+        <div className="flex w-full flex-row items-center justify-end gap-4">
+          {link.text && (
+            <div className="flex w-full items-center justify-between">
+              <LinkButton
+                variant="primary"
+                outlined
+                className="pt-4 text-lg font-medium"
+                field={link}
+              >
+                {link.text}
+              </LinkButton>
+            </div>
+          )}
+          <div className="flex flex-row items-center gap-4">
+            <Button
               variant="primary"
               outlined
-              className="pt-4 text-lg font-medium"
-              field={link}
+              onClick={() => swiperRef.current?.swiper.slidePrev()}
+              className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+              aria-label="Previous slide"
             >
-              {link.text}
-            </LinkButton>
+              <ArrowLeft className="size-6" />
+            </Button>
+            <Button
+              variant="primary"
+              outlined
+              onClick={() => swiperRef.current?.swiper.slideNext()}
+              className="aspect-square h-[52px] w-auto rounded-md shadow-xl"
+              aria-label="Next slide"
+            >
+              <ArrowRight className="size-6" />
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
