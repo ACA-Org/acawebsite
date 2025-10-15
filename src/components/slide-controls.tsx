@@ -15,7 +15,7 @@ export const SlideControls = ({
     <>
       <div
         className={cn(
-          "absolute hidden flex-row justify-end gap-4 max-lg:relative lg:flex lg:items-start",
+          "absolute hidden flex-row justify-end gap-4 lg:flex lg:items-start",
           className
         )}
         role="group"

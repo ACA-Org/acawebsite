@@ -156,12 +156,16 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
                     </Link>
                   </SwiperSlide>
                 ))}
-            <SlideControls variant="primary" className="right-8 bottom-8" />
           </Swiper>
         </div>
 
-        <div className="flex w-full items-center justify-between">
-          {link.text && (
+        <SlideControls
+          variant="primary"
+          className="right-4 bottom-4 max-lg:absolute"
+        />
+
+        {link.text && (
+          <div className="flex w-full items-center justify-between">
             <LinkButton
               variant="primary"
               outlined
@@ -170,8 +174,8 @@ const SocialCarousel: FC<SocialCarouselProps> = ({ slice }) => {
             >
               {link.text}
             </LinkButton>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

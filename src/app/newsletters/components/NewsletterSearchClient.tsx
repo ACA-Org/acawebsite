@@ -37,7 +37,7 @@ export default function NewsletterSearchClient({ newsletters }: Props) {
   return (
     <div className="relative flex w-full gap-8">
       <div className="w-1/4 space-y-4">
-        <div className="sticky top-24 flex flex-col gap-4 rounded-lg border border-blue-500/15 p-6">
+        <div className="no-scrollbar sticky top-24 flex flex-col gap-4 rounded-lg border border-blue-500/15 p-6">
           <h3 className="heading-3">Filter Newsletters</h3>
           <div className="flex flex-col gap-2">
             <label htmlFor="newsletterKeyword">Keyword</label>

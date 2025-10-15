@@ -82,4 +82,3 @@ export function invalidateLocationsCache() {
     timestamp: 0,
   };
 }
-

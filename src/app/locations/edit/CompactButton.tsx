@@ -34,4 +34,3 @@ export const CompactButton = React.forwardRef<
 });
 
 CompactButton.displayName = "CompactButton";
-
