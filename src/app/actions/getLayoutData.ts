@@ -1,7 +1,7 @@
 "use server";
 
-import { createClient } from "@/prismicio";
 import { MenuItemSlice } from "../../../prismicio-types";
+import { createClient } from "@/prismicio";
 
 export async function getFooterData() {
   const client = createClient();
