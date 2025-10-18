@@ -26,19 +26,6 @@ export type PageData = Exclude<
 export async function getSearchData(): Promise<PageData[]> {
   const client = createClient();
 
-  // const requests = [
-  //   "tierOnePage",
-  //   "tierTwoPage",
-  //   "tierThreePage",
-  //   "tierFourPage",
-  //   "contactPage",
-  //   "locationsPage",
-  //   "privacyPolicy",
-  //   "homepage",
-  //   "newsletterPage",
-  //   "newsletterDetail",
-  // ] as const;
-
   const settled = await Promise.allSettled([
     client.getAllByType("tierOnePage"),
     client.getAllByType("tierTwoPage"),
@@ -69,7 +56,6 @@ export async function getSearchData(): Promise<PageData[]> {
     privacyPolicy,
     homepage,
     newsletterPage,
-    newsletters,
   ] = [
     unwrapArray(settled[0] as PromiseSettledResult<TierOnePageDocument[]>),
     unwrapArray(settled[1] as PromiseSettledResult<TierTwoPageDocument[]>),
@@ -84,11 +70,11 @@ export async function getSearchData(): Promise<PageData[]> {
   ];
 
   return [
-    ...tierOneDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
-    ...tierTwoDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
-    ...tierThreeDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
-    ...tierFourDocs.filter((i) => !i.data.hidden && !i.data.requiresAuth),
-    ...newsletters.filter((i) => !i.data.requiresAuth),
+    ...tierOneDocs.filter((i) => !i.data.hidden),
+    ...tierTwoDocs.filter((i) => !i.data.hidden),
+    ...tierThreeDocs.filter((i) => !i.data.hidden),
+    ...tierFourDocs.filter((i) => !i.data.hidden),
+    // ...newsletters.filter((i) => !i.data.requiresAuth),
     ...(homepage ? [homepage] : []),
     ...(newsletterPage ? [newsletterPage] : []),
     ...(contactPage ? [contactPage] : []),

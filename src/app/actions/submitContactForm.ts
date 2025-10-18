@@ -1,20 +1,75 @@
 "use server";
 
-export const submitContactForm = async (formData: FormData) => {
+import { Resend } from "resend";
+import { render } from "@react-email/render";
+import ContactFormEmail from "@/emails/ContactFormEmail";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const submitContactForm = async (data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  message: string;
+}) => {
   "use server";
 
-  const name = formData.get("name")?.toString().trim();
-  const email = formData.get("email")?.toString().trim();
-  const message = formData.get("message")?.toString().trim();
+  const { firstName, lastName, email, message } = data;
 
-  if (!name || !email || !message) {
+  // Validate inputs
+  if (
+    !firstName?.trim() ||
+    !lastName?.trim() ||
+    !email?.trim() ||
+    !message?.trim()
+  ) {
     return { success: false, error: "All fields are required." };
   }
 
-  // Here you would typically send the data to your backend or an API
-  // For example, using fetch or axios to send a POST request
+  // Basic email validation
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  if (!emailRegex.test(email)) {
+    return { success: false, error: "Invalid email address." };
+  }
 
-  console.log("Form submitted:", { name, email, message });
+  try {
+    // Render the email template
+    const emailHtml = await render(
+      ContactFormEmail({
+        firstName,
+        lastName,
+        email,
+        message,
+      })
+    );
 
-  return { success: true, message: "Form submitted successfully!" };
+    // Send email using Resend
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "ACA Website <onboarding@resend.dev>", // Replace with your verified domain
+      to: ["website@aca.org"], // Replace with your recipient email
+      replyTo: email,
+      subject: `Contact Form Submission from ${firstName} ${lastName}`,
+      html: emailHtml,
+    });
+
+    if (emailError) {
+      console.error("Resend error:", emailError);
+      return {
+        success: false,
+        error: "Failed to send message. Please try again later.",
+      };
+    }
+
+    console.log("Email sent successfully:", emailData);
+    return {
+      success: true,
+      message: "Thank you for your message! We'll get back to you soon.",
+    };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return {
+      success: false,
+      error: "An unexpected error occurred. Please try again later.",
+    };
+  }
 };

@@ -20,21 +20,24 @@ export const Search = () => {
 
   const fuse = useMemo(
     () =>
-      new Fuse(pages, {
-        keys: [
-          {
-            name: "title",
-            getFn: (page) => getPageTitle(page),
-          },
-          {
-            name: "content",
-            getFn: (page) => getPageContent(page),
-          },
-        ],
-        threshold: 0.5,
-        includeMatches: true,
-        isCaseSensitive: false,
-      }),
+      new Fuse(
+        pages.filter((i) => !(i.data as any).requiresAuth),
+        {
+          keys: [
+            {
+              name: "title",
+              getFn: (page) => getPageTitle(page),
+            },
+            {
+              name: "content",
+              getFn: (page) => getPageContent(page),
+            },
+          ],
+          threshold: 0.5,
+          includeMatches: true,
+          isCaseSensitive: false,
+        }
+      ),
     [pages]
   );
 
