@@ -6,16 +6,14 @@ import { MenuItemSlice } from "../../prismicio-types";
 import Footer, { FooterProps } from "@/components/footer";
 import { gillSans } from "./fonts/GillSans";
 import CacheProvider from "react-inlinesvg/provider";
-import { getSearchData, PageData } from "./actions/getSearchData";
+import { getOptimizedPathMap, PathMapData } from "./actions/getPathMap";
 import { HydrationBoundary } from "jotai-ssr";
-import { pageInfoAtom } from "./atoms/pageInfoAtom";
+import { pathMapAtom } from "./atoms/pathMapAtom";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ViewTransitions } from "next-view-transitions";
-import { getServerSession, User } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { userAtom } from "./atoms/userAtom";
+import { Providers } from "./components/Providers";
 
 export const viewport: Viewport = {
   themeColor: "#0F2D52",
@@ -58,8 +56,7 @@ export default async function RootLayout({
 }>) {
   let footerInfo: FooterProps | null = null;
   let headerInfo: MenuItemSlice[] | null = null;
-  let pagesInfo: PageData[] | null = null;
-  let userInfo: User | null = null;
+  let pathMapData: PathMapData = {};
 
   const fetchFooterInfo = async () => {
     try {
@@ -79,26 +76,18 @@ export default async function RootLayout({
     }
   };
 
-  const fetchPagesInfo = async () => {
+  const fetchPathMap = async () => {
     try {
-      const pageData = await getSearchData();
-
-      pagesInfo = pageData || null;
+      pathMapData = await getOptimizedPathMap();
     } catch (err) {
-      console.error(err);
+      console.error("[Layout] Error fetching path map:", err);
     }
-  };
-
-  const fetchUserInfo = async () => {
-    const session = await getServerSession(authOptions);
-    userInfo = session?.user || null;
   };
 
   await Promise.allSettled([
     fetchFooterInfo(),
     fetchHeaderInfo(),
-    fetchPagesInfo(),
-    fetchUserInfo(),
+    fetchPathMap(),
   ]);
 
   return (
@@ -107,18 +96,15 @@ export default async function RootLayout({
         <body
           className={`${gillSans.variable} [font-family:GillSans] antialiased`}
         >
-          <HydrationBoundary
-            hydrateAtoms={[
-              [pageInfoAtom, pagesInfo || []],
-              [userAtom, userInfo],
-            ]}
-          >
-            <CacheProvider>
-              {headerInfo && <Header data={headerInfo} />}
-            </CacheProvider>
-            <div className="mt-17 md:mt-24">{children}</div>
-            {footerInfo && <Footer data={footerInfo} />}
-          </HydrationBoundary>
+          <Providers>
+            <HydrationBoundary hydrateAtoms={[[pathMapAtom, pathMapData]]}>
+              <CacheProvider>
+                {headerInfo && <Header data={headerInfo} />}
+              </CacheProvider>
+              <div className="mt-17 md:mt-24">{children}</div>
+              {footerInfo && <Footer data={footerInfo} />}
+            </HydrationBoundary>
+          </Providers>
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />

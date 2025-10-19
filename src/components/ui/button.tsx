@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { PrismicNextLink } from "@prismicio/next";
 import { linkResolver } from "@/lib/linkResolver";
 import { useAtomValue } from "jotai";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { pathMapAtom } from "@/app/atoms/pathMapAtom";
 import { useTransitionRouter } from "next-view-transitions";
 import { asLink } from "@prismicio/client";
 
@@ -83,7 +83,7 @@ export type TransitionLinkProps = React.ComponentProps<typeof PrismicNextLink>;
 
 const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
   ({ className, onClick, ...props }, ref) => {
-    const pages = useAtomValue(pageInfoAtom);
+    const pathMap = useAtomValue(pathMapAtom);
 
     const { push } = useTransitionRouter();
 
@@ -109,7 +109,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
         resolvedHref = typeof href === "string" ? href : undefined;
       } else if (field) {
         resolvedHref = linkResolver
-          ? linkResolver(field as any, pages)
+          ? linkResolver(field as any, pathMap)
           : asLink(field);
       }
 
@@ -121,7 +121,7 @@ const TransitionLink = React.forwardRef<HTMLAnchorElement, TransitionLinkProps>(
 
     return (
       <PrismicNextLink
-        linkResolver={(doc) => linkResolver(doc as any, pages)}
+        linkResolver={(doc) => linkResolver(doc as any, pathMap)}
         className={className}
         ref={ref}
         onClick={handleClick}

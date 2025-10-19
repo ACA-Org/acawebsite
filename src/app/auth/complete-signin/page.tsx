@@ -10,15 +10,20 @@ export default function CompleteSignIn() {
 
   useEffect(() => {
     const cookies = document.cookie.split(";");
-    const redirectCookie = cookies.find((cookie) =>
-      cookie.trim().startsWith("redirectUrl=")
+    // Check for both authCallbackUrl (from middleware) and redirectUrl (legacy)
+    const redirectCookie = cookies.find(
+      (cookie) =>
+        cookie.trim().startsWith("authCallbackUrl=") ||
+        cookie.trim().startsWith("redirectUrl=")
     );
     let savedRedirectUrl = null;
 
     if (redirectCookie) {
+      const cookieName = redirectCookie.trim().split("=")[0];
       savedRedirectUrl = decodeURIComponent(redirectCookie.split("=")[1]);
 
-      document.cookie = "redirectUrl=;max-age=0;path=/";
+      // Clear both possible cookie names
+      document.cookie = `${cookieName}=;max-age=0;path=/`;
       setRedirectUrl(savedRedirectUrl);
     }
 

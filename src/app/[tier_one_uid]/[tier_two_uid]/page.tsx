@@ -20,11 +20,9 @@ import {
 } from "@/app/actions/getRightMenuData";
 import { cn, Params } from "@/lib/utils";
 import { BackButton } from "@/components/back-button";
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth";
-import Unauthenticated from "@/app/components/Unauthenticated";
 
-export const dynamic = "force-dynamic";
+// Enable Incremental Static Regeneration for public pages
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_two_uid: uid_2 } = await params;
@@ -45,17 +43,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
       pageSubTitle: subTitle,
       slices,
       slices2: postArticleSlices,
-      requiresAuth,
     },
   } = pageData;
-
-  if (requiresAuth) {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.email) {
-      return <Unauthenticated />;
-    }
-  }
 
   try {
     rightMenuData = await getRightMenuData(uid_2, "two");
@@ -181,4 +170,13 @@ export async function generateMetadata({
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const client = createClient();
+  const pages = (await client.getAllByType("tierTwoPage")).filter(
+    (page) => !page.data.hidden && !page.data.requiresAuth
+  );
+
+  return pages.map((page) => ({ uid: page.uid }));
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
 import { cn } from "@/lib/utils";
@@ -17,8 +19,8 @@ import { AuthTextLink } from "@/app/components/SignIn";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 const quickLinks = [
@@ -44,7 +46,11 @@ const quickLinks = [
   { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
 ];
 
-export function MobileMenu({ slices, isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({
+  slices,
+  isOpen = false,
+  onClose = () => {},
+}: MobileMenuProps) {
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
 

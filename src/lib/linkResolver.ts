@@ -1,58 +1,47 @@
 import { AllDocumentTypes } from "../../prismicio-types";
+import { PathMapData } from "@/app/actions/getPathMap";
 
 type DocType = {
+  id?: string;
   type: AllDocumentTypes["type"];
-  uid: string;
+  uid?: string;
   [key: string]: any;
 };
 
-export function linkResolver(doc: DocType, pages: AllDocumentTypes[]): string {
+export function linkResolver(
+  doc: DocType,
+  pathMap: PathMapData | Map<string, string>
+): string {
+  // Handle Map or object
+  const getPath = (id: string) => {
+    if (pathMap instanceof Map) {
+      return pathMap.get(id);
+    }
+    return pathMap[id];
+  };
+
+  // If we have an ID, use the path map (fastest)
+  if (doc.id) {
+    const path = getPath(doc.id);
+    if (path) {
+      return path;
+    }
+  }
+
+  // Fallback to type-based resolution (for documents without ID)
   switch (doc.type) {
     case "tierOnePage":
-      return `/${doc.uid}`;
-    case "tierTwoPage": {
-      const parentPage = pages.find((page) => page.uid === doc.uid);
-      if (!parentPage) return "/";
-      const parentId = (parentPage as any).data?.parentPage?.uid;
-      if (!parentId) return "/";
-      return `/${parentId}/${doc.uid}`;
-    }
-    case "tierThreePage": {
-      const parentPage = pages.find((page) => page.uid === doc.uid);
-      if (!parentPage) return "/";
-      const parentId = (parentPage as any).data?.parentPage?.uid;
-      if (!parentId) return "/";
-      // Find the grandparent page
-      const grandParentPage = pages.find((page) => page.uid === parentId);
-      if (!grandParentPage) return "/";
-      const grandParentId = (grandParentPage as any).data?.parentPage?.uid;
-      if (!grandParentId) return "/";
-      return `/${grandParentId}/${parentId}/${doc.uid}`;
-    }
-    case "tierFourPage": {
-      const parentPage = pages.find((page) => page.uid === doc.uid);
-      if (!parentPage) return "/";
-      const parentId = (parentPage as any).data?.parentPage?.uid;
-      if (!parentId) return "/";
-      // Find the grandparent page
-      const grandParentPage = pages.find((page) => page.uid === parentId);
-      if (!grandParentPage) return "/";
-      const grandParentId = (grandParentPage as any).data?.parentPage?.uid;
-      if (!grandParentId) return "/";
-      // Find the great-grandparent page
-      const greatGrandParentPage = pages.find(
-        (page) => page.uid === grandParentId
-      );
-      if (!greatGrandParentPage) return "/";
-      const greatGrandParentId = (greatGrandParentPage as any).data?.parentPage
-        ?.uid;
-      if (!greatGrandParentId) return "/";
-      return `/${greatGrandParentId}/${grandParentId}/${parentId}/${doc.uid}`;
-    }
+      return doc.uid ? `/${doc.uid}` : "/";
+    case "tierTwoPage":
+    case "tierThreePage":
+    case "tierFourPage":
+      // Without ID, we can't resolve multi-level paths
+      // This should rarely happen as Prismic links usually have IDs
+      return "/";
     case "newsletterDetail":
-      return `/newsletters/${doc.uid}`;
+      return doc.uid ? `/newsletters/${doc.uid}` : "/newsletters";
     case "newsletterPage":
-      return `/newsletters`;
+      return "/newsletters";
     case "contactPage":
       return "/contact";
     case "locationsPage":

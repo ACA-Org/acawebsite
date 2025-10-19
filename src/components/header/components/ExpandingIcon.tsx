@@ -1,11 +1,12 @@
+"use client";
+
 import * as React from "react";
 import { LucideIcon } from "lucide-react";
 import { buttonVariants, LinkButton } from "@/components/ui/button";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { AuthButton } from "@/app/components/SignIn";
-import { useAtomValue } from "jotai";
-import { userAtom } from "@/app/atoms/userAtom";
+import { useSession } from "next-auth/react";
 
 type ExpandingIconButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants> & {
@@ -27,7 +28,8 @@ export function ExpandingIcon({
   ...props
 }: ExpandingIconButtonProps) {
   const isActive = menuId === activeItem;
-  const user = useAtomValue(userAtom);
+  const { data: session } = useSession();
+  const user = session?.user;
 
   if (menuId === "sign_in") {
     return (

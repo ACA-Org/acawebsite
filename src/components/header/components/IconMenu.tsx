@@ -1,3 +1,5 @@
+"use client";
+
 import { ExpandingIcon } from "./ExpandingIcon";
 // import { SuitcaseIcon } from "@/icons/SuitcaseIcon";
 // import { MailIcon } from "@/icons/MailIcon";

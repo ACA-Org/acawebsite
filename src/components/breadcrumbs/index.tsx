@@ -5,14 +5,11 @@ import { labelFormatter } from "@/lib/strting";
 import { usePathname } from "next/navigation";
 import { useAtomValue } from "jotai";
 import { pathMapAtom } from "@/app/atoms/pathMapAtom";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 import { TransitionLink } from "../ui/button";
-import { getPageTitle } from "@/lib/searchUtils";
 
 export function Breadcrumbs() {
   const pathname = usePathname();
   const pathMap = useAtomValue(pathMapAtom);
-  const pages = useAtomValue(pageInfoAtom);
 
   if (!pathname || !pathMap) return null;
 
@@ -46,23 +43,23 @@ export function Breadcrumbs() {
         label: "Privacy Policy",
       };
     }
+    if (segment === "newsletters") {
+      return {
+        href: "/newsletters",
+        label: "Newsletters",
+      };
+    }
 
-    // For regular pages, find the page in our pages list
+    // For regular pages, construct the href and use segment for label
     const href = `/${segments.slice(0, index + 1).join("/")}`;
 
-    const page = pages.find((p) => {
-      const pagePath = pathMap.get(p.id);
-      return pagePath === href;
-    });
-
-    const label =
-      (page ? getPageTitle(page) : null) ||
-      segment
-        .split("_")
-        .join("-")
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+    // Format the segment as a label
+    const label = segment
+      .split("_")
+      .join("-")
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
 
     return {
       href,

@@ -23,6 +23,15 @@ type Params = {
   tier_four_uid: string;
 };
 
+export async function generateStaticParams() {
+  const client = createClient();
+  const pages = (await client.getAllByType("tierFourPage")).filter(
+    (page) => !page.data.hidden && !page.data.requiresAuth
+  );
+
+  return pages.map((page) => ({ uid: page.uid }));
+}
+
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { tier_four_uid: uid_4 } = await params;
 

@@ -3,10 +3,9 @@
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import Fuse from "fuse.js";
-import { useAtomValue } from "jotai";
 
 import { LinkButton } from "@/components/ui/button";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
+import { PageData } from "@/app/actions/getSearchData";
 import {
   FuseMatch,
   SearchResult,
@@ -14,8 +13,11 @@ import {
   getPageTitle,
 } from "@/lib/searchUtils";
 
-export const Search = () => {
-  const pages = useAtomValue(pageInfoAtom);
+type SearchProps = {
+  pages: PageData[];
+};
+
+export const Search = ({ pages }: SearchProps) => {
   const [query, setQuery] = useState("");
 
   const fuse = useMemo(
