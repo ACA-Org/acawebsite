@@ -10,7 +10,7 @@ export async function GET(req: Request) {
   // Store the callback URL in a cookie so it's available after authentication
   const cookieStore = await cookies();
   cookieStore.set("authCallbackUrl", callbackUrl, {
-    httpOnly: true,
+    httpOnly: false, // Changed from true - needs to be readable by client-side JS
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 60 * 10, // 10 minutes

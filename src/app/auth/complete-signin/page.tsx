@@ -16,6 +16,8 @@ export default function CompleteSignIn() {
         cookie.trim().startsWith("authCallbackUrl=") ||
         cookie.trim().startsWith("redirectUrl=")
     );
+
+    console.log("redirectCookie", redirectCookie);
     let savedRedirectUrl = null;
 
     if (redirectCookie) {

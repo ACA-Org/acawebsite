@@ -6,6 +6,8 @@ import LocationsEditClient from "./LocationsEditClient";
 export default async function LocationsEditPage() {
   const session = await getServerSession(authOptions);
 
+  console.log("[locations] Session:", session);
+
   if (!session?.user?.email && !session?.user?.id) {
     redirect("/");
   }
