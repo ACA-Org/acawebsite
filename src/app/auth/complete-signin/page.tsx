@@ -52,8 +52,7 @@ export default function CompleteSignIn() {
         const result = await signIn("imis", {
           token,
           userName: userName || undefined,
-          redirect: true,
-          callbackUrl: savedRedirectUrl || "/", // Use saved URL or default to home
+          redirect: false, // Don't use NextAuth's redirect, handle it manually
         });
 
         if (result?.error) {
@@ -66,6 +65,12 @@ export default function CompleteSignIn() {
             JSON.stringify(result, null, 2)
           );
           window.location.href = `/auth/error?error=${encodeURIComponent(result.error)}`;
+          return;
+        }
+
+        // If sign-in was successful, redirect to the saved URL or home
+        if (result?.ok) {
+          window.location.href = savedRedirectUrl || "/";
           return;
         }
       } catch (error) {
