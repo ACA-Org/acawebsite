@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import ACA from "@/app/images/aca-white-gold.png";
 import { Facebook } from "@/icons/Facebook";
+import ACA from "@/app/images/aca-white-gold.png";
 import { Instagram } from "@/icons/Instagram";
 import { LinkedIn } from "@/icons/LinkedIn";
 import { X } from "@/icons/X";
