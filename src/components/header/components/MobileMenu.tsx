@@ -16,11 +16,10 @@ import { SearchIcon } from "@/icons/SearchIcon";
 import { ShoppingCart } from "@/icons/ShoppingCart";
 import { UserIcon } from "@/icons/UserIcon";
 import { AuthTextLink } from "@/app/components/SignIn";
+import { useMobileMenu } from "./HeaderClient";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
-  isOpen?: boolean;
-  onClose?: () => void;
 }
 
 const quickLinks = [
@@ -46,13 +45,12 @@ const quickLinks = [
   { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
 ];
 
-export function MobileMenu({
-  slices,
-  isOpen = false,
-  onClose = () => {},
-}: MobileMenuProps) {
+export function MobileMenu({ slices }: MobileMenuProps) {
+  const { isMobileOpen, setIsMobileOpen } = useMobileMenu();
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const onClose = () => setIsMobileOpen(false);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -71,7 +69,7 @@ export function MobileMenu({
       e.preventDefault();
     };
 
-    if (isOpen) {
+    if (isMobileOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("touchmove", preventTouchMove, {
         passive: false,
@@ -86,18 +84,18 @@ export function MobileMenu({
       document.body.style.overflow = "unset";
       document.body.style.touchAction = "auto";
     };
-  }, [isOpen, onClose]);
+  }, [isMobileOpen]);
 
   return (
     <>
-      {isOpen && (
-        <div className="fixed inset-0 top-[56px] z-[98] bg-black/50 transition-opacity duration-300" />
+      {isMobileOpen && (
+        <div className="fixed inset-0 top-[56px] z-30 bg-black/50 transition-opacity duration-300" />
       )}
       <div
         ref={menuRef}
         className={cn(
-          "border-top fixed top-[56px] right-0 left-0 z-[99] border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
-          isOpen
+          "border-top fixed top-[56px] right-0 left-0 z-40 border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
+          isMobileOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
         )}
