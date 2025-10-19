@@ -66,9 +66,24 @@ export const authOptions: AuthOptions = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Check if there's a stored callback URL in cookies
+      // Note: We can't directly access cookies in this callback,
+      // so we'll handle this in the complete-signin page instead
+
+      // If URL is relative, make it absolute
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+
+      // If URL is from the same site, allow it
+      if (new URL(url).origin === baseUrl) return url;
+
+      // Otherwise, redirect to base URL
+      return baseUrl;
+    },
   },
   pages: {
     error: "/auth/error",
+    signIn: "/auth/signin",
   },
   debug: process.env.NODE_ENV === "development",
 };

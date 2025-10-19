@@ -1,31 +1,30 @@
 "use client";
 
-import { useAtomValue } from "jotai";
-import { pathMapAtom } from "@/app/atoms/pathMapAtom";
-import { pageInfoAtom } from "@/app/atoms/pageInfoAtom";
 import { usePathname } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { TransitionLink } from "../ui/button";
-import { getPageTitle } from "@/lib/searchUtils";
 
 export function BackButton() {
   const pathname = usePathname();
-  const pathMap = useAtomValue(pathMapAtom);
-  const pages = useAtomValue(pageInfoAtom);
 
-  if (!pathname || !pathMap) return null;
+  if (!pathname) return null;
 
   // Get the parent page path by removing the last segment
   const segments = pathname.split("/").filter(Boolean);
+
+  // Don't show back button if we're at the top level
+  if (segments.length <= 1) return null;
+
   const parentPath = `/${segments.slice(0, -1).join("/")}`;
 
-  // Find the parent page in our pages list
-  const parentPage = pages.find((p) => {
-    const pagePath = pathMap.get(p.id);
-    return pagePath === parentPath;
-  });
-
-  if (!parentPage) return null;
+  // Format the parent segment as a label
+  const parentSegment = segments[segments.length - 2];
+  const parentLabel = parentSegment
+    .split("_")
+    .join("-")
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
   return (
     <TransitionLink
@@ -33,7 +32,7 @@ export function BackButton() {
       className="flex items-center gap-2 text-blue-300 transition-colors hover:text-blue-400 md:hidden"
     >
       <ChevronLeft className="h-5 w-5" />
-      <p>Go to {getPageTitle(parentPage)}</p>
+      <p>Back to {parentLabel}</p>
     </TransitionLink>
   );
 }

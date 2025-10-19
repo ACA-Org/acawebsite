@@ -6,9 +6,6 @@ import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { notFound } from "next/navigation";
 import { asImageSrc } from "@prismicio/client";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import Unauthenticated from "../../components/Unauthenticated";
 import RichText from "../../components/RichText";
 import { DynamicImage } from "@/components/image";
 import Link from "next/link";
@@ -30,12 +27,7 @@ export default async function NewsletterDetail({
 
   if (!pageData) return notFound();
 
-  const { newsBanner, newsTitle, newsContent, requiresAuth } = pageData.data;
-
-  if (requiresAuth) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) return <Unauthenticated />;
-  }
+  const { newsBanner, newsTitle, newsContent } = pageData.data;
 
   return (
     <div className="flex w-full flex-col">

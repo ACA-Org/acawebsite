@@ -3,9 +3,6 @@ import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { notFound } from "next/navigation";
 import { asImageSrc } from "@prismicio/client";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import Unauthenticated from "../components/Unauthenticated";
 import RichText from "../components/RichText";
 import type { Newsletter } from "./components/types";
 import NewsletterSearchClient from "./components/NewsletterSearchClient";
@@ -20,20 +17,13 @@ export default async function NewsletterSearchPage() {
     pageTitle,
     pageContent,
     newsletterCards,
-    requiresAuth,
     newsletterBanner,
   }: {
     pageTitle: string | null;
     pageContent: any;
     newsletterCards: Newsletter[];
-    requiresAuth: boolean;
     newsletterBanner: ImageField<never> | null;
   } = data;
-
-  if (requiresAuth) {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) return <Unauthenticated />;
-  }
 
   return (
     <div className="flex w-full flex-col">

@@ -2,13 +2,12 @@
 
 import { Button, ButtonProps } from "@/components/ui/button";
 import { useSignIn } from "../hooks/useSignIn";
-import { signOut } from "next-auth/react";
-import { userAtom } from "../atoms/userAtom";
-import { useAtomValue } from "jotai";
+import { signOut, useSession } from "next-auth/react";
 
 export function AuthButton(props: ButtonProps) {
-  const user = useAtomValue(userAtom);
   const { signIn } = useSignIn();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <Button
@@ -28,8 +27,9 @@ export function AuthButton(props: ButtonProps) {
 }
 
 export function AuthTextLink(props: React.HTMLAttributes<HTMLSpanElement>) {
-  const user = useAtomValue(userAtom);
   const { signIn } = useSignIn();
+  const { data: session } = useSession();
+  const user = session?.user;
 
   return (
     <span
