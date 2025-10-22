@@ -9,11 +9,6 @@ import {
   Text,
 } from "@react-email/components";
 
-const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://aca.org"
-    : "http://localhost:3000";
-
 interface ContactFormEmailProps {
   firstName: string;
   lastName: string;
@@ -37,7 +32,7 @@ export const ContactFormEmail = ({
         <Container style={container}>
           <Section style={logoSection}>
             <Img
-              src={`${baseURL}/aca.png`}
+              src="https://aca.org/aca.png"
               alt="ACA Logo"
               width={100}
               style={logo}
