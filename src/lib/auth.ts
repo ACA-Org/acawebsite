@@ -7,20 +7,6 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
     maxAge: 0, // <--- expires when browser closes
   },
-  cookies: {
-    sessionToken: {
-      name:
-        process.env.NODE_ENV === "production"
-          ? "__Secure-next-auth.session-token"
-          : "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        path: "/",
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
   providers: [
     CredentialsProvider({
       id: "imis",
