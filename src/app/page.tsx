@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
-import { notFound } from "next/navigation";
 import IntroContainer from "./components/IntroContainer";
+import { notFound } from "next/navigation";
 import HeroCarousel from "./components/HeroCarousel";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
