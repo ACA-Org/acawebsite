@@ -94,8 +94,8 @@ const ContactForm = () => {
   return (
     <div className="rounded-2xl border border-blue-500/20 bg-white p-8">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="relative mb-8 flex w-full items-center gap-[41px]">
-          <div className="flex flex-1 flex-col items-start gap-2">
+        <div className="relative mb-8 flex w-full items-center gap-8 max-md:flex-col">
+          <div className="flex w-full flex-1 flex-col items-start gap-2">
             <label
               htmlFor="firstName"
               className="font-body-LG text-[18px] leading-normal text-blue-300"
@@ -117,7 +117,7 @@ const ContactForm = () => {
             )}
           </div>
 
-          <div className="flex flex-1 flex-col items-start gap-2">
+          <div className="flex w-full flex-1 flex-col items-start gap-2">
             <label
               htmlFor="lastName"
               className="font-body-LG text-[18px] leading-normal text-blue-300"
