@@ -3,10 +3,10 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-  session: {
-    strategy: "jwt",
-    maxAge: 0, // <--- expires when browser closes
-  },
+  // session: {
+  //   strategy: "jwt",
+  //   maxAge: 0, // <--- expires when browser closes
+  // },
   providers: [
     CredentialsProvider({
       id: "imis",
