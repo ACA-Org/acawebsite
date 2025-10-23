@@ -21,12 +21,20 @@ export default function NotFound() {
         </div>
 
         <div className="space-y-4">
-          <TransitionLink
-            href="/"
-            className="focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-          >
-            Return Home
-          </TransitionLink>
+          <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <TransitionLink
+              href="/"
+              className="focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+            >
+              Return Home
+            </TransitionLink>
+            <TransitionLink
+              href="/search"
+              className="focus-visible:ring-ring ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/90 inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+            >
+              Try Search
+            </TransitionLink>
+          </div>
         </div>
       </div>
     </div>
