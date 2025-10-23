@@ -3,6 +3,26 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
+  // Configure the session cookie so it is a browser session cookie (no `maxAge`/`expires`).
+  // Session cookies are removed when the browser is closed, which makes the user
+  // effectively logged out on browser close. We intentionally avoid setting `maxAge`
+  // or `expires` here.
+  cookies: {
+    sessionToken: {
+      // Use the secure cookie name in production, otherwise the default dev name.
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        // do not set `maxAge` or `expires` -> makes it a session cookie
+        path: "/",
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+      },
+    },
+  },
   providers: [
     CredentialsProvider({
       id: "imis",
@@ -67,17 +87,10 @@ export const authOptions: AuthOptions = {
       return session;
     },
     async redirect({ url, baseUrl }) {
-      // Check if there's a stored callback URL in cookies
-      // Note: We can't directly access cookies in this callback,
-      // so we'll handle this in the complete-signin page instead
-
-      // If URL is relative, make it absolute
       if (url.startsWith("/")) return `${baseUrl}${url}`;
 
-      // If URL is from the same site, allow it
       if (new URL(url).origin === baseUrl) return url;
 
-      // Otherwise, redirect to base URL
       return baseUrl;
     },
   },
