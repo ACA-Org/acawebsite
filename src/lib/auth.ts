@@ -3,10 +3,10 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-  session: {
-    strategy: "jwt", // Use JWT tokens instead of database sessions
-    maxAge: 0, // This makes the session last only for the browser session
-  },
+  // session: {
+  //   strategy: "jwt", // Use JWT tokens instead of database sessions
+  //   maxAge: 0, // This makes the session last only for the browser session
+  // },
   cookies: {
     sessionToken: {
       // Use the secure cookie name in production, otherwise the default dev name.
