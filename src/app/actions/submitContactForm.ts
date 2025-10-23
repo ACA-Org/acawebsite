@@ -46,7 +46,7 @@ export const submitContactForm = async (data: {
     // Send email using Resend
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: "ACA Website <onboarding@resend.dev>",
-      to: ["info@aca.org"],
+      to: ["website@aca.org"],
       replyTo: email,
       subject: `Contact Form Submission from ${firstName} ${lastName}`,
       html: emailHtml,

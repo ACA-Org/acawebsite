@@ -12,6 +12,7 @@ import { pathMapAtom } from "./atoms/pathMapAtom";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import { ViewTransitions } from "next-view-transitions";
 import { Providers } from "./components/Providers";
 
@@ -105,6 +106,7 @@ export default async function RootLayout({
               {footerInfo && <Footer data={footerInfo} />}
             </HydrationBoundary>
           </Providers>
+          <Analytics />
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />

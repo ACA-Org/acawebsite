@@ -3,10 +3,10 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-  // Configure the session cookie so it is a browser session cookie (no `maxAge`/`expires`).
-  // Session cookies are removed when the browser is closed, which makes the user
-  // effectively logged out on browser close. We intentionally avoid setting `maxAge`
-  // or `expires` here.
+  session: {
+    strategy: "jwt", // Use JWT tokens instead of database sessions
+    maxAge: 0, // This makes the session last only for the browser session
+  },
   cookies: {
     sessionToken: {
       // Use the secure cookie name in production, otherwise the default dev name.
