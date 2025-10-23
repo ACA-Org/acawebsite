@@ -3,6 +3,10 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
+  session: {
+    strategy: "jwt",
+    maxAge: 0, // <--- expires when browser closes
+  },
   cookies: {
     sessionToken: {
       name:
@@ -14,7 +18,6 @@ export const authOptions: AuthOptions = {
         path: "/",
         sameSite: "lax",
         secure: process.env.NODE_ENV === "production",
-        maxAge: 0,
       },
     },
   },
