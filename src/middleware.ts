@@ -6,6 +6,21 @@ import { getPageAuthRequirement } from "@/app/actions/getPageAuthRequirement";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (request.nextUrl.pathname === "/api/email/AdvancedEmail") {
+    return new NextResponse(
+      JSON.stringify({
+        error: "This endpoint is no longer available",
+        message: "The iMIS email integration has been deprecated",
+      }),
+      {
+        status: 410,
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
+  }
+
   if (
     pathname.startsWith("/api/") ||
     pathname.startsWith("/auth/") ||
