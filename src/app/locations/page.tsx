@@ -17,7 +17,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await client.getSingle("locationsPage").catch(() => notFound());
 
   return {
-    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
+    title:
+      page.data.meta_title || page.data.pageTitle
+        ? `ACA - ${page.data.pageTitle}`
+        : "ACA - American Correctional Association",
     description: page.data.meta_description,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
