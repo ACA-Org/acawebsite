@@ -3,10 +3,10 @@ import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: AuthOptions = {
-  // session: {
-  //   strategy: "jwt",
-  //   maxAge: 0, // <--- expires when browser closes
-  // },
+  session: {
+    strategy: "jwt",
+    maxAge: 24 * 60 * 60,
+  },
   providers: [
     CredentialsProvider({
       id: "imis",
@@ -51,19 +51,6 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
-  cookies: {
-    sessionToken: {
-      name: "sessionToken",
-      options: {
-        name: "sessionToken",
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
-        maxAge: undefined,
-        expires: undefined,
-        path: "/",
-      },
-    },
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
