@@ -51,6 +51,19 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  cookies: {
+    sessionToken: {
+      name: "sessionToken",
+      options: {
+        name: "sessionToken",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: undefined,
+        expires: undefined,
+        path: "/",
+      },
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
