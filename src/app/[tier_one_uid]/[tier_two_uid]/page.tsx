@@ -129,7 +129,10 @@ export async function generateMetadata({
 
   // Base metadata
   const baseMetadata: Metadata = {
-    title: page.data.meta_title || `ACA - ${page.data.pageTitle}`,
+    title:
+      page.data.meta_title || page.data.pageTitle
+        ? `ACA - ${page.data.pageTitle}`
+        : "ACA - American Correctional Association",
     description: page.data.meta_description,
     openGraph: {
       images: [
