@@ -78,6 +78,16 @@ export const authOptions: AuthOptions = {
       return baseUrl;
     },
   },
+  cookies: {
+    sessionToken: {
+      name: "next-auth.session-token",
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 24 * 60 * 60,
+      },
+    },
+  },
   pages: {
     error: "/auth/error",
     signIn: "/auth/signin",
