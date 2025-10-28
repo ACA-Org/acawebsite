@@ -14,39 +14,46 @@ import { AuthTextLink } from "@/app/components/SignIn";
 import { useSession } from "next-auth/react";
 import { InfoIcon } from "lucide-react";
 
-const quickLinks = [
-  // {
-  //   label: "Job Bank",
-  //   value: "job_bank",
-  //   href: "/resources/job-bank",
-  //   icon: SuitcaseIcon,
-  // },
-  // {
-  //   label: "Contact Us",
-  //   value: "contact_us",
-  //   href: "/contact",
-  //   icon: MailIcon,
-  // },
-  { label: "Search", value: "search", href: "/search", icon: SearchIcon },
-  // {
-  //   label: "Marketplace",
-  //   value: "marketplace",
-  //   href: "/marketplace",
-  //   icon: ShoppingCart,
-  // },
-  {
-    label: "Sign In",
-    value: "sign_in",
-    href: "",
-    icon: UserIcon,
-  },
-];
-
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
   const user = useSession().data?.user;
+
+  const quickLinks = [
+    // {
+    //   label: "Job Bank",
+    //   value: "job_bank",
+    //   href: "/resources/job-bank",
+    //   icon: SuitcaseIcon,
+    // },
+    // {
+    //   label: "Contact Us",
+    //   value: "contact_us",
+    //   href: "/contact",
+    //   icon: MailIcon,
+    // },
+    {
+      label: "My Account",
+      value: "account",
+      href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
+      icon: InfoIcon,
+      hidden: !!user,
+    },
+    { label: "Search", value: "search", href: "/search", icon: SearchIcon },
+    // {
+    //   label: "Marketplace",
+    //   value: "marketplace",
+    //   href: "/marketplace",
+    //   icon: ShoppingCart,
+    // },
+    {
+      label: "Sign In",
+      value: "sign_in",
+      href: "",
+      icon: UserIcon,
+    },
+  ];
 
   useEffect(() => {
     return () => {
@@ -124,29 +131,19 @@ export const IconMenu = () => {
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
       >
-        {[
-          ...quickLinks,
-          ...(user
-            ? [
-                {
-                  label: "My Account",
-                  value: "account",
-                  href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
-                  icon: InfoIcon,
-                },
-              ]
-            : []),
-        ].map((item) => (
-          <ExpandingIcon
-            key={item.label}
-            icon={item.icon}
-            label={item.label}
-            menuId={item.value}
-            activeItem={activeItem}
-            setActiveItem={setActiveItem}
-            href={item.href}
-          />
-        ))}
+        {quickLinks
+          .filter((item) => !item.hidden)
+          .map((item) => (
+            <ExpandingIcon
+              key={item.label}
+              icon={item.icon}
+              label={item.label}
+              menuId={item.value}
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
+              href={item.href}
+            />
+          ))}
       </div>
     </>
   );
