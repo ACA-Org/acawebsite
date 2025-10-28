@@ -64,8 +64,11 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   };
 
   return (
-    <nav onMouseLeave={handleMouseLeave} className="relative z-40">
-      <div className={cn(className, "hidden xl:block")}>
+    <nav
+      onMouseLeave={handleMouseLeave}
+      className="relative z-40 hidden xl:block"
+    >
+      <div className={cn(className)}>
         <div className="relative">
           <div className="flex justify-center">
             <ul
