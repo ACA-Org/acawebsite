@@ -62,14 +62,12 @@ export const authOptions: AuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      console.log("[Auth] Session callback:", { token });
       if (token) {
         session.accessToken = token.accessToken;
         session.user.id = token.userId as string;
         session.user.email = token.email as string;
         session.user.userName = token.userName as string;
       }
-      session.expires = new Date(token.expires as string).toISOString();
       return session;
     },
     async redirect({ url, baseUrl }) {
