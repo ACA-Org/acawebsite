@@ -21,32 +21,14 @@ export const IconMenu = () => {
   const user = useSession().data?.user;
 
   const quickLinks = [
-    // {
-    //   label: "Job Bank",
-    //   value: "job_bank",
-    //   href: "/resources/job-bank",
-    //   icon: SuitcaseIcon,
-    // },
-    // {
-    //   label: "Contact Us",
-    //   value: "contact_us",
-    //   href: "/contact",
-    //   icon: MailIcon,
-    // },
     {
       label: "My Account",
       value: "account",
       href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
       icon: InfoIcon,
-      hidden: !!user,
+      hidden: !user,
     },
     { label: "Search", value: "search", href: "/search", icon: SearchIcon },
-    // {
-    //   label: "Marketplace",
-    //   value: "marketplace",
-    //   href: "/marketplace",
-    //   icon: ShoppingCart,
-    // },
     {
       label: "Sign In",
       value: "sign_in",
