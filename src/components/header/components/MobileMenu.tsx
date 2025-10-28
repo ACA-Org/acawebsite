@@ -17,6 +17,7 @@ import { ShoppingCart } from "@/icons/ShoppingCart";
 import { UserIcon } from "@/icons/UserIcon";
 import { AuthTextLink } from "@/app/components/SignIn";
 import { useMobileMenu } from "./HeaderClient";
+import { useSession } from "next-auth/react";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -49,6 +50,7 @@ export function MobileMenu({ slices }: MobileMenuProps) {
   const { isMobileOpen, setIsMobileOpen } = useMobileMenu();
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
+  const user = useSession().data?.user;
 
   const onClose = () => setIsMobileOpen(false);
 
@@ -89,12 +91,12 @@ export function MobileMenu({ slices }: MobileMenuProps) {
   return (
     <>
       {isMobileOpen && (
-        <div className="fixed inset-0 top-[56px] z-30 bg-black/50 transition-opacity duration-300" />
+        <div className="fixed inset-0 top-[76px] z-30 bg-black/50 transition-opacity duration-300" />
       )}
       <div
         ref={menuRef}
         className={cn(
-          "border-top fixed top-[56px] right-0 left-0 z-40 border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
+          "border-top fixed top-[76px] right-0 left-0 z-40 border-b-[rgba(0,95,150,0.08)] bg-white shadow-lg transition-all duration-300",
           isMobileOpen
             ? "translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-full opacity-0"
@@ -162,7 +164,19 @@ export function MobileMenu({ slices }: MobileMenuProps) {
         {/* Quick Links Section */}
         <div className="border-t border-gray-100/50 bg-gray-50/50 px-6 py-4">
           <div className="flex flex-col space-y-3">
-            {quickLinks.map((item) =>
+            {[
+              ...quickLinks,
+              ...(user
+                ? [
+                    {
+                      label: "My Account",
+                      value: "account",
+                      href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
+                      icon: ShoppingCart,
+                    },
+                  ]
+                : []),
+            ].map((item) =>
               item.value === "sign_in" ? (
                 <AuthTextLink
                   key={item.label}
