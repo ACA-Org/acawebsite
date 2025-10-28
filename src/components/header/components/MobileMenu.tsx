@@ -18,39 +18,53 @@ import { UserIcon } from "@/icons/UserIcon";
 import { AuthTextLink } from "@/app/components/SignIn";
 import { useMobileMenu } from "./HeaderClient";
 import { useSession } from "next-auth/react";
+import { InfoIcon } from "lucide-react";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
 }
-
-const quickLinks = [
-  {
-    label: "Job Bank",
-    value: "job_bank",
-    href: "/resources/job-bank",
-    icon: SuitcaseIcon,
-  },
-  {
-    label: "Contact Us",
-    value: "contact_us",
-    href: "/contact",
-    icon: MailIcon,
-  },
-  { label: "Search", value: "search", href: "/search", icon: SearchIcon },
-  {
-    label: "Marketplace",
-    value: "marketplace",
-    href: "/marketplace",
-    icon: ShoppingCart,
-  },
-  { label: "Sign In", value: "sign_in", href: "/auth/signin", icon: UserIcon },
-];
 
 export function MobileMenu({ slices }: MobileMenuProps) {
   const { isMobileOpen, setIsMobileOpen } = useMobileMenu();
   const [open, setOpen] = useState<string | undefined>(undefined);
   const menuRef = useRef<HTMLDivElement>(null);
   const user = useSession().data?.user;
+
+  const quickLinks = [
+    {
+      label: "Job Bank",
+      value: "job_bank",
+      href: "/resources/job-bank",
+      icon: SuitcaseIcon,
+    },
+    {
+      label: "Contact Us",
+      value: "contact_us",
+      href: "/contact",
+      icon: MailIcon,
+    },
+    { label: "Search", value: "search", href: "/search", icon: SearchIcon },
+    {
+      label: "Marketplace",
+      value: "marketplace",
+      href: "/marketplace",
+      icon: ShoppingCart,
+    },
+    {
+      label: "My Account",
+      value: "account",
+      href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
+      link_type: "Web",
+      icon: InfoIcon,
+      hidden: !!user,
+    },
+    {
+      label: "Sign In",
+      value: "sign_in",
+      href: "/auth/signin",
+      icon: UserIcon,
+    },
+  ];
 
   const onClose = () => setIsMobileOpen(false);
 
@@ -164,19 +178,7 @@ export function MobileMenu({ slices }: MobileMenuProps) {
         {/* Quick Links Section */}
         <div className="border-t border-gray-100/50 bg-gray-50/50 px-6 py-4">
           <div className="flex flex-col space-y-3">
-            {[
-              ...quickLinks,
-              ...(user
-                ? [
-                    {
-                      label: "My Account",
-                      value: "account",
-                      href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
-                      icon: ShoppingCart,
-                    },
-                  ]
-                : []),
-            ].map((item) =>
+            {quickLinks.map((item) =>
               item.value === "sign_in" ? (
                 <AuthTextLink
                   key={item.label}
@@ -190,6 +192,16 @@ export function MobileMenu({ slices }: MobileMenuProps) {
                 <TransitionLink
                   key={item.label}
                   href={item.href}
+                  field={
+                    item.link_type
+                      ? ({
+                          link_type: item.link_type || "Any",
+                          url: item.href || undefined,
+                          target:
+                            item.link_type === "Web" ? "_blank" : undefined,
+                        } as any)
+                      : undefined
+                  }
                   className="text-base text-gray-700 transition-colors hover:text-blue-500"
                   onClick={() => {
                     setOpen("");
