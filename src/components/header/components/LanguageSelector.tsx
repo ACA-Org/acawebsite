@@ -10,11 +10,9 @@ const LANGUAGES = [
   { code: "fr", label: "French", flag: "🇫🇷" },
   { code: "de", label: "German", flag: "🇩🇪" },
   { code: "pt", label: "Portuguese", flag: "🇧🇷" },
-  { code: "zh-CN", label: "Chinese (Simplified)", flag: "🇨🇳" },
   { code: "ja", label: "Japanese", flag: "🇯🇵" },
   { code: "ko", label: "Korean", flag: "🇰🇷" },
   { code: "ar", label: "Arabic", flag: "🇸🇦" },
-  { code: "ru", label: "Russian", flag: "🇷🇺" },
   { code: "it", label: "Italian", flag: "🇮🇹" },
   { code: "hi", label: "Hindi", flag: "🇮🇳" },
 ] as const;
