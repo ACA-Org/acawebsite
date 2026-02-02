@@ -23,16 +23,29 @@ function getCurrentLanguage(): string {
   return match ? match[1] : "en";
 }
 
+function clearGoogTransCookies() {
+  const hostname = window.location.hostname;
+  const expiry = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+  // Clear all domain/path variants that Google Translate may have set
+  document.cookie = `googtrans=; ${expiry}; path=/`;
+  document.cookie = `googtrans=; ${expiry}; path=/; domain=${hostname}`;
+  document.cookie = `googtrans=; ${expiry}; path=/; domain=.${hostname}`;
+  // Also clear on parent domain (e.g., .aca.org when on www.aca.org)
+  const parts = hostname.split(".");
+  if (parts.length > 2) {
+    const parentDomain = parts.slice(1).join(".");
+    document.cookie = `googtrans=; ${expiry}; path=/; domain=.${parentDomain}`;
+  }
+}
+
 function triggerTranslate(langCode: string) {
+  clearGoogTransCookies();
+
   if (langCode === "en") {
-    // Remove the cookie and reload to reset to English
-    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname;
     window.location.reload();
     return;
   }
 
-  // Set the googtrans cookie
   document.cookie = `googtrans=/en/${langCode}; path=/`;
   document.cookie = `googtrans=/en/${langCode}; path=/; domain=.${window.location.hostname}`;
   window.location.reload();
