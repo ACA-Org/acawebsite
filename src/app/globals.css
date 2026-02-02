@@ -455,6 +455,21 @@ nav:has(.align-center) > .left-0 {
   left: auto;
 }
 
+/* Hide Google Translate default UI */
+.goog-te-banner-frame,
+#goog-gt-tt,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
 @layer utilities {
   .pl-body .speedbump {
     padding-left: 0 !important;

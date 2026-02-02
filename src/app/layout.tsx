@@ -15,6 +15,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ViewTransitions } from "next-view-transitions";
 import { Providers } from "./components/Providers";
+import Script from "next/script";
 
 export const viewport: Viewport = {
   themeColor: "#0F2D52",
@@ -107,6 +108,20 @@ export default async function RootLayout({
             </HydrationBoundary>
           </Providers>
           <Analytics />
+          <div id="google_translate_element" style={{ display: "none" }} />
+          <Script id="google-translate-init" strategy="afterInteractive">
+            {`function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}`}
+          </Script>
+          <Script
+            src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+            strategy="afterInteractive"
+          />
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />

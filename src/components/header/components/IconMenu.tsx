@@ -13,12 +13,20 @@ import { TextLink } from "@/components/ui/button";
 import { AuthTextLink } from "@/app/components/SignIn";
 import { useSession } from "next-auth/react";
 import { InfoIcon } from "lucide-react";
+import { LanguageSelectorDesktop } from "./LanguageSelector";
 
 export const IconMenu = () => {
   const [activeItem, setActiveItem] = useState("sign_in");
   const [isOpen, setIsOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const timeoutRef = useRef<number>(0);
   const user = useSession().data?.user;
+
+  useEffect(() => {
+    if (!langDropdownOpen) {
+      setActiveItem("sign_in");
+    }
+  }, [langDropdownOpen]);
 
   const quickLinks = [
     {
@@ -46,6 +54,8 @@ export const IconMenu = () => {
   }, []);
 
   const handleMouseLeave = () => {
+    if (langDropdownOpen) return;
+
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -113,6 +123,11 @@ export const IconMenu = () => {
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
       >
+        <LanguageSelectorDesktop
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+          onDropdownOpenChange={setLangDropdownOpen}
+        />
         {quickLinks
           .filter((item) => !item.hidden)
           .map((item) => (
