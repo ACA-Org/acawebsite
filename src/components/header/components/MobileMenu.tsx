@@ -19,6 +19,7 @@ import { AuthTextLink } from "@/app/components/SignIn";
 import { useMobileMenu } from "./HeaderClient";
 import { useSession } from "next-auth/react";
 import { InfoIcon } from "lucide-react";
+import { LanguageSelectorMobile } from "./LanguageSelector";
 
 interface MobileMenuProps {
   slices: MenuItemProps[];
@@ -212,6 +213,7 @@ export function MobileMenu({ slices }: MobileMenuProps) {
                 </TransitionLink>
               )
             )}
+            <LanguageSelectorMobile />
           </div>
         </div>
       </div>
