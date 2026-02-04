@@ -111,17 +111,18 @@ export default async function RootLayout({
           <div id="google_translate_element" style={{ display: "none" }} />
           <Script id="google-translate-init" strategy="afterInteractive">
             {`function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    autoDisplay: false,
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
-}`}
+              new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                autoDisplay: false,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+              }, 'google_translate_element');
+            }`}
           </Script>
           <Script
             src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
             strategy="afterInteractive"
           />
+          <Script src="https://assets.adobedtm.com/175f7caa2b90/a39ecf4779a2/launch-f1ab340a6d82.min.js" async />
         </body>
         <GoogleAnalytics gaId="G-ND0DBVWRNR" />
         <PrismicPreview repositoryName={repositoryName} />
