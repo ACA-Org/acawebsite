@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { SliceComponentProps, PrismicLink } from "@prismicio/react";
 import { DynamicImage } from "@/components/image";
-import { LinkButton } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 /**
  * Props for `LinkTile`.
@@ -23,41 +23,60 @@ const LinkTile: FC<LinkTileProps> = (slice) => {
       tileLink: link,
     },
   } = slice;
+
   return (
     <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="group relative flex h-[350px] flex-col items-center justify-end gap-2 overflow-clip rounded-lg p-6"
+      className="group relative flex h-[420px] w-full min-w-0 flex-col overflow-hidden rounded-xl bg-white"
     >
-      {image && (
-        <>
-          <div className="absolute inset-0 h-full w-full">
-            <DynamicImage
-              field={image}
-              className="h-full w-full object-cover transition-opacity duration-250 ease-in-out"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(32,32,32,0)] via-transparent via-20% to-[#0F0F0F] transition-all duration-300 ease-in-out group-hover:via-[rgba(15,15,15,0.6)] group-hover:to-[rgba(15,15,15,1)] max-md:via-[rgba(15,15,15,0.6)] max-md:to-[rgba(15,15,15,1)]" />
-          </div>
-        </>
-      )}
-      <div className="z-20 flex translate-y-[84px] transform items-end gap-16 self-stretch transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-        <div className="flex w-full flex-col items-start gap-4 text-white">
+      {/* Image / content area */}
+      <div className="relative flex min-h-0 flex-1 flex-col justify-end overflow-hidden">
+        {image && (
+          <>
+            <div className="absolute inset-0">
+              <DynamicImage
+                field={image}
+                className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-[1.02]"
+              />
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/85" />
+          </>
+        )}
+
+        {/* Text overlay */}
+        <div className="relative z-20 flex w-full min-w-0 flex-col gap-2 p-5 text-white md:p-6">
           {title && (
-            <h2 className="heading-3 self-stretch font-semibold">{title}</h2>
+            <h2 className="heading-3 w-full min-w-0 break-words font-semibold">
+              {title}
+            </h2>
           )}
-          {desc && <p className="body-sm">{desc}</p>}
-          {link && (
-            <LinkButton
-              variant="tertiary"
-              outlined
-              className="mt-4 w-full"
-              field={link}
-            >
-              {link.text}
-            </LinkButton>
+
+          {desc && (
+            <p className="body-sm w-full min-w-0 break-words">
+              {desc}
+            </p>
           )}
         </div>
       </div>
+
+      {/* Clickable footer */}
+      {link && (
+        <PrismicLink
+          field={link}
+          className="relative z-30 flex w-full items-center justify-between gap-4 bg-blue-300 px-5 py-4 text-white no-underline transition-colors hover:bg-gold-100 hover:text-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-100 md:px-6"
+        >
+          <span className="font-semibold">
+            {link.text || "Learn More"}
+          </span>
+
+          <ArrowRight
+            className="h-5 w-5 shrink-0"
+            aria-hidden="true"
+          />
+        </PrismicLink>
+      )}
     </div>
   );
 };
