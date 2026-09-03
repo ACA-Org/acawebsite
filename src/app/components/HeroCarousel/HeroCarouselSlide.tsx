@@ -20,48 +20,53 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
 
   return (
     <div className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white">
-      
+
       {/* IMAGE AREA */}
-      <div className="relative min-h-[400px] flex-1 overflow-hidden lg:min-h-[500px]">
+      <div className="relative w-full overflow-hidden">
+
         {img && (
           <>
-            {/* Desktop / tablet image */}
+            {/* DESKTOP IMAGE - 2880 x 1170 */}
             <DynamicImage
               field={img}
-              className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+              className="hidden h-auto w-full sm:block"
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}
             />
 
-            {/* Mobile image */}
+            {/* MOBILE IMAGE - 1080 x 1920 */}
             <DynamicImage
               field={img.mobile?.url ? img.mobile : img}
-              className="absolute inset-0 block h-full w-full object-cover sm:hidden"
+              className="block h-auto w-full sm:hidden"
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}
             />
 
-            {/* Gradient */}
+            {/* GRADIENT */}
             {(title || desc) && (
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/85" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/70" />
             )}
           </>
         )}
 
         {/* TEXT OVERLAY */}
-        <div className="absolute inset-x-0 bottom-0 z-20 flex w-full min-w-0 flex-col gap-3 p-6 text-white md:p-8 lg:max-w-[650px] lg:p-12">
-          {title && (
-            <h2 className="heading-2 w-full min-w-0 break-words">
-              {title}
-            </h2>
-          )}
+        {(title || desc) && (
+          <div className="absolute inset-x-0 bottom-0 z-20 flex w-full min-w-0 flex-col gap-3 p-6 text-white md:p-8 lg:max-w-[650px] lg:p-12">
 
-          {desc && (
-            <p className="w-full min-w-0 break-words text-base leading-relaxed md:text-lg">
-              {desc}
-            </p>
-          )}
-        </div>
+            {title && (
+              <h2 className="heading-2 w-full min-w-0 break-words">
+                {title}
+              </h2>
+            )}
+
+            {desc && (
+              <p className="w-full min-w-0 break-words text-base leading-relaxed md:text-lg">
+                {desc}
+              </p>
+            )}
+
+          </div>
+        )}
       </div>
 
       {/* CLICKABLE NAVY FOOTER */}
@@ -80,6 +85,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
           />
         </LinkButton>
       )}
+
     </div>
   );
 };
