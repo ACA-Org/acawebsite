@@ -23,6 +23,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const navContainerRef = useRef<HTMLDivElement | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (activeItem === null) {
@@ -53,6 +54,46 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!activeSlice || !dropdownRef.current || !navContainerRef.current) {
+      return;
+    }
+
+    const adjustDropdownPosition = () => {
+      const dropdown = dropdownRef.current;
+      const nav = navContainerRef.current;
+
+      if (!dropdown || !nav) return;
+
+      const dropdownRect = dropdown.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+
+      const viewportPadding = 20;
+
+      let viewportLeft = navRect.left + dropdownLeft;
+
+      if (
+        viewportLeft + dropdownRect.width >
+        window.innerWidth - viewportPadding
+      ) {
+        viewportLeft =
+          window.innerWidth - dropdownRect.width - viewportPadding;
+      }
+
+      if (viewportLeft < viewportPadding) {
+        viewportLeft = viewportPadding;
+      }
+
+      const correctedLeft = viewportLeft - navRect.left;
+
+      if (Math.abs(correctedLeft - dropdownLeft) > 1) {
+        setDropdownLeft(correctedLeft);
+      }
+    };
+
+    requestAnimationFrame(adjustDropdownPosition);
+  }, [activeSlice, dropdownLeft]);
+
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
       setActiveItem(null);
@@ -76,188 +117,5 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
       const navRect = navContainerRef.current.getBoundingClientRect();
       const itemRect = element.getBoundingClientRect();
 
-      setDropdownLeft(itemRect.left - navRect.left);
-    }
-
-    setActiveItem(index);
-  };
-
-  return (
-    <nav
-      onMouseLeave={handleMouseLeave}
-      className="relative z-40 hidden xl:block"
-    >
-      <div className={cn(className)}>
-        <div ref={navContainerRef} className="relative">
-          <div className="flex justify-center">
-            <ul
-              className="flex w-full items-center justify-center gap-8 p-2"
-              onMouseEnter={handleMouseEnter}
-            >
-              {slices.map(
-                ({ primary: { tierOneLink, tierTwoMenuItems } }, index) => {
-                  if (tierOneLink.link_type !== "Document") {
-                    return (
-                      <li
-                        key={index}
-                        onMouseEnter={(e) =>
-                          handleItemEnter(index, e.currentTarget)
-                        }
-                        onClick={() => {
-                          setActiveItem(null);
-                        }}
-                        className="group/link body-md relative flex gap-2 text-blue-300 hover:cursor-default hover:bg-transparent hover:text-blue-200"
-                      >
-                        <span className="whitespace-nowrap">
-                          {tierOneLink.text}
-                        </span>
-
-                        {tierTwoMenuItems?.length > 0 && (
-                          <CaretDown
-                            className={cn(
-                              "h-auto w-2 stroke-blue-300 transition-transform group-hover/link:rotate-180 group-hover/link:stroke-blue-200"
-                            )}
-                          />
-                        )}
-                      </li>
-                    );
-                  }
-
-                  return (
-                    <li
-                      key={index}
-                      className="relative"
-                      onMouseEnter={(e) =>
-                        handleItemEnter(index, e.currentTarget)
-                      }
-                    >
-                      <TransitionLink
-                        field={tierOneLink}
-                        onClick={() => {
-                          setActiveItem(null);
-                        }}
-                        className="group/link body-md flex gap-2 text-blue-300 hover:bg-transparent hover:text-blue-200 hover:underline"
-                      >
-                        <span className="whitespace-nowrap">
-                          {tierOneLink.text}
-                        </span>
-
-                        {tierTwoMenuItems?.length > 0 && (
-                          <CaretDown
-                            className={cn(
-                              "h-auto w-2 stroke-blue-300 transition-transform group-hover/link:rotate-180 group-hover/link:stroke-blue-200"
-                            )}
-                          />
-                        )}
-                      </TransitionLink>
-                    </li>
-                  );
-                }
-              )}
-            </ul>
-          </div>
-
-          {activeSlice && (
-            <div
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              style={{
-                left: `${dropdownLeft}px`,
-              }}
-              className={cn(
-                "absolute top-full mt-2 w-fit rounded-lg opacity-0 transition-all duration-200",
-                activeItem !== null
-                  ? "animate-slide-down-fade pointer-events-auto visible translate-y-0 bg-white opacity-100 shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)]"
-                  : "animate-slide-up-fade pointer-events-none invisible -translate-y-2"
-              )}
-            >
-              <div
-                key={activeSlice.id}
-                className="animate-slide-in-right inline-flex w-max items-start gap-8 p-12"
-              >
-                <div className="grid w-max grid-cols-2 gap-8">
-                  {activeSlice.primary.tierTwoMenuItems.map((i, index) => (
-                    <TransitionLink
-                      key={`${i.tierTwoMenuLink.text}-${index}`}
-                      field={i.tierTwoMenuLink}
-                      onClick={() => {
-                        setActiveItem(null);
-                      }}
-                      className="group col-span-1 w-max"
-                    >
-                      <span className="flex h-9 w-max items-center gap-3 pr-3">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-gray-200 p-2 transition-all duration-300 group-hover:bg-blue-300">
-                          {i.tierTwoMenuIcon?.url ? (
-                            <SVG
-                              src={i.tierTwoMenuIcon.url}
-                              className="transition-all duration-300 [&>path]:!fill-gray-300 [&>path]:group-hover:!fill-white"
-                            />
-                          ) : (
-                            <Link2 className="stroke-gray-300 transition-all duration-300 group-hover:stroke-white" />
-                          )}
-                        </span>
-
-                        <div className="flex w-max flex-col items-start justify-center text-gray-300">
-                          <p className="transition-all duration-300 group-hover:text-blue-200">
-                            {i.tierTwoMenuLink.text}
-                          </p>
-
-                          <p className="text-xs">
-                            {i.tierTwoMenuDesc}
-                          </p>
-                        </div>
-                      </span>
-                    </TransitionLink>
-                  ))}
-                </div>
-
-                {activeSlice.primary.featuredMenuLink.text && (
-                  <TransitionLink
-                    field={activeSlice.primary.featuredMenuLink}
-                    onClick={() => {
-                      setActiveItem(null);
-                    }}
-                    className="group/link flex flex-col items-start gap-4 pl-8"
-                  >
-                    <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
-                      {activeSlice.primary.featuredMenuLink.text}
-                    </p>
-
-                    <div className="group relative h-[113px] w-[200px] overflow-clip rounded-lg">
-                      <DynamicImage
-                        field={activeSlice.primary.featuredMenuImage}
-                        className="peer h-full w-full object-cover opacity-0 transition-opacity duration-300"
-                        onLoad={(e) => {
-                          const el = e.currentTarget;
-                          el.classList.remove("opacity-0");
-                          el.classList.add("opacity-100");
-                          el.nextElementSibling?.classList.add("hidden");
-                        }}
-                      />
-
-                      <div className="pointer-events-none absolute inset-0 animate-pulse bg-gray-200" />
-
-                      <div className="absolute top-0 right-0 left-0 flex h-full transform items-center justify-center gap-3 bg-[#0f2d52e6] opacity-0 duration-500 ease-in-out group-hover:opacity-100">
-                        <span className="text-lg leading-4.5 text-white">
-                          View Item
-                        </span>
-
-                        <ArrowRight
-                          style={{
-                            height: "15px",
-                            width: "17px",
-                          }}
-                          className="stroke-1 stroke-white"
-                        />
-                      </div>
-                    </div>
-                  </TransitionLink>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </nav>
-  );
-}
+      setDropdownLeft(itemRect.left - navRect.left
+                      
