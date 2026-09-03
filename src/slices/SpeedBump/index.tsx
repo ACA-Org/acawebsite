@@ -48,21 +48,22 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
               />
             </figure>
           )}
+
           <div
             className={cn(
-              "flex h-fit flex-1 gap-4",
+              "flex h-fit min-w-0 w-full flex-1 gap-4",
               variation === "vertical" && "flex-col",
               position === "bottom"
                 ? "flex-col items-start"
                 : "flex-col items-center sm:flex-row"
             )}
           >
-            <div className="flex flex-1 flex-col gap-4">
-              <div className="flex flex-col gap-1">
+            <div className="flex min-w-0 w-full flex-1 flex-col gap-4">
+              <div className="flex min-w-0 w-full flex-col gap-1">
                 {title && (
                   <h2
                     className={cn(
-                      "heading-3 font-semibold",
+                      "heading-3 w-full min-w-0 break-words font-semibold",
                       variation === "vertical" && "text-center",
                       theme === "light" ? "text-blue-300" : "text-gray-600"
                     )}
@@ -71,10 +72,11 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                   </h2>
                 )}
               </div>
+
               {description && (
                 <p
                   className={cn(
-                    "body-md",
+                    "body-md w-full min-w-0 break-words",
                     variation === "vertical" && "text-center",
                     theme === "light" ? "text-gray-300" : "text-gray-600"
                   )}
@@ -83,10 +85,11 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                 </p>
               )}
             </div>
+
             {links?.length > 0 && (
               <div
                 className={cn(
-                  "flex items-center justify-center gap-4",
+                  "flex w-full flex-wrap items-center justify-center gap-4 max-md:flex-col",
                   variation === "vertical" && "w-full flex-col"
                 )}
               >
@@ -94,7 +97,10 @@ const SpeedBump: FC<SpeedBumpProps> = ({ slice }) => {
                   <LinkButton
                     key={`${link.key}+${index}`}
                     field={link}
-                    className={cn(variation === "vertical" && "w-full")}
+                    className={cn(
+                      "max-md:w-full",
+                      variation === "vertical" && "w-full"
+                    )}
                   >
                     {link.text}
                   </LinkButton>
