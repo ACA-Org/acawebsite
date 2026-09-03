@@ -19,35 +19,36 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
   } = props;
 
   return (
-    <div className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white max-lg:min-h-[420px] lg:min-h-[635px]">
-      {/* Image / content area */}
-      <div className="relative flex min-h-0 flex-1 flex-col justify-end overflow-hidden">
+    <div className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white">
+      {/* IMAGE AREA */}
+      <div className="relative min-h-[420px] flex-1 overflow-hidden lg:min-h-[635px]">
         {img && (
           <>
-            <div className="absolute inset-0 h-full w-full">
-              <DynamicImage
-                field={img}
-                className="hidden h-full w-full object-cover sm:flex"
-                priority={props.index === 0}
-                loading={props.index === 0 ? "eager" : "lazy"}
-              />
+            {/* Desktop / tablet image */}
+            <DynamicImage
+              field={img}
+              className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+              priority={props.index === 0}
+              loading={props.index === 0 ? "eager" : "lazy"}
+            />
 
-              <DynamicImage
-                field={img.mobile?.url ? img.mobile : img}
-                className="flex h-full w-full object-cover sm:hidden"
-                priority={props.index === 0}
-                loading={props.index === 0 ? "eager" : "lazy"}
-              />
-            </div>
+            {/* Mobile image */}
+            <DynamicImage
+              field={img.mobile?.url ? img.mobile : img}
+              className="absolute inset-0 block h-full w-full object-cover sm:hidden"
+              priority={props.index === 0}
+              loading={props.index === 0 ? "eager" : "lazy"}
+            />
 
-            {(desc || title) && (
+            {/* Gradient for text readability */}
+            {(title || desc) && (
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/85" />
             )}
           </>
         )}
 
-        {/* Text content */}
-        <div className="relative z-20 flex w-full min-w-0 flex-col gap-3 p-5 text-white md:p-8 lg:max-w-[650px] lg:p-12">
+        {/* TEXT OVERLAY */}
+        <div className="absolute inset-x-0 bottom-0 z-20 flex w-full min-w-0 flex-col gap-3 p-6 text-white md:p-8 lg:max-w-[650px] lg:p-12">
           {title && (
             <h2 className="heading-2 w-full min-w-0 break-words">
               {title}
@@ -55,25 +56,25 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
           )}
 
           {desc && (
-            <p className="w-full min-w-0 break-words">
+            <p className="w-full min-w-0 break-words text-base leading-relaxed md:text-lg">
               {desc}
             </p>
           )}
         </div>
       </div>
 
-      {/* Clickable footer */}
+      {/* CLICKABLE NAVY FOOTER */}
       {link && (
         <PrismicLink
           field={link}
-          className="relative z-30 flex w-full items-center justify-between gap-4 bg-blue-300 px-5 py-4 text-white no-underline transition-colors hover:bg-gold-100 hover:text-blue-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-100 md:px-8"
+          className="relative z-30 flex w-full items-center justify-between gap-4 bg-[#0F2D52] px-6 py-5 text-[#FFC72C] no-underline transition-colors hover:bg-[#123B6B] hover:text-[#FFD65A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC72C]"
         >
-          <span className="font-semibold">
-            {link.text || "Learn More"}
+          <span className="text-lg font-semibold">
+            {link.text || "Learn More!"}
           </span>
 
           <ArrowRight
-            className="h-5 w-5 shrink-0"
+            className="h-6 w-6 shrink-0"
             aria-hidden="true"
           />
         </PrismicLink>
