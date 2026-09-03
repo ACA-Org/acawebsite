@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MenuItemProps } from "@/slices/MenuItem";
 import { DynamicImage } from "@/components/image";
 import { ArrowRight } from "@/icons/ArrowRight";
@@ -18,19 +18,21 @@ export interface NavigationMenuProps {
 export function NavigationMenu({ className, slices }: NavigationMenuProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const [activeSlice, setActiveSlice] = useState<MenuItemProps | null>(null);
-  const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  const animationTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const [dropdownLeft, setDropdownLeft] = useState(0);
+
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const navContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (activeItem === null) {
-      // Delay clearing activeSlice to allow exit animation to complete
       animationTimeoutRef.current = setTimeout(() => {
         setActiveSlice(null);
-      }, 200); // Match the duration-200 transition
+      }, 200);
+
       return;
     }
 
-    // Clear any pending animation timeout when opening a new item
     if (animationTimeoutRef.current) {
       clearTimeout(animationTimeoutRef.current);
       animationTimeoutRef.current = null;
@@ -44,6 +46,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
       if (closeTimeoutRef.current) {
         clearTimeout(closeTimeoutRef.current);
       }
+
       if (animationTimeoutRef.current) {
         clearTimeout(animationTimeoutRef.current);
       }
@@ -63,13 +66,29 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
     }
   };
 
+  const handleItemEnter = (
+    index: number,
+    element: HTMLElement
+  ) => {
+    handleMouseEnter();
+
+    if (navContainerRef.current) {
+      const navRect = navContainerRef.current.getBoundingClientRect();
+      const itemRect = element.getBoundingClientRect();
+
+      setDropdownLeft(itemRect.left - navRect.left);
+    }
+
+    setActiveItem(index);
+  };
+
   return (
     <nav
       onMouseLeave={handleMouseLeave}
       className="relative z-40 hidden xl:block"
     >
       <div className={cn(className)}>
-        <div className="relative">
+        <div ref={navContainerRef} className="relative">
           <div className="flex justify-center">
             <ul
               className="flex w-full items-center justify-center gap-8 p-2"
@@ -81,7 +100,9 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                     return (
                       <li
                         key={index}
-                        onMouseEnter={() => setActiveItem(index)}
+                        onMouseEnter={(e) =>
+                          handleItemEnter(index, e.currentTarget)
+                        }
                         onClick={() => {
                           setActiveItem(null);
                         }}
@@ -90,6 +111,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         <span className="whitespace-nowrap">
                           {tierOneLink.text}
                         </span>
+
                         {tierTwoMenuItems?.length > 0 && (
                           <CaretDown
                             className={cn(
@@ -100,11 +122,17 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                       </li>
                     );
                   }
+
                   return (
-                    <li key={index} className="relative">
+                    <li
+                      key={index}
+                      className="relative"
+                      onMouseEnter={(e) =>
+                        handleItemEnter(index, e.currentTarget)
+                      }
+                    >
                       <TransitionLink
                         field={tierOneLink}
-                        onMouseEnter={() => setActiveItem(index)}
                         onClick={() => {
                           setActiveItem(null);
                         }}
@@ -113,6 +141,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                         <span className="whitespace-nowrap">
                           {tierOneLink.text}
                         </span>
+
                         {tierTwoMenuItems?.length > 0 && (
                           <CaretDown
                             className={cn(
@@ -132,8 +161,11 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
             <div
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
+              style={{
+                left: `${dropdownLeft}px`,
+              }}
               className={cn(
-                "absolute top-full right-0 mt-2 w-fit rounded-lg opacity-0 transition-all duration-200",
+                "absolute top-full mt-2 w-fit rounded-lg opacity-0 transition-all duration-200",
                 activeItem !== null
                   ? "animate-slide-down-fade pointer-events-auto visible translate-y-0 bg-white opacity-100 shadow-[0px_4px_48px_0px_rgba(0,0,0,0.12)]"
                   : "animate-slide-up-fade pointer-events-none invisible -translate-y-2"
@@ -141,10 +173,10 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
             >
               <div
                 key={activeSlice.id}
-                className="animate-slide-in-right align-right inline-flex w-max items-start gap-8 p-12"
+                className="animate-slide-in-right inline-flex w-max items-start gap-8 p-12"
               >
                 <div className="grid w-max grid-cols-2 gap-8">
-                  {activeSlice?.primary.tierTwoMenuItems.map((i, index) => (
+                  {activeSlice.primary.tierTwoMenuItems.map((i, index) => (
                     <TransitionLink
                       key={`${i.tierTwoMenuLink.text}-${index}`}
                       field={i.tierTwoMenuLink}
@@ -169,36 +201,42 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                           <p className="transition-all duration-300 group-hover:text-blue-200">
                             {i.tierTwoMenuLink.text}
                           </p>
-                          <p className="text-xs">{i.tierTwoMenuDesc}</p>
+
+                          <p className="text-xs">
+                            {i.tierTwoMenuDesc}
+                          </p>
                         </div>
                       </span>
                     </TransitionLink>
                   ))}
                 </div>
 
-                {activeSlice?.primary.featuredMenuLink.text && (
+                {activeSlice.primary.featuredMenuLink.text && (
                   <TransitionLink
-                    field={activeSlice?.primary.featuredMenuLink}
+                    field={activeSlice.primary.featuredMenuLink}
                     onClick={() => {
                       setActiveItem(null);
                     }}
                     className="group/link flex flex-col items-start gap-4 pl-8"
                   >
                     <p className="self-stretch text-gray-300 group-hover/link:text-blue-200">
-                      {activeSlice?.primary.featuredMenuLink.text}
+                      {activeSlice.primary.featuredMenuLink.text}
                     </p>
+
                     <div className="group relative h-[113px] w-[200px] overflow-clip rounded-lg">
                       <DynamicImage
-                        field={activeSlice?.primary.featuredMenuImage}
+                        field={activeSlice.primary.featuredMenuImage}
                         className="peer h-full w-full object-cover opacity-0 transition-opacity duration-300"
                         onLoad={(e) => {
                           const el = e.currentTarget;
                           el.classList.remove("opacity-0");
                           el.classList.add("opacity-100");
-                          el.nextElementSibling?.classList.add("hidden"); // hide the skeleton
+                          el.nextElementSibling?.classList.add("hidden");
                         }}
                       />
+
                       <div className="pointer-events-none absolute inset-0 animate-pulse bg-gray-200" />
+
                       <div className="absolute top-0 right-0 left-0 flex h-full transform items-center justify-center gap-3 bg-[#0f2d52e6] opacity-0 duration-500 ease-in-out group-hover:opacity-100">
                         <span className="text-lg leading-4.5 text-white">
                           View Item
@@ -209,7 +247,7 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
                             height: "15px",
                             width: "17px",
                           }}
-                          className="stroke-white stroke-1"
+                          className="stroke-1 stroke-white"
                         />
                       </div>
                     </div>
