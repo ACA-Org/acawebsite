@@ -50,7 +50,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
             </SwiperSlide>
           ))}
 
-          <SlideControls className="z-40 max-lg:mt-4 lg:right-0 lg:-bottom-20" />
+          <SlideControls className="z-40 mt-5 !left-1/2 !right-auto !bottom-auto !-translate-x-1/2 [&_button]:!border-[#FFC72C] [&_button]:!bg-[#0F2D52] [&_button]:!text-[#FFC72C] [&_svg]:!text-[#FFC72C]" />
         </Swiper>
       </div>
     </div>
