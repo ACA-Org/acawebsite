@@ -54,7 +54,7 @@ export function MobileMenu({ slices }: MobileMenuProps) {
     {
       label: "My Account",
       value: "account",
-      href: "https://aca-portal.aca.org/ACA/ACA_Member/MyAccount/MyAccount_home.aspx?hkey=51ec3e4d-34a2-4b53-b9cd-59e8ac3578f5&WebsiteKey=bf62f512-696b-4f0c-8208-792aa7184ea8&iProductCode=Professional_Billing_Cycle",
+      href: "https://aca-portal.aca.org/ACA_Member_Source/ContactLayouts/AccountPage.aspx?893b614b6538=4#893b614b6538",
       link_type: "Web",
       icon: InfoIcon,
       hidden: !user,
