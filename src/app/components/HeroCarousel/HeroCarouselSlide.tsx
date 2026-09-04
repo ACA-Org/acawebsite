@@ -22,7 +22,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
     <div className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white">
       
       {/* IMAGE AREA */}
-      <div className="relative min-h-[620px] flex-1 overflow-hidden sm:min-h-[400px] lg:min-h0[500px]">
+      <div className="relative min-h-[620px] flex-1 overflow-hidden sm:min-h-[400px] lg:aspect-[32/13] lg:min-h-0 lg:flex-none">
         {img && (
           <>
             {/* Desktop / tablet image */}
