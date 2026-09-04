@@ -118,4 +118,8 @@ export function NavigationMenu({ className, slices }: NavigationMenuProps) {
       const itemRect = element.getBoundingClientRect();
 
       setDropdownLeft(itemRect.left - navRect.left);
+       }
+
+    setActiveItem(index);
+  };
                       
