@@ -22,7 +22,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
     <div className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-2xl bg-white">
       
       {/* IMAGE AREA */}
-      <div className="relative min-h-[400px] flex-1 overflow-hidden lg:min-h-[500px]">
+      <div className="relative min-h-[620px] flex-1 overflow-hidden sm:min-h-[400px] lg:min-h0[500px]">
         {img && (
           <>
             {/* Desktop / tablet image */}
@@ -36,7 +36,7 @@ const HeroCarouselSlide: FC<HeroCarouselSlideProps> = (props) => {
             {/* Mobile image */}
             <DynamicImage
               field={img.mobile?.url ? img.mobile : img}
-              className="absolute inset-0 block h-full w-full object-contain bg-white sm:hidden""
+              className="absolute inset-0 block h-full w-full object-cover sm:hidden"
               priority={props.index === 0}
               loading={props.index === 0 ? "eager" : "lazy"}
             />
